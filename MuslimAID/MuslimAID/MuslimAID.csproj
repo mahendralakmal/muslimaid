@@ -80,6 +80,13 @@
     <Compile Include="MURABHA\Murabha.Master.designer.cs">
       <DependentUpon>Murabha.Master</DependentUpon>
     </Compile>
+    <Compile Include="MURABHA\Add_Village.aspx.cs">
+      <DependentUpon>Add_Village.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Add_Village.aspx.designer.cs">
+      <DependentUpon>Add_Village.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MuslimAID.Master.cs">
       <DependentUpon>MuslimAID.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -115,6 +122,7 @@
     <Content Include="js\jquery.validation.net.webforms.min.js" />
     <Content Include="js\signin.js" />
     <Content Include="MURABHA\Murabha.Master" />
+    <Content Include="MURABHA\Add_Village.aspx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="font\fontawesome-webfont.eot" />
