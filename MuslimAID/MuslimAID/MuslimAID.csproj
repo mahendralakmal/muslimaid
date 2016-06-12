@@ -73,6 +73,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MURABHA\Murabha.Master.cs">
+      <DependentUpon>Murabha.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Murabha.Master.designer.cs">
+      <DependentUpon>Murabha.Master</DependentUpon>
+    </Compile>
     <Compile Include="MuslimAID.Master.cs">
       <DependentUpon>MuslimAID.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -87,12 +94,41 @@
     <Content Include="MuslimAID.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\bootstrap-responsive.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\font-awesome-ie7.css" />
+    <Content Include="css\font-awesome-ie7.min.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\jquery-ui.css" />
+    <Content Include="css\sb-admin.css" />
+    <Content Include="css\style.css" />
+    <Content Include="font\fontawesome-webfont.svg" />
+    <Content Include="js\base.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\footer.js" />
+    <Content Include="js\jquery-1.7.2.min.js" />
+    <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\jquery.validation.net.webforms.js" />
+    <Content Include="js\jquery.validation.net.webforms.min.js" />
+    <Content Include="js\signin.js" />
+    <Content Include="MURABHA\Murabha.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="font\fontawesome-webfont.eot" />
+    <None Include="font\fontawesome-webfont.svgz" />
+    <None Include="font\fontawesome-webfont.ttf" />
+    <None Include="font\fontawesome-webfont.woff" />
+    <None Include="font\fontawesome-webfontd41d.eot" />
+    <None Include="font\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="css\" />
-    <Folder Include="font\" />
+    <Folder Include="css\img\" />
+    <Folder Include="css\pages\" />
     <Folder Include="Images\" />
-    <Folder Include="js\" />
-    <Folder Include="MURABHA\" />
     <Folder Include="SALAM\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
