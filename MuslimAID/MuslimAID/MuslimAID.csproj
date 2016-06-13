@@ -154,6 +154,7 @@
     <None Include="font\fontawesome-webfont.woff" />
     <None Include="font\fontawesome-webfontd41d.eot" />
     <None Include="font\FontAwesome.otf" />
+    <Content Include="Login.Master" />
     <Content Include="css\img\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="css\img\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="css\img\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -173,7 +174,6 @@
     <Content Include="Images\signin\check.png" />
     <Content Include="Images\signin\password.png" />
     <Content Include="Images\signin\user.png" />
-    <Content Include="Login.Master" />
     <Content Include="SALAM\Salam.Master" />
     <Content Include="Login.aspx" />
   </ItemGroup>

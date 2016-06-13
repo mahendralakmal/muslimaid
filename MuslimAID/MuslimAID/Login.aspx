@@ -1,22 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Login.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="MuslimAID.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-<script src="../js/footer.js"></script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                </a><a class="navbar-brand" href="#">MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED</a>
-                <%--<a class="navbar-brand" href="#">Asian Credit(PVT) Ltd - Account End</a>--%>
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /navbar-inner -->
-    </div>
+    
     <!-- /navbar -->
     <div class="account-container">
         <div class="content clearfix">
@@ -61,17 +47,4 @@
         <!-- /content -->
     </div>
     <!-- /account-container -->
-    <footer> 
-        <div class="footer">        	
-            <div class="footer-inner">        		
-                <div class="container">        			
-	                <div class="row">        				
-		                <div class="col-lg-12">
-			                Design & Developed by Pro IT Solutions.
-		                </div> <!-- /span12 -->            			
-	                </div> <!-- /row -->            		
-                </div> <!-- /container -->        		
-            </div> <!-- /footer-inner -->        	
-        </div> <!-- /footer -->                
-    </footer>
 </asp:Content>
