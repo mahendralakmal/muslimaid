@@ -13,7 +13,7 @@ using MySql.Data.MySqlClient;
 
 namespace MuslimAID
 {
-    public class cls_Connection
+    public class cls_Connection : System.Web.UI.Page
     {
         private static MySqlConnection connect = null;
 
@@ -204,7 +204,7 @@ namespace MuslimAID
             DataSet dsAuthLogin = new DataSet();
 
             strPassword = EncodePasswordToBase64(strPassword);
-            MySqlCommand cmdAuthUser = new MySqlCommand("select * from tblu_users where nic = @NIC and user_password = @Password;");
+            MySqlCommand cmdAuthUser = new MySqlCommand("select * from users where nic = @NIC and user_password = @Password;");
             cmdAuthUser.Parameters.Add("@NIC", MySqlDbType.VarChar, 10);
             cmdAuthUser.Parameters.Add("@Password", MySqlDbType.VarChar, 10);
             cmdAuthUser.Parameters["@NIC"].Value = strNIC;
@@ -215,10 +215,10 @@ namespace MuslimAID
             if (dsAuthLogin.Tables[0].Rows.Count > 0)
             {
                 //ADD MAIN SESSION VARIABLES
-                //Session["LoggedIn"] = "True";
-                //Session["NIC"] = dsAuthLogin.Tables[0].Rows[0]["nic"].ToString();
-                //Session["Branch"] = dsAuthLogin.Tables[0].Rows[0]["branch_code"].ToString();
-                //Session["UserType"] = dsAuthLogin.Tables[0].Rows[0]["user_type"].ToString();
+                Session["LoggedIn"] = "True";
+                Session["NIC"] = dsAuthLogin.Tables[0].Rows[0]["nic"].ToString();
+                Session["Branch"] = dsAuthLogin.Tables[0].Rows[0]["branch_code"].ToString();
+                Session["UserType"] = dsAuthLogin.Tables[0].Rows[0]["user_type"].ToString();
                 return true;
             }
             else

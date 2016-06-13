@@ -1,16 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MuslimAID._Default" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head runat="server">
-    <title>Untitled Page</title>
-</head>
-<body>
-    <form id="form1" runat="server">
+﻿<%@ Page Language="C#" MasterPageFile="~/MuslimAID.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MuslimAID._Default" Title="Muslim AID" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-    
+        <table class = "table" cellpadding="0" cellspacing="0" border="0" width="860px">
+            <tr>
+                <td width="860px" height="435px" valign="middle" align="center"></td>
+            </tr>
+        </table>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
