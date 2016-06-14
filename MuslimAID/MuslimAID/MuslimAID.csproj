@@ -82,6 +82,265 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
+    <Compile Include="MURABHA\Add_Village.aspx.cs">
+      <DependentUpon>Add_Village.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Add_Village.aspx.designer.cs">
+      <DependentUpon>Add_Village.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Agreement.aspx.cs">
+      <DependentUpon>Agreement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Agreement.aspx.designer.cs">
+      <DependentUpon>Agreement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Arrears_Report.aspx.cs">
+      <DependentUpon>Arrears_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Arrears_Report.aspx.designer.cs">
+      <DependentUpon>Arrears_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Attendance_Sheet.aspx.cs">
+      <DependentUpon>Attendance_Sheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Attendance_Sheet.aspx.designer.cs">
+      <DependentUpon>Attendance_Sheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Audit_Report.aspx.cs">
+      <DependentUpon>Audit_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Audit_Report.aspx.designer.cs">
+      <DependentUpon>Audit_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Basic_Details.aspx.cs">
+      <DependentUpon>Basic_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Basic_Details.aspx.designer.cs">
+      <DependentUpon>Basic_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Basic_Details_Report.aspx.cs">
+      <DependentUpon>Basic_Details_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Basic_Details_Report.aspx.designer.cs">
+      <DependentUpon>Basic_Details_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Bulk_Payment.aspx.cs">
+      <DependentUpon>Bulk_Payment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Bulk_Payment.aspx.designer.cs">
+      <DependentUpon>Bulk_Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Bulk_Receipt.aspx.cs">
+      <DependentUpon>Bulk_Receipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Bulk_Receipt.aspx.designer.cs">
+      <DependentUpon>Bulk_Receipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Business_Details.aspx.cs">
+      <DependentUpon>Business_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Business_Details.aspx.designer.cs">
+      <DependentUpon>Business_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Business_Detail_Report.aspx.cs">
+      <DependentUpon>Business_Detail_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Business_Detail_Report.aspx.designer.cs">
+      <DependentUpon>Business_Detail_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Business_Progress_Report.aspx.cs">
+      <DependentUpon>Business_Progress_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Business_Progress_Report.aspx.designer.cs">
+      <DependentUpon>Business_Progress_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Cash_Book.aspx.cs">
+      <DependentUpon>Cash_Book.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Cash_Book.aspx.designer.cs">
+      <DependentUpon>Cash_Book.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Center_Create.aspx.cs">
+      <DependentUpon>Center_Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Center_Create.aspx.designer.cs">
+      <DependentUpon>Center_Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Center_details_Report.aspx.cs">
+      <DependentUpon>Center_details_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Center_details_Report.aspx.designer.cs">
+      <DependentUpon>Center_details_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Change_CRO.aspx.cs">
+      <DependentUpon>Change_CRO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Change_CRO.aspx.designer.cs">
+      <DependentUpon>Change_CRO.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Cheque_Printing_Report.aspx.cs">
+      <DependentUpon>Cheque_Printing_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Cheque_Printing_Report.aspx.designer.cs">
+      <DependentUpon>Cheque_Printing_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Chequ_Approval.aspx.cs">
+      <DependentUpon>Chequ_Approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Chequ_Approval.aspx.designer.cs">
+      <DependentUpon>Chequ_Approval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Chequ_Print.aspx.cs">
+      <DependentUpon>Chequ_Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Chequ_Print.aspx.designer.cs">
+      <DependentUpon>Chequ_Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Custome_Chq_Print.aspx.cs">
+      <DependentUpon>Custome_Chq_Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Custome_Chq_Print.aspx.designer.cs">
+      <DependentUpon>Custome_Chq_Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\DateRangeReport.aspx.cs">
+      <DependentUpon>DateRangeReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\DateRangeReport.aspx.designer.cs">
+      <DependentUpon>DateRangeReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Debit_Note.aspx.cs">
+      <DependentUpon>Debit_Note.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Debit_Note.aspx.designer.cs">
+      <DependentUpon>Debit_Note.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Documents.aspx.cs">
+      <DependentUpon>Documents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Documents.aspx.designer.cs">
+      <DependentUpon>Documents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\End_of_Day.aspx.cs">
+      <DependentUpon>End_of_Day.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\End_of_Day.aspx.designer.cs">
+      <DependentUpon>End_of_Day.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Family_Details.aspx.cs">
+      <DependentUpon>Family_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Family_Details.aspx.designer.cs">
+      <DependentUpon>Family_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Family_Detail_Report.aspx.cs">
+      <DependentUpon>Family_Detail_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Family_Detail_Report.aspx.designer.cs">
+      <DependentUpon>Family_Detail_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Full_Details.aspx.cs">
+      <DependentUpon>Full_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Full_Details.aspx.designer.cs">
+      <DependentUpon>Full_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Installment_Report.aspx.cs">
+      <DependentUpon>Installment_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Installment_Report.aspx.designer.cs">
+      <DependentUpon>Installment_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Insurance_Report.aspx.cs">
+      <DependentUpon>Insurance_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Insurance_Report.aspx.designer.cs">
+      <DependentUpon>Insurance_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Ledger_Card.aspx.cs">
+      <DependentUpon>Ledger_Card.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Ledger_Card.aspx.designer.cs">
+      <DependentUpon>Ledger_Card.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Loan_Approval.aspx.cs">
+      <DependentUpon>Loan_Approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Loan_Approval.aspx.designer.cs">
+      <DependentUpon>Loan_Approval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Loan_Details.aspx.cs">
+      <DependentUpon>Loan_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Loan_Details.aspx.designer.cs">
+      <DependentUpon>Loan_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Loan_Detail_Report.aspx.cs">
+      <DependentUpon>Loan_Detail_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Loan_Detail_Report.aspx.designer.cs">
+      <DependentUpon>Loan_Detail_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Loan_Position_Report.aspx.cs">
+      <DependentUpon>Loan_Position_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Loan_Position_Report.aspx.designer.cs">
+      <DependentUpon>Loan_Position_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\MasterSheet.aspx.cs">
+      <DependentUpon>MasterSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\MasterSheet.aspx.designer.cs">
+      <DependentUpon>MasterSheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Micro.Master.cs">
+      <DependentUpon>Micro.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Micro.Master.designer.cs">
+      <DependentUpon>Micro.Master</DependentUpon>
+    </Compile>
     <Compile Include="MURABHA\Murabha.Master.cs">
       <DependentUpon>Murabha.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -89,12 +348,127 @@
     <Compile Include="MURABHA\Murabha.Master.designer.cs">
       <DependentUpon>Murabha.Master</DependentUpon>
     </Compile>
-    <Compile Include="MURABHA\Add_Village.aspx.cs">
-      <DependentUpon>Add_Village.aspx</DependentUpon>
+    <Compile Include="MURABHA\Add_Village-ori.aspx.cs">
+      <DependentUpon>Add_Village-ori.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MURABHA\Add_Village.aspx.designer.cs">
-      <DependentUpon>Add_Village.aspx</DependentUpon>
+    <Compile Include="MURABHA\Add_Village-ori.aspx.designer.cs">
+      <DependentUpon>Add_Village-ori.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\not_paid_report.aspx.cs">
+      <DependentUpon>not_paid_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\not_paid_report.aspx.designer.cs">
+      <DependentUpon>not_paid_report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Payment.aspx.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Payment.aspx.designer.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Promisers_Details.aspx.cs">
+      <DependentUpon>Promisers_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Promisers_Details.aspx.designer.cs">
+      <DependentUpon>Promisers_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Receipt.aspx.cs">
+      <DependentUpon>Receipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Receipt.aspx.designer.cs">
+      <DependentUpon>Receipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Recipt_Cancel.aspx.cs">
+      <DependentUpon>Recipt_Cancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Recipt_Cancel.aspx.designer.cs">
+      <DependentUpon>Recipt_Cancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Recipt_Cancel_Report.aspx.cs">
+      <DependentUpon>Recipt_Cancel_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Recipt_Cancel_Report.aspx.designer.cs">
+      <DependentUpon>Recipt_Cancel_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Regional_Approval.aspx.cs">
+      <DependentUpon>Regional_Approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Regional_Approval.aspx.designer.cs">
+      <DependentUpon>Regional_Approval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Repayment_Sheet.aspx.cs">
+      <DependentUpon>Repayment_Sheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Repayment_Sheet.aspx.designer.cs">
+      <DependentUpon>Repayment_Sheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Service_Charges.aspx.cs">
+      <DependentUpon>Service_Charges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Service_Charges.aspx.designer.cs">
+      <DependentUpon>Service_Charges.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Service_Charges_Receipts.aspx.cs">
+      <DependentUpon>Service_Charges_Receipts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Service_Charges_Receipts.aspx.designer.cs">
+      <DependentUpon>Service_Charges_Receipts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Service_Charges_Report.aspx.cs">
+      <DependentUpon>Service_Charges_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Service_Charges_Report.aspx.designer.cs">
+      <DependentUpon>Service_Charges_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Slip_Transfer_Format.aspx.cs">
+      <DependentUpon>Slip_Transfer_Format.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Slip_Transfer_Format.aspx.designer.cs">
+      <DependentUpon>Slip_Transfer_Format.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Slip_Transfer_Format_Export.aspx.cs">
+      <DependentUpon>Slip_Transfer_Format_Export.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Slip_Transfer_Format_Export.aspx.designer.cs">
+      <DependentUpon>Slip_Transfer_Format_Export.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\Summery.aspx.cs">
+      <DependentUpon>Summery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\Summery.aspx.designer.cs">
+      <DependentUpon>Summery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\ViewChequDetails.aspx.cs">
+      <DependentUpon>ViewChequDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\ViewChequDetails.aspx.designer.cs">
+      <DependentUpon>ViewChequDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\ViewLoanDetails.aspx.cs">
+      <DependentUpon>ViewLoanDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABHA\ViewLoanDetails.aspx.designer.cs">
+      <DependentUpon>ViewLoanDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABHA\VoucherPrint.aspx.designer.cs">
+      <DependentUpon>VoucherPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="MuslimAID.Master.cs">
       <DependentUpon>MuslimAID.Master</DependentUpon>
@@ -145,7 +519,7 @@
     <Content Include="js\jquery.validation.net.webforms.min.js" />
     <Content Include="js\signin.js" />
     <Content Include="MURABHA\Murabha.Master" />
-    <Content Include="MURABHA\Add_Village.aspx" />
+    <Content Include="MURABHA\Add_Village-ori.aspx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="font\fontawesome-webfont.eot" />
@@ -154,6 +528,7 @@
     <None Include="font\fontawesome-webfont.woff" />
     <None Include="font\fontawesome-webfontd41d.eot" />
     <None Include="font\FontAwesome.otf" />
+    <Content Include="MURABHA\Micro.Master" />
     <Content Include="Login.Master" />
     <Content Include="css\img\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="css\img\ui-bg_flat_75_ffffff_40x100.png" />
@@ -174,6 +549,59 @@
     <Content Include="Images\signin\check.png" />
     <Content Include="Images\signin\password.png" />
     <Content Include="Images\signin\user.png" />
+    <Content Include="MURABHA\Add_Village.aspx" />
+    <Content Include="MURABHA\Agreement.aspx" />
+    <Content Include="MURABHA\Arrears_Report.aspx" />
+    <Content Include="MURABHA\Attendance_Sheet.aspx" />
+    <Content Include="MURABHA\Audit_Report.aspx" />
+    <Content Include="MURABHA\Basic_Details.aspx" />
+    <Content Include="MURABHA\Basic_Details_Report.aspx" />
+    <Content Include="MURABHA\Bulk_Payment.aspx" />
+    <Content Include="MURABHA\Bulk_Receipt.aspx" />
+    <Content Include="MURABHA\Business_Details.aspx" />
+    <Content Include="MURABHA\Business_Detail_Report.aspx" />
+    <Content Include="MURABHA\Business_Progress_Report.aspx" />
+    <Content Include="MURABHA\Cash_Book.aspx" />
+    <Content Include="MURABHA\Center_Create.aspx" />
+    <Content Include="MURABHA\Center_details_Report.aspx" />
+    <Content Include="MURABHA\Change_CRO.aspx" />
+    <Content Include="MURABHA\Cheque_Printing_Report.aspx" />
+    <Content Include="MURABHA\Chequ_Approval.aspx" />
+    <Content Include="MURABHA\Chequ_Print.aspx" />
+    <Content Include="MURABHA\Custome_Chq_Print.aspx" />
+    <Content Include="MURABHA\DateRangeReport.aspx" />
+    <Content Include="MURABHA\Debit_Note.aspx" />
+    <Content Include="MURABHA\Default.aspx" />
+    <Content Include="MURABHA\Documents.aspx" />
+    <Content Include="MURABHA\End_of_Day.aspx" />
+    <Content Include="MURABHA\Family_Details.aspx" />
+    <Content Include="MURABHA\Family_Detail_Report.aspx" />
+    <Content Include="MURABHA\Full_Details.aspx" />
+    <Content Include="MURABHA\Installment_Report.aspx" />
+    <Content Include="MURABHA\Insurance_Report.aspx" />
+    <Content Include="MURABHA\Ledger_Card.aspx" />
+    <Content Include="MURABHA\Loan_Approval.aspx" />
+    <Content Include="MURABHA\Loan_Details.aspx" />
+    <Content Include="MURABHA\Loan_Detail_Report.aspx" />
+    <Content Include="MURABHA\Loan_Position_Report.aspx" />
+    <Content Include="MURABHA\MasterSheet.aspx" />
+    <Content Include="MURABHA\not_paid_report.aspx" />
+    <Content Include="MURABHA\Payment.aspx" />
+    <Content Include="MURABHA\Promisers_Details.aspx" />
+    <Content Include="MURABHA\Receipt.aspx" />
+    <Content Include="MURABHA\Recipt_Cancel.aspx" />
+    <Content Include="MURABHA\Recipt_Cancel_Report.aspx" />
+    <Content Include="MURABHA\Regional_Approval.aspx" />
+    <Content Include="MURABHA\Repayment_Sheet.aspx" />
+    <Content Include="MURABHA\Service_Charges.aspx" />
+    <Content Include="MURABHA\Service_Charges_Receipts.aspx" />
+    <Content Include="MURABHA\Service_Charges_Report.aspx" />
+    <Content Include="MURABHA\Slip_Transfer_Format.aspx" />
+    <Content Include="MURABHA\Slip_Transfer_Format_Export.aspx" />
+    <Content Include="MURABHA\Summery.aspx" />
+    <Content Include="MURABHA\ViewChequDetails.aspx" />
+    <Content Include="MURABHA\ViewLoanDetails.aspx" />
+    <Content Include="MURABHA\VoucherPrint.aspx" />
     <Content Include="SALAM\Salam.Master" />
     <Content Include="Login.aspx" />
   </ItemGroup>

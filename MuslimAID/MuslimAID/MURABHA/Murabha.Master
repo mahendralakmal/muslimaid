@@ -27,7 +27,7 @@
 
     <link href="../css/jquery-ui.css" rel="stylesheet" type="text/css" />
 
-    <script src="../js/footer.js"></script>
+    <%--<script src="../js/footer.js"></script>--%>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
