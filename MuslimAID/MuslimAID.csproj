@@ -1,0 +1,343 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{002BAB14-07CC-422E-A85C-DBF943250AB5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MuslimAID</RootNamespace>
+    <AssemblyName>MuslimAID</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.2.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\clsU_User.cs" />
+    <Compile Include="Common\cls_CommonFunctions.cs" />
+    <Compile Include="Common\cls_Connection.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\cls_LoginInfo.cs" />
+    <Compile Include="Common\cls_Setup.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.Master.cs">
+      <DependentUpon>Login.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.Master.designer.cs">
+      <DependentUpon>Login.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Murabha.Master.cs">
+      <DependentUpon>Murabha.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Murabha.Master.designer.cs">
+      <DependentUpon>Murabha.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Add_Village.aspx.cs">
+      <DependentUpon>Add_Village.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Add_Village.aspx.designer.cs">
+      <DependentUpon>Add_Village.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\agreement.aspx.cs">
+      <DependentUpon>agreement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\agreement.aspx.designer.cs">
+      <DependentUpon>agreement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\arrears_report.aspx.cs">
+      <DependentUpon>arrears_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\arrears_report.aspx.designer.cs">
+      <DependentUpon>arrears_report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\client_basic_details.aspx.cs">
+      <DependentUpon>client_basic_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\client_basic_details.aspx.designer.cs">
+      <DependentUpon>client_basic_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\business_details.aspx.cs">
+      <DependentUpon>business_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\business_details.aspx.designer.cs">
+      <DependentUpon>business_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\center_create.aspx.cs">
+      <DependentUpon>center_create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\center_create.aspx.designer.cs">
+      <DependentUpon>center_create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\family_details.aspx.cs">
+      <DependentUpon>family_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\family_details.aspx.designer.cs">
+      <DependentUpon>family_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\loan_details.aspx.cs">
+      <DependentUpon>loan_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\loan_details.aspx.designer.cs">
+      <DependentUpon>loan_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\murabha.aspx.cs">
+      <DependentUpon>murabha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\murabha.aspx.designer.cs">
+      <DependentUpon>murabha.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\supplier.aspx.cs">
+      <DependentUpon>supplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\supplier.aspx.designer.cs">
+      <DependentUpon>supplier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\family_appraisal.aspx.cs">
+      <DependentUpon>family_appraisal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\family_appraisal.aspx.designer.cs">
+      <DependentUpon>family_appraisal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\add_cro.aspx.cs">
+      <DependentUpon>add_cro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\add_cro.aspx.designer.cs">
+      <DependentUpon>add_cro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MuslimAID.Master.cs">
+      <DependentUpon>MuslimAID.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MuslimAID.Master.designer.cs">
+      <DependentUpon>MuslimAID.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SALAM\business_details.aspx.cs">
+      <DependentUpon>business_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\business_details.aspx.designer.cs">
+      <DependentUpon>business_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\Salam.Master.cs">
+      <DependentUpon>Salam.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\Salam.Master.designer.cs">
+      <DependentUpon>Salam.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="muslimaid.aspx.cs">
+      <DependentUpon>muslimaid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="muslimaid.aspx.designer.cs">
+      <DependentUpon>muslimaid.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\salam.aspx.cs">
+      <DependentUpon>salam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\salam.aspx.designer.cs">
+      <DependentUpon>salam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\basic_details.aspx.cs">
+      <DependentUpon>basic_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\basic_details.aspx.designer.cs">
+      <DependentUpon>basic_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\repayment.aspx.cs">
+      <DependentUpon>repayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\repayment.aspx.designer.cs">
+      <DependentUpon>repayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\add_cro.aspx.cs">
+      <DependentUpon>add_cro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\add_cro.aspx.designer.cs">
+      <DependentUpon>add_cro.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MuslimAID.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\bootstrap-responsive.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\font-awesome-ie7.css" />
+    <Content Include="css\font-awesome-ie7.min.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\jquery-ui.css" />
+    <Content Include="css\sb-admin.css" />
+    <Content Include="css\style.css" />
+    <Content Include="font\fontawesome-webfont.svg" />
+    <Content Include="js\base.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\footer.js" />
+    <Content Include="js\jquery-1.7.2.min.js" />
+    <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\jquery.validation.net.webforms.js" />
+    <Content Include="js\jquery.validation.net.webforms.min.js" />
+    <Content Include="js\signin.js" />
+    <Content Include="MURABAHA\Murabha.Master" />
+    <Content Include="MURABAHA\Add_Village.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="font\fontawesome-webfont.eot" />
+    <None Include="font\fontawesome-webfont.svgz" />
+    <None Include="font\fontawesome-webfont.ttf" />
+    <None Include="font\fontawesome-webfont.woff" />
+    <None Include="font\fontawesome-webfontd41d.eot" />
+    <None Include="font\FontAwesome.otf" />
+    <Content Include="css\img\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="css\img\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="css\img\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="css\img\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="css\img\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="css\img\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="css\img\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="css\img\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="css\img\ui-icons_222222_256x240.png" />
+    <Content Include="css\img\ui-icons_2e83ff_256x240.png" />
+    <Content Include="css\img\ui-icons_454545_256x240.png" />
+    <Content Include="css\img\ui-icons_888888_256x240.png" />
+    <Content Include="css\img\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="css\pages\signin.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\body-bg.png" />
+    <Content Include="Images\calendar.png" />
+    <Content Include="Images\MAMC Logo - Final without line.png" />
+    <Content Include="Images\Murabaha.jpg" />
+    <Content Include="Images\Salam.jpg" />
+    <Content Include="Images\signin\check.png" />
+    <Content Include="Images\signin\password.png" />
+    <Content Include="Images\signin\user.png" />
+    <Content Include="js\jquery-3.1.0.min.js" />
+    <Content Include="Login.Master" />
+    <Content Include="MURABAHA\agreement.aspx" />
+    <Content Include="MURABAHA\arrears_report.aspx" />
+    <Content Include="MURABAHA\client_basic_details.aspx" />
+    <Content Include="MURABAHA\business_details.aspx" />
+    <Content Include="MURABAHA\center_create.aspx" />
+    <Content Include="MURABAHA\family_details.aspx" />
+    <Content Include="MURABAHA\loan_details.aspx" />
+    <Content Include="MURABAHA\murabha.aspx" />
+    <Content Include="MURABAHA\supplier.aspx" />
+    <Content Include="MURABAHA\family_appraisal.aspx" />
+    <Content Include="MURABAHA\add_cro.aspx" />
+    <Content Include="SALAM\business_details.aspx" />
+    <Content Include="SALAM\Salam.Master" />
+    <Content Include="Login.aspx" />
+    <Content Include="muslimaid.aspx" />
+    <Content Include="SALAM\salam.aspx" />
+    <Content Include="SALAM\basic_details.aspx" />
+    <Content Include="SALAM\repayment.aspx" />
+    <Content Include="SALAM\add_cro.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49500</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
