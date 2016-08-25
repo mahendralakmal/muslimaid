@@ -512,7 +512,7 @@ namespace MuslimAID.MURABHA
                         int i = objDBCon.insertEditData(cmdInsert);
                         if (i == 1)
                         {
-                            Response.Redirect("Family_Details.aspx?CC=" + strCC + "&CA=" + strCACodeNew + "");
+                            Response.Redirect("family_details.aspx?CC=" + strCC + "&CA=" + strCACodeNew + "");
                         }
                         else
                         {
