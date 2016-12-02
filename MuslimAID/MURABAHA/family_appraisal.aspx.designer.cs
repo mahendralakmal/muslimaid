@@ -32,40 +32,40 @@ namespace MuslimAID.MURABAHA {
         protected global::System.Web.UI.WebControls.TextBox txtCACode;
         
         /// <summary>
-        /// txtSalWa control.
+        /// txtSalWages control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSalWa;
+        protected global::System.Web.UI.WebControls.TextBox txtSalWages;
         
         /// <summary>
-        /// txtRentB control.
+        /// txtRentBuildingIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRentB;
+        protected global::System.Web.UI.WebControls.TextBox txtRentBuildingIn;
         
         /// <summary>
-        /// txtRentO control.
+        /// txtRentInOther control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRentO;
+        protected global::System.Web.UI.WebControls.TextBox txtRentInOther;
         
         /// <summary>
-        /// txtNetIn control.
+        /// txtNetBusinesIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNetIn;
+        protected global::System.Web.UI.WebControls.TextBox txtNetBusinesIn;
         
         /// <summary>
         /// txtInO control.
@@ -77,94 +77,94 @@ namespace MuslimAID.MURABAHA {
         protected global::System.Web.UI.WebControls.TextBox txtInO;
         
         /// <summary>
-        /// txtFamiIn control.
+        /// txtFamilyIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFamiIn;
+        protected global::System.Web.UI.WebControls.TextBox txtFamilyIn;
         
         /// <summary>
-        /// txtFood control.
+        /// txtFoodEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFood;
+        protected global::System.Web.UI.WebControls.TextBox txtFoodEx;
         
         /// <summary>
-        /// txtEdu control.
+        /// txtEduEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEdu;
+        protected global::System.Web.UI.WebControls.TextBox txtEduEx;
         
         /// <summary>
-        /// txtWET control.
+        /// txtWETEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtWET;
+        protected global::System.Web.UI.WebControls.TextBox txtWETEx;
         
         /// <summary>
-        /// txtHS control.
+        /// txtHSEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHS;
+        protected global::System.Web.UI.WebControls.TextBox txtHSEx;
         
         /// <summary>
-        /// txtRenPay control.
+        /// txtRenPayEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRenPay;
+        protected global::System.Web.UI.WebControls.TextBox txtRenPayEx;
         
         /// <summary>
-        /// txtOFAI control.
+        /// txtOFAIEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOFAI;
+        protected global::System.Web.UI.WebControls.TextBox txtOFAIEx;
         
         /// <summary>
-        /// txtTTrans control.
+        /// txtTTransEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTTrans;
+        protected global::System.Web.UI.WebControls.TextBox txtTTransEx;
         
         /// <summary>
-        /// txtCloths control.
+        /// txtClothsEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCloths;
+        protected global::System.Web.UI.WebControls.TextBox txtClothsEx;
         
         /// <summary>
-        /// txtOthers control.
+        /// txtOthersEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOthers;
+        protected global::System.Web.UI.WebControls.TextBox txtOthersEx;
         
         /// <summary>
         /// txtFExpense control.
@@ -176,40 +176,40 @@ namespace MuslimAID.MURABAHA {
         protected global::System.Web.UI.WebControls.TextBox txtFExpense;
         
         /// <summary>
-        /// txtNetAnualFIN control.
+        /// txtNetAnualFIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNetAnualFIN;
+        protected global::System.Web.UI.WebControls.TextBox txtNetAnualFIn;
         
         /// <summary>
-        /// txtAmountOP control.
+        /// txtAmountOPEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAmountOP;
+        protected global::System.Web.UI.WebControls.TextBox txtAmountOPEx;
         
         /// <summary>
-        /// txtMamountF control.
+        /// txtAmountFEx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMamountF;
+        protected global::System.Web.UI.WebControls.TextBox txtAmountFEx;
         
         /// <summary>
-        /// txtFRP control.
+        /// txtFRPriod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFRP;
+        protected global::System.Web.UI.WebControls.TextBox txtFRPriod;
         
         /// <summary>
         /// txtMAD control.
