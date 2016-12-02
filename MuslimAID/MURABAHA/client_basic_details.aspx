@@ -46,18 +46,18 @@
             <div class="col-md-6"> 
                 <div class="form-group">
                     <div class="col-md-5">NIC/Passport/DL Issued Date<span style="color:Red;"> *</span></div>
-                    <div class="col-md-7 input-group date" id="datetimepicker1">
-                        <input type='text' class="form-control" />
+                    <div class="col-md-7">
+                        <!-- <input type='text' class="form-control" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                        <!-- <asp:TextBox ID="txtNicIssuDay" MaxLength="10" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox> -->
+                        </span> -->
+                        <asp:TextBox ID="txtNicIssuDay" MaxLength="10" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
                     </div>
-                    <script type="text/javascript">
+                    <!-- <script type="text/javascript">
                         $(function() {
                             $('#datetimepicker1').datetimepicker();
                         });
-                    </script>
+                    </script> -->
                 </div>
             </div>
             <div class="col-md-6">

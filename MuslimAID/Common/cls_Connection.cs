@@ -91,6 +91,24 @@ namespace MuslimAID
             }
         }
 
+        public int insertEditData(string strQry)
+        {
+            try
+            {
+                int i=0;
+                MySqlConnection con = cls_Connection.DBConnect();
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(strQry, con);
+                i = cmd.ExecuteNonQuery();
+                con.Close();
+                return i;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
         //Set My Sql Data Reader by String
         public static MySqlDataReader getData(String q)
         {

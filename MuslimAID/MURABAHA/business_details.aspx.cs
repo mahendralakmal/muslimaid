@@ -82,10 +82,10 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "Please Enter Other Income";
             }
-            else if (txtTotalIncome.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please Enter Total Income";
-            }
+            //else if (txtTotalIncome.Text.Trim() == "")
+            //{
+            //    lblMsg.Text = "Please Enter Total Income";
+            //}
             else if (txtDCost.Text.Trim() == "")
             {
                 lblMsg.Text = "Please Enter Direct Cost";

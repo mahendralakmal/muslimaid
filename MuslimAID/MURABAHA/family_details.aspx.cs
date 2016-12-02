@@ -31,10 +31,10 @@ namespace MuslimAID.MURABHA
                 {
                     if (Session["LoggedIn"].ToString() == "True")
                     {
-                        strCC = Request.QueryString["CC"];
-                        strCAC = Request.QueryString["CA"];
-                        //strCC = "CO/CS/000004";
-                        //strCAC = "CO/1/01/02";
+                        //strCC = Request.QueryString["CC"];
+                        //strCAC = Request.QueryString["CA"];
+                        strCC = "CO/CS/000004";
+                        strCAC = "CO/1/01/02";
 
                         if (strCC != null && strCAC != null)
                         {
@@ -89,7 +89,7 @@ namespace MuslimAID.MURABHA
                 }
                 else
                 {
-                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_family_details(contract_code,spouse_nic,spouse_nic_issued_date,spouse_name,occupation,no_of_fami_memb,education,dependers,spouse_income,other_fami_mem_income,moveable_property,immoveable_property,saving,create_user_nic,user_ip,date_time,spouse_dob,micro_family_detailscol,spouse_gender,spouse_contact_no,spouse_relationship_with_applicant,spouse_income_source,no_of_family_members,no_of_dependents,Occupation_income_source,other_f_members_income,moveble_properties,immovable_properties,saving,create_user_nic,user_ip,date_time) VALUES(@contract_code,@spouse_nic,@spouse_nic_issued_date,@spouse_name,@occupation,@no_of_fami_memb,@education,@dependers,@spouse_income,@other_fami_mem_income,@moveable_property,@immoveable_property,@saving,@create_user_nic,@user_ip,@date_time,@spouse_dob,@micro_family_detailscol,@spouse_gender,@spouse_contact_no,@spouse_relationship_with_applicant,@spouse_income_source,@no_of_family_members,@no_of_dependents,@Occupation_income_source,@other_f_members_income,@moveble_properties,@immovable_properties,@saving,@create_user_nic,@user_ip,@date_time);");
+                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_family_details(contract_code,spouse_nic,spouse_nic_issued_date,spouse_name,occupation,education,spouse_income,other_fami_mem_income,spouse_dob,spouse_gender,spouse_contact_no,spouse_relationship_with_applicant,no_of_fami_memb,dependers,moveable_property,immoveable_property,saving,create_user_nic,user_ip,date_time) VALUES(@contract_code, @spouse_nic, @spouse_nic_issued_date, @spouse_name, @occupation, @education, @spouse_income, @other_fami_mem_income, @spouse_dob, @spouse_gender, @spouse_contact_no, @spouse_relationship_with_applicant, @no_of_fami_memb, @dependers, @moveable_property, @immoveable_property, @saving, @create_user_nic, @user_ip, @date_time);");
 
                     #region Values
                     string strIp = Request.UserHostAddress;
@@ -171,35 +171,41 @@ namespace MuslimAID.MURABHA
                     //string strAge1, strAge2, strAge3, strAge4, strAge5, strAge6, strAge7, strAge8, strAge9, strAge10;
                     //string strOcc1, strOcc2, strOcc3, strOcc4, strOcc5, strOcc6, strOcc7, strOcc8, strOcc9, strOcc10;
                     //string strIncom1, strIncom2, strIncom3, strIncom4, strIncom5, strIncom6, strIncom7, strIncom8, strIncom9, strIncom10;
-                    strRelat.Append("INSERT INTO family_relationship_details (name, relationship, age, occupation, income, micro_family_details_idmicro_family_details, micro_family_details_contract_code) VALUES ");
+                    strRelat.Append("INSERT INTO family_relationship_details (contract_code,name, relationship, age, occupation, income,create_user_nic,user_ip,date_time) VALUES ");
                     if (txtName1.Text.Trim() != "")
-                        strRelat.Append("(" + txtName1.Text.Trim() + ", " + txtRelation1.Text.Trim() + ", " + txtAge1.Text.Trim() + ", " + txtOcc1.Text.Trim() + ", " + txtInCome1.Text.Trim() + ")");
+                        strRelat.Append("('" + strCCode +"','"+ txtName1.Text.Trim() + "','" + txtRelation1.Text.Trim() + "'," + txtAge1.Text.Trim() + ",'" + txtOcc1.Text.Trim() + "'," + txtInCome1.Text.Trim() + ",'"+strloginID +"','"+ strIp+"','"+ strDateTime);
                     if (txtName2.Text.Trim() != "")
-                        strRelat.Append(",(" + txtName2.Text.Trim() + ", " + txtRelation2.Text.Trim() + ", " + txtAge2.Text.Trim() + ", " + txtOcc2.Text.Trim() + ", " + txtInCome2.Text.Trim() + ")");
+                        strRelat.Append("'),('" + strCCode + "','" + txtName2.Text.Trim() + "','" + txtRelation2.Text.Trim() + "'," + txtAge2.Text.Trim() + ",'" + txtOcc2.Text.Trim() + "'," + txtInCome2.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
                     if (txtName3.Text.Trim() != "")
-                        strRelat.Append(",(" + txtName3.Text.Trim() + ", " + txtRelation3.Text.Trim() + ", " + txtAge3.Text.Trim() + ", " + txtOcc3.Text.Trim() + ", " + txtInCome3.Text.Trim() + ")");
+                        strRelat.Append("'),('" + strCCode + "','" + txtName3.Text.Trim() + "','" + txtRelation3.Text.Trim() + "'," + txtAge3.Text.Trim() + ",'" + txtOcc3.Text.Trim() + "'," + txtInCome3.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
                     if (txtName4.Text.Trim() != "")
-                        strRelat.Append(",(" + txtName4.Text.Trim() + ", " + txtRelation4.Text.Trim() + ", " + txtAge4.Text.Trim() + ", " + txtOcc4.Text.Trim() + ", " + txtInCome4.Text.Trim() + ")");
+                        strRelat.Append("'),('" + strCCode + "','" + txtName4.Text.Trim() + "','" + txtRelation4.Text.Trim() + "'," + txtAge4.Text.Trim() + ",'" + txtOcc4.Text.Trim() + "'," + txtInCome4.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
                     if (txtName5.Text.Trim() != "")
-                        strRelat.Append(",(" + txtName5.Text.Trim() + ", " + txtRelation5.Text.Trim() + ", " + txtAge5.Text.Trim() + ", " + txtOcc5.Text.Trim() + ", " + txtInCome5.Text.Trim() + ")");
+                        strRelat.Append("'),('" + strCCode + "','" + txtName5.Text.Trim() + "','" + txtRelation5.Text.Trim() + "'," + txtAge5.Text.Trim() + ",'" + txtOcc5.Text.Trim() + "'," + txtInCome5.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
                     if (txtName6.Text.Trim() != "")
-                        strRelat.Append(",(" + txtName6.Text.Trim() + ", " + txtRelation6.Text.Trim() + ", " + txtAge6.Text.Trim() + ", " + txtOcc6.Text.Trim() + ", " + txtInCome6.Text.Trim() + ")");
+                        strRelat.Append("'),('" + strCCode + "','" + txtName6.Text.Trim() + "','" + txtRelation6.Text.Trim() + "'," + txtAge6.Text.Trim() + ",'" + txtOcc6.Text.Trim() + "'," + txtInCome6.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
                     if (txtName7.Text.Trim() != "")
-                        strRelat.Append(",(" + txtName7.Text.Trim() + ", " + txtRelation7.Text.Trim() + ", " + txtAge7.Text.Trim() + ", " + txtOcc7.Text.Trim() + ", " + txtInCome7.Text.Trim() + ")");
+                        strRelat.Append("'),('" + strCCode + "','" + txtName7.Text.Trim() + "','" + txtRelation7.Text.Trim() + "'," + txtAge7.Text.Trim() + ",'" + txtOcc7.Text.Trim() + "'," + txtInCome7.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
                     if (txtName8.Text.Trim() != "")
-                        strRelat.Append(",(" + txtName8.Text.Trim() + ", " + txtRelation8.Text.Trim() + ", " + txtAge8.Text.Trim() + ", " + txtOcc8.Text.Trim() + ", " + txtInCome8.Text.Trim() + ")");
+                        strRelat.Append("'),('" + strCCode + "','" + txtName8.Text.Trim() + "','" + txtRelation8.Text.Trim() + "'," + txtAge8.Text.Trim() + ",'" + txtOcc8.Text.Trim() + "'," + txtInCome8.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
                     if (txtName9.Text.Trim() != "")
-                        strRelat.Append(",(" + txtName9.Text.Trim() + ", " + txtRelation9.Text.Trim() + ", " + txtAge9.Text.Trim() + ", " + txtOcc9.Text.Trim() + ", " + txtInCome9.Text.Trim() + ")");
+                        strRelat.Append("'),('" + strCCode + "','" + txtName9.Text.Trim() + "','" + txtRelation9.Text.Trim() + "'," + txtAge9.Text.Trim() + ",'" + txtOcc9.Text.Trim() + "'," + txtInCome9.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
                     if (txtName4.Text.Trim() != "")
-                        strRelat.Append(",(" + txtName10.Text.Trim() + ", " + txtRelation10.Text.Trim() + ", " + txtAge10.Text.Trim() + ", " + txtOcc10.Text.Trim() + ", " + txtInCome10.Text.Trim() + ")");
+                        strRelat.Append("'),('" + strCCode + "','" + txtName10.Text.Trim() + "','" + txtRelation10.Text.Trim() + "'," + txtAge10.Text.Trim() + ",'" + txtOcc10.Text.Trim() + "'," + txtInCome10.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
+
+
+                    strRelat.Append("');");
 
                     try
                     {
                         int i = objDBCon.insertEditData(cmdInsert);
-                        if (i == 1)
+
+                        int a = objDBCon.insertEditData(strRelat.ToString());
+                        if (i == 1 && a > 0)
                         {
                             //lblMsg.Text = "Success";
-                            Response.Redirect("Business_Details.aspx?CC=" + strCCode + "&CA=" + strCACode + "");
+                            Response.Redirect("family_appraisal.aspx?CC=" + strCCode + "&CA=" + strCACode);
+                            //Response.Redirect("Business_Details.aspx?CC=" + strCCode + "&CA=" + strCACode + "");
                         }
                         else
                         {
@@ -337,6 +343,11 @@ namespace MuslimAID.MURABHA
             txtSoName.Text = "";
             cmbEducation.SelectedIndex = 0;
             cmbOccupa.SelectedIndex = 0;
+        }
+
+        protected void txtDOB_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

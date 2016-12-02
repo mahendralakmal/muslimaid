@@ -35,9 +35,6 @@ namespace MuslimAID
             strDate = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             #endregion
 
-            //MySqlCommand cmdUpdateUserLogDeta = new MySqlCommand("Update users set current_status = '" + strCurruntSta + "',last_accessed_on = '" + strDate + "',last_accessed_ip = '" + strIp + "' where nic = '" + strNIC + "';");
-            //int intUpdateUserLogDet = objDBTasks.insertEditData(cmdUpdateUserLogDeta);
-
             Response.Redirect("muslimaid.aspx");
         }
 

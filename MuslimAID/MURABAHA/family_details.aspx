@@ -1,5 +1,15 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="family_details.aspx.cs" Inherits="MuslimAID.MURABHA.family_details" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script>
+    function calcBD(obj) {
+        //$dd = $("#ctl00_ContentPlaceHolder1_txtDOB").val();
+        $dob = new Date($("#ctl00_ContentPlaceHolder1_txtDOB").val());
+        $today = new Date();
+        $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
+        console.log($age);
+        $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
+    }
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
@@ -40,13 +50,17 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Spouse Date of Birth<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtDOB" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtDOB" onchange="calcBD();" CssClass="form-control" 
+                        MaxLength="10" runat="server" TabIndex="2" ontextchanged="txtDOB_TextChanged"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Spouse Age<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtAge" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2" Enabled="false"></asp:TextBox></div>
+                <div class="col-md-7">
+                <!-- <asp:TextBox ID="txtAge" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2" Enabled="false"></asp:TextBox> -->
+            <asp:Label CssClass="form-control" ID="lblAge" runat="server"></asp:Label>
+        </div>
             </div>
         </div>
         <div class="col-md-12"></div>
@@ -263,7 +277,7 @@
         </div>
         <div class="col-md-12">
             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" 
-                Text="Submit" Enabled="false" TabIndex="11" onclick="btnSubmit_Click"/>
+                Text="Submit" Enabled="true" TabIndex="11" onclick="btnSubmit_Click"/>
             <asp:Button ID="btnUpdate" CssClass="btn btn-primary" runat="server" 
                 Text="Update" TabIndex="12" Enabled="False" onclick="btnUpdate_Click"/>
             <asp:Label ID="lblMsg" runat="server"></asp:Label>
