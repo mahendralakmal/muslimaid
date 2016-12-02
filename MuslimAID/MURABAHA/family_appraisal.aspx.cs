@@ -97,7 +97,7 @@ namespace MuslimAID.MURABAHA
 
                         if (i > 0)
                         {
-                            Response.Redirect("supplier.aspx?CC=" + strCCode + "&CA=" + strCACode);
+                            Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
                         }
                         else
                         {
@@ -117,7 +117,56 @@ namespace MuslimAID.MURABAHA
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE `muslimaid`.`micro_family_appraisal` SET `salary_n_wages` = '" + txtSalWages.Text.Trim() + "',`rentIncome` = '" + txtRentBuildingIn.Text.Trim() + "',`rent_income_other` = '" + txtRentInOther.Text.Trim() + "',`net_Income_business` = '" + txtNetBusinesIn.Text.Trim() + "',`other_income` = '" + txtInO.Text.Trim() + "',`food_ex` = '" + txtFoodEx.Text.Trim() + "',`education_ex` = '" + txtEduEx.Text.Trim() + "',`wet_ex` = '" + txtWETEx.Text.Trim() + "',`health_n_sanitation` = '" + txtHSEx.Text.Trim() + "',`rent_ex` = '" + txtRenPayEx.Text.Trim() + "',`other_facility_ex` = '" + txtOFAIEx.Text.Trim() + "',`travel_n_transport` = '" + txtTTransEx.Text.Trim() + "',`clothes_ex` = '" + txtClothsEx.Text.Trim() + "',`other_ex` = '" + txtOthersEx.Text.Trim() + "',`amount_opex` = '" + txtAmountOPEx.Text.Trim() + "',`amount_fex` = '" + txtAmountFEx.Text.Trim() + "',`fr_period` = '" + txtFRPriod.Text.Trim() + "',`mad` = '" + txtMAD.Text.Trim() + "',`mdaaip` = '" + txtMDAAIP.Text.Trim() + "',`rapsa` = '" + txtRAPSA.Text.Trim() + "',`update_date` = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "',`update_user` = '" + Request.UserHostAddress + "' WHERE `contract_code` = '" + txtCC.Text.Trim() + "';");
 
+            try
+            {
+                int i = objDBCon.insertEditData(cmdUpdateQRY);
+
+                if (i > 0)
+                {
+                    Clear();
+                    lblMsg.Text = "Update Success.";
+                }
+                else
+                {
+                    lblMsg.Text = "Error Occured";
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+        protected void Clear()
+        {
+            txtAmountFEx.Text = "";
+            txtAmountOPEx.Text = "";
+            txtCACode.Text = "";
+            txtCC.Text = "";
+            txtClothsEx.Text = "";
+            txtEduEx.Text = "";
+            txtFamilyIn.Text = "";
+            txtFExpense.Text = "";
+            txtFoodEx.Text = "";
+            txtFRPriod.Text = "";
+            txtHSEx.Text = "";
+            txtInO.Text = "";
+            txtMAD.Text = "";
+            txtMDAAIP.Text = "";
+            txtNetAnualFIn.Text = "";
+            txtNetBusinesIn.Text = "";
+            txtOFAIEx.Text = "";
+            txtOthersEx.Text = "";
+            txtRAPSA.Text = "";
+            txtRenPayEx.Text = "";
+            txtRentBuildingIn.Text = "";
+            txtRentInOther.Text = "";
+            txtSalWages.Text = "";
+            txtTTransEx.Text = "";
+            txtWETEx.Text = "";
         }
     }
 }
