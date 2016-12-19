@@ -27,7 +27,10 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Brand<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="TextBox1" CssClass="form-control" MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtBrand" CssClass="form-control" 
+                        MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  
+                        onkeydown="return isNumeric(event.keyCode);" 
+                        onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -70,8 +73,7 @@
             <div class="form-group">
                 <div class="col-md-5">Other Charges<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtLDOtherCharg" CssClass="form-control" MaxLength="10" runat="server" TabIndex="3"></asp:TextBox>&nbsp; Eg:(2000.00)<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Invalid Price" ValidationExpression="((\d{1,3}(\,\d{3})*)?|(\d+))(\.\d{2})" ControlToValidate="txtLDOtherCharg"></asp:RegularExpressionValidator>
-                </div>
+                    <asp:TextBox ID="txtLDOtherCharg" CssClass="form-control" MaxLength="10" runat="server" TabIndex="3"></asp:TextBox>&nbsp; Eg:(2000.00)<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Invalid Price" ValidationExpression="((\d{1,3}(\,\d{3})*)?|(\d+))(\.\d{2})" ControlToValidate="txtLDOtherCharg"></asp:RegularExpressionValidator></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -106,19 +108,12 @@
             <div class="form-group">
                 <div class="col-md-5">Reason to apply a facility<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtBranchCode" MaxLength="4" CssClass="form-control" runat="server" TabIndex="10"></asp:TextBox>
+                    <asp:TextBox ID="txtResonToApply" MaxLength="4" CssClass="form-control" 
+                        runat="server" TabIndex="10"></asp:TextBox>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-5">Reason to apply a facility<span style="color:Red;">*</span></div>
-                <div class="col-md-7">
-                    <asp:TextBox ID="TextBox2" MaxLength="4" CssClass="form-control" runat="server" TabIndex="10"></asp:TextBox>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
                 <div class="col-md-12">Any unsettled advances/ facilities available :<span style="color:Red;">* </span>
                     <asp:RadioButton GroupName="rdoUnsetlled" ID="rdoYes" runat="server" /> Yes &nbsp;&nbsp;
@@ -168,14 +163,15 @@
                 </table>
             </div>
         </div>
-        
+        <%--
         <div class="col-md-12">&nbsp;</div>
         <div class="col-md-12"><h4>Supplier Detils</h4><hr /></div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Supplier Name<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="TextBox3" MaxLength="4" CssClass="form-control" runat="server" TabIndex="10"></asp:TextBox>
+                    <asp:TextBox ID="txtSupplier" MaxLength="4" CssClass="form-control" 
+                        runat="server" TabIndex="10"></asp:TextBox>
                 </div>
             </div>
         </div>         
@@ -189,7 +185,8 @@
             <div class="form-group">
                 <div class="col-md-5">Supplier Address<span style="color:Red;"> *</span></div>
                 <div class="col-md-7">
-                <asp:TextBox ID="txtBisAddress" CssClass="form-control" Height="70px" TextMode="MultiLine" MaxLength="150" runat="server" TabIndex="10"></asp:TextBox>
+                <asp:TextBox ID="txtSupplierAddress" CssClass="form-control" Height="70px" 
+                        TextMode="MultiLine" MaxLength="150" runat="server" TabIndex="10"></asp:TextBox>
                 </div>
              </div>
          </div>         
@@ -200,9 +197,10 @@
                 <asp:TextBox ID="txtSupplierMobile" MaxLength="12" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
                 </div>
              </div>
-         </div>
+         </div>--%>
         <div class="col-md-12">
-            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" Text="Submit" Enabled="false" TabIndex="11"/>
+            <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" 
+                Text="Submit" Enabled="false" TabIndex="11" onclick="btnSubmit_Click"/>
             <asp:Button ID="btnUpdate" CssClass="btn btn-primary" runat="server" Text="Update" TabIndex="12" Enabled="False"/>
             <asp:Label ID="lblMsg" runat="server"></asp:Label>
         </div>
