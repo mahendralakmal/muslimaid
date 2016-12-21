@@ -184,7 +184,7 @@ namespace MuslimAID.MURABHA
             string q = "UPDATE `muslimaid`.`micro_loan_details` SET loan_amount ='" + Convert.ToDecimal(txtLDLAmount.Text.Trim()) + "', product_category ='" + txtProdCate.Text.Trim() + "', brand ='" + txtBrand.Text.Trim() + "', model_no ='" + txtModelNo.Text.Trim() + "', selling_price ='" + txtSellPrice.Text.Trim() + "', down_payment ='" + txtDownPay.Text.Trim() + "', service_charges ='" + txtLDSerCharges.Text.Trim() + "', registration_fee = '" + txtRegistrationFee.Text.Trim() + "', walfare_fee ='" + txtWalfareFee.Text.Trim() + "', other_charges ='" + Convert.ToDecimal(txtLDOtherCharg.Text.Trim()) + "', interest_rate ='" + Convert.ToDecimal(txtLDIntRate.Text.Trim()) + "', period ='" + Convert.ToDecimal(cmbPeriod.SelectedValue.ToString()) + "', monthly_instollment ='" + Convert.ToDecimal(txtLDMInstoll.Text.Trim()) + "', reason_to_apply ='" + txtResonToApply.Text.Trim() + "', any_unsettled_loans ='" + strAnyOtherFacility + "', other_unsettled_facilities ='" + checkOtherFacility() + "' WHERE `contra_code` ='" + txtCC.Text.Trim() + "'";
             try
             {
-                int i = objDBCon.insertEditData(cmdInsert);
+                int i = objDBCon.insertEditData(q);
                 if (i > 0)
                 {
                     lblMsg.Text = "Successfull";

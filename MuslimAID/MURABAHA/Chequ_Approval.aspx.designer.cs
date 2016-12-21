@@ -11,34 +11,43 @@
 namespace MuslimAID.MURABAHA {
     
     
-    public partial class add_cro {
+    public partial class Chequ_Approval {
         
         /// <summary>
-        /// cmbCityCode control.
+        /// cmbBranch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbCityCode;
+        protected global::System.Web.UI.WebControls.DropDownList cmbBranch;
         
         /// <summary>
-        /// txtRootName control.
+        /// cmdSocietyNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRootName;
+        protected global::System.Web.UI.WebControls.DropDownList cmdSocietyNo;
         
         /// <summary>
-        /// btnChange control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnChange;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
+        /// grvChequAppr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvChequAppr;
         
         /// <summary>
         /// lblMsg control.

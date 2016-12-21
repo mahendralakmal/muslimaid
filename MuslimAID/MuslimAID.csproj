@@ -165,6 +165,20 @@
     <Compile Include="MURABAHA\add_cro.aspx.designer.cs">
       <DependentUpon>add_cro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\loan_approval.aspx.cs">
+      <DependentUpon>loan_approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\loan_approval.aspx.designer.cs">
+      <DependentUpon>loan_approval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Chequ_Approval.aspx.cs">
+      <DependentUpon>Chequ_Approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Chequ_Approval.aspx.designer.cs">
+      <DependentUpon>Chequ_Approval.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MuslimAID.Master.cs">
       <DependentUpon>MuslimAID.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +314,8 @@
     <Content Include="MURABAHA\supplier.aspx" />
     <Content Include="MURABAHA\family_appraisal.aspx" />
     <Content Include="MURABAHA\add_cro.aspx" />
+    <Content Include="MURABAHA\loan_approval.aspx" />
+    <Content Include="MURABAHA\Chequ_Approval.aspx" />
     <Content Include="SALAM\business_details.aspx" />
     <Content Include="SALAM\Salam.Master" />
     <Content Include="Login.aspx" />
