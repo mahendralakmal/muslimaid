@@ -74,6 +74,13 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\Chequ_Cancel.aspx.cs">
+      <DependentUpon>Chequ_Cancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Chequ_Cancel.aspx.designer.cs">
+      <DependentUpon>Chequ_Cancel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MURABAHA\Murabha.Master.cs">
       <DependentUpon>Murabha.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -305,6 +312,7 @@
     <Content Include="Login.Master" />
     <Content Include="MURABAHA\agreement.aspx" />
     <Content Include="MURABAHA\arrears_report.aspx" />
+    <Content Include="MURABAHA\Chequ_Cancel.aspx" />
     <Content Include="MURABAHA\client_basic_details.aspx" />
     <Content Include="MURABAHA\business_details.aspx" />
     <Content Include="MURABAHA\center_create.aspx" />
