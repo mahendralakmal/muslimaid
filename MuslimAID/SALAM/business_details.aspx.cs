@@ -345,7 +345,14 @@ namespace MuslimAID.SALAM
             {
                 int i;
                 i = objDBCon.insertEditData(cmdUpdateQRY);
-
+                if (i == 1)
+                {
+                    Response.Redirect("family_details.aspx?CC=" + strCC + "&CA=" + strCACodeNew + "");
+                }
+                else
+                {
+                    lblMsg.Text = "Error Occured";
+                }
                 Clear();
                 lblMsg.Text = "Update Success.";
 
