@@ -13,6 +13,15 @@
             button: ".next()"
         });
     });
+
+    function calcBD(obj) {
+        //$dd = $("#ctl00_ContentPlaceHolder1_txtDOB").val();
+        $dob = new Date($("#ctl00_ContentPlaceHolder1_txtDOB").val());
+        $today = new Date();
+        $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
+        console.log($age);
+        $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
+    }
 </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -23,7 +32,8 @@
                 <div class="form-group">
                     <div class="col-md-5">NIC/Passport/DL No<span style="color:Red;"> *</span></div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="txtNIC" MaxLength="12" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>    
+                        <asp:TextBox ID="txtNIC" MaxLength="12" CssClass="form-control" runat="server" 
+                            AutoPostBack="true" TabIndex="0" ontextchanged="txtNIC_TextChanged"></asp:TextBox>    
                         <asp:HiddenField ID="hidCC" runat="server" />
                         <asp:HiddenField ID="hidCACode" runat="server" />
                     </div>
@@ -41,35 +51,42 @@
             <div class="form-group">                
                 <div class="col-md-5">Branch<span style="color:Red;"> *</span></div>
                 <div class="col-md-7">
-                    <asp:DropDownList ID="cmbCityCode" CssClass="form-control" TabIndex="1" runat="server" AutoPostBack="true"></asp:DropDownList>
+                    <asp:DropDownList ID="cmbCityCode" CssClass="form-control" TabIndex="1" 
+                        runat="server" AutoPostBack="true" 
+                        onselectedindexchanged="cmbCityCode_SelectedIndexChanged"></asp:DropDownList>
                 </div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Root ID<span style="color:Red;"> *</span></div>
-                <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbRoot" runat="server"></asp:DropDownList></div>
+                <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbRoot" 
+                        runat="server" onselectedindexchanged="cmbRoot_SelectedIndexChanged"></asp:DropDownList></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Area<span style="color:Red;"> *</span></div>
-                <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbVillages" runat="server" AutoPostBack="true"></asp:DropDownList> </div>
+                <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbVillages" 
+                        runat="server" AutoPostBack="true" 
+                        onselectedindexchanged="cmbVillages_SelectedIndexChanged"></asp:DropDownList> </div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Center Name<span style="color:Red;"> *</span></div>
-                <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbSocietyName" runat="server" AutoPostBack="true"></asp:DropDownList></div>
+                <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbSocietyName" 
+                        runat="server" AutoPostBack="true" 
+                        onselectedindexchanged="cmbSocietyName_SelectedIndexChanged"></asp:DropDownList></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Center Code<span style="color:Red;"> *</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtSoNumber" Width="30px" Enabled="false" MaxLength="10" runat="server" TabIndex="3" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtSoNumber" Enabled="false" MaxLength="10" runat="server" TabIndex="3" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
-            <div class="form-group">                
+            <%--<div class="form-group">                
                 <div class="col-md-5">C.A. Code<span style="color:Red;"> *</span></div>
                 <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" Enabled="false"></asp:TextBox></div>
                 <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" AutoPostBack="true"></asp:TextBox></div>
-            </div></div>
+            </div>--%></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Group ID<span style="color:Red;"> *</span></div>
@@ -79,13 +96,13 @@
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Guranter 01<span style="color:Red;"> *</span></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiserID1" runat="server" Enabled="false"></asp:TextBox></div>
+                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiserID1" runat="server" Enabled="true"></asp:TextBox></div>
                 <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiserID" runat="server" AutoPostBack="true"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Guranter 02<span style="color:Red;"> *</span></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiser02" runat="server" Enabled="false"></asp:TextBox></div>
+                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiser02" runat="server" Enabled="true"></asp:TextBox></div>
                 <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiser02_02" runat="server" AutoPostBack="true"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
@@ -142,12 +159,12 @@
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Date of Birth</div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtDOB" MaxLength="30" runat="server" TabIndex="9"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtDOB" onchange="calcBD();" MaxLength="30" runat="server" TabIndex="9"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Age</div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtAge" Enabled="false" MaxLength="30" runat="server" TabIndex="9"></asp:TextBox></div>
+                <div class="col-md-7"><asp:Label CssClass="form-control" ID="lblAge" runat="server"></asp:Label></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
@@ -218,12 +235,14 @@
                     <div class="col-md-7">
                         <asp:TextBox ID="txtInsDate" CssClass="form-control" runat="server" TabIndex="16"></asp:TextBox><img src="../Images/calender.png" />
                         <asp:HiddenField ID="hf1" runat="server" />
+                        <asp:HiddenField ID="hf3" runat="server" />
                         <asp:HiddenField ID="hf2" runat="server" />
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
-                <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Enabled="false" runat="server" Text="Submit" TabIndex="17"/>&nbsp;
+                <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Enabled="false" 
+                    runat="server" Text="Submit" TabIndex="17" onclick="btnSubmit_Click"/>&nbsp;
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
         </div>

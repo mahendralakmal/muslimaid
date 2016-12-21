@@ -8,8 +8,3 @@ E:\MuslimAid\System\MuslimAid\MuslimAID\MuslimAID\obj\Debug\MuslimAID.dll
 E:\MuslimAid\System\MuslimAid\MuslimAID\MuslimAID\bin\MuslimAID.dll
 E:\MuslimAid\System\MuslimAid\MuslimAID\MuslimAID\bin\MuslimAID.pdb
 E:\MuslimAid\System\MuslimAid\MuslimAID\MuslimAID\obj\Debug\MuslimAID.pdb
-D:\projects\MuslimAid\2016-08-09\MuslimAID\obj\Debug\ResolveAssemblyReference.cache
-D:\projects\MuslimAid\2016-08-09\MuslimAID\bin\MuslimAID.dll
-D:\projects\MuslimAid\2016-08-09\MuslimAID\bin\MuslimAID.pdb
-D:\projects\MuslimAid\2016-08-09\MuslimAID\obj\Debug\MuslimAID.dll
-D:\projects\MuslimAid\2016-08-09\MuslimAID\obj\Debug\MuslimAID.pdb

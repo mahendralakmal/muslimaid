@@ -151,6 +151,20 @@
     <Compile Include="MURABAHA\murabha.aspx.designer.cs">
       <DependentUpon>murabha.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\Recipt_Cancel.aspx.cs">
+      <DependentUpon>Recipt_Cancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Recipt_Cancel.aspx.designer.cs">
+      <DependentUpon>Recipt_Cancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Service_Charges.aspx.cs">
+      <DependentUpon>Service_Charges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Service_Charges.aspx.designer.cs">
+      <DependentUpon>Service_Charges.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MURABAHA\supplier.aspx.cs">
       <DependentUpon>supplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -319,6 +333,8 @@
     <Content Include="MURABAHA\family_details.aspx" />
     <Content Include="MURABAHA\loan_details.aspx" />
     <Content Include="MURABAHA\murabha.aspx" />
+    <Content Include="MURABAHA\Recipt_Cancel.aspx" />
+    <Content Include="MURABAHA\Service_Charges.aspx" />
     <Content Include="MURABAHA\supplier.aspx" />
     <Content Include="MURABAHA\family_appraisal.aspx" />
     <Content Include="MURABAHA\add_cro.aspx" />

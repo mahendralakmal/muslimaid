@@ -37,7 +37,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand col-md-12" href="#"><div class="col-md-3"><img style="width:153px;" src="../Images/MAMC Logo - Final without line.png"></div><div class="col-md-9 topic"> MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED </div></a>
+          <a class="navbar-brand col-md-12" href="/muslimaid.aspx"><div class="col-md-3"><img style="width:153px;" src="../Images/MAMC Logo - Final without line.png"></div><div class="col-md-9 topic"> MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED </div></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -96,8 +96,8 @@
                     </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Installment</a></li>
-                            <li><a href="#">Receipt Cancel</a></li>
-                            <li><a href="#">Service Charges</a></li>
+                            <li><a href="Recipt_Cancel.aspx">Receipt Cancel</a></li>
+                            <li><a href="Service_Charges.aspx">Service Charges</a></li>
                             <li><a href="Chequ_Cancel.aspx">Cheque Cancel</a></li>
                         </ul>
                     </li>

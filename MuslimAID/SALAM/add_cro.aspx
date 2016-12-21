@@ -9,15 +9,16 @@
             <div class="col-md-5">Branch</div>
             <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbCityCode" runat="server" TabIndex="1" AutoPostBack="True"></asp:DropDownList></div>
         </div>
-        <div class="form-group">
+        <%--<div class="form-group">
             <div class="col-md-5">CRO No</div>
             <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtRootID" runat="server" MaxLength="2" TabIndex="2"></asp:TextBox></div>
-        </div>
+        </div>--%>
         <div class="form-group">
             <div class="col-md-5">CRO Name</div>
-            <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="TextBox1" MaxLength="100" runat="server" TabIndex="3"></asp:TextBox></div>
+            <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtRootName" MaxLength="100" runat="server" TabIndex="3"></asp:TextBox></div>
         </div>
-        <asp:Button ID="btnChange" CssClass="btn btn-primary" runat="server" Text="Add" TabIndex="4" />
+        <asp:Button ID="btnChange" CssClass="btn btn-primary" runat="server" Text="Add" 
+            TabIndex="4" onclick="btnChange_Click" />
         <asp:Label ID="lblMsg" runat="server"></asp:Label>
     </div>
 </asp:Content>
