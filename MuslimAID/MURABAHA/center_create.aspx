@@ -22,7 +22,7 @@
                 <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbVillages" runat="server" TabIndex="2" ></asp:DropDownList></div>
             </div>
             <div class="form-group">
-                <div class="col-md-5">CRO<span style="color:Red;">*</span></div>
+                <div class="col-md-5">MFO<span style="color:Red;">*</span></div>
                 <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbExecative" runat="server" TabIndex="2" ></asp:DropDownList></div>
             </div>
             <div class="form-group">
@@ -54,14 +54,13 @@
                 </div>
             </div>            
             <div class="form-group">
-                <div class="col-md-5">Latitude<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Latitude</div>
                 <div class="col-md-7">
                 <asp:TextBox ID="txtLatitude" CssClass="form-control" TabIndex="6" MaxLength="10" Width="100px" runat="server" ></asp:TextBox>
                 </div>
             </div>
-            
             <div class="form-group">
-                <div class="col-md-5">Longitude<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Longitude</div>
                 <div class="col-md-7">
                 <asp:TextBox ID="txtLongitude" CssClass="form-control" TabIndex="6" MaxLength="10" Width="100px" runat="server" ></asp:TextBox>
                 </div>

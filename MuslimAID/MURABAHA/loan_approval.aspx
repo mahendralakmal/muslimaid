@@ -1,23 +1,40 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="loan_approval.aspx.cs" Inherits="MuslimAID.MURABAHA.loan_approval" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true"
+    CodeBehind="loan_approval.aspx.cs" Inherits="MuslimAID.MURABAHA.loan_approval"
+    Title="Untitled Page" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- <div class="container">
-    <div class="PageTitle"><h4>MF - Loan Approval Details</h4></div>
-    <div class="col-md-6 form-container">
-    <div class="form-group">
-            <div class="col-md-5">Branch</div>
-            <div class="col-md-7"><asp:DropDownList ID="cmbBranch" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="cmbBranch_SelectedIndexChanged">
-                    </asp:DropDownList></div>
-    </div>
- 
-    <div class="form-group">
-            <div class="col-md-5">Society No :</div>
-            <div class="col-md-7">
-            <asp:DropDownList ID="cmdSocietyNo" runat="server" CssClass="form-control">
+    <div class="container">
+        <div class="PageTitle">
+            <h4>
+                MF - Loan Approval Details</h4>
+        </div>
+        <div class="col-md-6 form-container">
+            <div class="form-group">
+                <div class="col-md-5">
+                    Branch</div>
+                <div class="col-md-7">
+                    <asp:DropDownList ID="cmbBranch" runat="server" CssClass="form-control" AutoPostBack="true"
+                        OnSelectedIndexChanged="cmbBranch_SelectedIndexChanged">
                     </asp:DropDownList>
-                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
+                </div>
             </div>
+            <div class="form-group">
+                <div class="col-md-5">
+                    Society No :</div>
+                <div class="col-md-7">
+                    <asp:DropDownList ID="cmdSocietyNo" runat="server" CssClass="form-control">
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-5">&nbsp;</div>
+                <div class="col-md-7">
+                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary"
+                        OnClick="btnSearch_Click" />
+                </div>
+                
             </div>
             <div class="form-group">
                 <div class="col-md-12">
@@ -88,6 +105,6 @@
                     <asp:Label ID="lblMsg" runat="server"></asp:Label>
                 </div>
             </div>
-     </div>
-     </div>
+        </div>
+    </div>
 </asp:Content>

@@ -31,10 +31,10 @@ namespace MuslimAID.MURABHA
                 {
                     if (Session["LoggedIn"].ToString() == "True")
                     {
-                        //strCC = Request.QueryString["CC"];
-                        //strCAC = Request.QueryString["CA"];
-                        strCC = "CO/CS/000004";
-                        strCAC = "CO/1/01/02";
+                        strCC = Request.QueryString["CC"];
+                        strCAC = Request.QueryString["CA"];
+                        //strCC = "CO/CS/000004";
+                        //strCAC = "CO/1/01/02";
 
                         if (strCC != null && strCAC != null)
                         {

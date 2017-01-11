@@ -347,7 +347,7 @@ namespace MuslimAID.SALAM
                 i = objDBCon.insertEditData(cmdUpdateQRY);
                 if (i == 1)
                 {
-                    Response.Redirect("family_details.aspx?CC=" + strCC + "&CA=" + strCACodeNew + "");
+                    Response.Redirect("family_details.aspx?CC=" + strCC + "&CA=" + txtCACode + "");
                 }
                 else
                 {

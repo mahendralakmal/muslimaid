@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="basic_details.aspx.cs" Inherits="MuslimAID.SALAM.basic_details" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<script type="text/javascript">
+
+    <script type="text/javascript">
     $(document).ready(function() {
     $("#<%=txtInsDate.ClientID %>").dynDateTime({
             showsTime: false,

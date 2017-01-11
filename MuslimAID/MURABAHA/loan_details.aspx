@@ -122,16 +122,16 @@
             </div>
         </div>
         <div class="col-md-12">
-            <div class="table-back form-group">
-                <table class="" width="100%" cellpadding="0" cellspacing="0">
+            <div class="table-back form-group table-responsive">
+                <table class="table" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                         <th></th>
-                        <th class="col-md-3">Name of Organization</th>
-                        <th class="col-md-2">Purpose</th>
-                        <th class="col-md-2">Facility Amount</th>
-                        <th class="col-md-2">Outstanding Balance</th>
-                        <th class="col-md-2">Monthly Installment</th>
-                        <th class="col-md-1">Remaining no of Installment</th>
+                        <th class="col-md-3 col-sm-3 col-xs-3">Name of Organization</th>
+                        <th class="col-md-2 col-sm-2 col-xs-2">Purpose</th>
+                        <th class="col-md-2 col-sm-2 col-xs-2">Facility Amount</th>
+                        <th class="col-md-2 col-sm-2 col-xs-2">Outstanding Balance</th>
+                        <th class="col-md-2 col-sm-2 col-xs-2">Monthly Installment</th>
+                        <th class="col-md-1 col-sm-1 col-xs-1">Remaining no of Installment</th>
                     </tr>
                     <tr>
                         <td>1</td>

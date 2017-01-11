@@ -46,7 +46,7 @@ namespace MuslimAID.SALAM
             }
             else
             {
-                Response.Redirect("../Default.aspx");
+                Response.Redirect("../salam.aspx");
             }
         }
 
