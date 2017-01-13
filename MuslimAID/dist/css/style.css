@@ -21,7 +21,6 @@ th {
     color: #000 !important;
 }    
 .table>tbody>tr>td,.table>tbody>tr>th,.table>tfoot>tr>td,.table>tfoot>tr>th,.table>thead>tr>td,.table>thead>tr>th{padding: 4px;line-height:1.42857143;vertical-align:top;border-top:1px solid #ddd}
-.btn{padding: 5px 12px;}
 input,
 button,
 select,
@@ -83,10 +82,12 @@ td,th{padding: 5px 10px;/*border: 1px solid silver;*/}
 	color: #ffffff !important;
 	font-weight: 600;
 }
+/*
 .navbar-brand img
 {
 	margin-top:-15px;
 }
+*/
 .navbar .dropdown-toggle{
 	color: #ffffff !important;
 }
@@ -1287,7 +1288,7 @@ footer
 {
 	/*background:#ffab62;*/
 	width:100%;
-	position:absolute;
+	/*position:absolute;*/
 	bottom:0;
 	left:0;
 }

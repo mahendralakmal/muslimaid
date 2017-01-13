@@ -10,6 +10,24 @@
         $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
     }
 </script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#datetimepicker1').datetimepicker({ format: 'DD/MM/YYYY' });
+            $('#datetimepicker2').datetimepicker({
+                format: 'DD/MM/YYYY'
+            }).on('dp.change', function(event) {
+                console.log('hi');
+                $dob = new Date(event.date);
+                $today = new Date();
+                $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
+                console.log($dob);
+                console.log($today);
+                console.log($age);
+                $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
@@ -44,14 +62,25 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Spouse NIC Issued Date<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtNicIssuedDate" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2"></asp:TextBox></div>
+                <div class="col-md-7">
+                    <div class='input-group date' id='datetimepicker1' name='datetimepicker1'>
+                        <asp:TextBox ID="txtNicIssuedDate" CssClass="form-control" runat="server" ></asp:TextBox>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+            </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Spouse Date of Birth<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtDOB" onchange="calcBD();" CssClass="form-control" 
-                        MaxLength="10" runat="server" TabIndex="2" ontextchanged="txtDOB_TextChanged"></asp:TextBox></div>
+                <div class="col-md-7">
+                    <div class='input-group date' id='datetimepicker2' name='datetimepicker2'>
+                        <asp:TextBox ID="txtDOB" CssClass="form-control" runat="server"></asp:TextBox>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    </div>
             </div>
         </div>
         <div class="col-md-6">

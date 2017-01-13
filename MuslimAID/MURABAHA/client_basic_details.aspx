@@ -12,18 +12,47 @@
                 displayArea: ".siblings('.dtcDisplayArea')",
                 button: ".next()"
             });
+
+            /* $("#datetimepicker1").on('datetimepicker1.change', function(e) {
+                console.log("hi");
+                alert($("#txtDOB").val());
+            }); */
         });
+        
+//        function calcBD(obj) {
+//            //$dd = $("#ctl00_ContentPlaceHolder1_txtDOB").val();
+//            $dob = new Date($("#ctl00_ContentPlaceHolder1_txtDOB").val());
+//            $today = new Date();
+//            $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
 
-
-        function calcBD(obj) {
-            //$dd = $("#ctl00_ContentPlaceHolder1_txtDOB").val();
-            $dob = new Date($("#ctl00_ContentPlaceHolder1_txtDOB").val());
-            $today = new Date();
-            $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
-            console.log($age);
-            $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
-        }
+//            console.log($dob);
+//            console.log($today);
+//            console.log($age);
+//            $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
+//        }
     </script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#datetimepicker1').datetimepicker({
+                format: 'DD/MM/YYYY',
+                defaultDate: new Date()
+            }).on('dp.change', function(event) {
+                console.log('hi');
+                //                $dob = new Date($("#ctl00_ContentPlaceHolder1_txtDOB").val());
+                $dob = new Date(event.date);
+                $today = new Date();
+                $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
+                console.log($dob);
+                console.log($today);
+                console.log($age);
+                $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
+            });
+
+            $('#datetimepicker2').datetimepicker({ format: 'DD/MM/YYYY' });
+        });
+    </script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -174,7 +203,15 @@
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Date of Birth</div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtDOB" onchange="calcBD();" MaxLength="30" runat="server" TabIndex="9"></asp:TextBox></div>
+                <div class="col-md-7">
+                    <div class='input-group date' id='datetimepicker1' name='datetimepicker1'>
+                        <asp:TextBox ID="txtDOB" CssClass="form-control" runat="server"
+                            TabIndex="9"></asp:TextBox>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                
+                </div>
             </div></div>
             <div class="col-md-6">
                 <div class="form-group">                
@@ -246,7 +283,11 @@
                 <div class="form-group">                
                     <div class="col-md-5">Inspection Date<span style="color:Red;">*</span></div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="txtInsDate" CssClass="form-control" runat="server" TabIndex="16"></asp:TextBox><img src="../Images/calender.png" />
+                        <div class='input-group date' id='datetimepicker2' name="datetimepicker2">
+                            <asp:TextBox ID="txtInsDate" CssClass="form-control" runat="server" TabIndex="16"></asp:TextBox>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
                         <asp:HiddenField ID="hf1" runat="server" />
                         <asp:HiddenField ID="hf2" runat="server" />
                         <asp:HiddenField ID="hf3" runat="server" />

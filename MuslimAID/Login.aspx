@@ -52,7 +52,7 @@
                     </span>                        
                 </div>
                 <div class="form-group">
-                    <asp:Button ID="btnSubmit" class="button btn btn-success btn-large" runat="server"
+                    <asp:Button ID="btnSubmit" class="btn btn-success" runat="server"
                         Text="Sign In" OnClick="btnSubmit_Click" />
                 </div>
                 <!-- .actions -->

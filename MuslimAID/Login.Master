@@ -1,4 +1,4 @@
-﻿z<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Login.master.cs" Inherits="MuslimAID.Login" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Login.master.cs" Inherits="MuslimAID.Login" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -11,11 +11,9 @@
     <link href="dist/css/jquery-ui.css" rel="stylesheet" type="text/css" />
     <link href="dist/css/signin.css" rel="stylesheet" type="text/css" />
 
-
     <script src="dist/js/jquery.min.js" type="text/javascript"></script>
-
     <script src="dist/js/bootstrap.min.js" type="text/javascript"></script>
-
+    <script src="dist/js/footer.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

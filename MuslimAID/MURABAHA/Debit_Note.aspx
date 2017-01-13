@@ -39,14 +39,10 @@
                     Date</div>
                 <div class="col-md-7 input-group">
                     <div class='input-group date' id='datetimepicker1'>
-                        <%--<input type='text' class="form-control" />--%>
                         <asp:TextBox ID="txtDate" CssClass="form-control" runat="server"></asp:TextBox>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
-                    <%--<asp:TextBox ID="txtDate" CssClass="form-control" runat="server"></asp:TextBox>--%>
-                    <%--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>--%>
                 </div>
 
 
