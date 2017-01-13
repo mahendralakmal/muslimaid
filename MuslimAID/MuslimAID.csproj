@@ -245,6 +245,20 @@
     <Compile Include="SALAM\Chequ_Cancel.aspx.designer.cs">
       <DependentUpon>Chequ_Cancel.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SALAM\family_appraisal.aspx.cs">
+      <DependentUpon>family_appraisal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\family_appraisal.aspx.designer.cs">
+      <DependentUpon>family_appraisal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\family_details.aspx.cs">
+      <DependentUpon>family_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\family_details.aspx.designer.cs">
+      <DependentUpon>family_details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SALAM\loan_approval.aspx.cs">
       <DependentUpon>loan_approval.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -874,6 +888,8 @@
     <Content Include="SALAM\business_details.aspx" />
     <Content Include="SALAM\Chequ_Approval.aspx" />
     <Content Include="SALAM\Chequ_Cancel.aspx" />
+    <Content Include="SALAM\family_appraisal.aspx" />
+    <Content Include="SALAM\family_details.aspx" />
     <Content Include="SALAM\loan_approval.aspx" />
     <Content Include="SALAM\Salam.Master" />
     <Content Include="Login.aspx" />
