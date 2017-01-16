@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Untitled Page</title>
+    <title>Muslim AID - Salam</title>
     <link href="../dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="../dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="../dist/css/style.css" rel="stylesheet" type="text/css" />
@@ -44,7 +44,7 @@
               </a>
               <ul class="dropdown-menu">		        
 		        <li>		        
-		        <a href="#">Logout</a>
+		        <a href="../Logout.aspx">Logout</a>
 		        </li>
               </ul>
             </li>
@@ -78,7 +78,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="loan_approval.aspx">Loan Approval</a></li>
                             <li><a href="Chequ_Approval.aspx">Chequ Approval</a></li>
-                            <li><a href="#">Debit Run</a></li>
+                            <li><a href="Debit_Note.aspx">Debit Run</a></li>
                             <li><a href="#">Document</a></li>
                         </ul>
                     </li>
@@ -86,8 +86,8 @@
                         <i class="icon-download-alt"></i><span>Installment</span>
                     </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Installment</a></li>
-                            <li><a href="#">Receipt Cancel</a></li>
+                            <%--<li><a href="Bulk_Payment.aspx">Installment</a></li>
+                            <li><a href="Recipt_Cancel.aspx">Receipt Cancel</a></li>--%>
                             <li><a href="Service_Charges.aspx">Service Charges</a></li>
                             <li><a href="Chequ_Cancel.aspx">Cheque Cancel</a></li>
                         </ul>

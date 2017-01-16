@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="family_appraisal.aspx.cs" Inherits="MuslimAID.MURABAHA.family_appraisal" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="family_appraisal.aspx.cs" Inherits="MuslimAID.MURABAHA.family_appraisal"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <script>
     

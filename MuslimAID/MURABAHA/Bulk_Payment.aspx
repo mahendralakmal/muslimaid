@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true"
-    CodeBehind="Bulk_Payment.aspx.cs" Inherits="MuslimAID.MURABAHA.Bulk_Payment" Title="sVentura Crystal Investments Ltd ::: Bulk Payment" %>
+    CodeBehind="Bulk_Payment.aspx.cs" Inherits="MuslimAID.MURABAHA.Bulk_Payment"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

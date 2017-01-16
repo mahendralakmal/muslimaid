@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="Add_Village.aspx.cs" Inherits="MuslimAID.SALAM.Add_Village" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" 
+CodeBehind="Add_Village.aspx.cs" Inherits="MuslimAID.SALAM.Add_Village" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

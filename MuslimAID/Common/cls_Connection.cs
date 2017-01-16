@@ -260,5 +260,13 @@ namespace MuslimAID
                 throw new Exception("Error in base64Encode" + ex.Message);
             }
         }
+
+        //public static void logout()
+        //{
+        //    Session["LoggedIn"] = "False";
+        //    Session["NIC"] = null;
+        //    Session["Branch"] = null;
+        //    Session["UserType"] = null;
+        //}
     }
 }

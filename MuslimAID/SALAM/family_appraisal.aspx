@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~SALAM/Salam.Master" AutoEventWireup="true"
-    CodeBehind="family_appraisal.aspx.cs" Inherits="MuslimAID.SALAM.family_appraisal"
-    Title="Untitled Page" %>
+    CodeBehind="family_appraisal.aspx.cs" Inherits="MuslimAID.SALAM.family_appraisal"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <script>
     

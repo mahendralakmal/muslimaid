@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{002BAB14-07CC-422E-A85C-DBF943250AB5}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -75,6 +75,13 @@
     </Compile>
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="MURABAHA\Bulk_Payment.aspx.cs">
       <DependentUpon>Bulk_Payment.aspx</DependentUpon>
@@ -224,12 +231,26 @@
       <DependentUpon>MuslimAID.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SALAM\Add_Village.aspx.cs">
+      <DependentUpon>Add_Village.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\Add_Village.aspx.designer.cs">
+      <DependentUpon>Add_Village.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SALAM\business_details.aspx.cs">
       <DependentUpon>business_details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SALAM\business_details.aspx.designer.cs">
       <DependentUpon>business_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\center_create.aspx.cs">
+      <DependentUpon>center_create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\center_create.aspx.designer.cs">
+      <DependentUpon>center_create.aspx</DependentUpon>
     </Compile>
     <Compile Include="SALAM\Chequ_Approval.aspx.cs">
       <DependentUpon>Chequ_Approval.aspx</DependentUpon>
@@ -244,6 +265,13 @@
     </Compile>
     <Compile Include="SALAM\Chequ_Cancel.aspx.designer.cs">
       <DependentUpon>Chequ_Cancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\Debit_Note.aspx.cs">
+      <DependentUpon>Debit_Note.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\Debit_Note.aspx.designer.cs">
+      <DependentUpon>Debit_Note.aspx</DependentUpon>
     </Compile>
     <Compile Include="SALAM\family_appraisal.aspx.cs">
       <DependentUpon>family_appraisal.aspx</DependentUpon>
@@ -867,6 +895,7 @@
     <Content Include="Images\signin\password.png" />
     <Content Include="Images\signin\user.png" />
     <Content Include="Login.Master" />
+    <Content Include="Logout.aspx" />
     <Content Include="MURABAHA\agreement.aspx" />
     <Content Include="MURABAHA\arrears_report.aspx" />
     <Content Include="MURABAHA\Bulk_Payment.aspx" />
@@ -885,9 +914,12 @@
     <Content Include="MURABAHA\add_cro.aspx" />
     <Content Include="MURABAHA\loan_approval.aspx" />
     <Content Include="MURABAHA\Chequ_Approval.aspx" />
+    <Content Include="SALAM\Add_Village.aspx" />
     <Content Include="SALAM\business_details.aspx" />
+    <Content Include="SALAM\center_create.aspx" />
     <Content Include="SALAM\Chequ_Approval.aspx" />
     <Content Include="SALAM\Chequ_Cancel.aspx" />
+    <Content Include="SALAM\Debit_Note.aspx" />
     <Content Include="SALAM\family_appraisal.aspx" />
     <Content Include="SALAM\family_details.aspx" />
     <Content Include="SALAM\loan_approval.aspx" />
@@ -980,9 +1012,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

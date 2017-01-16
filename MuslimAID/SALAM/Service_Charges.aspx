@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="Service_Charges.aspx.cs" Inherits="MuslimAID.SALAM.Service_Charges" Title="Ventura Crystal Investments Ltd ::: Documentation & Insurance Charges" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" 
+CodeBehind="Service_Charges.aspx.cs" Inherits="MuslimAID.SALAM.Service_Charges" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

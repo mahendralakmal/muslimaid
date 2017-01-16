@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="Chequ_Approval.aspx.cs" Inherits="MuslimAID.SALAM.Chequ_Approval" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="Chequ_Approval.aspx.cs" Inherits="MuslimAID.SALAM.Chequ_Approval" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

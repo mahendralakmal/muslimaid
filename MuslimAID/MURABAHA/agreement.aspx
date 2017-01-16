@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="agreement.aspx.cs" Inherits="MuslimAID.MURABHA.agreement" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="agreement.aspx.cs" Inherits="MuslimAID.MURABHA.agreement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <script type="text/javascript">
     function PopUPCA(){

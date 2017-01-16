@@ -8,55 +8,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MuslimAID.MURABHA {
+namespace MuslimAID.SALAM {
     
     
-    public partial class agreement {
+    public partial class Debit_Note {
         
         /// <summary>
-        /// txtCC control.
+        /// hstrSelectQuery control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCC;
+        protected global::System.Web.UI.WebControls.HiddenField hstrSelectQuery;
         
         /// <summary>
-        /// pnlAgree control.
+        /// txtDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAgree;
+        protected global::System.Web.UI.WebControls.TextBox txtDate;
         
         /// <summary>
-        /// lnkPage1 control.
+        /// btnEndDay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPage1;
-        
-        /// <summary>
-        /// lnkPage2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPage2;
-        
-        /// <summary>
-        /// pnlNoAgree control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlNoAgree;
+        protected global::System.Web.UI.WebControls.Button btnEndDay;
         
         /// <summary>
         /// lblMsg control.

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="supplier.aspx.cs" Inherits="MuslimAID.MURABAHA.supplier" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="supplier.aspx.cs" Inherits="MuslimAID.MURABAHA.supplier" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="client_basic_details.aspx.cs" Inherits="MuslimAID.MURABHA.client_basic_details" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="client_basic_details.aspx.cs" Inherits="MuslimAID.MURABHA.client_basic_details" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         $(document).ready(function() {

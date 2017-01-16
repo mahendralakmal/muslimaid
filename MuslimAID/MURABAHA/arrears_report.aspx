@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="arrears_report.aspx.cs" Inherits="MuslimAID.MURABHA.arrears_report" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="arrears_report.aspx.cs" Inherits="MuslimAID.MURABHA.arrears_report" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         function PrintGridData() {

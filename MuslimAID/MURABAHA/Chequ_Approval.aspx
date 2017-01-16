@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true"
-    CodeBehind="Chequ_Approval.aspx.cs" Inherits="MuslimAID.MURABAHA.Chequ_Approval"
-    Title="Untitled Page" %>
+    CodeBehind="Chequ_Approval.aspx.cs" Inherits="MuslimAID.MURABAHA.Chequ_Approval"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true"
     CodeBehind="family_details.aspx.cs" Inherits="MuslimAID.SALAM.family_details"
-    Title="Untitled Page" %>
+    %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <script>
     function calcBD(obj) {

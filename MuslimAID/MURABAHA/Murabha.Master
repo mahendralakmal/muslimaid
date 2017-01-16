@@ -47,7 +47,7 @@
               </a>
               <ul class="dropdown-menu">		        
 		        <li>		        
-		        <a href="#">Logout</a>
+		        <a href="../Logout.aspx">Logout</a>
 		        </li>
               </ul>
             </li>

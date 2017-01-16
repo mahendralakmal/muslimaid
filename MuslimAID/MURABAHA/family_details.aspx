@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="family_details.aspx.cs" Inherits="MuslimAID.MURABHA.family_details" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="family_details.aspx.cs" Inherits="MuslimAID.MURABHA.family_details" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <script>
     function calcBD(obj) {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="basic_details.aspx.cs" Inherits="MuslimAID.SALAM.basic_details" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="basic_details.aspx.cs" Inherits="MuslimAID.SALAM.basic_details"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">

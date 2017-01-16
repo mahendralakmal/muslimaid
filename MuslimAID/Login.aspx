@@ -1,24 +1,12 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Login.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="MuslimAID.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-<script src="../js/footer.js"></script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                <a class="navbar-brand col-md-12" href="#"><div class="col-md-3"><img style="width:153px;" src="../Images/MAMC Logo - Final without line.png"></div><div class="col-md-9 topic"> MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED </div></a>
-                <%--<a class="navbar-brand" href="#">Asian Credit(PVT) Ltd - Account End</a>--%>
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /navbar-inner -->
-    </div>
+<div class="container">
+
+    
     <!-- /navbar -->
-    <div class="col-md-3 col-lg-offset-4 account-container">
+    <div class="col-md-4 col-lg-offset-4 account-container">
         <div class="content clearfix">
             <fieldset>
                 <form id="Login" class="form-horizontal" action="">
@@ -63,17 +51,7 @@
         <!-- /content -->
     </div>
     <!-- /account-container -->
-    <footer> 
-        <div class="footer">        	
-            <div class="footer-inner">        		
-                <div class="container">        			
-	                <div class="row">        				
-		                <div class="col-lg-12">
-			                Design & Developed by Pro IT Solutions.
-		                </div> <!-- /span12 -->            			
-	                </div> <!-- /row -->            		
-                </div> <!-- /container -->        		
-            </div> <!-- /footer-inner -->        	
-        </div> <!-- /footer -->                
-    </footer>
+
+
+</div>    
 </asp:Content>

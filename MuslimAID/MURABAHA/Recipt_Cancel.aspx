@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="Recipt_Cancel.aspx.cs" Inherits="MuslimAID.MURABAHA.Recipt_Cancel" Title="Ventura Crystal Investments Ltd ::: Receipt Cancel" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="Recipt_Cancel.aspx.cs" Inherits="MuslimAID.MURABAHA.Recipt_Cancel" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

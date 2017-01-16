@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="add_cro.aspx.cs" Inherits="MuslimAID.SALAM.add_cro" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="add_cro.aspx.cs" 
+Inherits="MuslimAID.SALAM.add_cro"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
