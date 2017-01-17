@@ -53,7 +53,7 @@ namespace MuslimAID.SALAM
             //string strDate = DateTime.Now.ToString("yyyy-MM-dd");
             string strDate = strMDate;
 
-            MySqlCommand cmdSelect = new MySqlCommand("select * from micro_loan_details l,micro_basic_detail c where c.contract_code = l.contra_code and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'P' and l.due_date = '" + strMDate + "';");
+            MySqlCommand cmdSelect = new MySqlCommand("select * from salam_loan_details l,salam_basic_detail c where c.contract_code = l.contra_code and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'P' and l.due_date = '" + strMDate + "';");
             dtLoanDet = objDBTask.selectData(cmdSelect);
 
             if (dtLoanDet.Tables[0].Rows.Count > 0)
@@ -97,7 +97,7 @@ namespace MuslimAID.SALAM
                         //string strCloseDate = DateTime.Now.ToString("yyyy-MM-dd");
                         string strCloseDate = strMDate;
 
-                        MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update micro_loan_details set arres_amou = '" + strArreaas + "',def = '" + strArreaas + "',arres_count = '" + strCount + "',loan_sta = '" + strStatuss + "',closing_date = '" + strCloseDate + "' where contra_code = '" + strCCode + "';");
+                        MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update salam_loan_details set arres_amou = '" + strArreaas + "',def = '" + strArreaas + "',arres_count = '" + strCount + "',loan_sta = '" + strStatuss + "',closing_date = '" + strCloseDate + "' where contra_code = '" + strCCode + "';");
                         int ii;
                         ii = objDBTask.insertEditData(cmdUpdateLoanAmou);
                     }
@@ -109,7 +109,7 @@ namespace MuslimAID.SALAM
                             //string strCloseDatee = DateTime.Now.ToString("yyyy-MM-dd");
                             string strCloseDatee = strMDate;
 
-                            MySqlCommand cmdUpdateLoanAmouu = new MySqlCommand("Update micro_loan_details set loan_sta = '" + strStatusss + "',closing_date = '" + strCloseDatee + "' where contra_code = '" + strCCode + "';");
+                            MySqlCommand cmdUpdateLoanAmouu = new MySqlCommand("Update salam_loan_details set loan_sta = '" + strStatusss + "',closing_date = '" + strCloseDatee + "' where contra_code = '" + strCCode + "';");
                             int iii;
                             iii = objDBTask.insertEditData(cmdUpdateLoanAmouu);
                         }
@@ -119,7 +119,7 @@ namespace MuslimAID.SALAM
                             string strCurBalance;
                             decimal decCurBalance = 0;
                             string strLastDate = "";
-                            DataSet dsGetDebit = cls_Connection.getDataSet("select curr_balance,date_time from micro_payme_summery where contra_code = '" + strCCode + "' and date_time < '" + strCDate + "' order by date_time desc limit 1;");
+                            DataSet dsGetDebit = cls_Connection.getDataSet("select curr_balance,date_time from salam_payme_summery where contra_code = '" + strCCode + "' and date_time < '" + strCDate + "' order by date_time desc limit 1;");
                             if (dsGetDebit.Tables[0].Rows.Count > 0)
                             {
                                 strCurBalance = dsGetDebit.Tables[0].Rows[0]["curr_balance"].ToString();
@@ -149,7 +149,7 @@ namespace MuslimAID.SALAM
                                     DateTime dtNow = Convert.ToDateTime(strMDate).AddDays(7);
                                     string strDueDate = dtNow.ToString("yyyy-MM-dd");
 
-                                    MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update micro_loan_details set due_date = '" + strDueDate + "' where contra_code = '" + strCCode + "';");
+                                    MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update salam_loan_details set due_date = '" + strDueDate + "' where contra_code = '" + strCCode + "';");
                                     int ii;
                                     ii = objDBTask.insertEditData(cmdUpdateLoanAmou);
                                 }
@@ -193,7 +193,7 @@ namespace MuslimAID.SALAM
                                     }
                                     else
                                     {
-                                        DataSet dsGetCapInte = cls_Connection.getDataSet("select sum(capital) from micro_payme_summery where contra_code = '" + strCCode + "' and p_type = 'DB';");
+                                        DataSet dsGetCapInte = cls_Connection.getDataSet("select sum(capital) from salam_payme_summery where contra_code = '" + strCCode + "' and p_type = 'DB';");
                                         if (dsGetCapInte.Tables[0].Rows[0][0].ToString() != "")
                                         {
                                             string OLDCapital = dsGetCapInte.Tables[0].Rows[0][0].ToString();
@@ -211,7 +211,7 @@ namespace MuslimAID.SALAM
                                     }
 
                                     //add payment summery
-                                    MySqlCommand cmdInsertPaySumm = new MySqlCommand("INSERT INTO micro_payme_summery(contra_code,nic,amount,capital,interest,debit,c_default,rcp_no,p_type,date_time,curr_balance)VALUES(@contra_code,@nic,@amount,@capital,@interest,@debit,@c_default,@rcp_no,@p_type,@date_time,@curr_balance);");
+                                    MySqlCommand cmdInsertPaySumm = new MySqlCommand("INSERT INTO salam_payme_summery(contra_code,nic,amount,capital,interest,debit,c_default,rcp_no,p_type,date_time,curr_balance)VALUES(@contra_code,@nic,@amount,@capital,@interest,@debit,@c_default,@rcp_no,@p_type,@date_time,@curr_balance);");
 
                                     #region Assign Parameters
                                     cmdInsertPaySumm.Parameters.Add("@contra_code", MySqlDbType.VarChar, 12);
@@ -274,7 +274,7 @@ namespace MuslimAID.SALAM
                                             int t;
                                             t = objDBTask.insertEditData(cmdInsertPaidDetail);
 
-                                            MySqlCommand cmdUpdateLoanAmouu = new MySqlCommand("Update micro_loan_details set over_payment = over_payment - '" + strMoIns + "' where contra_code = '" + strCCode + "';");
+                                            MySqlCommand cmdUpdateLoanAmouu = new MySqlCommand("Update salam_loan_details set over_payment = over_payment - '" + strMoIns + "' where contra_code = '" + strCCode + "';");
                                             int iii;
                                             iii = objDBTask.insertEditData(cmdUpdateLoanAmouu);
                                         }
@@ -304,7 +304,7 @@ namespace MuslimAID.SALAM
                                                 int t;
                                                 t = objDBTask.insertEditData(cmdInsertPaidDetail);
 
-                                                MySqlCommand cmdUpdateLoanAmouu = new MySqlCommand("Update micro_loan_details set over_payment = over_payment - '" + strOP + "' where contra_code = '" + strCCode + "';");
+                                                MySqlCommand cmdUpdateLoanAmouu = new MySqlCommand("Update salam_loan_details set over_payment = over_payment - '" + strOP + "' where contra_code = '" + strCCode + "';");
                                                 int iii;
                                                 iii = objDBTask.insertEditData(cmdUpdateLoanAmouu);
                                             }
@@ -329,7 +329,7 @@ namespace MuslimAID.SALAM
                                                 int t;
                                                 t = objDBTask.insertEditData(cmdInsertPaidDetail);
 
-                                                MySqlCommand cmdUpdateLoanAmouu = new MySqlCommand("Update micro_loan_details set over_payment = over_payment - '" + strOP + "' where contra_code = '" + strCCode + "';");
+                                                MySqlCommand cmdUpdateLoanAmouu = new MySqlCommand("Update salam_loan_details set over_payment = over_payment - '" + strOP + "' where contra_code = '" + strCCode + "';");
                                                 int iii;
                                                 iii = objDBTask.insertEditData(cmdUpdateLoanAmouu);
                                             }
@@ -354,7 +354,7 @@ namespace MuslimAID.SALAM
                                     string strCurBalancec;
                                     decimal decCurBalancec = 0;
                                     string strLastDatec = "";
-                                    DataSet dsGetDebitc = cls_Connection.getDataSet("select curr_balance,date_time from micro_payme_summery where contra_code = '" + strCCode + "' order by date_time desc limit 1;");
+                                    DataSet dsGetDebitc = cls_Connection.getDataSet("select curr_balance,date_time from salam_payme_summery where contra_code = '" + strCCode + "' order by date_time desc limit 1;");
                                     if (dsGetDebitc.Tables[0].Rows.Count > 0)
                                     {
                                         strCurBalancec = dsGetDebitc.Tables[0].Rows[0]["curr_balance"].ToString();
@@ -382,7 +382,7 @@ namespace MuslimAID.SALAM
                                         string strCount = Convert.ToString(intArreasCount);
                                         string strArreaas = Convert.ToString(decArreas);
 
-                                        MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update micro_loan_details set due_date = '" + strDueDate + "',arres_amou = '" + strArreaas + "',over_payment = '" + strZero + "',arres_count = '" + strCount + "',due_installment = due_installment + '" + strCountOne + "' where contra_code = '" + strCCode + "';");
+                                        MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update salam_loan_details set due_date = '" + strDueDate + "',arres_amou = '" + strArreaas + "',over_payment = '" + strZero + "',arres_count = '" + strCount + "',due_installment = due_installment + '" + strCountOne + "' where contra_code = '" + strCCode + "';");
                                         int ii;
                                         ii = objDBTask.insertEditData(cmdUpdateLoanAmou);
 
@@ -392,7 +392,7 @@ namespace MuslimAID.SALAM
                                         string strCount = "0";
                                         string strArreaas = "0";
 
-                                        MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update micro_loan_details set due_date = '" + strDueDate + "',arres_amou = '" + strArreaas + "',arres_count = '" + strCount + "',due_installment = due_installment + '" + strCountOne + "' where contra_code = '" + strCCode + "';");
+                                        MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update salam_loan_details set due_date = '" + strDueDate + "',arres_amou = '" + strArreaas + "',arres_count = '" + strCount + "',due_installment = due_installment + '" + strCountOne + "' where contra_code = '" + strCCode + "';");
                                         int ii;
                                         ii = objDBTask.insertEditData(cmdUpdateLoanAmou);
                                     }
@@ -403,7 +403,7 @@ namespace MuslimAID.SALAM
                                 DateTime dtNow = Convert.ToDateTime(strMDate).AddDays(7);
                                 string strDueDate = dtNow.ToString("yyyy-MM-dd");
 
-                                MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update micro_loan_details set due_date = '" + strDueDate + "' where contra_code = '" + strCCode + "';");
+                                MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update salam_loan_details set due_date = '" + strDueDate + "' where contra_code = '" + strCCode + "';");
                                 int ii;
                                 ii = objDBTask.insertEditData(cmdUpdateLoanAmou);
                             }
@@ -416,7 +416,7 @@ namespace MuslimAID.SALAM
             }
 
             //Add DI Matuerd Contracts
-            MySqlCommand cmdSelectDI = new MySqlCommand("select * from micro_loan_details l,micro_basic_detail c where c.contract_code = l.contra_code and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'E' and l.due_date = '" + strMDate + "';");
+            MySqlCommand cmdSelectDI = new MySqlCommand("select * from salam_loan_details l,salam_basic_detail c where c.contract_code = l.contra_code and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'E' and l.due_date = '" + strMDate + "';");
             DataSet dtLoanDetDI = objDBTask.selectData(cmdSelectDI);
             if (dtLoanDetDI.Tables[0].Rows.Count > 0)
             {
@@ -456,7 +456,7 @@ namespace MuslimAID.SALAM
                         string strStatussDI = "S";
 
 
-                        MySqlCommand cmdUpdateLoanAmouDI = new MySqlCommand("Update micro_loan_details set arres_amou = '" + strArreaasDI + "',def = '" + strArreaasDI + "',arres_count = '" + strCountDI + "',loan_sta = '" + strStatussDI + "',closing_date = '" + strCloseDateDI + "' where contra_code = '" + strCCodeDI + "';");
+                        MySqlCommand cmdUpdateLoanAmouDI = new MySqlCommand("Update salam_loan_details set arres_amou = '" + strArreaasDI + "',def = '" + strArreaasDI + "',arres_count = '" + strCountDI + "',loan_sta = '" + strStatussDI + "',closing_date = '" + strCloseDateDI + "' where contra_code = '" + strCCodeDI + "';");
                         int ix;
                         ix = objDBTask.insertEditData(cmdUpdateLoanAmouDI);
                     }
@@ -476,7 +476,7 @@ namespace MuslimAID.SALAM
             //lblMsg.Text = "";
             hstrSelectQuery.Value = "";
             //hstrSelectQuery.Value = "select (c.capital + c.interest) as credit,(c.debit + c.c_default) as debit,c.rcp_no,t.descr,c.date_time,c.payment_type,c.curr_balance from micro_payme_summery c, tra_descri t where t.code_tra = c.p_type";
-            hstrSelectQuery.Value = "select idcons_payme_summery,amount,rcp_no,p_type,date_time,payment_type,curr_balance,p_status from micro_payme_summery";
+            hstrSelectQuery.Value = "select idcons_payme_summery,amount,rcp_no,p_type,date_time,payment_type,curr_balance,p_status from salam_payme_summery";
             if (strCC != "")
             {
                 hstrSelectQuery.Value = hstrSelectQuery.Value + " where contra_code = '" + strCC + "' order by date_time asc;";
@@ -536,7 +536,7 @@ namespace MuslimAID.SALAM
                             Balance = Balance - Convert.ToDouble(strCredit);
                             string strBala = Balance.ToString("0.00");//Convert.ToDecimal(strBalance).ToString("#,##0.00");
 
-                            MySqlCommand cmdUpdateBala = new MySqlCommand("Update micro_payme_summery set curr_balance = '" + strBala + "' where idcons_payme_summery = '" + strID + "';");
+                            MySqlCommand cmdUpdateBala = new MySqlCommand("Update salam_payme_summery set curr_balance = '" + strBala + "' where idcons_payme_summery = '" + strID + "';");
                             int cc;
                             cc = objDBTask.insertEditData(cmdUpdateBala);
                             //dr["Status"] = strLiveStatus;
@@ -559,7 +559,7 @@ namespace MuslimAID.SALAM
                             Balance = Balance + Convert.ToDouble(strCredit);
                             string strBala = Balance.ToString("0.00");// Convert.ToDecimal(strBalance).ToString("#,##0.00");
 
-                            MySqlCommand cmdUpdateBala = new MySqlCommand("Update micro_payme_summery set curr_balance = '" + strBala + "' where idcons_payme_summery = '" + strID + "';");
+                            MySqlCommand cmdUpdateBala = new MySqlCommand("Update salam_payme_summery set curr_balance = '" + strBala + "' where idcons_payme_summery = '" + strID + "';");
                             int cc;
                             cc = objDBTask.insertEditData(cmdUpdateBala);
                             //dr["Status"] = strLiveStatus;
@@ -578,7 +578,7 @@ namespace MuslimAID.SALAM
                             Balance = Balance + Convert.ToDouble(strCredit);
                             string strBala = Balance.ToString("0.00");//Convert.ToDecimal(strBalance).ToString("#,##0.00");
 
-                            MySqlCommand cmdUpdateBala = new MySqlCommand("Update micro_payme_summery set curr_balance = '" + strBala + "' where idcons_payme_summery = '" + strID + "';");
+                            MySqlCommand cmdUpdateBala = new MySqlCommand("Update salam_payme_summery set curr_balance = '" + strBala + "' where idcons_payme_summery = '" + strID + "';");
                             int cc;
                             cc = objDBTask.insertEditData(cmdUpdateBala);
                             //dr["Status"] = strLiveStatus;
@@ -597,7 +597,7 @@ namespace MuslimAID.SALAM
                             Balance = Balance - Convert.ToDouble(strCredit);
                             string strBala = Balance.ToString("0.00");//Convert.ToDecimal(strBalance).ToString("#,##0.00");
 
-                            MySqlCommand cmdUpdateBala = new MySqlCommand("Update micro_payme_summery set curr_balance = '" + strBala + "' where idcons_payme_summery = '" + strID + "';");
+                            MySqlCommand cmdUpdateBala = new MySqlCommand("Update salam_payme_summery set curr_balance = '" + strBala + "' where idcons_payme_summery = '" + strID + "';");
                             int cc;
                             cc = objDBTask.insertEditData(cmdUpdateBala);
                             //dr["Status"] = strLiveStatus;
@@ -616,7 +616,7 @@ namespace MuslimAID.SALAM
                             Balance = Balance + Convert.ToDouble(strCredit);
                             string strBala = Balance.ToString("0.00");//Convert.ToDecimal(strBalance).ToString("#,##0.00");
 
-                            MySqlCommand cmdUpdateBala = new MySqlCommand("Update micro_payme_summery set curr_balance = '" + strBala + "' where idcons_payme_summery = '" + strID + "';");
+                            MySqlCommand cmdUpdateBala = new MySqlCommand("Update salam_payme_summery set curr_balance = '" + strBala + "' where idcons_payme_summery = '" + strID + "';");
                             int cc;
                             cc = objDBTask.insertEditData(cmdUpdateBala);
                             //dr["Status"] = strLiveStatus;

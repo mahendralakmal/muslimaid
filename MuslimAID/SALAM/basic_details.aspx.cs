@@ -114,10 +114,10 @@ namespace MuslimAID.SALAM
                         return;
                     }
                     lblMsg.Text = "";
-                    DataSet dsGetExsiNIC = cls_Connection.getDataSet("select * from micro_basic_detail where nic = '" + txtNIC.Text.Trim() + "';");
+                    DataSet dsGetExsiNIC = cls_Connection.getDataSet("select * from salam_basic_detail where nic = '" + txtNIC.Text.Trim() + "';");
                     if (dsGetExsiNIC.Tables[0].Rows.Count > 0)
                     {
-                        DataSet dsGetExsiLoan = cls_Connection.getDataSet("select * from micro_loan_details where contra_code = '" + dsGetExsiNIC.Tables[0].Rows[0]["contract_code"].ToString() + "';");
+                        DataSet dsGetExsiLoan = cls_Connection.getDataSet("select * from salam_loan_details where contra_code = '" + dsGetExsiNIC.Tables[0].Rows[0]["contract_code"].ToString() + "';");
 
                         if (dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "S" || dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "C")
                         {
@@ -348,7 +348,7 @@ namespace MuslimAID.SALAM
                     string strcitycode = cmbCityCode.SelectedValue.ToString();
                     string strconCode;
 
-                    dtCCode = cls_Connection.getDataSet("select max(idmicro_basic_detail) from micro_basic_detail");
+                    dtCCode = cls_Connection.getDataSet("select max(idmicro_basic_detail) from salam_basic_detail");
                     if (dtCCode.Tables[0].Rows[0][0].ToString() != "")
                     {
                         string strVal = dtCCode.Tables[0].Rows[0][0].ToString();
@@ -603,13 +603,13 @@ namespace MuslimAID.SALAM
                     ccsetup();
                     //CO/MF/000001/1
                     string NIC = txtNIC.Text.Trim();
-                    DataSet dtCount = cls_Connection.getDataSet("select count(b.nic) + 1 AS Count from micro_basic_detail b inner join micro_loan_details l on b.contract_code = l.contra_code where nic = '" + NIC + "' and l.loan_approved = 'Y' and l.loan_sta != 'C' and chequ_no != null;");
+                    DataSet dtCount = cls_Connection.getDataSet("select count(b.nic) + 1 AS Count from salam_basic_detail b inner join salam_loan_details l on b.contract_code = l.contra_code where nic = '" + NIC + "' and l.loan_approved = 'Y' and l.loan_sta != 'C' and chequ_no != null;");
                     if (dtCount.Tables[0].Rows[0][0].ToString() != "")
                     {
                         hidCC.Value = hidCC.Value + "/" + dtCount.Tables[0].Rows[0][0].ToString();
                     }
 
-                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_basic_detail(contract_code,ca_code,nic,city_code,society_id,province,gs_ward,full_name,initial_name,other_name,marital_status,education,land_no,mobile_no,p_address,client_id,inspection_date,create_user_id,user_ip,date_time,village,root_id,cli_photo,bb_photo,nic_issue_date,dob,gender,r_address,income_source)VALUES(@contract_code,@ca_code,@nic,@city_code,@society_id,@province,@gs_ward,@full_name,@initial_name,@other_name,@marital_status,@education,@land_no,@mobile_no,@p_address,@client_id,@inspection_date,@create_user_id,@user_ip,@date_time,@village,@root_id,@cli_photo,@bb_photo,@nic_issue_date,@dob,@gender,@r_address,@income_source)");
+                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_basic_detail(contract_code,ca_code,nic,city_code,society_id,province,gs_ward,full_name,initial_name,other_name,marital_status,education,land_no,mobile_no,p_address,client_id,inspection_date,create_user_id,user_ip,date_time,village,root_id,cli_photo,bb_photo,nic_issue_date,dob,gender,r_address,income_source)VALUES(@contract_code,@ca_code,@nic,@city_code,@society_id,@province,@gs_ward,@full_name,@initial_name,@other_name,@marital_status,@education,@land_no,@mobile_no,@p_address,@client_id,@inspection_date,@create_user_id,@user_ip,@date_time,@village,@root_id,@cli_photo,@bb_photo,@nic_issue_date,@dob,@gender,@r_address,@income_source)");
 
                     #region Get Values
                     string strIp = Request.UserHostAddress;
@@ -699,7 +699,7 @@ namespace MuslimAID.SALAM
                     //Create Capital Applicant Code
                     //CACodeNew();
                     string strCACodeNew = "";
-                    DataSet dsGetMaxCliID = cls_Connection.getDataSet("select ifnull(max(CAST(client_id as SIGNED)),0) from micro_basic_detail where city_code = '" + strCityCode + "' and society_id = '" + strSoNumber + "';");
+                    DataSet dsGetMaxCliID = cls_Connection.getDataSet("select ifnull(max(CAST(client_id as SIGNED)),0) from salam_basic_detail where city_code = '" + strCityCode + "' and society_id = '" + strSoNumber + "';");
                     if (dsGetMaxCliID.Tables[0].Rows[0][0].ToString() != "")
                     {
                         string strMaxID = dsGetMaxCliID.Tables[0].Rows[0][0].ToString();

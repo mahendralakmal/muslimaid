@@ -106,7 +106,7 @@ namespace MuslimAID.SALAM
                 string strSocietyID = cmbSocietyID.SelectedValue;
 
                 hstrSelectQuery.Value = "";
-                hstrSelectQuery.Value = "select b.contract_code,b.ca_code,b.nic,b.initial_name,l.service_charges,l.other_charges,l.registration_fee,l.walfare_fee from micro_basic_detail b,micro_loan_details l where b.city_code = '" + strCityCode + "' and b.society_id = '" + strSocietyID + "' and b.contract_code = l.contra_code and l.loan_approved = 'Y' and l.ser_char_sta = 'N' order by b.idmicro_basic_detail asc;";
+                hstrSelectQuery.Value = "select b.contract_code,b.ca_code,b.nic,b.initial_name,l.service_charges,l.other_charges,l.registration_fee,l.walfare_fee from salam_basic_detail b,salam_loan_details l where b.city_code = '" + strCityCode + "' and b.society_id = '" + strSocietyID + "' and b.contract_code = l.contra_code and l.loan_approved = 'Y' and l.ser_char_sta = 'N' order by b.idmicro_basic_detail asc;";
                 loadDataToRepeater(hstrSelectQuery.Value);
 
             }
@@ -195,7 +195,7 @@ namespace MuslimAID.SALAM
                     string strTotalAmount = Convert.ToString(decTotal);
                     string strTotalText = NumberToText(intTotal, true, false);
 
-                    MySqlCommand cmdInsertDocu = new MySqlCommand("INSERT INTO micro_service_charges(contract_code,document_amount,insurance_amount,city_code,user_nic,user_ip,date_time,total_amount_text,total_amount,welfair_fee,registration_fee)VALUES(@contract_code,@document_amount,@insurance_amount,@city_code,@user_nic,@user_ip,@date_time,@total_amount_text,@total_amount,@welfair_fee,@registration_fee);");
+                    MySqlCommand cmdInsertDocu = new MySqlCommand("INSERT INTO salam_service_charges(contract_code,document_amount,insurance_amount,city_code,user_nic,user_ip,date_time,total_amount_text,total_amount,welfair_fee,registration_fee)VALUES(@contract_code,@document_amount,@insurance_amount,@city_code,@user_nic,@user_ip,@date_time,@total_amount_text,@total_amount,@welfair_fee,@registration_fee);");
 
                     #region Assign Parameters
                     cmdInsertDocu.Parameters.Add("@contract_code", MySqlDbType.VarChar, 13);
@@ -232,7 +232,7 @@ namespace MuslimAID.SALAM
                         if (b == 1)
                         {
                             string strStatus = "Y";
-                            MySqlCommand cmdUpdateLoanServ = new MySqlCommand("Update micro_loan_details set ser_char_sta = '" + strStatus + "' where contra_code = '" + strCCode + "';");
+                            MySqlCommand cmdUpdateLoanServ = new MySqlCommand("Update salam_loan_details set ser_char_sta = '" + strStatus + "' where contra_code = '" + strCCode + "';");
                             int i;
                             i = objDBTask.insertEditData(cmdUpdateLoanServ);
 

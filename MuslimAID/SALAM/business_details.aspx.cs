@@ -106,7 +106,7 @@ namespace MuslimAID.SALAM
             //}
             else
             {
-                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_business_details(contract_code,business_name,busi_duration,busi_address,busi_income,busi_population,busi_nature,key_person,no_of_ppl,br_no,contact_no_ofc,busi_income,sales_credit,other_income,total_income,purchase_cash,direct_cost,rent,water_elec_tele,wages,fla_rent,travel,maintenance,total_expenses,profit_lost,create_user_nic,user_ip,date_time)VALUES(@contract_code,@business_name,@busi_duration,@busi_address,@busi_income,@busi_population,@busi_nature,@key_person,@no_of_ppl,@br_no,@contact_no_ofc,@busi_income,@sales_credit,other_income,@total_income,@purchase_cash,@direct_cost,@rent,@water_elec_tele,@wages,@fla_rent,@travel,@maintenance,@total_expenses,@profit_lost,@create_user_nic,@user_ip,@date_time)");
+                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_business_details(contract_code,business_name,busi_duration,busi_address,busi_income,busi_population,busi_nature,key_person,no_of_ppl,br_no,contact_no_ofc,busi_income,sales_credit,other_income,total_income,purchase_cash,direct_cost,rent,water_elec_tele,wages,fla_rent,travel,maintenance,total_expenses,profit_lost,create_user_nic,user_ip,date_time)VALUES(@contract_code,@business_name,@busi_duration,@busi_address,@busi_income,@busi_population,@busi_nature,@key_person,@no_of_ppl,@br_no,@contact_no_ofc,@busi_income,@sales_credit,other_income,@total_income,@purchase_cash,@direct_cost,@rent,@water_elec_tele,@wages,@fla_rent,@travel,@maintenance,@total_expenses,@profit_lost,@create_user_nic,@user_ip,@date_time)");
 
                 #region GetValues
                 string strIp = Request.UserHostAddress;
@@ -277,7 +277,7 @@ namespace MuslimAID.SALAM
             else
             {
                 string strCCode = txtCC.Text.Trim();
-                DataSet dsGetDetail = cls_Connection.getDataSet("select * from micro_business_details where contract_code = '" + strCCode + "';");
+                DataSet dsGetDetail = cls_Connection.getDataSet("select * from salam_business_details where contract_code = '" + strCCode + "';");
                 if (dsGetDetail.Tables[0].Rows.Count > 0)
                 {
 
@@ -286,7 +286,7 @@ namespace MuslimAID.SALAM
                 }
                 else
                 {
-                    DataSet dsGetBasicDetail = cls_Connection.getDataSet("select * from micro_basic_detail where contract_code = '" + strCCode + "';");
+                    DataSet dsGetBasicDetail = cls_Connection.getDataSet("select * from salam_basic_detail where contract_code = '" + strCCode + "';");
                     if (dsGetBasicDetail.Tables[0].Rows.Count > 0)
                     {
                         Update();
@@ -339,7 +339,7 @@ namespace MuslimAID.SALAM
             string strBPL = txtPAndL.Text.Trim();
             #endregion
 
-            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_business_details SET business_name ='" + strBN + "',busi_duration ='" + strDur + "',busi_address ='" + strBAdd + "'@busi_income'" + strBIn + "',@busi_population'" + strBPopu + "',@busi_nature='" + strBNature + "',@key_person'" + strKPerson + "',@no_of_ppl'" + strNoOfPpl + "',@br_no='" + strBrNo + "',@contact_no_ofc='" + strOfcContactNo + "',@sales_credit='" + strCIn + "',other_income='" + strOIn + "',@total_income='" + strTotalIn + "',@purchase_cash='" + strDcost + "',@purchase_credit='" + strICost + "',@direct_cost='" + strToEx + "',@rent='" + strRent + "',@water_elec_tele='" + strWet + "',@wages='" + strWages + "',@fla_rent='" + strFla + "',@travel='" + strTravelTrans + "',@maintenance='" + strRepairMain + "',@total_expenses='" + strTotalEx + "',@profit_lost='" + strBPL + "',@create_user_nic='" + strloginID + ",user_ip ='" + strIp + "',date_time ='" + strDateTime + "' WHERE contract_code = '" + strCC + "';");
+            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE salam_business_details SET business_name ='" + strBN + "',busi_duration ='" + strDur + "',busi_address ='" + strBAdd + "'@busi_income'" + strBIn + "',@busi_population'" + strBPopu + "',@busi_nature='" + strBNature + "',@key_person'" + strKPerson + "',@no_of_ppl'" + strNoOfPpl + "',@br_no='" + strBrNo + "',@contact_no_ofc='" + strOfcContactNo + "',@sales_credit='" + strCIn + "',other_income='" + strOIn + "',@total_income='" + strTotalIn + "',@purchase_cash='" + strDcost + "',@purchase_credit='" + strICost + "',@direct_cost='" + strToEx + "',@rent='" + strRent + "',@water_elec_tele='" + strWet + "',@wages='" + strWages + "',@fla_rent='" + strFla + "',@travel='" + strTravelTrans + "',@maintenance='" + strRepairMain + "',@total_expenses='" + strTotalEx + "',@profit_lost='" + strBPL + "',@create_user_nic='" + strloginID + ",user_ip ='" + strIp + "',date_time ='" + strDateTime + "' WHERE contract_code = '" + strCC + "';");
 
             try
             {

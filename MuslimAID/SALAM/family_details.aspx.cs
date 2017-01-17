@@ -89,7 +89,7 @@ namespace MuslimAID.SALAM
                 }
                 else
                 {
-                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_family_details(contract_code,spouse_nic,spouse_nic_issued_date,spouse_name,occupation,education,spouse_income,other_fami_mem_income,spouse_dob,spouse_gender,spouse_contact_no,spouse_relationship_with_applicant,no_of_fami_memb,dependers,moveable_property,immoveable_property,saving,create_user_nic,user_ip,date_time) VALUES(@contract_code, @spouse_nic, @spouse_nic_issued_date, @spouse_name, @occupation, @education, @spouse_income, @other_fami_mem_income, @spouse_dob, @spouse_gender, @spouse_contact_no, @spouse_relationship_with_applicant, @no_of_fami_memb, @dependers, @moveable_property, @immoveable_property, @saving, @create_user_nic, @user_ip, @date_time);");
+                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_family_details(contract_code,spouse_nic,spouse_nic_issued_date,spouse_name,occupation,education,spouse_income,other_fami_mem_income,spouse_dob,spouse_gender,spouse_contact_no,spouse_relationship_with_applicant,no_of_fami_memb,dependers,moveable_property,immoveable_property,saving,create_user_nic,user_ip,date_time) VALUES(@contract_code, @spouse_nic, @spouse_nic_issued_date, @spouse_name, @occupation, @education, @spouse_income, @other_fami_mem_income, @spouse_dob, @spouse_gender, @spouse_contact_no, @spouse_relationship_with_applicant, @no_of_fami_memb, @dependers, @moveable_property, @immoveable_property, @saving, @create_user_nic, @user_ip, @date_time);");
 
                     #region Values
                     string strIp = Request.UserHostAddress;
@@ -262,7 +262,7 @@ namespace MuslimAID.SALAM
                 else
                 {
                     string strCCode = txtCC.Text.Trim();
-                    DataSet dsGetDetail = cls_Connection.getDataSet("select * from micro_family_details where contract_code = '" + strCCode + "';");
+                    DataSet dsGetDetail = cls_Connection.getDataSet("select * from salam_family_details where contract_code = '" + strCCode + "';");
                     if (dsGetDetail.Tables[0].Rows.Count > 0)
                     {
                         Update();
@@ -270,7 +270,7 @@ namespace MuslimAID.SALAM
                     }
                     else
                     {
-                        DataSet dsGetBasicDetail = cls_Connection.getDataSet("select * from micro_basic_detail where contract_code = '" + strCCode + "';");
+                        DataSet dsGetBasicDetail = cls_Connection.getDataSet("select * from salam_basic_detail where contract_code = '" + strCCode + "';");
                         if (dsGetBasicDetail.Tables[0].Rows.Count > 0)
                         {
                             Update();
@@ -310,7 +310,7 @@ namespace MuslimAID.SALAM
             string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             #endregion
 
-            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_family_details SET spouse_nic = '" + strNIC + "',spouse_name = '" + strSPName + "',occupation = '" + strOcc + "',no_of_fami_memb = '" + strNFM + "',education = '" + strEdu + "',dependers = '" + strDep + "',spouse_income = '" + strSPIncome + "',other_fami_mem_income = '" + strOFMIncome + "',moveable_property = '" + strMP + "',immoveable_property = '" + strIMPro + "',saving = '" + strsaving + "',create_user_nic = '" + strloginID + "',user_ip = '" + strIp + "',date_time = '" + strDateTime + "' WHERE contract_code = '" + strCCode + "';");
+            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE salam_family_details SET spouse_nic = '" + strNIC + "',spouse_name = '" + strSPName + "',occupation = '" + strOcc + "',no_of_fami_memb = '" + strNFM + "',education = '" + strEdu + "',dependers = '" + strDep + "',spouse_income = '" + strSPIncome + "',other_fami_mem_income = '" + strOFMIncome + "',moveable_property = '" + strMP + "',immoveable_property = '" + strIMPro + "',saving = '" + strsaving + "',create_user_nic = '" + strloginID + "',user_ip = '" + strIp + "',date_time = '" + strDateTime + "' WHERE contract_code = '" + strCCode + "';");
 
             try
             {
