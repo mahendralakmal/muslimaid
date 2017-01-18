@@ -206,6 +206,26 @@ namespace MuslimAID
             }
         }
 
+        public static DataSet selectDataSet(MySqlCommand cmdQRY)
+        {
+            try
+            {
+                MySqlConnection mySqlCon = DBConnect();
+                cmdQRY.Connection = mySqlCon;
+                MySqlDataAdapter daData = new MySqlDataAdapter(cmdQRY);
+                DataSet dsData = new DataSet();
+                mySqlCon.Open();
+                daData.Fill(dsData);
+                mySqlCon.Close();
+                return dsData;
+            }
+            catch (Exception ex)
+            {
+                //objCommonTasks.createErrorLog(DateTime.Now, ex.Message, ex.Source, cmdQRY.CommandText);
+                return null;
+            }
+        }
+
         //Close Connection
         public static void closeConnection()
         {

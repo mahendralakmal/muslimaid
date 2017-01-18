@@ -44,13 +44,13 @@ namespace MuslimAID.MURABAHA
                     }
                     else
                     {
-                        Response.Redirect("../Default.aspx");
+                        Response.Redirect("../MURABAHA/murabha.aspx");
                     }
                 }
             }
             else
             {
-                Response.Redirect("../Default.aspx");
+                Response.Redirect("../muslimaid.aspx");
             }
         }
 

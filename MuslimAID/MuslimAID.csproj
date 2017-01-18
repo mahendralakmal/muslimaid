@@ -83,12 +83,33 @@
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\BranchAdd.aspx.cs">
+      <DependentUpon>BranchAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\BranchAdd.aspx.designer.cs">
+      <DependentUpon>BranchAdd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MURABAHA\Bulk_Payment.aspx.cs">
       <DependentUpon>Bulk_Payment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MURABAHA\Bulk_Payment.aspx.designer.cs">
       <DependentUpon>Bulk_Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Change_CRO.aspx.cs">
+      <DependentUpon>Change_CRO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Change_CRO.aspx.designer.cs">
+      <DependentUpon>Change_CRO.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\ChequeBookRegistry.aspx.cs">
+      <DependentUpon>ChequeBookRegistry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\ChequeBookRegistry.aspx.designer.cs">
+      <DependentUpon>ChequeBookRegistry.aspx</DependentUpon>
     </Compile>
     <Compile Include="MURABAHA\Chequ_Cancel.aspx.cs">
       <DependentUpon>Chequ_Cancel.aspx</DependentUpon>
@@ -103,6 +124,27 @@
     </Compile>
     <Compile Include="MURABAHA\Debit_Note.aspx.designer.cs">
       <DependentUpon>Debit_Note.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Edit_Center_Detail.aspx.cs">
+      <DependentUpon>Edit_Center_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Edit_Center_Detail.aspx.designer.cs">
+      <DependentUpon>Edit_Center_Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Edit_Guarantor.aspx.cs">
+      <DependentUpon>Edit_Guarantor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Edit_Guarantor.aspx.designer.cs">
+      <DependentUpon>Edit_Guarantor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Loan_Cancel.aspx.cs">
+      <DependentUpon>Loan_Cancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Loan_Cancel.aspx.designer.cs">
+      <DependentUpon>Loan_Cancel.aspx</DependentUpon>
     </Compile>
     <Compile Include="MURABAHA\Murabha.Master.cs">
       <DependentUpon>Murabha.Master</DependentUpon>
@@ -174,6 +216,13 @@
     <Compile Include="MURABAHA\murabha.aspx.designer.cs">
       <DependentUpon>murabha.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\Rebate_Approval.aspx.cs">
+      <DependentUpon>Rebate_Approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Rebate_Approval.aspx.designer.cs">
+      <DependentUpon>Rebate_Approval.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MURABAHA\Recipt_Cancel.aspx.cs">
       <DependentUpon>Recipt_Cancel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -181,12 +230,33 @@
     <Compile Include="MURABAHA\Recipt_Cancel.aspx.designer.cs">
       <DependentUpon>Recipt_Cancel.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\RemoveChequeBookHistry.aspx.cs">
+      <DependentUpon>RemoveChequeBookHistry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\RemoveChequeBookHistry.aspx.designer.cs">
+      <DependentUpon>RemoveChequeBookHistry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Reschedule.aspx.cs">
+      <DependentUpon>Reschedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Reschedule.aspx.designer.cs">
+      <DependentUpon>Reschedule.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MURABAHA\Service_Charges.aspx.cs">
       <DependentUpon>Service_Charges.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MURABAHA\Service_Charges.aspx.designer.cs">
       <DependentUpon>Service_Charges.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\SettlementRebate.aspx.cs">
+      <DependentUpon>SettlementRebate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\SettlementRebate.aspx.designer.cs">
+      <DependentUpon>SettlementRebate.aspx</DependentUpon>
     </Compile>
     <Compile Include="MURABAHA\supplier.aspx.cs">
       <DependentUpon>supplier.aspx</DependentUpon>
@@ -222,6 +292,27 @@
     </Compile>
     <Compile Include="MURABAHA\Chequ_Approval.aspx.designer.cs">
       <DependentUpon>Chequ_Approval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\VoucherPrint.aspx.cs">
+      <DependentUpon>VoucherPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\VoucherPrint.aspx.designer.cs">
+      <DependentUpon>VoucherPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Voucher_Cancel.aspx.cs">
+      <DependentUpon>Voucher_Cancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Voucher_Cancel.aspx.designer.cs">
+      <DependentUpon>Voucher_Cancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\WayOffAmount.aspx.cs">
+      <DependentUpon>WayOffAmount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\WayOffAmount.aspx.designer.cs">
+      <DependentUpon>WayOffAmount.aspx</DependentUpon>
     </Compile>
     <Compile Include="MuslimAID.Master.cs">
       <DependentUpon>MuslimAID.Master</DependentUpon>
@@ -349,6 +440,13 @@
     </Compile>
     <Compile Include="SALAM\Service_Charges.aspx.designer.cs">
       <DependentUpon>Service_Charges.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User_Create.aspx.cs">
+      <DependentUpon>User_Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User_Create.aspx.designer.cs">
+      <DependentUpon>User_Create.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -898,22 +996,35 @@
     <Content Include="Logout.aspx" />
     <Content Include="MURABAHA\agreement.aspx" />
     <Content Include="MURABAHA\arrears_report.aspx" />
+    <Content Include="MURABAHA\BranchAdd.aspx" />
     <Content Include="MURABAHA\Bulk_Payment.aspx" />
+    <Content Include="MURABAHA\Change_CRO.aspx" />
+    <Content Include="MURABAHA\ChequeBookRegistry.aspx" />
     <Content Include="MURABAHA\Chequ_Cancel.aspx" />
     <Content Include="MURABAHA\client_basic_details.aspx" />
     <Content Include="MURABAHA\business_details.aspx" />
     <Content Include="MURABAHA\center_create.aspx" />
     <Content Include="MURABAHA\Debit_Note.aspx" />
+    <Content Include="MURABAHA\Edit_Center_Detail.aspx" />
+    <Content Include="MURABAHA\Edit_Guarantor.aspx" />
     <Content Include="MURABAHA\family_details.aspx" />
+    <Content Include="MURABAHA\Loan_Cancel.aspx" />
     <Content Include="MURABAHA\loan_details.aspx" />
     <Content Include="MURABAHA\murabha.aspx" />
+    <Content Include="MURABAHA\Rebate_Approval.aspx" />
     <Content Include="MURABAHA\Recipt_Cancel.aspx" />
+    <Content Include="MURABAHA\RemoveChequeBookHistry.aspx" />
+    <Content Include="MURABAHA\Reschedule.aspx" />
     <Content Include="MURABAHA\Service_Charges.aspx" />
+    <Content Include="MURABAHA\SettlementRebate.aspx" />
     <Content Include="MURABAHA\supplier.aspx" />
     <Content Include="MURABAHA\family_appraisal.aspx" />
     <Content Include="MURABAHA\add_cro.aspx" />
     <Content Include="MURABAHA\loan_approval.aspx" />
     <Content Include="MURABAHA\Chequ_Approval.aspx" />
+    <Content Include="MURABAHA\VoucherPrint.aspx" />
+    <Content Include="MURABAHA\Voucher_Cancel.aspx" />
+    <Content Include="MURABAHA\WayOffAmount.aspx" />
     <Content Include="SALAM\Add_Village.aspx" />
     <Content Include="SALAM\business_details.aspx" />
     <Content Include="SALAM\center_create.aspx" />
@@ -931,6 +1042,7 @@
     <Content Include="SALAM\repayment.aspx" />
     <Content Include="SALAM\add_cro.aspx" />
     <Content Include="SALAM\Service_Charges.aspx" />
+    <Content Include="User_Create.aspx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bower_components\eonasdan-bootstrap-datetimepicker\.bower.json" />

@@ -6,8 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class="PageTitle">
-            <h4>
-                MF - Loan Approval Details</h4>
+            <h4>MF - Loan Approval Details</h4>
         </div>
         <div class="col-md-6 form-container">
             <div class="form-group">
