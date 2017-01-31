@@ -67,13 +67,29 @@ namespace MuslimAID.MURABHA
                 {
                     lblMsg.Text = "Please Enter CA Code";
                 }
+                else if (txtSoName.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Enter Spouse Name";
+                }
                 else if (txtNIC.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please Enter NIC";
+                    lblMsg.Text = "Please Enter Spouse NIC";
+                }
+                else if (txtNicIssuedDate.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Enter Spouse NIC Issued Date";
+                }
+                else if (txtDOB.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Enter Spouse Date of Birth";
                 }
                 else if (cmbOccupa.Text.Trim() == "")
                 {
                     lblMsg.Text = "Please Choose Occupation";
+                }
+                else if (txtSIncome.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Choose Spouse Income";
                 }
                 else if (txtNoFMembers.Text.Trim() == "")
                 {
@@ -86,6 +102,10 @@ namespace MuslimAID.MURABHA
                 else if (txtDepen.Text.Trim() == "")
                 {
                     lblMsg.Text = "Please Enter Dependers";
+                }
+                else if (txtRelation.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Enter Relationship with the Applicant";
                 }
                 else
                 {

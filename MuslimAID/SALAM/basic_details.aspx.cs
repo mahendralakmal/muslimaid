@@ -630,21 +630,22 @@ namespace MuslimAID.SALAM
 
                     string strNewImaID = Convert.ToString(intVal);
 
-                    string strServerImagePath;
+                    string strServerClientPhotoPath, strServerClientProductPath;
                     string strPostedFileName;
                     string strImageType;
                     //string strLastID = hifRefID.Value;
                     //string strNIC = Session["NICNo"].ToString();
                     string strNewFileName;
 
-                    strServerImagePath = Server.MapPath(".") + "\\cs_client_ph";
+                    strServerClientPhotoPath = Server.MapPath(".") + "\\salam_client_photo";
+                    strServerClientProductPath = Server.MapPath(".") + "\\salam_client_product";
 
                     if (fpPhoto.HasFile)
                     {
                         strPostedFileName = fpPhoto.PostedFile.FileName;
                         strImageType = strPostedFileName.Substring(strPostedFileName.LastIndexOf("."));
                         strNewFileName = strNewImaID + "-1" + strImageType;
-                        fpPhoto.PostedFile.SaveAs(strServerImagePath + "\\" + strNewFileName);
+                        fpPhoto.PostedFile.SaveAs(strServerClientPhotoPath + "\\" + strNewFileName);
                         hf1.Value = "cs_client_ph" + "\\" + strNewFileName;
                     }
                     else
@@ -657,7 +658,7 @@ namespace MuslimAID.SALAM
                         strPostedFileName = fpBBPhoto.PostedFile.FileName;
                         strImageType = strPostedFileName.Substring(strPostedFileName.LastIndexOf("."));
                         strNewFileName = strNewImaID + "-2" + strImageType;
-                        fpBBPhoto.PostedFile.SaveAs(strServerImagePath + "\\" + strNewFileName);
+                        fpBBPhoto.PostedFile.SaveAs(strServerClientProductPath + "\\" + strNewFileName);
                         hf2.Value = "cs_client_ph" + "\\" + strNewFileName;
                     }
                     else

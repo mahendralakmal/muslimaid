@@ -1,33 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="family_details.aspx.cs" Inherits="MuslimAID.MURABHA.family_details" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<script>
-    function calcBD(obj) {
-        //$dd = $("#ctl00_ContentPlaceHolder1_txtDOB").val();
-        $dob = new Date($("#ctl00_ContentPlaceHolder1_txtDOB").val());
-        $today = new Date();
-        $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
-        console.log($age);
-        $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
-    }
-</script>
 
-    <script type="text/javascript">
-        $(function() {
-            $('#datetimepicker1').datetimepicker({ format: 'DD/MM/YYYY' });
-            $('#datetimepicker2').datetimepicker({
-                format: 'DD/MM/YYYY'
-            }).on('dp.change', function(event) {
-                console.log('hi');
-                $dob = new Date(event.date);
-                $today = new Date();
-                $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
-                console.log($dob);
-                console.log($today);
-                console.log($age);
-                $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
-            });
-        });
-    </script>
+    <script type="text/javascript" src="../dist/js/base_scripts.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
@@ -75,8 +49,8 @@
             <div class="form-group">
                 <div class="col-md-5">Spouse Date of Birth<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <div class='input-group date' id='datetimepicker2' name='datetimepicker2'>
-                        <asp:TextBox ID="txtDOB" CssClass="form-control" runat="server"></asp:TextBox>
+                    <div class='input-group date' id='sDob' name='sDob'>
+                        <asp:TextBox ID="txtDOB" CssClass="form-control sDob" runat="server"></asp:TextBox>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
@@ -88,7 +62,7 @@
                 <div class="col-md-5">Spouse Age<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
                 <!-- <asp:TextBox ID="txtAge" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2" Enabled="false"></asp:TextBox> -->
-            <asp:Label CssClass="form-control" ID="lblAge" runat="server"></asp:Label>
+            <asp:Label CssClass="form-control lblAge" ID="lblAge" runat="server"></asp:Label>
         </div>
             </div>
         </div>
@@ -104,7 +78,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Spouse Contact No<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Spouse Contact No</div>
                 <div class="col-md-7"><asp:TextBox ID="txtContact" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2"></asp:TextBox></div>
             </div>
         </div>
@@ -178,7 +152,7 @@
         </div>--%>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Other F. Member Income<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Other F. Member Income</div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtFMIncome" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
@@ -186,7 +160,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Moveable Properties<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Moveable Properties</div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtMProperty" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
@@ -194,7 +168,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Immoveable Properties<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Immoveable Properties</div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtIProperty" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
@@ -202,7 +176,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Savings<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Savings</div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtSaving" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>

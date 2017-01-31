@@ -62,6 +62,10 @@ namespace MuslimAID.MURABAHA
                 {
                     lblMsg.Text = "Please Enter CA Code";
                 }
+                else if (txtSalWages.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Enter Salary & Wages";
+                }
                 else
                 {
                     MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO `muslimaid`.`micro_family_appraisal`(`contract_code`,`salary_n_wages`,`rentIncome`,`rent_income_other`,`net_Income_business`,`other_income`,`food_ex`,`education_ex`,`wet_ex`,`health_n_sanitation`,`rent_ex`,`other_facility_ex`,`travel_n_transport`,`clothes_ex`,`other_ex`,`amount_opex`,`amount_fex`,`fr_period`,`mad`,`mdaaip`,`rapsa`,`create_date`,`update_date`,`create_user`,`update_user`) VALUES (`@contract_code`,`@salary_n_wages`,`@rentIncome`,`@rent_income_other`,`@net_Income_business`,`@other_income`,`@food_ex`,`@education_ex`,`@wet_ex`,`@health_n_sanitation`,`@rent_ex`,`@other_facility_ex`,`@travel_n_transport`,`@clothes_ex`,`@other_ex`,`@amount_opex`,`@amount_fex`,`@fr_period`,`@mad`,`@mdaaip`,`@rapsa`,`@create_date`,`@update_date`,`@create_user`,`@update_user`)");

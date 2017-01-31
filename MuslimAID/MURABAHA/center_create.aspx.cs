@@ -299,7 +299,7 @@ namespace MuslimAID.MURABHA
                         cmbVillages.Items.Clear();
                     }
 
-                    DataSet dsVillage = cls_Connection.getDataSet("select * from villages_name where city_code = '" + cmbCityCode.SelectedItem.Value + "'");
+                    DataSet dsVillage = cls_Connection.getDataSet("select * from villages_name where city_code = '" + cmbCityCode.SelectedItem.Value + "' ORDER BY villages_name");
                     for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
                     {
                         cmbVillages.Items.Add(dsVillage.Tables[0].Rows[i][2].ToString());

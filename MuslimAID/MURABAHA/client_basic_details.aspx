@@ -12,46 +12,10 @@
                 displayArea: ".siblings('.dtcDisplayArea')",
                 button: ".next()"
             });
-
-            /* $("#datetimepicker1").on('datetimepicker1.change', function(e) {
-                console.log("hi");
-                alert($("#txtDOB").val());
-            }); */
-        });
-        
-//        function calcBD(obj) {
-//            //$dd = $("#ctl00_ContentPlaceHolder1_txtDOB").val();
-//            $dob = new Date($("#ctl00_ContentPlaceHolder1_txtDOB").val());
-//            $today = new Date();
-//            $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
-
-//            console.log($dob);
-//            console.log($today);
-//            console.log($age);
-//            $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
-//        }
-    </script>
-
-    <script type="text/javascript">
-        $(function() {
-            $('#datetimepicker1').datetimepicker({
-                format: 'DD/MM/YYYY',
-                defaultDate: new Date()
-            }).on('dp.change', function(event) {
-                console.log('hi');
-                //                $dob = new Date($("#ctl00_ContentPlaceHolder1_txtDOB").val());
-                $dob = new Date(event.date);
-                $today = new Date();
-                $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
-                console.log($dob);
-                console.log($today);
-                console.log($age);
-                $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
-            });
-
-            $('#datetimepicker2').datetimepicker({ format: 'DD/MM/YYYY' });
         });
     </script>
+
+    <script type="text/javascript" src="../dist/js/base_scripts.js"></script>
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -76,29 +40,27 @@
                 <div class="form-group">
                     <div class="col-md-5">NIC/Passport/DL Issued Date<span style="color:Red;"> *</span></div>
                     <div class="col-md-7">
-                        <!-- <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span> -->
-                        <asp:TextBox ID="txtNicIssuDay" MaxLength="10" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                        <div class='input-group date' id='dtpNicPassIssueDateCBD' name='dtpNicPassIssueDateCBD'>
+                            <asp:TextBox ID="txtNicIssuDay" MaxLength="10" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
                     </div>
-                    <!-- <script type="text/javascript">
-                        $(function() {
-                            $('#datetimepicker1').datetimepicker();
-                        });
-                    </script> -->
                 </div>
             </div>
+            <div class="col-md-12"></div>
             <div class="col-md-6">
-            <div class="form-group">                
-                <div class="col-md-5">Branch<span style="color:Red;"> *</span></div>
-                <div class="col-md-7">
-                    <asp:DropDownList ID="cmbCityCode" CssClass="form-control" TabIndex="1" 
-                        runat="server" AutoPostBack="true" 
-                        onselectedindexchanged="cmbCityCode_SelectedIndexChanged"></asp:DropDownList>
+                <div class="form-group">                
+                    <div class="col-md-5">Branch<span style="color:Red;"> *</span></div>
+                    <div class="col-md-7">
+                        <asp:DropDownList ID="cmbCityCode" CssClass="form-control" TabIndex="1" 
+                            runat="server" AutoPostBack="true" 
+                            onselectedindexchanged="cmbCityCode_SelectedIndexChanged"></asp:DropDownList>
+                    </div>
                 </div>
             </div>
-            </div>
+            <div class="col-md-12"></div>           
+            <div class="col-md-12"></div>           
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Root ID<span style="color:Red;"> *</span></div>
@@ -161,7 +123,7 @@
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
-                <div class="col-md-5">Product Photo<span style="color:Red;"> *</span></div>
+                <div class="col-md-5">Product Photo<%--<span style="color:Red;"> *</span>--%></div>
                 <div class="col-md-7">
                     <asp:FileUpload ID="fpBBPhoto" CssClass="form-control" runat="server" TabIndex="4" />
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
@@ -204,7 +166,7 @@
             <div class="form-group">                
                 <div class="col-md-5">Date of Birth</div>
                 <div class="col-md-7">
-                    <div class='input-group date' id='datetimepicker1' name='datetimepicker1'>
+                    <div class='input-group date' id='DobCDB' name='DobCDB'>
                         <asp:TextBox ID="txtDOB" CssClass="form-control" runat="server"
                             TabIndex="9"></asp:TextBox>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
@@ -217,7 +179,7 @@
                 <div class="form-group">                
                     <div class="col-md-5">Age</div>
                     <div class="col-md-7">
-                        <asp:Label CssClass="form-control" ID="lblAge" runat="server"></asp:Label>
+                        <asp:Label CssClass="form-control lblAge" ID="lblAge" runat="server"></asp:Label>
                     </div>
                 </div>
             </div>
@@ -261,7 +223,7 @@
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
-                <div class="col-md-5">Current Residential Address<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Current Residential Address</div>
                 <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtResiAddress" Height="70px" TextMode="MultiLine" MaxLength="150" runat="server" TabIndex="15"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
@@ -271,7 +233,7 @@
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
-                <div class="col-md-5">Tele No<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Tele No<%--<span style="color:Red;">*</span>--%></div>
                 <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtTele" runat="server" MaxLength="10" TabIndex="14"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
@@ -283,7 +245,7 @@
                 <div class="form-group">                
                     <div class="col-md-5">Inspection Date<span style="color:Red;">*</span></div>
                     <div class="col-md-7">
-                        <div class='input-group date' id='datetimepicker2' name="datetimepicker2">
+                        <div class='input-group date' id='InspectionCDB' name="InspectionCDB">
                             <asp:TextBox ID="txtInsDate" CssClass="form-control" runat="server" TabIndex="16"></asp:TextBox>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                             </span>

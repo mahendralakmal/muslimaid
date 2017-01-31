@@ -1,53 +1,13 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="business_details.aspx.cs" Inherits="MuslimAID.MURABHA.business_details"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<script>
-    var totIn = 0.00; var totPu = 0.00; var totEx = 0.00;
-    function calcIncom() {
-        $cashIn = $("#ctl00_ContentPlaceHolder1_txtBIncome").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtBIncome").val();
-        $creditIn = $("#ctl00_ContentPlaceHolder1_txtCrdtIncome").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtCrdtIncome").val();
-        $otherIn = $("#ctl00_ContentPlaceHolder1_txtOIncome").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtOIncome").val();
-
-        totIn = parseFloat($cashIn) + parseFloat($creditIn) + parseFloat($otherIn);
-        $("#ctl00_ContentPlaceHolder1_txtTotalIncome").val(totIn);
-        calcPnL(totIn, totPu, totEx);
-    }
-    function calcPurchase() {
-        $cashIn = $("#ctl00_ContentPlaceHolder1_txtDCost").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtDCost").val();
-        $creditIn = $("#ctl00_ContentPlaceHolder1_txtICost").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtICost").val();
-
-        totPu = parseFloat($cashIn) + parseFloat($creditIn);
-        $("#ctl00_ContentPlaceHolder1_txtTotPurchase").val(totPu);
-        calcPnL(totIn, totPu, totEx);
-    }
-    function calcBEx() {
-        $Rent = $("#ctl00_ContentPlaceHolder1_txtRent").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtRent").val();
-        $wet = $("#ctl00_ContentPlaceHolder1_txtWET").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtWET").val();
-        $wages = $("#ctl00_ContentPlaceHolder1_txtWages").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtWages").val(); 
-        $fla = $("#ctl00_ContentPlaceHolder1_txtFLA").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtFLA").val();
-        $trans = $("#ctl00_ContentPlaceHolder1_txtTravelTrans").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtICost").val();
-        $repir = $("#ctl00_ContentPlaceHolder1_txtRepairMain").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_txtRepairMain").val();
-
-        totEx = parseFloat($Rent) + parseFloat($wet) + parseFloat($wages) + parseFloat($fla) + parseFloat($trans) + parseFloat($repir);
-        $("#ctl00_ContentPlaceHolder1_txtTExpenses").val(totEx);
-        calcPnL(totIn, totPu, totEx);
-    }
-    function calcPnL(totIn, totPu, totEx) {
-        totIn = totIn === '' ? 0.00 : totIn;
-        totPu = totPu === '' ? 0.00 : totPu;
-        totEx = totEx === '' ? 0.00 : totEx;
-        console.log("totIn  " + totIn + " totPU " + totPu + " totEx " + totEx);
-        $pnl = totIn - (totPu + totEx);
-        //console.log($pnl);
-        $("#ctl00_ContentPlaceHolder1_txtPAndL").val($pnl);
-    }
-</script>
+    <script type="text/javascript" src="../dist/js/base_scripts.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
     <div class="PageTitle"><h4>MF Application - Business Details</h4></div>
     <div class="col-md-12 form-container">
-        <div class="col-md-6 form-group">
+        <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Contract Code<span style="color:Red;">*</span></div>
                 <div class="col-md-7"><asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="12" AutoPostBack="false" Enabled="false" runat="server" TabIndex="0" ></asp:TextBox></div>
@@ -147,24 +107,22 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Sales (Cash)<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtBIncome" onchange="calcIncom()" CssClass="form-control" 
-                        runat="server" TabIndex="8" AutoPostBack="false" 
-                        ontextchanged="txtBIncome_TextChanged"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtBIncome" onchange="calcIncom()" CssClass="form-control txtBIncome" runat="server" TabIndex="8" AutoPostBack="false" ontextchanged="txtBIncome_TextChanged"></asp:TextBox></div>
             </div>
         </div>
         
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Sales (Credit)<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtCrdtIncome" onchange="calcIncom()" CssClass="form-control" 
+                <div class="col-md-7"><asp:TextBox ID="txtCrdtIncome" onchange="calcIncom()" CssClass="form-control txtCrdtIncome" 
                         runat="server" TabIndex="8" AutoPostBack="false" 
                         ontextchanged="txtCrdtIncome_TextChanged"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Other Sales (Business)<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtOIncome" onchange="calcIncom()" CssClass="form-control" 
+                <div class="col-md-5">Other Sales (Business)</div>
+                <div class="col-md-7"><asp:TextBox ID="txtOIncome" onchange="calcIncom()" CssClass="form-control txtOIncome" 
                         runat="server" TabIndex="8" AutoPostBack="false" 
                         ontextchanged="txtOIncome_TextChanged"></asp:TextBox></div>
             </div>
@@ -173,7 +131,7 @@
             <div class="form-group">
                 <div class="col-md-5"><strong>Total Sales</strong><span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox CssClass="form-control" Enabled="false" ID="txtTotalIncome" runat="server"></asp:TextBox>
+                    <asp:TextBox CssClass="form-control txtTotalIncome" Enabled="false" ID="txtTotalIncome" runat="server"></asp:TextBox>
                     <%--<asp:Label CssClass="form-control" ID="lblTotalIncome" runat="server"></asp:Label>--%>
                 </div>
             </div>
@@ -183,7 +141,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Purchases (Cash)<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtDCost" onchange="calcPurchase()" CssClass="form-control" 
+                <div class="col-md-7"><asp:TextBox ID="txtDCost" onchange="calcPurchase()" CssClass="form-control txtDCost" 
                         runat="server" TabIndex="8" AutoPostBack="false" 
                         ontextchanged="txtDCost_TextChanged"></asp:TextBox></div>
             </div>
@@ -191,7 +149,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Purchases (Credit)<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtICost" onchange="calcPurchase()" CssClass="form-control" 
+                <div class="col-md-7"><asp:TextBox ID="txtICost" onchange="calcPurchase()" CssClass="form-control txtICost" 
                         runat="server" TabIndex="8" AutoPostBack="false" 
                         ontextchanged="txtICost_TextChanged"></asp:TextBox></div>
             </div>
@@ -200,7 +158,7 @@
             <div class="form-group">
                 <div class="col-md-5"><strong>Total Purchases</strong><span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox CssClass="form-control" ID="txtTotPurchase" Enabled="false" runat="server"></asp:TextBox>
+                    <asp:TextBox CssClass="form-control txtTotPurchase" ID="txtTotPurchase" Enabled="false" runat="server"></asp:TextBox>
                     <%--<asp:Label CssClass="form-control" ID="lblTotPurchase" runat="server"></asp:Label>--%>
                 </div>
             </div>
@@ -208,48 +166,48 @@
         <div class="col-lg-12"></div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Rent<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtRent" 
+                <div class="col-md-5">Rent</div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control txtRent" ID="txtRent" 
                         runat="server" TabIndex="8" AutoPostBack="false" onchange="calcBEx()"
                         ontextchanged="txtRent_TextChanged"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Water/ Electricity & Telephone<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtWET" 
+                <div class="col-md-5">Water/ Electricity & Telephone</div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control txtWET" ID="txtWET" 
                         runat="server" TabIndex="8" AutoPostBack="false" onchange="calcBEx()"
                         ontextchanged="txtWET_TextChanged"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Wages<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtWages" 
+                <div class="col-md-5">Wages</div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control txtWages" ID="txtWages" 
                         runat="server" TabIndex="8" AutoPostBack="false" onchange="calcBEx()"
                         ontextchanged="txtWages_TextChanged"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Facility/ Lease/ Advance Rental<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtFLA" 
+                <div class="col-md-5">Facility/ Lease/ Advance Rental</div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control txtFLA" ID="txtFLA" 
                         runat="server" TabIndex="8" AutoPostBack="false" onchange="calcBEx()"
                         ontextchanged="txtFLA_TextChanged"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Travel & Transport<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtTravelTrans" 
+                <div class="col-md-5">Travel & Transport</div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control txtTravelTrans" ID="txtTravelTrans" 
                         runat="server" TabIndex="8" AutoPostBack="false" onchange="calcBEx()"
                         ontextchanged="txtTravelTrans_TextChanged"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Repair & Maintenance<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtRepairMain" 
+                <div class="col-md-5">Repair & Maintenance</div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control txtRepairMain" ID="txtRepairMain" 
                         runat="server" TabIndex="8" AutoPostBack="false" onchange="calcBEx()"
                         ontextchanged="txtRepairMain_TextChanged"></asp:TextBox></div>
             </div>
@@ -258,7 +216,7 @@
             <div class="form-group">
                 <div class="col-md-5">Total Business Expense<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox CssClass="form-control" ID="txtTExpenses" Enabled="false" runat="server"></asp:TextBox>
+                    <asp:TextBox CssClass="form-control txtTExpenses" ID="txtTExpenses" Enabled="false" runat="server"></asp:TextBox>
                     <%--<asp:Label CssClass="form-control" ID="lblTExpenses" runat="server"></asp:Label>--%>
                 </div>
             </div>
@@ -268,7 +226,7 @@
             <div class="form-group">
                 <div class="col-md-5">Gross Profit<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox CssClass="form-control" ID="txtPAndL" Enabled="false" runat="server"></asp:TextBox>
+                    <asp:TextBox CssClass="form-control txtPAndL" ID="txtPAndL" Enabled="false" runat="server"></asp:TextBox>
                 <%--<asp:Label CssClass="form-control" ID="lblPAndL" runat="server"></asp:Label>--%>
                 </div>
             </div>

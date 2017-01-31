@@ -10,12 +10,16 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using MySql.Data.MySqlClient;
+using MuslimAID.Common;
+
 
 namespace MuslimAID
 {
     public class cls_Connection : System.Web.UI.Page
     {
+        //errorLog error = new errorLog();
         private static MySqlConnection connect = null;
+        
 
         //Get Connection
         public static MySqlConnection DBConnect()
@@ -23,18 +27,18 @@ namespace MuslimAID
             try
             {
                 MySqlConnection con = new MySqlConnection();
-                //con.ConnectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
-                con.ConnectionString = ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString;
+                con.ConnectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+                //con.ConnectionString = ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString;
                 return con;
             }
             catch (MySqlException mye)
             {
-                //error.createErrorLog(mye.Message, mye.Source, "MySQL Error");
+                //error.createerrorLog(mye.Message, mye.Source, "MySQL error");
                 return null;
             }
             catch (Exception e)
             {
-                //error.createErrorLog(e.Message, e.Source, "Data Connection Error");
+                //error.createerrorLog(e.Message, e.Source, "Data Connection error");
                 return null;
             }
         }
@@ -60,12 +64,12 @@ namespace MuslimAID
             }
             catch (MySqlException mye)
             {
-                //error.createErrorLog(mye.Message, mye.Source, "MySQL Error");
+                //error.createerrorLog(mye.Message, mye.Source, "MySQL error");
                 closeConnection();
             }
             catch (Exception e)
             {
-                //error.createErrorLog(e.Message, e.Source, "Data Sending Error");
+                //error.createerrorLog(e.Message, e.Source, "Data Sending error");
                 closeConnection();
             }
         }
@@ -125,15 +129,19 @@ namespace MuslimAID
             }
             catch (MySqlException mye)
             {
-                //error.createErrorLog(mye.Message, mye.Source, "MySQL Error");
+                //error.createerrorLog(mye.Message, mye.Source, "MySQL error");
                 closeConnection();
                 return null;
             }
             catch (Exception e)
             {
-                //error.createErrorLog(e.Message, e.Source, "Data Downloading Error");
+                //error.createerrorLog(e.Message, e.Source, "Data Downloading error");
                 closeConnection();
                 return null;
+            }
+            finally
+            {
+                closeConnection();
             }
         }
 
@@ -152,19 +160,24 @@ namespace MuslimAID
                 da = new MySqlDataAdapter(com);
                 ds = new DataSet();
                 da.Fill(ds);
+                closeConnection();
                 return ds;
             }
             catch (MySqlException mye)
             {
-                //error.createErrorLog(mye.Message, mye.Source, "MySQL Error");
+                //error.createerrorLog(mye.Message, mye.Source, "MySQL error");
                 closeConnection();
                 return null;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                //error.createErrorLog(e.Message, e.Source, "Data Downloading Error");
+                //error.createerrorLog(ex.Message, ex.Source, "Data Downloading error");
                 closeConnection();
                 return null;
+            }
+            finally
+            {
+                closeConnection();
             }
         }
 
@@ -184,6 +197,9 @@ namespace MuslimAID
                 //throw Ex;
                 return null;
             }
+            finally { 
+                
+            }
         }
 
         public DataSet selectData(MySqlCommand cmdQRY)
@@ -201,7 +217,7 @@ namespace MuslimAID
             }
             catch (Exception ex)
             {
-                //objCommonTasks.createErrorLog(DateTime.Now, ex.Message, ex.Source, cmdQRY.CommandText);
+                //objCommonTasks.createerrorLog(DateTime.Now, ex.Message, ex.Source, cmdQRY.CommandText);
                 return null;
             }
         }
@@ -221,7 +237,7 @@ namespace MuslimAID
             }
             catch (Exception ex)
             {
-                //objCommonTasks.createErrorLog(DateTime.Now, ex.Message, ex.Source, cmdQRY.CommandText);
+                //objCommonTasks.createerrorLog(DateTime.Now, ex.Message, ex.Source, cmdQRY.CommandText);
                 return null;
             }
         }
@@ -277,16 +293,8 @@ namespace MuslimAID
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in base64Encode" + ex.Message);
+                throw new Exception("error in base64Encode" + ex.Message);
             }
         }
-
-        //public static void logout()
-        //{
-        //    Session["LoggedIn"] = "False";
-        //    Session["NIC"] = null;
-        //    Session["Branch"] = null;
-        //    Session["UserType"] = null;
-        //}
     }
 }

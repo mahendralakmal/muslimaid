@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Muslim AID - Murabha</title>
-    
+    <link rel="icon" href="../Images/MAMC%20Logo%20-%20Final%20without%20line-f.png" />    
     <link href="../dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="../dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="../dist/css/style.css" rel="stylesheet" type="text/css" />

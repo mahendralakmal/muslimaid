@@ -137,7 +137,7 @@ namespace MuslimAID.MURABHA
 
                 try
                 {
-                    DataSet dsVillage = cls_Connection.getDataSet("select * from villages_name where city_code = '" + cmbCityCode.SelectedItem.Value + "'");
+                    DataSet dsVillage = cls_Connection.getDataSet("select * from villages_name where city_code = '" + cmbCityCode.SelectedItem.Value + "' ORDER BY villages_name");
                     if (dsVillage.Tables[0].Rows.Count > 0)
                     {
                         cmbVillages.Items.Add("");
@@ -322,6 +322,14 @@ namespace MuslimAID.MURABHA
                 {
                     lblMsg.Text = "Please enter Address.";
                 }
+                else if (txtInsDate.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please enter inspection date.";
+                }
+                else if (txtOccupation.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please enter Occupation / Income Source.";
+                }
                 else
                 {
                     string strloginID = Session["NIC"].ToString();
@@ -357,22 +365,23 @@ namespace MuslimAID.MURABHA
 
                     string strNewImaID = Convert.ToString(intVal);
 
-                    string strServerImagePath;
+                    string strServerClientPhotoPath, strServerClientProductPath;
                     string strPostedFileName;
                     string strImageType;
                     //string strLastID = hifRefID.Value;
                     //string strNIC = Session["NICNo"].ToString();
                     string strNewFileName;
 
-                    strServerImagePath = Server.MapPath(".") + "\\cs_client_ph";
+                    strServerClientPhotoPath = Server.MapPath(".") + "\\murahaha_client_photo";
+                    strServerClientProductPath = Server.MapPath(".") + "\\murahaha_client_product";
 
                     if (fpPhoto.HasFile)
                     {
                         strPostedFileName = fpPhoto.PostedFile.FileName;
                         strImageType = strPostedFileName.Substring(strPostedFileName.LastIndexOf("."));
                         strNewFileName = strNewImaID + "-1" + strImageType;
-                        fpPhoto.PostedFile.SaveAs(strServerImagePath + "\\" + strNewFileName);
-                        hf1.Value = "cs_client_ph" + "\\" + strNewFileName;
+                        fpPhoto.PostedFile.SaveAs(strServerClientPhotoPath + "\\" + strNewFileName);
+                        hf1.Value = "cs_client_photo" + "\\" + strNewFileName;
                     }
                     else
                     {
@@ -384,8 +393,8 @@ namespace MuslimAID.MURABHA
                         strPostedFileName = fpBBPhoto.PostedFile.FileName;
                         strImageType = strPostedFileName.Substring(strPostedFileName.LastIndexOf("."));
                         strNewFileName = strNewImaID + "-2" + strImageType;
-                        fpBBPhoto.PostedFile.SaveAs(strServerImagePath + "\\" + strNewFileName);
-                        hf2.Value = "cs_client_ph" + "\\" + strNewFileName;
+                        fpBBPhoto.PostedFile.SaveAs(strServerClientProductPath + "\\" + strNewFileName);
+                        hf2.Value = "cs_client_product" + "\\" + strNewFileName;
                     }
                     else
                     {

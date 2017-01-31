@@ -11,6 +11,8 @@
     <RootNamespace>MuslimAID</RootNamespace>
     <AssemblyName>MuslimAID</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>AmilaDanaProIt.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,8 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.2.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -66,6 +71,9 @@
     </Compile>
     <Compile Include="Common\cls_LoginInfo.cs" />
     <Compile Include="Common\cls_Setup.cs" />
+    <Compile Include="Common\ErrorLog.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -447,6 +455,13 @@
     </Compile>
     <Compile Include="User_Create.aspx.designer.cs">
       <DependentUpon>User_Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="under-constrction.aspx.cs">
+      <DependentUpon>under-constrction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="under-constrction.aspx.designer.cs">
+      <DependentUpon>under-constrction.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -945,6 +960,7 @@
     <Content Include="dist\css\bootstrap.css" />
     <Content Include="dist\css\bootstrap.min.css" />
     <Content Include="dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="dist\js\base_scripts.js" />
     <Content Include="dist\js\bootstrap.js" />
     <Content Include="dist\js\bootstrap.min.js" />
     <Content Include="dist\js\npm.js" />
@@ -974,6 +990,7 @@
     <Content Include="dist\css\style.css" />
     <Content Include="font\fontawesome-webfont.svg" />
     <Content Include="dist\js\base.js" />
+    <Content Include="Images\MAMC Logo - Final without line-f.png" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="dist\js\footer.js" />
@@ -1043,8 +1060,12 @@
     <Content Include="SALAM\add_cro.aspx" />
     <Content Include="SALAM\Service_Charges.aspx" />
     <Content Include="User_Create.aspx" />
+    <Content Include="under-constrction.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AmilaDanaProIt.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="bower_components\eonasdan-bootstrap-datetimepicker\.bower.json" />
     <None Include="bower_components\eonasdan-bootstrap-datetimepicker\bower.json" />
     <None Include="bower_components\eonasdan-bootstrap-datetimepicker\component.json" />
@@ -1103,6 +1124,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="css\pages\" />
+    <Folder Include="MURABAHA\murahaha_client_photo\" />
+    <Folder Include="MURABAHA\murahaha_client_product\" />
+    <Folder Include="SALAM\salam_client_photo\" />
+    <Folder Include="SALAM\salam_client_product\" />
+    <Folder Include="User_Photos\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
