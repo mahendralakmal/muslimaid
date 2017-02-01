@@ -337,6 +337,13 @@
     <Compile Include="SALAM\Add_Village.aspx.designer.cs">
       <DependentUpon>Add_Village.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SALAM\BranchAdd.aspx.cs">
+      <DependentUpon>BranchAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\BranchAdd.aspx.designer.cs">
+      <DependentUpon>BranchAdd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SALAM\business_details.aspx.cs">
       <DependentUpon>business_details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -350,6 +357,13 @@
     </Compile>
     <Compile Include="SALAM\center_create.aspx.designer.cs">
       <DependentUpon>center_create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\Change_CRO.aspx.cs">
+      <DependentUpon>Change_CRO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\Change_CRO.aspx.designer.cs">
+      <DependentUpon>Change_CRO.aspx</DependentUpon>
     </Compile>
     <Compile Include="SALAM\Chequ_Approval.aspx.cs">
       <DependentUpon>Chequ_Approval.aspx</DependentUpon>
@@ -1043,8 +1057,10 @@
     <Content Include="MURABAHA\Voucher_Cancel.aspx" />
     <Content Include="MURABAHA\WayOffAmount.aspx" />
     <Content Include="SALAM\Add_Village.aspx" />
+    <Content Include="SALAM\BranchAdd.aspx" />
     <Content Include="SALAM\business_details.aspx" />
     <Content Include="SALAM\center_create.aspx" />
+    <Content Include="SALAM\Change_CRO.aspx" />
     <Content Include="SALAM\Chequ_Approval.aspx" />
     <Content Include="SALAM\Chequ_Cancel.aspx" />
     <Content Include="SALAM\Debit_Note.aspx" />

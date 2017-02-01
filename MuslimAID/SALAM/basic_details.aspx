@@ -14,16 +14,8 @@
             button: ".next()"
         });
     });
-
-    function calcBD(obj) {
-        //$dd = $("#ctl00_ContentPlaceHolder1_txtDOB").val();
-        $dob = new Date($("#ctl00_ContentPlaceHolder1_txtDOB").val());
-        $today = new Date();
-        $age = Math.floor(($today - $dob) / (365.25 * 24 * 60 * 60 * 1000));
-        console.log($age);
-        $("#ctl00_ContentPlaceHolder1_lblAge").html($age);
-    }
 </script>
+<script type="text/javascript" src="../dist/js/base_scripts.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -83,11 +75,7 @@
                 <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtSoNumber" Enabled="false" MaxLength="10" runat="server" TabIndex="3" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
-            <%--<div class="form-group">                
-                <div class="col-md-5">C.A. Code<span style="color:Red;"> *</span></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" Enabled="false"></asp:TextBox></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" AutoPostBack="true"></asp:TextBox></div>
-            </div>--%></div>
+            </div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Group ID<span style="color:Red;"> *</span></div>
@@ -108,7 +96,7 @@
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
-                <div class="col-md-5">Client Photo<span style="color:Red;"> *</span></div>
+                <div class="col-md-5">Client Photo</div>
                 <div class="col-md-7">
                     <asp:FileUpload ID="fpPhoto" CssClass="form-control" runat="server" TabIndex="3" /><asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server"
                    ControlToValidate="fpPhoto"
@@ -118,7 +106,7 @@
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
-                <div class="col-md-5">Product Photo<span style="color:Red;"> *</span></div>
+                <div class="col-md-5">Product Photo </div>
                 <div class="col-md-7">
                     <asp:FileUpload ID="fpBBPhoto" CssClass="form-control" runat="server" TabIndex="4" />
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
@@ -160,12 +148,19 @@
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Date of Birth</div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtDOB" onchange="calcBD();" MaxLength="30" runat="server" TabIndex="9"></asp:TextBox></div>
+                <div class="col-md-7">
+                    <div class='input-group date' id='DobCDB' name='DobCDB'>
+                        <asp:TextBox ID="txtDOB" CssClass="form-control" runat="server"
+                            TabIndex="9"></asp:TextBox>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Age</div>
-                <div class="col-md-7"><asp:Label CssClass="form-control" ID="lblAge" runat="server"></asp:Label></div>
+                <div class="col-md-7"><asp:Label CssClass="form-control lblAge" ID="lblAge" runat="server"></asp:Label></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                

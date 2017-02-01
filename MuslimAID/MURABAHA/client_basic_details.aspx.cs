@@ -278,10 +278,6 @@ namespace MuslimAID.MURABHA
                 {
                     lblMsg.Text = "Please enter NIC No.";
                 }
-                else if (!fpPhoto.HasFile)
-                {
-                    lblMsg.Text = "Please upload Client Photo";
-                }
                 else if (txtNicIssuDay.Text.Trim() == "")
                 {
                     lblMsg.Text = "Please enter the NIC issued date.";

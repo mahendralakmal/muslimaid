@@ -85,35 +85,10 @@
                 <div class="col-md-5">Center Code<span style="color:Red;"> *</span></div>
                 <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtSoNumber" Enabled="false" MaxLength="10" runat="server" TabIndex="3" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div></div>
-            
-            <%--<div class="col-md-6">
-            <div class="form-group">                
-                <div class="col-md-5">C.A. Code<span style="color:Red;"> *</span></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" Enabled="false"></asp:TextBox></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" AutoPostBack="true"></asp:TextBox></div>
-            </div></div>
+                        
             <div class="col-md-6">
             <div class="form-group">                
-                <div class="col-md-5">Group ID<span style="color:Red;"> *</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtGroupID" runat="server" AutoPostBack="true"></asp:TextBox></div>
-            </div></div>
-            <div class="col-md-12">&nbsp;</div>
-            <div class="col-md-6">
-            <div class="form-group">                
-                <div class="col-md-5">Guranter 01<span style="color:Red;"> *</span></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiserID1" runat="server" Enabled="false"></asp:TextBox></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiserID" runat="server" AutoPostBack="true"></asp:TextBox></div>
-            </div></div>
-            <div class="col-md-6">
-            <div class="form-group">                
-                <div class="col-md-5">Guranter 02<span style="color:Red;"> *</span></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiser02" runat="server" Enabled="false"></asp:TextBox></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiser02_02" runat="server" AutoPostBack="true"></asp:TextBox></div>
-            </div></div>--%>
-            
-            <div class="col-md-6">
-            <div class="form-group">                
-                <div class="col-md-5">Client Photo<span style="color:Red;"> *</span></div>
+                <div class="col-md-5">Client Photo</div>
                 <div class="col-md-7">
                     <asp:FileUpload ID="fpPhoto" CssClass="form-control" runat="server" TabIndex="3" /><asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server"
                    ControlToValidate="fpPhoto"
