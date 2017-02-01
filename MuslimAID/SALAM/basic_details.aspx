@@ -86,13 +86,13 @@
             <div class="form-group">                
                 <div class="col-md-5">Guranter 01<span style="color:Red;"> *</span></div>
                 <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiserID1" runat="server" Enabled="true"></asp:TextBox></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiserID" runat="server" AutoPostBack="true"></asp:TextBox></div>
+                <%--<div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiserID" runat="server" AutoPostBack="true"></asp:TextBox></div>--%>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Guranter 02<span style="color:Red;"> *</span></div>
                 <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiser02" runat="server" Enabled="true"></asp:TextBox></div>
-                <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiser02_02" runat="server" AutoPostBack="true"></asp:TextBox></div>
+                <%--<div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiser02_02" runat="server" AutoPostBack="true"></asp:TextBox></div>--%>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
@@ -229,7 +229,12 @@
                 <div class="form-group">                
                     <div class="col-md-5">Inspection Date<span style="color:Red;">*</span></div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="txtInsDate" CssClass="form-control" runat="server" TabIndex="16"></asp:TextBox><img src="../Images/calender.png" />
+                        
+                        <div class='input-group date' id='InspectionCDB' name="InspectionCDB">
+                            <asp:TextBox ID="txtInsDate" CssClass="form-control" runat="server" TabIndex="16"></asp:TextBox>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
                         <asp:HiddenField ID="hf1" runat="server" />
                         <asp:HiddenField ID="hf3" runat="server" />
                         <asp:HiddenField ID="hf2" runat="server" />

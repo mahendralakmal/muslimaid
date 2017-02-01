@@ -113,15 +113,6 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.TextBox txtPromiserID1;
         
         /// <summary>
-        /// txtPromiserID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPromiserID;
-        
-        /// <summary>
         /// txtPromiser02 control.
         /// </summary>
         /// <remarks>
@@ -129,15 +120,6 @@ namespace MuslimAID.SALAM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPromiser02;
-        
-        /// <summary>
-        /// txtPromiser02_02 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPromiser02_02;
         
         /// <summary>
         /// fpPhoto control.
