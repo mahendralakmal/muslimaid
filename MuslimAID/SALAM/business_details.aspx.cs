@@ -92,7 +92,7 @@ namespace MuslimAID.SALAM
             {
                 lblMsg.Text = "Please Enter InDirect Cost";
             }
-            //else if (txtOExpenses.Text.Trim() == "")
+            //else if (txtTotPurchase.Text.Trim() == "")
             //{
             //    lblMsg.Text = "Please Enter Other Expenses";
             //}
@@ -131,7 +131,7 @@ namespace MuslimAID.SALAM
 
                 string strDcost = txtDCost.Text.Trim();
                 string strICost = txtICost.Text.Trim();
-                string strToEx = txtOExpenses.Text.Trim();
+                string strToEx = txtTotPurchase.Text.Trim();
 
                 string strRent = txtRent.Text.Trim();
                 string strWet = txtWET.Text.Trim();
@@ -326,7 +326,7 @@ namespace MuslimAID.SALAM
 
             string strDcost = txtDCost.Text.Trim();
             string strICost = txtICost.Text.Trim();
-            string strToEx = txtOExpenses.Text.Trim();
+            string strToEx = txtTotPurchase.Text.Trim();
 
             string strRent = txtRent.Text.Trim();
             string strWet = txtWET.Text.Trim();
@@ -377,7 +377,7 @@ namespace MuslimAID.SALAM
             //txtFExpenses.Text = "";
             txtICost.Text = "";
             //txtNetIncome.Text = "";
-            //txtOExpenses.Text = "";
+            //txtTotPurchase.Text = "";
             txtOIncome.Text = "";
             txtPAndL.Text = "";
             txtTExpenses.Text = "";
@@ -418,8 +418,8 @@ namespace MuslimAID.SALAM
             strDcost = txtDCost.Text == "" ? "0" : txtDCost.Text;
             strIcost = txtICost.Text == "" ? "0" : txtICost.Text;
             decimal intTot = Convert.ToDecimal(strDcost) + Convert.ToDecimal(strIcost);
-            txtOExpenses.Text = intTot.ToString();
-            txtOExpenses.Focus();
+            txtTotPurchase.Text = intTot.ToString();
+            txtTotPurchase.Focus();
             catcPlb();
         }
         protected void txtDCost_TextChanged(object sender, EventArgs e)
@@ -480,7 +480,7 @@ namespace MuslimAID.SALAM
         {
             string strTin = txtTotalIncome.Text == "" ? "0" : txtTotalIncome.Text;
             string strTEx = txtTExpenses.Text == "" ? "0" : txtTExpenses.Text;
-            string strTPu = txtOExpenses.Text == "" ? "0" : txtOExpenses.Text;
+            string strTPu = txtTotPurchase.Text == "" ? "0" : txtTotPurchase.Text;
             txtPAndL.Text = (Convert.ToDecimal(strTin) - (Convert.ToDecimal(strTEx) + Convert.ToDecimal(strTPu))).ToString();
         }
     }

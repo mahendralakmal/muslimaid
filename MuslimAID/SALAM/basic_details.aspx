@@ -231,7 +231,7 @@
                     <div class="col-md-7">
                         
                         <div class='input-group date' id='InspectionCDB' name="InspectionCDB">
-                            <asp:TextBox ID="txtInsDate" CssClass="form-control" runat="server" TabIndex="16"></asp:TextBox>
+                            <asp:TextBox ID="txtInspDate" CssClass="form-control" runat="server" TabIndex="16"></asp:TextBox>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>

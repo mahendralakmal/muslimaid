@@ -174,7 +174,7 @@ namespace MuslimAID.SALAM
                             //txtPromiserID1.Text = dsGetExsiNIC.Tables[0].Rows[0]["promisers_id"].ToString();
                             //txtPromiser02.Text = dsGetExsiNIC.Tables[0].Rows[0]["promiser_id_2"].ToString();
                             //txtCACode1.Text = dsGetExsiNIC.Tables[0].Rows[0]["ca_code"].ToString();
-                            txtInsDate.Text = dsGetExsiNIC.Tables[0].Rows[0]["inspection_date"].ToString();
+                            txtInspDate.Text = dsGetExsiNIC.Tables[0].Rows[0]["inspection_date"].ToString();
 
                             fpPhoto.Enabled = false;
                             fpBBPhoto.Enabled = false;
@@ -244,7 +244,7 @@ namespace MuslimAID.SALAM
                             //txtPromiserID1.Text = dsGetExsiNIC.Tables[0].Rows[0]["promisers_id"].ToString();
                             //txtPromiser02.Text = dsGetExsiNIC.Tables[0].Rows[0]["promiser_id_2"].ToString();
                             //txtCACode1.Text = dsGetExsiNIC.Tables[0].Rows[0]["ca_code"].ToString();
-                            txtInsDate.Text = dsGetExsiNIC.Tables[0].Rows[0]["inspection_date"].ToString();
+                            txtInspDate.Text = dsGetExsiNIC.Tables[0].Rows[0]["inspection_date"].ToString();
 
                             txtNIC.Enabled = false;
                             fpPhoto.Enabled = false;
@@ -609,7 +609,7 @@ namespace MuslimAID.SALAM
                         hidCC.Value = hidCC.Value + "/" + dtCount.Tables[0].Rows[0][0].ToString();
                     }
 
-                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_basic_detail(contract_code,ca_code,nic,city_code,society_id,province,gs_ward,full_name,initial_name,other_name,marital_status,education,land_no,mobile_no,p_address,client_id,inspection_date,create_user_id,user_ip,date_time,village,root_id,cli_photo,bb_photo,nic_issue_date,dob,gender,r_address,income_source)VALUES(@contract_code,@ca_code,@nic,@city_code,@society_id,@province,@gs_ward,@full_name,@initial_name,@other_name,@marital_status,@education,@land_no,@mobile_no,@p_address,@client_id,@inspection_date,@create_user_id,@user_ip,@date_time,@village,@root_id,@cli_photo,@bb_photo,@nic_issue_date,@dob,@gender,@r_address,@income_source)");
+                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_basic_detail(contract_code,ca_code,nic,city_code,society_id,province,gs_ward,full_name,initial_name,other_name,marital_status,education,land_no,mobile_no,p_address,client_id,inspection_date,create_user_id,user_ip,date_time,village,root_id,cli_photo,bb_photo,nic_issue_date,dob,gender,r_address,income_source,team_id, promisers_id, promiser_id_2)VALUES(@contract_code,@ca_code,@nic,@city_code,@society_id,@province,@gs_ward,@full_name,@initial_name,@other_name,@marital_status,@education,@land_no,@mobile_no,@p_address,@client_id,@inspection_date,@create_user_id,@user_ip,@date_time,@village,@root_id,@cli_photo,@bb_photo,@nic_issue_date,@dob,@gender,@r_address,@income_source, @team_id, @promisers_id, @promiser_id_2)");
 
                     #region Get Values
                     string strIp = Request.UserHostAddress;
@@ -675,6 +675,11 @@ namespace MuslimAID.SALAM
                     strVillage = cmbVillages.SelectedItem.Value;
                     strSoName = cmbSocietyName.SelectedItem.Value;
                     strSoNumber = txtSoNumber.Text.Trim();
+
+                    strTeamNo = txtGroupID.Text.Trim();
+                    strPromiserID = txtPromiserID1.Text.Trim();
+                    strPromiser2 = txtPromiser02.Text.Trim();
+
                     strProvince = cmbProvince.SelectedItem.Value;
                     strGSWard = txtGSWard.Text.Trim();
                     strFullName = txtFullName.Text.Trim();
@@ -693,8 +698,11 @@ namespace MuslimAID.SALAM
                     strAddress = txtAddress.Text.Trim();
                     //strRAddress = txtResiAddress.Text.Trim();
                     strOccupation = txtOccupation.Text.Trim();
-                    strInspDate = txtInsDate.Text.Trim();
+                    strInspDate = txtInspDate.Text.Trim();
                     strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    strPromiserID = "";
+                    strPromiser2 = "";
+                    strTeamNo = "";
                     #endregion
 
                     //Create Capital Applicant Code
@@ -726,13 +734,13 @@ namespace MuslimAID.SALAM
                     cmdInsert.Parameters.Add("@land_no", MySqlDbType.VarChar, 10);
                     cmdInsert.Parameters.Add("@mobile_no", MySqlDbType.VarChar, 10);
                     cmdInsert.Parameters.Add("@p_address", MySqlDbType.VarChar, 255);
-                    //cmdInsert.Parameters.Add("@team_id", MySqlDbType.VarChar, 2);
+                    cmdInsert.Parameters.Add("@team_id", MySqlDbType.VarChar, 2);
                     cmdInsert.Parameters.Add("@client_id", MySqlDbType.VarChar, 2);
                     cmdInsert.Parameters.Add("@inspection_date", MySqlDbType.VarChar, 45);
                     cmdInsert.Parameters.Add("@create_user_id", MySqlDbType.VarChar, 10);
                     cmdInsert.Parameters.Add("@user_ip", MySqlDbType.VarChar, 45);
                     cmdInsert.Parameters.Add("@date_time", MySqlDbType.VarChar, 45);
-                    //cmdInsert.Parameters.Add("@promisers_id", MySqlDbType.VarChar, 12);
+                    cmdInsert.Parameters.Add("@promisers_id", MySqlDbType.VarChar, 12);
                     cmdInsert.Parameters.Add("@village", MySqlDbType.VarChar, 45);
                     cmdInsert.Parameters.Add("@root_id", MySqlDbType.VarChar, 1);
                     cmdInsert.Parameters.Add("@cli_photo", MySqlDbType.VarChar, 200);
@@ -742,7 +750,7 @@ namespace MuslimAID.SALAM
                     cmdInsert.Parameters.Add("@gender", MySqlDbType.VarChar, 1);
                     cmdInsert.Parameters.Add("@r_address", MySqlDbType.VarChar, 255);
                     cmdInsert.Parameters.Add("@income_source", MySqlDbType.VarChar, 100);
-                    //cmdInsert.Parameters.Add("@promiser_id_2", MySqlDbType.VarChar, 12);
+                    cmdInsert.Parameters.Add("@promiser_id_2", MySqlDbType.VarChar, 12);
                     #endregion
 
                     #region AssignParameters
@@ -761,13 +769,17 @@ namespace MuslimAID.SALAM
                     cmdInsert.Parameters["@land_no"].Value = strTNumber;
                     cmdInsert.Parameters["@mobile_no"].Value = strMobNo;
                     cmdInsert.Parameters["@p_address"].Value = strAddress;
-                    //cmdInsert.Parameters["@team_id"].Value = strTeamNo;
+
+                    cmdInsert.Parameters["@team_id"].Value = strTeamNo;
+
                     cmdInsert.Parameters["@client_id"].Value = strClientID;
                     cmdInsert.Parameters["@inspection_date"].Value = strInspDate;
                     cmdInsert.Parameters["@create_user_id"].Value = strloginID;
                     cmdInsert.Parameters["@user_ip"].Value = strIp;
                     cmdInsert.Parameters["@date_time"].Value = strDateTime;
-                    //cmdInsert.Parameters["@promisers_id"].Value = strPromiserID;
+
+                    cmdInsert.Parameters["@promisers_id"].Value = strPromiserID;
+
                     cmdInsert.Parameters["@village"].Value = strVillage;
                     cmdInsert.Parameters["@root_id"].Value = strRootID;
                     cmdInsert.Parameters["@cli_photo"].Value = hf1.Value;
@@ -778,9 +790,10 @@ namespace MuslimAID.SALAM
                     cmdInsert.Parameters["@gender"].Value = strGender;
                     //cmdInsert.Parameters["@r_address"].Value = strRAddress;
                     cmdInsert.Parameters["@income_source"].Value = strOccupation;
-                    //cmdInsert.Parameters["@promiser_id_2"].Value = strPromiser2;
-                    #endregion
 
+                    cmdInsert.Parameters["@promiser_id_2"].Value = strPromiser2;
+                    #endregion
+                    
                     try
                     {
                         int i = objDBCon.insertEditData(cmdInsert);

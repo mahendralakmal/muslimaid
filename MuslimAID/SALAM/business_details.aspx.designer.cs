@@ -167,13 +167,13 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.TextBox txtICost;
         
         /// <summary>
-        /// txtOExpenses control.
+        /// txtTotPurchase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOExpenses;
+        protected global::System.Web.UI.WebControls.TextBox txtTotPurchase;
         
         /// <summary>
         /// txtRent control.
