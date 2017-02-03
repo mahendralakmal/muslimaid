@@ -81,7 +81,6 @@ namespace MuslimAID
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Response.Redirect("under-constrction.aspx");
             if (Session["LoggedIn"].ToString() != "True")
             {
                 HttpCookie loginCookie = Request.Cookies["loginAuth"];

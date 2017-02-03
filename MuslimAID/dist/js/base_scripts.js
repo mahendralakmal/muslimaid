@@ -1,4 +1,5 @@
 ﻿
+
 /* ~~ Murabaha basic details page ~~ */
 $(function() {
     $('#DobCDB').datetimepicker({
@@ -80,6 +81,9 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00;
     });
     
 /* ~~ Murabaha Family Appraisals Page ~~*/
+    
+    
+
     function calcNetIn() {
         $salWa = $(".txtSalWa").val() === '' ? 0.00 : $(".txtSalWa").val();
         $rentInB = $(".txtRentB").val() === '' ? 0.00 : $(".txtRentB").val();

@@ -19,6 +19,7 @@ namespace MuslimAID.MURABHA
     {
         cls_CommonFunctions objCommonTask = new cls_CommonFunctions();
         cls_Connection objDBTask = new cls_Connection();
+        cls_ErrorLog error = new cls_ErrorLog();
         string strloginID, strBranch, strUserType;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -108,7 +109,8 @@ namespace MuslimAID.MURABHA
                     }
                 }
                 catch (Exception ex)
-                {
+                {                            
+                    //error.createErrorLog(ex.Message, ex.Source, ex.StackTrace);
                 }
             }
         }
@@ -133,18 +135,25 @@ namespace MuslimAID.MURABHA
             }
             else
             {
-                string strVillage = txtVillage.Text.Trim();
-                string strBranchCode = cmbCityCode.SelectedItem.Value;
+                try
+                {
+                    string strVillage = txtVillage.Text.Trim();
+                    string strBranchCode = cmbCityCode.SelectedItem.Value;
 
-                DataSet dsGetVillage = cls_Connection.getDataSet("select * from villages_name where city_code = '" + strBranchCode + "' and villages_name = '" + strVillage + "';");
-                if (dsGetVillage.Tables[0].Rows.Count > 0)
-                {
-                    lblMsg.Text = "Alredy created.";
-                    btnSubmit.Enabled = false;
+                    DataSet dsGetVillage = cls_Connection.getDataSet("select * from villages_name where city_code = '" + strBranchCode + "' and villages_name = '" + strVillage + "';");
+                    if (dsGetVillage.Tables[0].Rows.Count > 0)
+                    {
+                        lblMsg.Text = "Alredy created.";
+                        btnSubmit.Enabled = false;
+                    }
+                    else
+                    {
+                        btnSubmit.Enabled = true;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    btnSubmit.Enabled = true;
+                    //error.createErrorLog(ex.Message, ex.Source, ex.StackTrace);
                 }
             }
         }

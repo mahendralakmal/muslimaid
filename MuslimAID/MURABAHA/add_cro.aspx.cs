@@ -18,6 +18,7 @@ namespace MuslimAID.MURABAHA
     {
         cls_CommonFunctions objCommonTask = new cls_CommonFunctions();
         cls_Connection objDBCon = new cls_Connection();
+        cls_ErrorLog error = new cls_ErrorLog();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +27,6 @@ namespace MuslimAID.MURABAHA
                 string strloginID = Session["NIC"].ToString();
 
                 DataSet dsUserTy = cls_Connection.getDataSet("SELECT user_type FROM users WHERE nic = '" + strloginID + "';");
-                //DataSet dsUserTy = objDBCon.getDataSet("select user_type from users where nic = '" + strloginID + "';");
                 if (dsUserTy.Tables[0].Rows.Count > 0)
                 {
                     string strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
@@ -46,30 +46,18 @@ namespace MuslimAID.MURABAHA
                     }
                     else
                     {
-                        string close = @"<script type='text/javascript'>
-                                window.returnValue = true;
-                                window.close();
-                                </script>";
-                        base.Response.Write(close);
+                        Response.Redirect("Login.aspx");
                     }
 
                 }
                 else
                 {
-                    string close = @"<script type='text/javascript'>
-                                window.returnValue = true;
-                                window.close();
-                                </script>";
-                    base.Response.Write(close);
+                    Response.Redirect("Login.aspx");
                 }
             }
             else
             {
-                string close = @"<script type='text/javascript'>
-                                window.returnValue = true;
-                                window.close();
-                                </script>";
-                base.Response.Write(close);
+                Response.Redirect("Login.aspx");
             }
         }
 
@@ -138,6 +126,7 @@ namespace MuslimAID.MURABAHA
                         }
                         catch (Exception ex)
                         {
+                            //error.createErrorLog(ex.Message, ex.Source, ex.StackTrace);
                         }
                     }
 
@@ -173,17 +162,24 @@ namespace MuslimAID.MURABAHA
             }
             else
             {
-                string strRootName = txtRootName.Text.Trim();
-                string strBranch = cmbCityCode.SelectedItem.Value;
-                DataSet dsGetCurrPassword = cls_Connection.getDataSet("select * from micro_exective_root where branch_code ='" + strBranch + "' and exe_name = '" + strRootName + "'");
-                if (dsGetCurrPassword.Tables[0].Rows.Count > 0)
+                try
                 {
-                    lblMsg.Text = "Root Name Already used...!";
-                    btnChange.Enabled = false;
+                    string strRootName = txtRootName.Text.Trim();
+                    string strBranch = cmbCityCode.SelectedItem.Value;
+                    DataSet dsGetCurrPassword = cls_Connection.getDataSet("select * from micro_exective_root where branch_code ='" + strBranch + "' and exe_name = '" + strRootName + "'");
+                    if (dsGetCurrPassword.Tables[0].Rows.Count > 0)
+                    {
+                        lblMsg.Text = "Root Name Already used...!";
+                        btnChange.Enabled = false;
+                    }
+                    else
+                    {
+                        btnChange.Enabled = true;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    btnChange.Enabled = true;
+                    //error.createErrorLog(ex.Message, ex.Source, ex.StackTrace);
                 }
             }
         }

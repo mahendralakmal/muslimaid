@@ -71,7 +71,7 @@
     </Compile>
     <Compile Include="Common\cls_LoginInfo.cs" />
     <Compile Include="Common\cls_Setup.cs" />
-    <Compile Include="Common\ErrorLog.cs">
+    <Compile Include="Common\cls_ErrorLog.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">

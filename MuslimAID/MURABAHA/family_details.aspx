@@ -22,20 +22,20 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Spouse Name<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Spouse Name</div>
                 <div class="col-md-7"><asp:TextBox ID="txtSoName" CssClass="form-control" MaxLength="100" runat="server" TabIndex="3"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Spouse NIC<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Spouse NIC</div>
                 <div class="col-md-7"><asp:TextBox ID="txtNIC" CssClass="form-control" 
                         MaxLength="12" runat="server" TabIndex="2"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Spouse NIC Issued Date<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Spouse NIC Issued Date</div>
                 <div class="col-md-7">
                     <div class='input-group date' id='datetimepicker1' name='datetimepicker1'>
                         <asp:TextBox ID="txtNicIssuedDate" CssClass="form-control" runat="server" ></asp:TextBox>
@@ -90,7 +90,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Spouse Income<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Spouse Income</div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtSIncome" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
@@ -98,7 +98,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Occupation / Income Source<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Occupation / Income Source</div>
                 <div class="col-md-7">
                     <asp:DropDownList ID="cmbOccupa" CssClass="form-control" runat="server" TabIndex="4">
                         <asp:ListItem>Profession</asp:ListItem>
@@ -114,7 +114,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">No of Family Members<span style="color:Red;">*</span></div>
+                <div class="col-md-5">No of Family Members</div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtNoFMembers" CssClass="form-control" MaxLength="2" runat="server" TabIndex="5" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
@@ -122,7 +122,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Education<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Education</div>
                 <div class="col-md-7">
                     
                     <asp:DropDownList ID="cmbEducation" CssClass="form-control" runat="server" TabIndex="6">
@@ -136,20 +136,12 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">No of Dependants<span style="color:Red;">*</span></div>
+                <div class="col-md-5">No of Dependants</div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtDepen" CssClass="form-control" MaxLength="2" runat="server" TabIndex="7"  onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
-        <%--<div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-5">Spouse Income Source<span style="color:Red;">*</span></div>
-                <div class="col-md-7">
-                    <asp:TextBox ID="txtSIncome" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
-                </div>
-            </div>
-        </div>--%>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Other F. Member Income</div>

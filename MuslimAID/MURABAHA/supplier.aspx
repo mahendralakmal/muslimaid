@@ -18,7 +18,7 @@
             <div class="form-group">
                 <div class="col-md-5">Capital Applicant Code<span style="color:Red;"> *</span></div>
                 <div class="col-md-7">
-                <asp:TextBox ID="txtCACode" MaxLength="12" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0" Enabled="false"></asp:TextBox>
+                <asp:TextBox ID="txtCACode" MaxLength="12" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
                 </div>
              </div>
              </div>
@@ -32,14 +32,14 @@
                 </div>
              </div>
              </div>
-            <div class="col-md-6"> 
+            <%--<div class="col-md-6"> 
             <div class="form-group">
                 <div class="col-md-5">Supplier Category<span style="color:Red;"> *</span></div>
                 <div class="col-md-7">
                 <asp:DropDownList ID="cmbSupplierCategory" CssClass="form-control" TabIndex="1" runat="server" AutoPostBack="true">
                 </asp:DropDownList></div>
              </div>
-             </div>
+             </div>--%>
              
             <div class="col-md-6"> 
             <div class="form-group">
@@ -112,7 +112,7 @@
              </div>
              
              <div class="col-md-12">
-                <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Enabled="false" 
+                <asp:Button ID="btnSubmit" CssClass="btn btn-primary"
                      runat="server" Text="Submit" TabIndex="17" onclick="btnSubmit_Click"/>&nbsp;
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>

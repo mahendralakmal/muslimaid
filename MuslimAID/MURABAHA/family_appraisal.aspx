@@ -1,6 +1,16 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="family_appraisal.aspx.cs" Inherits="MuslimAID.MURABAHA.family_appraisal"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
+    <script type="text/javascript">
+        $("document").ready(function(){
+            $(".txtNetIn").attr("readonly","true");
+            $(".txtFamiIn").attr("readonly","true");
+            $(".txtFExpense").attr("readonly","true");
+            $(".txtNetAnualFIN").attr("readonly","true");
+        });
+    </script>
     <script type="text/javascript" src="../dist/js/base_scripts.js"></script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
@@ -42,7 +52,8 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Net Income from Business</div>
-                <div class="col-md-7"><asp:TextBox ID="txtNetBusinesIn" CssClass="form-control txtNetIn" Enabled="false" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtNetBusinesIn" 
+                        CssClass="form-control txtNetIn" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -54,7 +65,9 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Total Annual Family Income</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtFamilyIn" Enabled="false" CssClass="form-control txtFamiIn" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7">
+                    <asp:TextBox ID="txtFamilyIn" 
+                        CssClass="form-control txtFamiIn" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-12"></div>
@@ -116,7 +129,9 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Total Annual Family Expenses</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtFExpense" Enabled="false" CssClass="form-control txtFExpense" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7">
+                    <asp:TextBox ID="txtFExpense" 
+                        CssClass="form-control txtFExpense" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-12"></div>
@@ -124,7 +139,10 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Net annual family income</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtNetAnualFIn" Enabled="false" onchange="calcNetAnulaIncome()" CssClass="form-control txtNetAnualFIN" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7">
+                    <asp:TextBox ID="txtNetAnualFIn" 
+                        onchange="calcNetAnulaIncome()" CssClass="form-control txtNetAnualFIN" 
+                        runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">

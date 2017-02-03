@@ -32,7 +32,7 @@
                             CA Code<span style="color: Red;"> *</span></div>
                         <div class="col-md-7">
                             <asp:TextBox ID="txtCACode" MaxLength="12" CssClass="form-control" runat="server"
-                                AutoPostBack="true" TabIndex="0" Enabled="false"></asp:TextBox>
+                                AutoPostBack="true" TabIndex="0"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -52,8 +52,8 @@
                     <div class="col-md-5">
                         Income Source (1)<span style="color: Red;"> *</span> : Income Generation activity
                         – Salam facility to be utilized</div>
-                    <div class="col-md-7">
-                        <div class="col-md-4 form-group">
+                    <div class="col-md-7 form-group">
+                        <div class="col-md-4">
                             <asp:DropDownList ID="cmbIncomeSource1_a" CssClass="form-control" TabIndex="1" runat="server"
                                 AutoPostBack="true">
                                 <asp:ListItem Text="---Select---" Value="a0" />
@@ -62,8 +62,8 @@
                                 <asp:ListItem Text="Manufacturing" Value="a3" />
                                 <asp:ListItem Text="Other" Value="a4" />
                             </asp:DropDownList>
-                        </div>
-                        <div class="col-md-4 form-group">
+                        </div> 
+                        <div class="col-md-4">
                             <asp:DropDownList ID="cmbIncomeSource1_b" CssClass="form-control" TabIndex="1" runat="server"
                                 AutoPostBack="true">
                                 <asp:ListItem Text="---Select---" Value="b0" />
@@ -72,8 +72,8 @@
                                 <asp:ListItem Text="Maize" Value="b3" />
                                 <asp:ListItem Text="Other" Value="b4" />
                             </asp:DropDownList>
-                        </div>
-                        <div class="col-md-4 form-group">
+                        </div> 
+                        <div class="col-md-4">
                             <asp:DropDownList ID="cmbIncomeSource1_c" CssClass="form-control" TabIndex="1" runat="server"
                                 AutoPostBack="true">
                                 <asp:ListItem Text="---Select---" Value="c0" />
@@ -89,8 +89,8 @@
                     <div class="col-md-5">
                         Income Source (2)<span style="color: Red;"> *</span> : Income Generation activity
                         – Secondary</div>
-                    <div class="col-md-7">
-                        <div class="col-md-4 form-group">
+                    <div class="col-md-7 form-group">
+                        <div class="col-md-4">
                             <asp:DropDownList ID="cmbIncomeSource2_a" CssClass="form-control" TabIndex="1" runat="server"
                                 AutoPostBack="true">
                                 <asp:ListItem Text="---Select---" Value="a0" />
@@ -99,8 +99,8 @@
                                 <asp:ListItem Text="Manufacturing" Value="a3" />
                                 <asp:ListItem Text="Other" Value="a4" />
                             </asp:DropDownList>
-                        </div>
-                        <div class="col-md-4 form-group">
+                        </div> 
+                        <div class="col-md-4">
                             <asp:DropDownList ID="cmbIncomeSource2_b" CssClass="form-control" TabIndex="1" runat="server"
                                 AutoPostBack="true">
                                 <asp:ListItem Text="---Select---" Value="b0" />
@@ -109,8 +109,8 @@
                                 <asp:ListItem Text="Maize" Value="b3" />
                                 <asp:ListItem Text="Other" Value="b4" />
                             </asp:DropDownList>
-                        </div>
-                        <div class="col-md-4 form-group">
+                        </div> 
+                        <div class="col-md-4">
                             <asp:DropDownList ID="cmbIncomeSource2_c" CssClass="form-control" TabIndex="1" runat="server"
                                 AutoPostBack="true">
                                 <asp:ListItem Text="---Select---" Value="c0" />
@@ -215,9 +215,9 @@
                         <div class="form-group">
                             <div class="col-md-5">
                                 Rain Water<span style="color: Red;"> *</span></div>
-                            <div class="col-md-7">
-                                <asp:RadioButton ID="rdoRW_Y" Text="Y" runat="server" TabIndex="10" GroupName="rdoRainWater" />
-                                <asp:RadioButton ID="rdoRW_N" Text="N" runat="server" TabIndex="11" GroupName="rdoRainWater" />
+                            <div class="col-md-7 form-group">
+                                <asp:RadioButton ID="rdoRW_Y" Text="Yes  " runat="server" TabIndex="10" GroupName="rdoRainWater" />
+                                <asp:RadioButton ID="rdoRW_N" Text="No" runat="server" TabIndex="11" GroupName="rdoRainWater" />
                             </div>
                         </div>
                     </div>
@@ -225,9 +225,9 @@
                         <div class="form-group">
                             <div class="col-md-5">
                                 Irrigation Water<span style="color: Red;"> *</span></div>
-                            <div class="col-md-7">
-                                <asp:RadioButton ID="rdoIW_Y" Text="Y" runat="server" TabIndex="10" GroupName="rdoIrrigationWater" />
-                                <asp:RadioButton ID="rdoIW_N" Text="N" runat="server" TabIndex="11" GroupName="rdoIrrigationWater" />
+                            <div class="col-md-7 form-group">
+                                <asp:RadioButton ID="rdoIW_Y" Text="Yes  " runat="server" TabIndex="10" GroupName="rdoIrrigationWater" />
+                                <asp:RadioButton ID="rdoIW_N" Text="No" runat="server" TabIndex="11" GroupName="rdoIrrigationWater" />
                             </div>
                         </div>
                     </div>
@@ -235,9 +235,9 @@
                         <div class="form-group">
                             <div class="col-md-5">
                                 Both<span style="color: Red;"> *</span></div>
-                            <div class="col-md-7">
-                                <asp:RadioButton ID="rdoB_Y" Text="Y" runat="server" TabIndex="10" GroupName="rdoBoth" />
-                                <asp:RadioButton ID="rdoB_N" Text="N" runat="server" TabIndex="11" GroupName="rdoBoth" />
+                            <div class="col-md-7 form-group">
+                                <asp:RadioButton ID="rdoB_Y" Text="Yes  " runat="server" TabIndex="10" GroupName="rdoBoth" />
+                                <asp:RadioButton ID="rdoB_N" Text="No" runat="server" TabIndex="11" GroupName="rdoBoth" />
                             </div>
                         </div>
                     </div>

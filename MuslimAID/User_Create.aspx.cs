@@ -36,18 +36,18 @@ namespace MuslimAID
                     }
                     else
                     {
-                        Response.Redirect("Default.aspx");
+                        Response.Redirect("muslimaid.aspx");
                     }
 
                 }
                 else
                 {
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("muslimaid.aspx");
                 }
             }
             else
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("muslimaid.aspx");
             }
         }
 

@@ -29,8 +29,6 @@ namespace MuslimAID.MURABAHA
                     {
                         strCC = Request.QueryString["CC"];
                         strCAC = Request.QueryString["CA"];
-                        //strCC = "CO/CS/000004";
-                        //strCAC = "CO/1/01/02";
 
                         if (strCC != null && strCAC != null)
                         {
@@ -48,15 +46,15 @@ namespace MuslimAID.MURABAHA
                                 }
                             }
 
-                            DataSet dsSC = cls_Connection.getDataSet("select * from supplier_category");
-                            cmbSupplierCategory.Items.Add(new ListItem("Select Supplier Category",""));
-                            if (dsSC.Tables[0].Rows.Count > 0)
-                            {
-                                foreach (DataRow drRow in dsSC.Tables[0].Rows)
-                                {
-                                    cmbSupplierCategory.Items.Add(new ListItem(drRow[1].ToString(), drRow[0].ToString()));
-                                }
-                            }
+                            //DataSet dsSC = cls_Connection.getDataSet("select * from supplier_category");
+                            //cmbSupplierCategory.Items.Add(new ListItem("Select Supplier Category",""));
+                            //if (dsSC.Tables[0].Rows.Count > 0)
+                            //{
+                            //    foreach (DataRow drRow in dsSC.Tables[0].Rows)
+                            //    {
+                            //        cmbSupplierCategory.Items.Add(new ListItem(drRow[1].ToString(), drRow[0].ToString()));
+                            //    }
+                            //}
                         }
                         else
                         {
@@ -88,8 +86,8 @@ namespace MuslimAID.MURABAHA
             try {
                 if (txtSupplierName.Text == "")
                     lblMsg.Text = "Plese enter the supplier name";
-                else if(cmbSupplierCategory.SelectedIndex.ToString() =="")
-                    lblMsg.Text = "Plese select the supplier category";
+                //else if(cmbSupplierCategory.SelectedIndex.ToString() =="")
+                //    lblMsg.Text = "Plese select the supplier category";
                 else if (cmbSupplierBank.SelectedIndex.ToString() == "")
                     lblMsg.Text = "Plese select the supplier bank";
                 else if (cmbBnkBranch.SelectedIndex.ToString() == "")
@@ -103,19 +101,19 @@ namespace MuslimAID.MURABAHA
                 else if (txtAccountName.Text == "")
                     lblMsg.Text = "Plese enter the supplier account name";
                 else {
-                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO `muslimaid`.`supplier_details`(`contract_code`,`name`,`supplier_category`,`address`,`tele`,`mobile`,`bank`,`branch`,`account_no`,`account_name`)VALUES (`@contract_code`,`@name`,`@supplier_category`,`@address`,`@tele`,`@mobile`,`@bank`,`@branch`,`@account_no`,`@account_name)");
+                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO supplier_details(contract_code,name,address,tele,mobile,bank,branch,account_no,account_name)VALUES (@contract_code,@name,@address,@tele,@mobile,@bank,@branch,@account_no,@account_name)");
 
                     #region Parameter Declarations
-                    cmdInsert.Parameters.AddWithValue("`@contract_code`", txtCC.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("`@name`", Convert.ToDecimal(txtSupplierName.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("`@supplier_category`", Convert.ToDecimal(cmbSupplierCategory.SelectedValue.ToString()));
-                    cmdInsert.Parameters.AddWithValue("`@address`", Convert.ToDecimal(txtBisAddress.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("`@tele`", Convert.ToDecimal(txtSupplierTelephone.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("`@mobile`", Convert.ToDecimal(txtSupplierMobile.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("`@bank`", Convert.ToDecimal(cmbSupplierBank.SelectedValue.ToString()));
-                    cmdInsert.Parameters.AddWithValue("`@branch`", Convert.ToDecimal(cmbBnkBranch.SelectedValue.ToString()));
-                    cmdInsert.Parameters.AddWithValue("`@account_no`", Convert.ToDecimal(txtAccountNumber.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("`@account_name`", Convert.ToDecimal(txtAccountName.Text.Trim()));
+                    cmdInsert.Parameters.AddWithValue("@contract_code", txtCC.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@name", txtSupplierName.Text.Trim().ToString());
+                    //cmdInsert.Parameters.AddWithValue("@supplier_category", Convert.ToDecimal(cmbSupplierCategory.SelectedValue.ToString()));
+                    cmdInsert.Parameters.AddWithValue("@address", txtBisAddress.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@tele", txtSupplierTelephone.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@mobile", txtSupplierMobile.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@bank", Convert.ToInt32(cmbSupplierBank.SelectedValue.ToString()));
+                    cmdInsert.Parameters.AddWithValue("@branch", Convert.ToInt32(cmbBnkBranch.SelectedValue.ToString()));
+                    cmdInsert.Parameters.AddWithValue("@account_no", txtAccountNumber.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@account_name", txtAccountName.Text.Trim());
                     #endregion
 
                     try

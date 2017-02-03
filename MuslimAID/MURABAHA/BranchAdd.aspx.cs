@@ -169,13 +169,13 @@ namespace MuslimAID.MURABAHA
                     }
                     else
                     {
-                        Response.Redirect("../Default.aspx");
+                        Response.Redirect("Login.aspx");
                     }
                 }
             }
             else
             {
-                Response.Redirect("../Default.aspx");
+                Response.Redirect("Login.aspx");
             }
         }
 
