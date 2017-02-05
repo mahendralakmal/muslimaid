@@ -122,7 +122,7 @@ namespace MuslimAID.MURABAHA
 
                         if (i > 0)
                         {
-                            Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
+                            Response.Redirect("loan_details.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
                         }
                         else
                         {

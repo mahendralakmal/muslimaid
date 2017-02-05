@@ -29,34 +29,12 @@ namespace MuslimAID.MURABHA
                     {
                         strCC = Request.QueryString["CC"];
                         strCAC = Request.QueryString["CA"];
-                        //strCC = "CO/CS/000004";
-                        //strCAC = "CO/1/01/02";
 
                         if (strCC != null && strCAC != null)
                         {
                             txtCC.Text = strCC;
                             //txtCACode.Text = strCAC;
                             txtCC.Enabled = false;
-
-                            //DataSet ds = cls_Connection.getDataSet("select * from bank_tbl");
-                            //cmbSupplierBank.Items.Add(new ListItem("Select Bank", ""));
-                            //if (ds.Tables[0].Rows.Count > 0)
-                            //{
-                            //    foreach (DataRow drRow in ds.Tables[0].Rows)
-                            //    {
-                            //        cmbSupplierBank.Items.Add(new ListItem(drRow[1].ToString(), drRow[0].ToString()));
-                            //    }
-                            //}
-
-                            //DataSet dsSC = cls_Connection.getDataSet("select * from supplier_category");
-                            //cmbSupplierCategory.Items.Add(new ListItem("Select Supplier Category", ""));
-                            //if (dsSC.Tables[0].Rows.Count > 0)
-                            //{
-                            //    foreach (DataRow drRow in dsSC.Tables[0].Rows)
-                            //    {
-                            //        cmbSupplierCategory.Items.Add(new ListItem(drRow[1].ToString(), drRow[0].ToString()));
-                            //    }
-                            //}
                         }
                         else
                         {
@@ -72,7 +50,7 @@ namespace MuslimAID.MURABHA
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string q = "INSERT INTO `muslimaid`.`micro_loan_details`(contract_code,loan_amount,product_category,brand,model_no,selling_price,down_payment,service_charges,registration_fee,walfare_fee,other_charges,interest_rate,period,monthly_instollment,reason_to_apply,any_unsettled_loans,other_unsettled_facilities`) VALUES (@contract_code,@loan_amount,@product_category,@brand,@model_no,@selling_price,@down_payment,@service_charges,@registration_fee,@walfare_fee,@other_charges,@interest_rate,@period,@monthly_instollment,@reason_to_apply,@any_unsettled_loans,@other_unsettled_facilities)";
+            string q = "INSERT INTO micro_loan_details(contra_code, loan_amount, product_category, brand, model_no, selling_price, down_payment, service_charges, registration_fee, walfare_fee, other_charges, interest_rate, period, monthly_instollment, reason_to_apply, any_unsettled_loans, other_unsettled_facilities) VALUES (@contra_code, @loan_amount, @product_category, @brand, @model_no, @selling_price, @down_payment, @service_charges, @registration_fee, @walfare_fee, @other_charges, @interest_rate, @period, @monthly_instollment, @reason_to_apply, @any_unsettled_loans, @other_unsettled_facilities)";
 
             try
             {
@@ -111,27 +89,31 @@ namespace MuslimAID.MURABHA
                 {
                     MySqlCommand cmdInsert = new MySqlCommand(q);
                     #region Parameter Declarations
-                    cmdInsert.Parameters.AddWithValue("`@contract_code`", txtCC.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("`@loan_amount`", Convert.ToDecimal(txtLDLAmount.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("`@product_category`", txtProdCate.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("`@brand`", txtBrand.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("`@model_no`", txtProdCate.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("`@selling_price`", txtSellPrice.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("`@down_payment`", txtDownPay.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("`@service_charges`", txtLDSerCharges.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("`@registration_fee`", txtRegistrationFee.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("`@walfare_fee`", txtWalfareFee.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("`@other_charges`", Convert.ToDecimal(txtLDOtherCharg.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("`@interest_rate`", Convert.ToDecimal(txtLDIntRate.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("`@period`", Convert.ToDecimal(cmbPeriod.SelectedValue.ToString()));
-                    cmdInsert.Parameters.AddWithValue("`@monthly_instollment`", Convert.ToDecimal(txtLDMInstoll.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("`@reason_to_apply`", txtResonToApply.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@contra_code", txtCC.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@loan_amount", Convert.ToDecimal(txtLDLAmount.Text.Trim()));
+                    cmdInsert.Parameters.AddWithValue("@product_category", txtProdCate.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@brand", txtBrand.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@model_no", txtProdCate.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@selling_price", txtSellPrice.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@down_payment", txtDownPay.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@service_charges", Convert.ToDecimal(txtLDSerCharges.Text.Trim()));
+                    cmdInsert.Parameters.AddWithValue("@registration_fee", Convert.ToDecimal(txtRegistrationFee.Text.Trim()));
+                    cmdInsert.Parameters.AddWithValue("@walfare_fee", Convert.ToDecimal(txtWalfareFee.Text.Trim()));
+                    cmdInsert.Parameters.AddWithValue("@other_charges", Convert.ToDecimal(txtLDOtherCharg.Text.Trim()));
+                    cmdInsert.Parameters.AddWithValue("@interest_rate", txtLDIntRate.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@period", cmbPeriod.SelectedValue.ToString());
+                    cmdInsert.Parameters.AddWithValue("@monthly_instollment", Convert.ToDecimal(txtLDMInstoll.Text.Trim()));
+                    cmdInsert.Parameters.AddWithValue("@reason_to_apply", txtResonToApply.Text.Trim());
                     if (rdoYes.Checked)
                     {
-                        cmdInsert.Parameters.AddWithValue("`@any_unsettled_loans`", 1);
-                        cmdInsert.Parameters.AddWithValue("`@other_unsettled_facilities`", checkOtherFacility());
+                        cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 1);
+                    //    cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", checkOtherFacility());
                     }
-                    else cmdInsert.Parameters.AddWithValue("`@any_unsettled_loans`", 0);
+                    else
+                    {
+                        cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 0);
+                    //    cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", "[]");
+                    }
                     #endregion
                     try
                     {

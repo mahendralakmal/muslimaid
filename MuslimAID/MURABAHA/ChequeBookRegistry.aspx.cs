@@ -190,7 +190,7 @@ namespace MuslimAID.MURABAHA
 
                     for (int i = 0; i < length; i++)
                     {
-                        MySqlCommand cmdInsertLDQRY = new MySqlCommand("INSERT INTO `chequebook_registry`(`cheq_no`,`bank`,`bank_branch`,`create_date`,`create_user`,`status`,chq_status,AccountNo)VALUES(@cheq_no,@bank,@bank_branch,@create_date,@create_user,@status,'A',@AccountNo);");
+                        MySqlCommand cmdInsertLDQRY = new MySqlCommand("INSERT INTO `chequebook_registry`(`cheq_no`,`bank`,`bank_branch`,`create_date`,`create_user`,`status`,chq_status,AccountNo)VALUES(@cheq_no,@bank,@bank_branch,@create_date,@create_user,@status,@chq_status,@AccountNo);");
 
                         #region Assign Parameters
                         cmdInsertLDQRY.Parameters.Add("@cheq_no", MySqlDbType.VarChar, 45);
@@ -199,7 +199,8 @@ namespace MuslimAID.MURABAHA
                         cmdInsertLDQRY.Parameters.Add("@create_date", MySqlDbType.VarChar, 45);
                         cmdInsertLDQRY.Parameters.Add("@create_user", MySqlDbType.VarChar, 45);
                         cmdInsertLDQRY.Parameters.Add("@status", MySqlDbType.VarChar, 1);
-                        cmdInsertLDQRY.Parameters.Add("@AccountNo", MySqlDbType.VarChar, 1);
+                        cmdInsertLDQRY.Parameters.Add("@chq_status", MySqlDbType.VarChar, 1);
+                        cmdInsertLDQRY.Parameters.Add("@AccountNo", MySqlDbType.VarChar, 20);
                         #endregion
 
                         #region DEclare Parametes
@@ -209,6 +210,7 @@ namespace MuslimAID.MURABAHA
                         cmdInsertLDQRY.Parameters["@create_date"].Value = create_date;
                         cmdInsertLDQRY.Parameters["@create_user"].Value = create_user;
                         cmdInsertLDQRY.Parameters["@status"].Value = status;
+                        cmdInsertLDQRY.Parameters["@chq_status"].Value = "A";
                         cmdInsertLDQRY.Parameters["@AccountNo"].Value = AccountNo;
                         #endregion
 

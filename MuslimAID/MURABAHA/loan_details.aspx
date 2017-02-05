@@ -9,26 +9,26 @@
             <div class="form-group">
                 <div class="col-md-5">Contract Code<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="12" Enabled="false" AutoPostBack="true" runat="server" TabIndex="0"></asp:TextBox></div>
+                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="12" AutoPostBack="true" runat="server" TabIndex="0"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Facility Amount/ Value<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtLDLAmount" CssClass="form-control" MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtLDLAmount" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Product type/ Category<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtProdCate" CssClass="form-control" MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtProdCate" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Brand<span style="color:Red;">*</span></div>
                 <div class="col-md-7"><asp:TextBox ID="txtBrand" CssClass="form-control" 
-                        MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  
+                        MaxLength="12" runat="server" TabIndex="0"  
                         onkeydown="return isNumeric(event.keyCode);" 
                         onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
@@ -36,37 +36,37 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Model No<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtModelNo" CssClass="form-control" MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtModelNo" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Selling Price<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtSellPrice" CssClass="form-control" MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtSellPrice" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Down Payment<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtDownPay" CssClass="form-control" MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtDownPay" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Service Charges<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtLDSerCharges" CssClass="form-control" MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtLDSerCharges" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Registrtion Fee<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtRegistrationFee" CssClass="form-control" MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtRegistrationFee" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Walfare Fee<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtWalfareFee" CssClass="form-control" MaxLength="12" runat="server" AutoPostBack="true" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtWalfareFee" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -80,7 +80,7 @@
             <div class="form-group">
                 <div class="col-md-5">Interest Rate<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtLDIntRate" CssClass="form-control" MaxLength="5" runat="server" Enabled="false" TabIndex="4"></asp:TextBox>&nbsp;
+                    <asp:TextBox ID="txtLDIntRate" CssClass="form-control" MaxLength="5" runat="server" TabIndex="4"></asp:TextBox>&nbsp;
                     Eg:(36)
                 </div>
             </div>
@@ -100,7 +100,7 @@
             <div class="form-group">
                 <div class="col-md-5">Monthly Instollment<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtLDMInstoll" CssClass="form-control" MaxLength="9" runat="server" Enabled="False" TabIndex="6" ReadOnly="True"></asp:TextBox>
+                    <asp:TextBox ID="txtLDMInstoll" CssClass="form-control" MaxLength="9" runat="server" TabIndex="6"></asp:TextBox>
                 </div>
             </div>
         </div>        
@@ -178,7 +178,7 @@
          <div class="col-md-6"> 
             <div class="form-group">
                 <div class="col-md-5">Supplier Telephone<span style="color:Red;"> *</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtSupplierTelephone" MaxLength="12" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtSupplierTelephone" MaxLength="12" CssClass="form-control" runat="server" TabIndex="0"></asp:TextBox></div>
             </div>
          </div>
         <div class="col-md-6"> 
@@ -194,15 +194,15 @@
             <div class="form-group">
                 <div class="col-md-5">Supplier Mobile<span style="color:Red;"> *</span></div>
                 <div class="col-md-7">
-                <asp:TextBox ID="txtSupplierMobile" MaxLength="12" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                <asp:TextBox ID="txtSupplierMobile" MaxLength="12" CssClass="form-control" runat="server" TabIndex="0"></asp:TextBox>
                 </div>
              </div>
          </div>--%>
         <div class="col-md-12">
             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" 
-                Text="Submit" Enabled="false" TabIndex="11" onclick="btnSubmit_Click"/>
+                Text="Submit" TabIndex="11" onclick="btnSubmit_Click"/>
             <asp:Button ID="btnUpdate" CssClass="btn btn-primary" runat="server" 
-                Text="Update" TabIndex="12" Enabled="False" onclick="btnUpdate_Click"/>
+                Text="Update" TabIndex="12" onclick="btnUpdate_Click"/>
             <asp:Label ID="lblMsg" runat="server"></asp:Label>
         </div>
     </div>
