@@ -301,7 +301,7 @@ namespace MuslimAID.MURABAHA
                 #endregion
 
                 #region DeclarareParamerts
-                cmdInsert.Parameters.Add("@contract_code", MySqlDbType.VarChar, 12);
+                cmdInsert.Parameters.Add("@contract_code", MySqlDbType.VarChar, 15);
                 cmdInsert.Parameters.Add("@ca_code", MySqlDbType.VarChar, 12);
                 cmdInsert.Parameters.Add("@nic", MySqlDbType.VarChar, 10);
                 cmdInsert.Parameters.Add("@city_code", MySqlDbType.VarChar, 10);

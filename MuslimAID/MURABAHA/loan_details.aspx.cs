@@ -107,12 +107,12 @@ namespace MuslimAID.MURABHA
                     if (rdoYes.Checked)
                     {
                         cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 1);
-                    //    cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", checkOtherFacility());
+                        cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", checkOtherFacility());
                     }
                     else
                     {
                         cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 0);
-                    //    cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", "[]");
+                        cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", "[]");
                     }
                     #endregion
                     try
@@ -120,6 +120,7 @@ namespace MuslimAID.MURABHA
                         int i = objDBCon.insertEditData(cmdInsert);
                         if (i > 0)
                         {
+                            clean();
                             lblMsg.Text = "Successfull";
                         }
                     }
@@ -131,6 +132,43 @@ namespace MuslimAID.MURABHA
             catch (Exception)
             {
             }
+        }
+
+        protected void clean()
+        {
+            txtBrand.Text = "";
+            txtCC.Text = "";
+            txtDownPay.Text = "";
+            txtFAmount1.Text = "";
+            txtFAmount2.Text = "";
+            txtFAmount3.Text = "";
+            txtLDIntRate.Text = "";
+            txtLDLAmount.Text = "";
+            txtLDMInstoll.Text = "";
+            txtLDOtherCharg.Text = "";
+            txtLDSerCharges.Text = "";
+            txtModelNo.Text = "";
+            txtMonthInstal1.Text = "";
+            txtMonthInstal2.Text = "";
+            txtMonthInstal3.Text = "";
+            txtNameOrg1.Text = "";
+            txtNameOrg2.Text = "";
+            txtNameOrg3.Text = "";
+            txtOutstandBal1.Text = "";
+            txtOutstandBal2.Text = "";
+            txtOutstandBal3.Text = "";
+            txtProdCate.Text = "";
+            txtPurpos1.Text = "";
+            txtPurpos2.Text = "";
+            txtPurpos3.Text = "";
+            txtRegistrationFee.Text = "";
+            txtRemainInstal1.Text = "";
+            txtRemainInstal2.Text = "";
+            txtRemainInstal3.Text = "";
+            txtResonToApply.Text = "";
+            txtSellPrice.Text = "";
+            txtWalfareFee.Text = "";
+            cmbPeriod.SelectedIndex = 0;
         }
 
         protected string checkOtherFacility() {

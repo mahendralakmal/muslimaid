@@ -9,14 +9,14 @@
     <div class="col-md-12 form-container">
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Contract Code<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Contract Code <span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="12" Enabled="false" AutoPostBack="true" runat="server" TabIndex="0"></asp:TextBox></div>
+                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" AutoPostBack="true" runat="server" TabIndex="0"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">C. Applicant Code<span style="color:Red;">*</span></div>
+                <div class="col-md-5">C. Applicant Code <span style="color:Red;">*</span></div>
                 <div class="col-md-7"><asp:TextBox ID="txtCACode" CssClass="form-control" MaxLength="12" runat="server" TabIndex="1"></asp:TextBox></div>
             </div>
         </div>
@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Spouse Date of Birth<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Spouse Date of Birth</div>
                 <div class="col-md-7">
                     <div class='input-group date' id='sDob' name='sDob'>
                         <asp:TextBox ID="txtDOB" CssClass="form-control sDob" runat="server"></asp:TextBox>
@@ -59,7 +59,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Spouse Age<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Spouse Age</div>
                 <div class="col-md-7">
                 <!-- <asp:TextBox ID="txtAge" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2" Enabled="false"></asp:TextBox> -->
             <asp:Label CssClass="form-control lblAge" ID="lblAge" runat="server"></asp:Label>
@@ -69,7 +69,7 @@
         <div class="col-md-12"></div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Spouse Gender<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Spouse Gender</div>
                 <div class="col-md-7">
                     <asp:RadioButton ID="rdoMale" Text="Male" runat="server" TabIndex="10" Checked="True" GroupName="rdoGender" />
                     <asp:RadioButton ID="rdoFeMale" TabIndex="11" Text="Female" runat="server" GroupName="rdoGender"/>
@@ -84,7 +84,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Relationship with the Applicant<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Relationship with the Applicant</div>
                 <div class="col-md-7"><asp:TextBox ID="txtRelation" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2"></asp:TextBox></div>
             </div>
         </div>
@@ -136,7 +136,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">No of Dependants</div>
+                <div class="col-md-5">No of Dependants <span style="color:Red;">*</span></div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtDepen" CssClass="form-control" MaxLength="2" runat="server" TabIndex="7"  onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>

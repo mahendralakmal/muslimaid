@@ -120,7 +120,7 @@ namespace MuslimAID.SALAM
                     #endregion
 
                     #region Declare Parameters
-                    cmdInsert.Parameters.Add("@contract_code", MySqlDbType.VarChar, 12);
+                    cmdInsert.Parameters.Add("@contract_code", MySqlDbType.VarChar, 15);
                     cmdInsert.Parameters.Add("@spouse_nic", MySqlDbType.VarChar, 12);
                     cmdInsert.Parameters.Add("@spouse_nic_issued_date", MySqlDbType.VarChar, 10);
                     cmdInsert.Parameters.Add("@spouse_name", MySqlDbType.VarChar, 100);

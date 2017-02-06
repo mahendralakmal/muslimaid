@@ -145,7 +145,7 @@ namespace MuslimAID.SALAM
                 #endregion
 
                 #region DeclareValues
-                cmdInsert.Parameters.Add("@contract_code", MySqlDbType.VarChar, 12);
+                cmdInsert.Parameters.Add("@contract_code", MySqlDbType.VarChar, 15);
                 cmdInsert.Parameters.Add("@business_name", MySqlDbType.VarChar, 100);
                 cmdInsert.Parameters.Add("@busi_duration", MySqlDbType.VarChar, 45);
                 cmdInsert.Parameters.Add("@busi_address", MySqlDbType.VarChar, 255);

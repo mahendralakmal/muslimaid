@@ -27,7 +27,7 @@
             <div class="form-group">
                 <div class="col-md-5">Supplier Name<span style="color:Red;"> *</span></div>
                 <div class="col-md-7">
-                <asp:TextBox ID="txtSupplierName" MaxLength="12" CssClass="form-control" 
+                <asp:TextBox ID="txtSupplierName" CssClass="form-control" 
                         runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
                 </div>
              </div>
