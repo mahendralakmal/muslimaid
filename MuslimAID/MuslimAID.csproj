@@ -301,6 +301,13 @@
     <Compile Include="MURABAHA\Chequ_Approval.aspx.designer.cs">
       <DependentUpon>Chequ_Approval.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\ViewLoanDetails.aspx.cs">
+      <DependentUpon>ViewLoanDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\ViewLoanDetails.aspx.designer.cs">
+      <DependentUpon>ViewLoanDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MURABAHA\VoucherPrint.aspx.cs">
       <DependentUpon>VoucherPrint.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1053,6 +1060,7 @@
     <Content Include="MURABAHA\add_cro.aspx" />
     <Content Include="MURABAHA\loan_approval.aspx" />
     <Content Include="MURABAHA\Chequ_Approval.aspx" />
+    <Content Include="MURABAHA\ViewLoanDetails.aspx" />
     <Content Include="MURABAHA\VoucherPrint.aspx" />
     <Content Include="MURABAHA\Voucher_Cancel.aspx" />
     <Content Include="MURABAHA\WayOffAmount.aspx" />

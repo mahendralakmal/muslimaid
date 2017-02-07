@@ -56,82 +56,26 @@ namespace MuslimAID.MURABAHA
                         string strCACode = dsGetGura.Tables[0].Rows[0]["ca_code"].ToString();
                         hidCACode.Value = strCACode;
 
-                        if (strBranch != "PL1" || strBranch != "PL")
-                        {
-                            string strTeamID = dsGetGura.Tables[0].Rows[0]["team_id"].ToString();
-                            string strGuar1 = dsGetGura.Tables[0].Rows[0]["promisers_id"].ToString();
-                            string strGuar2 = dsGetGura.Tables[0].Rows[0]["promiser_id_2"].ToString();
-                            string strNewGID = "1";
-                            if (txtTeamID.Text.Trim() == "")
-                            {
-                                DataSet dsGetGroup = cls_Connection.getDataSet("select max(team_id) from micro_basic_detail where city_code = '" + hidBranch.Value + "' and society_id = '" + hidSoID.Value + "';");
-                                if (dsGetGroup.Tables[0].Rows[0][0].ToString() != "")
-                                {
-                                    string strGID = dsGetGroup.Tables[0].Rows[0][0].ToString();
-                                    int intGID = Convert.ToInt32(strGID) + 1;
-                                    strNewGID = Convert.ToString(intGID);
-                                    txtTeamID.Text = strNewGID;
-                                }
-                            }
-                            hidBranch.Value = strBranch;
-                            hidSoID.Value = strSoNo;
+                        hidBranch.Value = strBranch;
+                        hidSoID.Value = strSoNo;
 
-                            //if (strTeamID == "" && strGuar1 == "" && strGuar2 == "")
-                            //{
+                        DataSet dsGetGroup = cls_Connection.getDataSet("select max(team_id) from micro_basic_detail where city_code = '" + hidBranch.Value + "' and society_id = '" + hidSoID.Value + "';");
+                        string strTeamID = dsGetGura.Tables[0].Rows[0]["team_id"].ToString();
+                        string strGuar1 = dsGetGura.Tables[0].Rows[0]["promisers_id"].ToString();
+                        string strGuar2 = dsGetGura.Tables[0].Rows[0]["promiser_id_2"].ToString();
+                        string strNewGID = "1";
+                        if (dsGetGroup.Tables[0].Rows[0][0].ToString() != "")
+                        {
+                            string strGID = dsGetGroup.Tables[0].Rows[0][0].ToString();
+                            int intGID = Convert.ToInt32(strGID) + 1;
+                            strNewGID = Convert.ToString(intGID);
+                            txtTeamID.Text = strNewGID;
+                        }
+                        
                             btnChange.Enabled = true;
-                            txtGura.Text = strBranch + "/" + strSoNo + "/";
-                            txtGura2Fron.Text = strBranch + "/" + strSoNo + "/";
                             txtTeamID.Enabled = true;
-                            txtGura.Enabled = true;
-                            txtGura2Fron.Enabled = true;
-                        }
-                        else
-                        {
-                            if ((strApproval == "Y") && (strChqNo != "") && (strStatus != "C"))
-                            {
-                                lblMsg.Text = "Loan is Approved...";
-                                btnChange.Enabled = false;
-                            }
-                            else
-                            {
-                                string strTeamID = dsGetGura.Tables[0].Rows[0]["team_id"].ToString();
-                                string strGuar1 = dsGetGura.Tables[0].Rows[0]["promisers_id"].ToString();
-                                string strGuar2 = dsGetGura.Tables[0].Rows[0]["promiser_id_2"].ToString();
-                                string strNewGID = "1";
-                                if (txtTeamID.Text.Trim() == "")
-                                {
-                                    DataSet dsGetGroup = cls_Connection.getDataSet("select max(team_id) from micro_basic_detail where city_code = '" + hidBranch.Value + "' and society_id = '" + hidSoID.Value + "';");
-                                    if (dsGetGroup.Tables[0].Rows[0][0].ToString() != "")
-                                    {
-                                        string strGID = dsGetGroup.Tables[0].Rows[0][0].ToString();
-                                        int intGID = Convert.ToInt32(strGID) + 1;
-                                        strNewGID = Convert.ToString(intGID);
-                                        txtTeamID.Text = strNewGID;
-                                    }
-                                }
-                                hidBranch.Value = strBranch;
-                                hidSoID.Value = strSoNo;
-
-                                //if (strTeamID == "" && strGuar1 == "" && strGuar2 == "")
-                                //{
-                                btnChange.Enabled = true;
-                                txtGura.Text = strBranch + "/" + strSoNo + "/";
-                                txtGura2Fron.Text = strBranch + "/" + strSoNo + "/";
-                                //}
-                                //else
-                                //{
-                                //txtGuara1.Text = strGuar1;
-                                //txtGuara2.Text = strGuar2;
-                                //txtTeamID.Text = strTeamID;
-                                //    btnChange.Enabled = false;
-                                //    lblMsg.Text = "Alredy Change.";
-
-                                //}
-                            }
-                            txtTeamID.Enabled = false;
-                            txtGura.Enabled = false;
-                            txtGura2Fron.Enabled = false;
-                        }
+                            txtTeamID.Text = strNewGID;
+                            
                     }
                     else
                     {
@@ -152,19 +96,19 @@ namespace MuslimAID.MURABAHA
             {
                 lblMsg.Text = "Please enter Contract Code";
             }
-            else if (txtGuara1.Text.Trim() == "" && txtGura.Text.Trim() == "")
+            else if (txtGuara1.Text.Trim() == ""/* && txtGura.Text.Trim() == ""*/)
             {
                 lblMsg.Text = "Please ente Guarantor 1.";
             }
-            else if (txtGuara2.Text.Trim() == "" && txtGura2Fron.Text.Trim() == "")
+            else if (txtGuara2.Text.Trim() == ""/* && txtGura2Fron.Text.Trim() == ""*/)
             {
                 lblMsg.Text = "Please ente Guarantor 2.";
             }
             else
             {
                 string strCC = txtCCode.Text.Trim();
-                string strGur1 = txtGura.Text.Trim() + txtGuara1.Text.Trim();
-                string strGur2 = txtGura2Fron.Text.Trim() + txtGuara2.Text.Trim();
+                string strGur1 = txtGuara1.Text.Trim();
+                string strGur2 = txtGuara2.Text.Trim();
                 string strNewGID = "1";
                 if (txtTeamID.Text.Trim() == "")
                 {
@@ -317,9 +261,16 @@ namespace MuslimAID.MURABAHA
                 }
                 #endregion
                 /////////////////////////////////////////////////////////////////////////////////////////////
-
+                Clean();
                 lblMsg.Text = "Updated Successfully";
             }
+        }
+        protected void Clean()
+        {
+            txtCCode.Text = "";
+            txtGuara1.Text = "";
+            txtGuara2.Text = "";
+            txtTeamID.Text = "";
         }
     }
 }

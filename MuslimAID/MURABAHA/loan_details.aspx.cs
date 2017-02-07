@@ -50,7 +50,7 @@ namespace MuslimAID.MURABHA
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string q = "INSERT INTO micro_loan_details(contra_code, loan_amount, product_category, brand, model_no, selling_price, down_payment, service_charges, registration_fee, walfare_fee, other_charges, interest_rate, period, monthly_instollment, reason_to_apply, any_unsettled_loans, other_unsettled_facilities) VALUES (@contra_code, @loan_amount, @product_category, @brand, @model_no, @selling_price, @down_payment, @service_charges, @registration_fee, @walfare_fee, @other_charges, @interest_rate, @period, @monthly_instollment, @reason_to_apply, @any_unsettled_loans, @other_unsettled_facilities)";
+            string q = "INSERT INTO micro_loan_details(contra_code, loan_amount, product_category, brand, model_no, selling_price, down_payment, service_charges, registration_fee, walfare_fee, other_charges, interest_rate, period, monthly_instollment, reason_to_apply, any_unsettled_loans, other_unsettled_facilities,reg_approval,loan_approved) VALUES (@contra_code, @loan_amount, @product_category, @brand, @model_no, @selling_price, @down_payment, @service_charges, @registration_fee, @walfare_fee, @other_charges, @interest_rate, @period, @monthly_instollment, @reason_to_apply, @any_unsettled_loans, @other_unsettled_facilities,@reg_approval,@loan_approved)";
 
             try
             {
@@ -114,6 +114,8 @@ namespace MuslimAID.MURABHA
                         cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 0);
                         cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", "[]");
                     }
+                    cmdInsert.Parameters.AddWithValue("@reg_approval", "Y");
+                    cmdInsert.Parameters.AddWithValue("@loan_approved", "P");
                     #endregion
                     try
                     {
