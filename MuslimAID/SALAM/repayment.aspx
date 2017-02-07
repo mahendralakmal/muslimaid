@@ -21,8 +21,7 @@
                         <div class="col-md-5">
                             Contract Code<span style="color: Red;"> *</span></div>
                         <div class="col-md-7">
-                            <asp:TextBox ID="txtCC" MaxLength="12" CssClass="form-control" runat="server" AutoPostBack="true"
-                                TabIndex="0" Enabled="false"></asp:TextBox>
+                            <asp:TextBox ID="txtCC" MaxLength="12" CssClass="form-control" runat="server" TabIndex="0" Enabled="false"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -32,7 +31,7 @@
                             CA Code<span style="color: Red;"> *</span></div>
                         <div class="col-md-7">
                             <asp:TextBox ID="txtCACode" MaxLength="12" CssClass="form-control" runat="server"
-                                AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                TabIndex="0"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -42,7 +41,7 @@
                             Financial Amount<span style="color: Red;"> *</span></div>
                         <div class="col-md-7">
                             <asp:TextBox ID="txtFinancialAmount" MaxLength="12" CssClass="form-control" runat="server"
-                                AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                TabIndex="0"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -135,7 +134,7 @@
                                 Area of Cultivation / Farming<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtCultivation_Farming" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -145,7 +144,7 @@
                                 Experience in Years<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtExperienceInYears" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -155,7 +154,7 @@
                                 Harvest – Total<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtHarvestTotal" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -165,7 +164,7 @@
                                 No of Seasons in a Year<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtSeasonsInYear" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -177,7 +176,7 @@
                                 Type of Variety 1<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtVariety1" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -187,7 +186,7 @@
                                 Type of Variety 2<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtVariety2" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -197,7 +196,7 @@
                                 Harvest Period<span style="color: Red;"> *</span></div>
                             <div class="col-md-5">
                                 <asp:TextBox ID="txtHarvestPeriod" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                             <div class="col-md-2">
                                 <span style="color: Black;">Months</span>
@@ -249,7 +248,7 @@
                                 Minimum Price Expected<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtMinimumPriceExpected" MaxLength="12" CssClass="form-control"
-                                    runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    runat="server" TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -259,7 +258,7 @@
                                 Maximum Price Expected<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtMaximumPriceExpected" MaxLength="12" CssClass="form-control"
-                                    runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    runat="server" TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -297,7 +296,7 @@
                                 Repayment Period<span style="color: Red;"> *</span></div>
                             <div class="col-md-5">
                                 <asp:TextBox ID="txtPeriodRepayment" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                             <div class="col-md-2">
                                 <span style="color: Black;">Months</span>
@@ -314,7 +313,7 @@
                                 Expected Price per Unit<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtExpectedPricePerUnit" MaxLength="12" CssClass="form-control"
-                                    runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    runat="server" TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -328,7 +327,7 @@
                                 Annual Rate<span style="color: Red;"> *</span></div>
                             <div class="col-md-5">
                                 <asp:TextBox ID="txtAnnualRate" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                             <div class="col-md-2">
                                 <span style="color: Black;">%</span>
@@ -345,7 +344,7 @@
                                 Rate for Period<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtRatePeriod" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -359,7 +358,7 @@
                                 Expected Profit<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtExpectedProfit" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -373,7 +372,7 @@
                                 Expected Selling Price<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtExpectedSellingPrice" MaxLength="12" CssClass="form-control"
-                                    runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    runat="server" TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -387,7 +386,7 @@
                                 Expected Unit<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
                                 <asp:TextBox ID="txtExpectedUnit" MaxLength="12" CssClass="form-control" runat="server"
-                                    AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                    TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
                     </div>

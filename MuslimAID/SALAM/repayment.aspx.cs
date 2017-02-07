@@ -54,39 +54,39 @@ namespace MuslimAID.SALAM
         {
             try
             {
-                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO `muslimaid`.` ` ( `ccode`, `cacode`, `incomesource1_1`, `incomesource1_2`, `incomesource1_3`, `incomesource2_1`, `incomesource2_2`, `incomesource2_3`, `areaofFarming`, `typeofv1`, `typeofv2`, `ex_years`, `total_harvest`, `harvesting_period`, `seasons_for_year`, `rain_water`, `irrigation_water`, `both`, `min_expected_price`, `max_expected_price`, `unit`, `re_pay_period`, `ex_price_per_unit`, `annual_rate`, `rate_for_period`, `exp_profit`, `exp_sale_price`, `exp_unit` ) VALUES ( `@ccode`, `@cacode`, `@incomesource1_1`, `@incomesource1_2`, `@incomesource1_3`, `@incomesource2_1`, `@incomesource2_2`, `@incomesource2_3`, `@areaofFarming`, `@typeofv1`, `@typeofv2`, `@ex_years`, `@total_harvest`, `@harvesting_period`, `@seasons_for_year`, `@rain_water`, `@irrigation_water`, `@both`, `@min_expected_price`, `@max_expected_price`, `@unit`, `@re_pay_period`, `@ex_price_per_unit`, `@annual_rate`, `@rate_for_period`, `@exp_profit`, `@exp_sale_price`, `@exp_unit` )");
+                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_repay ( ccode, incomesource1_1, incomesource1_2, incomesource1_3, incomesource2_1, incomesource2_2, incomesource2_3, areaofFarming, typeofv1, typeofv2, ex_years, total_harvest, harvesting_period, seasons_for_year, rain_water, irrigation_water, bothRwNRw, min_expected_price, max_expected_price, unit, re_pay_period, ex_price_per_unit, annual_rate, rate_for_period, exp_profit, exp_sale_price, exp_unit ) VALUES ( @ccode, @incomesource1_1, @incomesource1_2, @incomesource1_3, @incomesource2_1, @incomesource2_2, @incomesource2_3, @areaofFarming, @typeofv1, @typeofv2, @ex_years, @total_harvest, @harvesting_period, @seasons_for_year, @rain_water, @irrigation_water, @bothRwNRw, @min_expected_price, @max_expected_price, @unit, @re_pay_period, @ex_price_per_unit, @annual_rate, @rate_for_period, @exp_profit, @exp_sale_price, @exp_unit )");
 
-                cmdInsert.Parameters.AddWithValue("`@ccode`", txtCC.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@cacode`", txtCACode.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@incomesource1_1`", cmbIncomeSource1_a.SelectedValue.ToString());
-                cmdInsert.Parameters.AddWithValue("`@incomesource1_2`", cmbIncomeSource1_b.SelectedValue.ToString());
-                cmdInsert.Parameters.AddWithValue("`@incomesource1_3`", cmbIncomeSource1_c.SelectedValue.ToString());
-                cmdInsert.Parameters.AddWithValue("`@incomesource2_1`", cmbIncomeSource2_a.SelectedValue.ToString());
-                cmdInsert.Parameters.AddWithValue("`@incomesource2_2`", cmbIncomeSource2_b.SelectedValue.ToString());
-                cmdInsert.Parameters.AddWithValue("`@incomesource2_3`", cmbIncomeSource2_c.SelectedValue.ToString());
-                cmdInsert.Parameters.AddWithValue("`@areaofFarming`", txtCultivation_Farming.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@typeofv1`", txtVariety1.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@typeofv2`", txtVariety2.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@ex_years`", txtExperienceInYears.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@total_harvest`", txtHarvestTotal.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@harvesting_period`", txtHarvestPeriod.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@seasons_for_year`", txtSeasonsInYear.Text.Trim());
-                if (rdoRW_Y.Checked) cmdInsert.Parameters.AddWithValue("`@rain_water`", "y");
-                else cmdInsert.Parameters.AddWithValue("`@rain_water`", "n");
-                if (rdoIW_Y.Checked) cmdInsert.Parameters.AddWithValue("`@irrigation_water`", "y");
-                else cmdInsert.Parameters.AddWithValue("`@irrigation_water`", "n");
-                if (rdoB_Y.Checked) cmdInsert.Parameters.AddWithValue("`@both`", "y");
-                else cmdInsert.Parameters.AddWithValue("`@both`", "n");
-                cmdInsert.Parameters.AddWithValue("`@min_expected_price`", txtMinimumPriceExpected.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@max_expected_price`", txtMaximumPriceExpected.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@unit`", cmbUnits.SelectedItem.Text.ToString());
-                cmdInsert.Parameters.AddWithValue("`@re_pay_period`", txtPeriodRepayment.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@ex_price_per_unit`", txtExpectedPricePerUnit.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@annual_rate`", txtAnnualRate.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@rate_for_period`", txtRatePeriod.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@exp_profit`", txtExpectedProfit.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@exp_sale_price`", txtExpectedSellingPrice.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("`@exp_unit", txtExpectedUnit.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@ccode", txtCC.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@cacode", txtCACode.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@incomesource1_1", cmbIncomeSource1_a.SelectedValue.ToString());
+                cmdInsert.Parameters.AddWithValue("@incomesource1_2", cmbIncomeSource1_b.SelectedValue.ToString());
+                cmdInsert.Parameters.AddWithValue("@incomesource1_3", cmbIncomeSource1_c.SelectedValue.ToString());
+                cmdInsert.Parameters.AddWithValue("@incomesource2_1", cmbIncomeSource2_a.SelectedValue.ToString());
+                cmdInsert.Parameters.AddWithValue("@incomesource2_2", cmbIncomeSource2_b.SelectedValue.ToString());
+                cmdInsert.Parameters.AddWithValue("@incomesource2_3", cmbIncomeSource2_c.SelectedValue.ToString());
+                cmdInsert.Parameters.AddWithValue("@areaofFarming", txtCultivation_Farming.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@typeofv1", txtVariety1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@typeofv2", txtVariety2.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@ex_years", txtExperienceInYears.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@total_harvest", txtHarvestTotal.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@harvesting_period", Convert.ToInt32(txtHarvestPeriod.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@seasons_for_year", Convert.ToInt32(txtSeasonsInYear.Text.Trim()));
+                if (rdoRW_Y.Checked) cmdInsert.Parameters.AddWithValue("@rain_water", "y");
+                else cmdInsert.Parameters.AddWithValue("@rain_water", "n");
+                if (rdoIW_Y.Checked) cmdInsert.Parameters.AddWithValue("@irrigation_water", "y");
+                else cmdInsert.Parameters.AddWithValue("@irrigation_water", "n");
+                if (rdoB_Y.Checked) cmdInsert.Parameters.AddWithValue("@both", "y");
+                else cmdInsert.Parameters.AddWithValue("@bothRwNRw", "n");
+                cmdInsert.Parameters.AddWithValue("@min_expected_price", Convert.ToDecimal(txtMinimumPriceExpected.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@max_expected_price", Convert.ToDecimal(txtMaximumPriceExpected.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@unit", cmbUnits.SelectedItem.Text.ToString());
+                cmdInsert.Parameters.AddWithValue("@re_pay_period", txtPeriodRepayment.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@ex_price_per_unit", Convert.ToDecimal(txtExpectedPricePerUnit.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@annual_rate", txtAnnualRate.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@rate_for_period", txtRatePeriod.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@exp_profit", Convert.ToDecimal(txtExpectedProfit.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@exp_sale_price", Convert.ToDecimal(txtExpectedSellingPrice.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@exp_unit", txtExpectedUnit.Text.Trim());
 
                 try
                 {

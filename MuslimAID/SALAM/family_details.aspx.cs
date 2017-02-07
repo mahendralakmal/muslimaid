@@ -67,13 +67,30 @@ namespace MuslimAID.SALAM
                 {
                     lblMsg.Text = "Please Enter CA Code";
                 }
+                /* 
+                else if (txtSoName.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Enter Spouse Name";
+                }
                 else if (txtNIC.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please Enter NIC";
+                    lblMsg.Text = "Please Enter Spouse NIC";
+                }
+                else if (txtNicIssuedDate.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Enter Spouse NIC Issued Date";
+                }
+                else if (txtDOB.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Enter Spouse Date of Birth";
                 }
                 else if (cmbOccupa.Text.Trim() == "")
                 {
                     lblMsg.Text = "Please Choose Occupation";
+                }
+                else if (txtSIncome.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Choose Spouse Income";
                 }
                 else if (txtNoFMembers.Text.Trim() == "")
                 {
@@ -83,9 +100,14 @@ namespace MuslimAID.SALAM
                 {
                     lblMsg.Text = "Please Choose Education";
                 }
+                else if (txtRelation.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Enter Relationship with the Applicant";
+                }
+                 */
                 else if (txtDepen.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please Enter Dependers";
+                    lblMsg.Text = "Please Enter Dependents";
                 }
                 else
                 {
@@ -166,12 +188,13 @@ namespace MuslimAID.SALAM
                     #endregion
 
                     StringBuilder strRelat = new StringBuilder();
+                    string strQry2 = "INSERT INTO family_relationship_details (contract_code,name, relationship, age, occupation, income,create_user_nic,user_ip,date_time) VALUES ";
                     //string strName1, strName2, strName3, strName4, strName5, strName6, strName7, strName8, strName9, strName10;
                     //string strRelAp1, strRelAp2, strRelAp3, strRelAp4, strRelAp5, strRelAp6, strRelAp7, strRelAp8, strRelAp9, strRelAp10;
                     //string strAge1, strAge2, strAge3, strAge4, strAge5, strAge6, strAge7, strAge8, strAge9, strAge10;
                     //string strOcc1, strOcc2, strOcc3, strOcc4, strOcc5, strOcc6, strOcc7, strOcc8, strOcc9, strOcc10;
                     //string strIncom1, strIncom2, strIncom3, strIncom4, strIncom5, strIncom6, strIncom7, strIncom8, strIncom9, strIncom10;
-                    strRelat.Append("INSERT INTO family_relationship_details (contract_code,name, relationship, age, occupation, income,create_user_nic,user_ip,date_time) VALUES ");
+                    //strRelat.Append("INSERT INTO family_relationship_details (contract_code,name, relationship, age, occupation, income,create_user_nic,user_ip,date_time) VALUES ('");
                     if (txtName1.Text.Trim() != "")
                         strRelat.Append("('" + strCCode +"','"+ txtName1.Text.Trim() + "','" + txtRelation1.Text.Trim() + "'," + txtAge1.Text.Trim() + ",'" + txtOcc1.Text.Trim() + "'," + txtInCome1.Text.Trim() + ",'"+strloginID +"','"+ strIp+"','"+ strDateTime);
                     if (txtName2.Text.Trim() != "")
@@ -194,14 +217,18 @@ namespace MuslimAID.SALAM
                         strRelat.Append("'),('" + strCCode + "','" + txtName10.Text.Trim() + "','" + txtRelation10.Text.Trim() + "'," + txtAge10.Text.Trim() + ",'" + txtOcc10.Text.Trim() + "'," + txtInCome10.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
 
 
-                    strRelat.Append("');");
+                    //strRelat.Append("');");
+                    string strQry3 = "')";
 
                     try
                     {
                         int i = objDBCon.insertEditData(cmdInsert);
-
-                        int a = objDBCon.insertEditData(strRelat.ToString());
-                        if (i == 1 && a > 0)
+                        int a = 0;
+                        if (strRelat.ToString() != "")
+                        {
+                            a = objDBCon.insertEditData(strQry2 + strRelat.ToString() + strQry3);
+                        }
+                        if (i == 1)
                         {
                             //lblMsg.Text = "Success";
                             Response.Redirect("family_appraisal.aspx?CC=" + strCCode + "&CA=" + strCACode);
@@ -262,7 +289,7 @@ namespace MuslimAID.SALAM
                 else
                 {
                     string strCCode = txtCC.Text.Trim();
-                    DataSet dsGetDetail = cls_Connection.getDataSet("select * from salam_family_details where contract_code = '" + strCCode + "';");
+                    DataSet dsGetDetail = cls_Connection.getDataSet("select * from micro_family_details where contract_code = '" + strCCode + "';");
                     if (dsGetDetail.Tables[0].Rows.Count > 0)
                     {
                         Update();
@@ -270,7 +297,7 @@ namespace MuslimAID.SALAM
                     }
                     else
                     {
-                        DataSet dsGetBasicDetail = cls_Connection.getDataSet("select * from salam_basic_detail where contract_code = '" + strCCode + "';");
+                        DataSet dsGetBasicDetail = cls_Connection.getDataSet("select * from micro_basic_detail where contract_code = '" + strCCode + "';");
                         if (dsGetBasicDetail.Tables[0].Rows.Count > 0)
                         {
                             Update();
@@ -310,7 +337,7 @@ namespace MuslimAID.SALAM
             string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             #endregion
 
-            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE salam_family_details SET spouse_nic = '" + strNIC + "',spouse_name = '" + strSPName + "',occupation = '" + strOcc + "',no_of_fami_memb = '" + strNFM + "',education = '" + strEdu + "',dependers = '" + strDep + "',spouse_income = '" + strSPIncome + "',other_fami_mem_income = '" + strOFMIncome + "',moveable_property = '" + strMP + "',immoveable_property = '" + strIMPro + "',saving = '" + strsaving + "',create_user_nic = '" + strloginID + "',user_ip = '" + strIp + "',date_time = '" + strDateTime + "' WHERE contract_code = '" + strCCode + "';");
+            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_family_details SET spouse_nic = '" + strNIC + "',spouse_name = '" + strSPName + "',occupation = '" + strOcc + "',no_of_fami_memb = '" + strNFM + "',education = '" + strEdu + "',dependers = '" + strDep + "',spouse_income = '" + strSPIncome + "',other_fami_mem_income = '" + strOFMIncome + "',moveable_property = '" + strMP + "',immoveable_property = '" + strIMPro + "',saving = '" + strsaving + "',create_user_nic = '" + strloginID + "',user_ip = '" + strIp + "',date_time = '" + strDateTime + "' WHERE contract_code = '" + strCCode + "';");
 
             try
             {

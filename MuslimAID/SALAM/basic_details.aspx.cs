@@ -367,7 +367,7 @@ namespace MuslimAID.SALAM
                         else
                         { }
                         //txtID.Text = strVal;
-                        strconCode = strcitycode + "/MB/" + strVal;
+                        strconCode = strcitycode + "/SA/" + strVal;
                         hidCC.Value = strconCode;
                         //btnSubmit.Enabled = true;
                         //cmbCityCode.Enabled = false;
@@ -375,7 +375,7 @@ namespace MuslimAID.SALAM
                     else
                     {
                         //txtID.Text = "0001";
-                        strconCode = strcitycode + "/MB/" + "000001";
+                        strconCode = strcitycode + "/SA/" + "000001";
                         hidCC.Value = strconCode;
                         //btnSubmit.Enabled = true;
                         //cmbCityCode.Enabled = false;
@@ -799,7 +799,7 @@ namespace MuslimAID.SALAM
                         int i = objDBCon.insertEditData(cmdInsert);
                         if (i == 1)
                         {
-                            Response.Redirect("business_details.aspx.aspx?CC=" + strCC + "&CA=" + strCACodeNew + "");
+                            Response.Redirect("business_details.aspx?CC=" + strCC + "&CA=" + strCACodeNew + "");
                         }
                         else
                         {

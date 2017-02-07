@@ -1,20 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="basic_details.aspx.cs" Inherits="MuslimAID.SALAM.basic_details"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <script type="text/javascript">
-    $(document).ready(function() {
-    $("#<%=txtInsDate.ClientID %>").dynDateTime({
-            showsTime: false,
-            ifFormat: "%Y-%m-%d",
-            daFormat: "%l;%M %p, %e %m,  %Y",
-            align: "BR",
-            electric: false,
-            singleClick: false,
-            displayArea: ".siblings('.dtcDisplayArea')",
-            button: ".next()"
-        });
-    });
-</script>
 <script type="text/javascript" src="../dist/js/base_scripts.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -36,7 +22,12 @@
                 <div class="form-group">
                     <div class="col-md-5">NIC/Passport/DL Issued Date<span style="color:Red;"> *</span></div>
                     <div class="col-md-7">
-                        <asp:TextBox ID="txtNicIssuDay" MaxLength="10" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                    <div class='input-group date' id='dtpNicPassIssueDateCBD' name='dtpNicPassIssueDateCBD'>
+                            <asp:TextBox ID="txtNicIssuDay" MaxLength="10" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <%--<asp:TextBox ID="txtNicIssuDay" MaxLength="10" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>--%>
                     </div>
                 </div>
             </div>
