@@ -2,6 +2,21 @@
     CodeBehind="repayment.aspx.cs" Inherits="MuslimAID.SALAM.repayment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script>
+/*~~ SALAM repament ~~*/
+$(document).ready(function(){
+    $(".rate").on('change', function(){
+        //calculatete for period
+        $(".rateForPeriod").val($(".rate").val()/($(".period").val()*12));
+        //Calculate expected profit
+        $(".expProfit").val($(".loanamount").val()*$(".rateForPeriod").val());
+    });
+    //Expected Units
+    $(".expSellingPrice").on('change', function(){
+        $(".expUnits").val($(".expSellingPrice").val()/$(".expUnitPrice").val());
+    });
+});
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -40,7 +55,7 @@
                         <div class="col-md-5">
                             Financial Amount<span style="color: Red;"> *</span></div>
                         <div class="col-md-7">
-                            <asp:TextBox ID="txtFinancialAmount" MaxLength="12" CssClass="form-control numbersOnly" runat="server"
+                            <asp:TextBox ID="txtFinancialAmount" MaxLength="12" CssClass="form-control loanamount numbersOnly" runat="server"
                                 TabIndex="0"></asp:TextBox>
                         </div>
                     </div>
@@ -277,7 +292,7 @@
                             <div class="col-md-5">
                                 Units<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
-                                <asp:DropDownList ID="cmbUnits" CssClass="form-control" TabIndex="1" runat="server"
+                                <asp:DropDownList ID="cmbUnits" CssClass="form-control units" TabIndex="1" runat="server"
                                     AutoPostBack="true">
                                     <asp:ListItem Text="---Select---" Value="b0" />
                                     <asp:ListItem Text="Kg" Value="1" />
@@ -295,7 +310,7 @@
                             <div class="col-md-5">
                                 Repayment Period<span style="color: Red;"> *</span></div>
                             <div class="col-md-5">
-                                <asp:TextBox ID="txtPeriodRepayment" MaxLength="12" CssClass="form-control numbersOnly" runat="server"
+                                <asp:TextBox ID="txtPeriodRepayment" MaxLength="12" CssClass="form-control period numbersOnly" runat="server"
                                     TabIndex="0"></asp:TextBox>
                             </div>
                             <div class="col-md-2">
@@ -312,7 +327,7 @@
                             <div class="col-md-5">
                                 Expected Price per Unit<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
-                                <asp:TextBox ID="txtExpectedPricePerUnit" MaxLength="12" CssClass="form-control numbersOnly"
+                                <asp:TextBox ID="txtExpectedPricePerUnit" MaxLength="12" CssClass="form-control expUnitPrice numbersOnly"
                                     runat="server" TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
@@ -326,7 +341,7 @@
                             <div class="col-md-5">
                                 Annual Rate<span style="color: Red;"> *</span></div>
                             <div class="col-md-5">
-                                <asp:TextBox ID="txtAnnualRate" MaxLength="12" CssClass="form-control numbersOnly" runat="server"
+                                <asp:TextBox ID="txtAnnualRate" MaxLength="12" CssClass="form-control rate numbersOnly" runat="server"
                                     TabIndex="0"></asp:TextBox>
                             </div>
                             <div class="col-md-2">
@@ -343,7 +358,7 @@
                             <div class="col-md-5">
                                 Rate for Period<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
-                                <asp:TextBox ID="txtRatePeriod" MaxLength="12" CssClass="form-control numbersOnly" runat="server"
+                                <asp:TextBox ID="txtRatePeriod" MaxLength="12" CssClass="form-control rateForPeriod numbersOnly" runat="server"
                                     TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
@@ -357,7 +372,7 @@
                             <div class="col-md-5">
                                 Expected Profit<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
-                                <asp:TextBox ID="txtExpectedProfit" MaxLength="12" CssClass="form-control numbersOnly" runat="server"
+                                <asp:TextBox ID="txtExpectedProfit" MaxLength="12" CssClass="form-control expProfit numbersOnly" runat="server"
                                     TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
@@ -371,7 +386,7 @@
                             <div class="col-md-5">
                                 Expected Selling Price<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
-                                <asp:TextBox ID="txtExpectedSellingPrice" MaxLength="12" CssClass="form-control numbersOnly"
+                                <asp:TextBox ID="txtExpectedSellingPrice" MaxLength="12" CssClass="form-control expSellingPrice numbersOnly"
                                     runat="server" TabIndex="0"></asp:TextBox>
                             </div>
                         </div>
@@ -385,7 +400,7 @@
                             <div class="col-md-5">
                                 Expected Unit<span style="color: Red;"> *</span></div>
                             <div class="col-md-7">
-                                <asp:TextBox ID="txtExpectedUnit" MaxLength="12" CssClass="form-control numbersOnly" runat="server"
+                                <asp:TextBox ID="txtExpectedUnit" MaxLength="12" CssClass="form-control expUnits numbersOnly" runat="server"
                                     TabIndex="0"></asp:TextBox>
                             </div>
                         </div>

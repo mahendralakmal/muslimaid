@@ -61,15 +61,15 @@ namespace MuslimAID.SALAM
                 DataSet dsLD = new DataSet();
                 if (cmbBranch.SelectedItem.Value != "" && cmdSocietyNo.SelectedItem.Value != "")
                 {
-                    dsLD = cls_Connection.getDataSet("select l.ccode, d.ca_code,initial_name,nic, b.total_income, b.total_expenses, b.profit_lost,l.loan_amount,l.interest_rate,l.period,l.interest_amount,l.monthly_instollment from salam_loan_details l,salam_business_details b,salam_basic_detail d where team_id != '' and b.contract_code = l.ccode and l.ccode = d.contract_code and l.loan_approved = 'P' and l.loan_sta = 'P' and l.reg_approval = 'Y' and d.society_id = '" + cmdSocietyNo.SelectedItem.Value + "' and d.city_code = '" + cmbBranch.SelectedItem.Value + "';");
+                    dsLD = cls_Connection.getDataSet("select l.ccode, d.ca_code,initial_name,nic, b.total_income, b.total_expenses, b.profit_lost,l.loan_amount,l.annual_rate,l.re_pay_period, l.rate_for_period,l.exp_profit,l.exp_sale_price, l.exp_unit from salam_loan_details l,salam_business_details b,salam_basic_detail d where team_id != '' and b.contract_code = l.ccode and l.ccode = d.contract_code and l.loan_approved = 'P' and l.loan_sta = 'P' and l.reg_approval = 'Y' and d.society_id = '" + cmdSocietyNo.SelectedItem.Value + "' and d.city_code = '" + cmbBranch.SelectedItem.Value + "';");
                 }//,b.family_expenses,b.net_income
                 else if (cmbBranch.SelectedItem.Value != "" && cmdSocietyNo.SelectedItem.Value == "")
                 {
-                    dsLD = cls_Connection.getDataSet("select l.ccode, d.ca_code,initial_name,nic, b.total_income, b.total_expenses, b.profit_lost,l.loan_amount,l.interest_rate,l.period,l.interest_amount,l.monthly_instollment from salam_loan_details l,salam_business_details b,salam_basic_detail d where team_id != '' and b.contract_code = l.ccode and l.ccode = d.contract_code and l.loan_approved = 'P' and l.loan_sta = 'P' and l.reg_approval = 'Y' and d.city_code = '" + cmbBranch.SelectedItem.Value + "';");
+                    dsLD = cls_Connection.getDataSet("select l.ccode, d.ca_code,initial_name,nic, b.total_income, b.total_expenses, b.profit_lost,l.loan_amount,l.annual_rate,l.re_pay_period, l.rate_for_period,l.exp_profit,l.exp_sale_price, l.exp_unit from salam_loan_details l,salam_business_details b,salam_basic_detail d where team_id != '' and b.contract_code = l.ccode and l.ccode = d.contract_code and l.loan_approved = 'P' and l.loan_sta = 'P' and l.reg_approval = 'Y' and d.city_code = '" + cmbBranch.SelectedItem.Value + "';");
                 }
                 else if (cmbBranch.SelectedItem.Value == "" && cmdSocietyNo.SelectedItem.Value == "")
                 {
-                    dsLD = cls_Connection.getDataSet("select l.ccode, d.ca_code,initial_name,nic, b.total_income, b.total_expenses, b.profit_lost,l.loan_amount,l.interest_rate,l.period,l.interest_amount,l.monthly_instollment from salam_loan_details l,salam_business_details b,salam_basic_detail d where team_id != '' and b.contract_code = l.ccode and l.ccode = d.contract_code and l.loan_approved = 'P' and l.loan_sta = 'P' and l.reg_approval = 'Y';");
+                    dsLD = cls_Connection.getDataSet("select l.ccode, d.ca_code,initial_name,nic, b.total_income, b.total_expenses, b.profit_lost,l.loan_amount,l.annual_rate,l.re_pay_period, l.rate_for_period,l.exp_profit,l.exp_sale_price, l.exp_unit from salam_loan_details l,salam_business_details b,salam_basic_detail d where team_id != '' and b.contract_code = l.ccode and l.ccode = d.contract_code and l.loan_approved = 'P' and l.loan_sta = 'P' and l.reg_approval = 'Y';");
                 }
                 else
                 {
