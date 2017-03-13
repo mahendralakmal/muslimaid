@@ -56,6 +56,10 @@ namespace MuslimAID.MURABAHA
                     }
                 }
             }
+            else
+            {
+                Response.Redirect("../Login.aspx");
+            }
         }
 
         private void Save()

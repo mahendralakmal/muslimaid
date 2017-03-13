@@ -29,7 +29,7 @@ namespace MuslimAID.MURABAHA
             }
             else
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("../Login.aspx");
             }
         }
 

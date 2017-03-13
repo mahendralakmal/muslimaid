@@ -1,5 +1,21 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="loan_details.aspx.cs" Inherits="MuslimAID.MURABHA.loan_details" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script type="text/javascript">
+        $("document").ready(function(){
+            $('.period').on('change', function(){
+                var LA = $(".loanAmount").val(); //Facility Amount
+                var IR = $(".interest").val(); //Interest rate
+                var P = $(".period").val(); //Period
+                var DP = $(".downpayment").val(); //Down payment
+                
+                var IA = parseFloat(((LA-DP)*IR)/100); //Calculate interest amount
+                var MI = (parseFloat(LA-DP) + IA)/P; //Calculate monthly installment
+                
+                $('.interestAmount').val(IA);
+                $('.monthInstall').val(MI);
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
@@ -15,7 +31,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Facility Amount/ Value<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtLDLAmount" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtLDLAmount" CssClass="numbersOnly form-control loanAmount" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -36,51 +52,51 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Model No<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtModelNo" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtModelNo" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Selling Price<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtSellPrice" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtSellPrice" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Down Payment<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtDownPay" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtDownPay" CssClass="numbersOnly downpayment form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Service Charges<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtLDSerCharges" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtLDSerCharges" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Registrtion Fee<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtRegistrationFee" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtRegistrationFee" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Walfare Fee<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtWalfareFee" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtWalfareFee" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Other Charges<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtLDOtherCharg" CssClass="form-control" MaxLength="10" runat="server" TabIndex="3"></asp:TextBox>&nbsp; Eg:(2000.00)<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Invalid Price" ValidationExpression="((\d{1,3}(\,\d{3})*)?|(\d+))(\.\d{2})" ControlToValidate="txtLDOtherCharg"></asp:RegularExpressionValidator></div>
+                    <asp:TextBox ID="txtLDOtherCharg" CssClass="numbersOnly form-control" MaxLength="10" runat="server" TabIndex="3"></asp:TextBox>&nbsp;</div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Interest Rate<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtLDIntRate" CssClass="form-control" MaxLength="5" runat="server" TabIndex="4"></asp:TextBox>&nbsp;
+                    <asp:TextBox ID="txtLDIntRate" CssClass="numbersOnly form-control interest" MaxLength="5" runat="server" TabIndex="4"></asp:TextBox>&nbsp;
                     Eg:(36)
                 </div>
             </div>
@@ -89,7 +105,8 @@
             <div class="form-group">
                 <div class="col-md-5">Period<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:DropDownList ID="cmbPeriod" CssClass="form-control" runat="server" TabIndex="5">
+                    <asp:DropDownList ID="cmbPeriod" CssClass="form-control period" runat="server" TabIndex="5">
+                        <asp:ListItem Value="0">Select Period</asp:ListItem>
                         <asp:ListItem Value="1">1 Month</asp:ListItem>
                         <asp:ListItem Value="2">2 Month</asp:ListItem>
                     </asp:DropDownList>
@@ -98,9 +115,17 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
+                <div class="col-md-5">Monthly Interest Amount<span style="color:Red;">*</span></div>
+                <div class="col-md-7">
+                    <asp:TextBox ID="txtLDMInterest" CssClass="numbersOnly form-control interestAmount" MaxLength="9" runat="server" TabIndex="6"></asp:TextBox>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
                 <div class="col-md-5">Monthly Instollment<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtLDMInstoll" CssClass="form-control" MaxLength="9" runat="server" TabIndex="6"></asp:TextBox>
+                    <asp:TextBox ID="txtLDMInstoll" CssClass="numbersOnly form-control monthInstall" MaxLength="9" runat="server" TabIndex="6"></asp:TextBox>
                 </div>
             </div>
         </div>        
@@ -108,7 +133,7 @@
             <div class="form-group">
                 <div class="col-md-5">Reason to apply a facility<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtResonToApply" MaxLength="4" CssClass="form-control" 
+                    <asp:TextBox ID="txtResonToApply" CssClass="form-control" 
                         runat="server" TabIndex="10"></asp:TextBox>
                 </div>
             </div>
@@ -137,7 +162,7 @@
                         <td>1</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtNameOrg1" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtPurpos1" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtFAmount1" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="numbersOnly form-control" ID="txtFAmount1" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOutstandBal1" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtMonthInstal1" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRemainInstal1" runat="server"></asp:TextBox></td>
@@ -146,7 +171,7 @@
                         <td>2</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtNameOrg2" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtPurpos2" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtFAmount2" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="numbersOnly form-control" ID="txtFAmount2" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOutstandBal2" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtMonthInstal2" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRemainInstal2" runat="server"></asp:TextBox></td>
@@ -155,7 +180,7 @@
                         <td>3</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtNameOrg3" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtPurpos3" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtFAmount3" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="numbersOnly form-control" ID="txtFAmount3" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOutstandBal3" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtMonthInstal3" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRemainInstal3" runat="server"></asp:TextBox></td>

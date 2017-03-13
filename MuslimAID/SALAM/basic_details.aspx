@@ -22,12 +22,11 @@
                 <div class="form-group">
                     <div class="col-md-5">NIC/Passport/DL Issued Date<span style="color:Red;"> *</span></div>
                     <div class="col-md-7">
-                    <div class='input-group date' id='dtpNicPassIssueDateCBD' name='dtpNicPassIssueDateCBD'>
+                        <div class='input-group date' id='dtpNicPassIssueDateCBD' name='dtpNicPassIssueDateCBD'>
                             <asp:TextBox ID="txtNicIssuDay" MaxLength="10" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
-                        <%--<asp:TextBox ID="txtNicIssuDay" MaxLength="10" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>--%>
                     </div>
                 </div>
             </div>
@@ -77,14 +76,12 @@
             <div class="form-group">                
                 <div class="col-md-5">Guranter 01<span style="color:Red;"> *</span></div>
                 <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiserID1" runat="server" Enabled="true"></asp:TextBox></div>
-                <%--<div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiserID" runat="server" AutoPostBack="true"></asp:TextBox></div>--%>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Guranter 02<span style="color:Red;"> *</span></div>
                 <div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiser02" runat="server" Enabled="true"></asp:TextBox></div>
-                <%--<div class="col-md-3"><asp:TextBox CssClass="form-control" ID="txtPromiser02_02" runat="server" AutoPostBack="true"></asp:TextBox></div>--%>
-            </div></div>
+            </div></div>           
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Client Photo</div>
@@ -97,7 +94,7 @@
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
-                <div class="col-md-5">Product Photo </div>
+                <div class="col-md-5">Product Photo<%--<span style="color:Red;"> *</span>--%></div>
                 <div class="col-md-7">
                     <asp:FileUpload ID="fpBBPhoto" CssClass="form-control" runat="server" TabIndex="4" />
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
@@ -158,7 +155,7 @@
                 <div class="col-md-5">Gender</div>
                 <div class="col-md-7">
                     <asp:RadioButton ID="rdoMale" Text="Male" runat="server" TabIndex="10" Checked="True" GroupName="rdoGender" />
-                    <asp:RadioButton ID="rdoFeMale" TabIndex="11" Text="Female" runat="server" />
+                    <asp:RadioButton ID="rdoFeMale" TabIndex="11" GroupName="rdoGender" Text="Female" runat="server" />
                 </div>
             </div></div>
             <div class="col-md-6">
@@ -188,7 +185,7 @@
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Telephone No<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtTNo" runat="server" MaxLength="10" TabIndex="13"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control numbersOnly" ID="txtTNo" runat="server" MaxLength="10" TabIndex="13"></asp:TextBox></div>
             </div></div>
             <div class="col-md-12">&nbsp;</div>
             <div class="col-md-6">
@@ -204,12 +201,12 @@
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Mobile No<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtMobileNo" runat="server" MaxLength="10" TabIndex="14"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control numbersOnly" ID="txtMobileNo" runat="server" MaxLength="10" TabIndex="14"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Tele No<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtTele" runat="server" MaxLength="10" TabIndex="14"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control numbersOnly" ID="txtTele" runat="server" MaxLength="10" TabIndex="14"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                

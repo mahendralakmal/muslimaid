@@ -65,11 +65,7 @@ namespace MuslimAID.SALAM
             }
             else
             {
-                string close = @"<script type='text/javascript'>
-                                window.returnValue = true;
-                                window.close();
-                                </script>";
-                base.Response.Write(close);
+                Response.Redirect("../Login.aspx");
             }
         }
 

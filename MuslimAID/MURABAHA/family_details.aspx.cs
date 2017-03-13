@@ -47,6 +47,10 @@ namespace MuslimAID.MURABHA
                             txtCC.Enabled = true;
                         }
                     }
+                    else
+                    {
+                        Response.Redirect("../Login.aspx");
+                    }
                 }
             }
             catch (Exception)

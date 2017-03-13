@@ -57,7 +57,7 @@ namespace MuslimAID.SALAM
                     }
                     else
                     {
-                        Response.Redirect("../salam.aspx");
+                        Response.Redirect("../Login.aspx");
                     }
                 }
             }
@@ -700,9 +700,9 @@ namespace MuslimAID.SALAM
                     strOccupation = txtOccupation.Text.Trim();
                     strInspDate = txtInspDate.Text.Trim();
                     strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    strPromiserID = "";
-                    strPromiser2 = "";
-                    strTeamNo = "";
+                    strPromiserID = txtPromiserID1.Text.Trim();
+                    strPromiser2 = txtPromiser02.Text.Trim();
+                    strTeamNo = txtGroupID.Text.Trim();
                     #endregion
 
                     //Create Capital Applicant Code

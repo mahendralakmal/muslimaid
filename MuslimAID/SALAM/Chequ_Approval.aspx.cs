@@ -60,7 +60,7 @@ namespace MuslimAID.SALAM
             }
             else
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("../Login.aspx");
             }
         }
 

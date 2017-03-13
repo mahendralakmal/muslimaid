@@ -79,7 +79,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Spouse Contact No</div>
-                <div class="col-md-7"><asp:TextBox ID="txtContact" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtContact" CssClass="numbersOnly form-control" MaxLength="10" runat="server" TabIndex="2"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -92,7 +92,7 @@
             <div class="form-group">
                 <div class="col-md-5">Spouse Income</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtSIncome" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtSIncome" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -116,7 +116,7 @@
             <div class="form-group">
                 <div class="col-md-5">No of Family Members</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtNoFMembers" CssClass="form-control" MaxLength="2" runat="server" TabIndex="5" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtNoFMembers" CssClass="form-control numbersOnly" MaxLength="2" runat="server" TabIndex="5" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -138,7 +138,7 @@
             <div class="form-group">
                 <div class="col-md-5">No of Dependants <span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtDepen" CssClass="form-control" MaxLength="2" runat="server" TabIndex="7"  onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtDepen" CssClass="numbersOnly form-control" MaxLength="2" runat="server" TabIndex="7"  onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -146,7 +146,7 @@
             <div class="form-group">
                 <div class="col-md-5">Other F. Member Income</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtFMIncome" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtFMIncome" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -154,7 +154,7 @@
             <div class="form-group">
                 <div class="col-md-5">Moveable Properties</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtMProperty" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtMProperty" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -162,7 +162,7 @@
             <div class="form-group">
                 <div class="col-md-5">Immoveable Properties</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtIProperty" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtIProperty" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -170,7 +170,7 @@
             <div class="form-group">
                 <div class="col-md-5">Savings</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtSaving" CssClass="form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtSaving" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -191,7 +191,7 @@
                         <td>1</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtName1" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRelation1" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtAge1" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="form-control numbersOnly" ID="txtAge1" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOcc1" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtInCome1" runat="server"></asp:TextBox></td>
                     </tr>
@@ -199,7 +199,7 @@
                         <td>2</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtName2" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRelation2" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtAge2" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="form-control numbersOnly" ID="txtAge2" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOcc2" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtInCome2" runat="server"></asp:TextBox></td>
                     </tr>
@@ -207,7 +207,7 @@
                         <td>3</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtName3" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRelation3" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtAge3" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="form-control numbersOnly" ID="txtAge3" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOcc3" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtInCome3" runat="server"></asp:TextBox></td>
                     </tr>
@@ -215,7 +215,7 @@
                         <td>4</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtName4" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRelation4" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtAge4" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="form-control numbersOnly" ID="txtAge4" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOcc4" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtInCome4" runat="server"></asp:TextBox></td>
                     </tr>
@@ -223,7 +223,7 @@
                         <td>5</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtName5" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRelation5" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtAge5" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="form-control numbersOnly" ID="txtAge5" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOcc5" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtInCome5" runat="server"></asp:TextBox></td>
                     </tr>
@@ -231,7 +231,7 @@
                         <td>6</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtName6" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRelation6" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtAge6" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="form-control numbersOnly" ID="txtAge6" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOcc6" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtInCome6" runat="server"></asp:TextBox></td>
                     </tr>
@@ -239,7 +239,7 @@
                         <td>7</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtName7" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRelation7" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtAge7" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="form-control numbersOnly" ID="txtAge7" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOcc7" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtInCome7" runat="server"></asp:TextBox></td>
                     </tr>
@@ -247,7 +247,7 @@
                         <td>8</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtName8" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRelation8" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtAge8" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="form-control numbersOnly" ID="txtAge8" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOcc8" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtInCome8" runat="server"></asp:TextBox></td>
                     </tr>
@@ -255,7 +255,7 @@
                         <td>9</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtName9" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRelation9" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtAge9" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="form-control numbersOnly" ID="txtAge9" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOcc9" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtInCome9" runat="server"></asp:TextBox></td>
                     </tr>
@@ -263,7 +263,7 @@
                         <td>10</td>
                         <td><asp:TextBox CssClass="form-control" ID="txtName10" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtRelation10" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtAge10" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox CssClass="form-control numbersOnly" ID="txtAge10" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtOcc10" runat="server"></asp:TextBox></td>
                         <td><asp:TextBox CssClass="form-control" ID="txtInCome10" runat="server"></asp:TextBox></td>
                     </tr>

@@ -269,7 +269,7 @@ namespace MuslimAID.MURABAHA
             }
             else
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("../Login.aspx");
             }
         }
 
@@ -399,7 +399,7 @@ namespace MuslimAID.MURABAHA
                 {
                     if (cmdSocietyNo.SelectedIndex == 0)
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,b.initial_name,l.chequ_no,l.loan_amount,l.interest_amount,l.period from micro_loan_details l, micro_basic_detail b, micro_voucher_print v where b.contract_code = v.contract_code and v.isPrint = 0 and l.contra_code = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is not null and l.loan_sta = 'P' and v.`status` = 1 order by l.chequ_no ;");
+                        dsLD = cls_Connection.getDataSet("select l.contra_code,b.initial_name,l.chequ_no,l.loan_amount,l.interest_amount,l.period from micro_loan_details l, micro_basic_detail b, micro_voucher_print v where b.contract_code = v.contract_code and v.isPrint = 0 and l.contra_code = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is not null and l.loan_sta = 'P' and b.city_code = '" + strBranch + "' v.`status` = 1 order by l.chequ_no ;");
                     }
                     else
                     {

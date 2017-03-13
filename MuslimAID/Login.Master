@@ -34,7 +34,7 @@
         </div>
         <!-- /navbar-inner -->
     </div>
-    <form id="form1" runat="server">
+    <form id="form1" class="clsForm" runat="server">
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         

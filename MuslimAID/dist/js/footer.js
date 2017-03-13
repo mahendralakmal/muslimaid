@@ -1,9 +1,14 @@
-﻿$(document).ready(function() {
-    var height = $(window).height();
-    var footer = $('.footer').height();
-    var footerTop = $('.footer').position().top + footer;
-    if (footerTop < height) {
-        $('.footer').css('margin-top', -1 + (height - footerTop) + 'px');
-    }
-    console.log("height:" + height + "  footer height:" + footer + "  footerTop:" + footerTop);
+﻿jQuery(document).ready(function($) {
+    $(window).resize(function() {
+        var height = $(window).height();
+        var navbar1 = $('.navbar').height();
+        var subnavbar = ($('.subnavbar').height() == undefined) ? 0:$('.subnavbar').height()+36;
+        var footer = $('.footer').height();
+        var clsForm = ($('.clsForm .container').height() == undefined) ? $('.clsForm').height() : $('.clsForm .container').height();
+        var tH = height - navbar1 - footer - subnavbar;
+        if(clsForm < tH){
+            $('.clsForm').height(tH);
+        }
+        $('.clsForm').css('min-height', 300);
+    }).resize();
 });

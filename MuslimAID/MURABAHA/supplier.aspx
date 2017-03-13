@@ -54,7 +54,7 @@
             <div class="form-group">
                 <div class="col-md-5">Supplier Telephone<span style="color:Red;"> *</span></div>
                 <div class="col-md-7">
-                <asp:TextBox ID="txtSupplierTelephone" MaxLength="12" CssClass="form-control" 
+                <asp:TextBox ID="txtSupplierTelephone" MaxLength="10" CssClass="numbersOnly form-control" 
                         runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
                 </div>
              </div>
@@ -64,7 +64,7 @@
             <div class="form-group">
                 <div class="col-md-5">Supplier Mobile<span style="color:Red;"> </span></div>
                 <div class="col-md-7">
-                <asp:TextBox ID="txtSupplierMobile" MaxLength="12" CssClass="form-control" 
+                <asp:TextBox ID="txtSupplierMobile" MaxLength="10" CssClass="numbersOnly form-control" 
                         runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
                 </div>
              </div>
@@ -95,7 +95,7 @@
             <div class="form-group">
                 <div class="col-md-5">Account Number<span style="color:Red;"> *</span></div>
                 <div class="col-md-7">
-                <asp:TextBox ID="txtAccountNumber" MaxLength="12" CssClass="form-control" 
+                <asp:TextBox ID="txtAccountNumber" MaxLength="12" CssClass="numbersOnly form-control" 
                         runat="server" AutoPostBack="true" TabIndex="0"></asp:TextBox>
                 </div>
              </div>

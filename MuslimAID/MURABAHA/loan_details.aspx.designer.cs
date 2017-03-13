@@ -113,15 +113,6 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.TextBox txtLDOtherCharg;
         
         /// <summary>
-        /// RegularExpressionValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
-        
-        /// <summary>
         /// txtLDIntRate control.
         /// </summary>
         /// <remarks>
@@ -138,6 +129,15 @@ namespace MuslimAID.MURABHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbPeriod;
+        
+        /// <summary>
+        /// txtLDMInterest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLDMInterest;
         
         /// <summary>
         /// txtLDMInstoll control.

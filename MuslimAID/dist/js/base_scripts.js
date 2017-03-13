@@ -84,7 +84,7 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00;
     
     
 
-    function calcNetIn() {
+    function calcNetIn() { //calculate monthly net income
         $salWa = $(".txtSalWa").val() === '' ? 0.00 : $(".txtSalWa").val();
         $rentInB = $(".txtRentB").val() === '' ? 0.00 : $(".txtRentB").val();
         $rentInO = $(".txtRentO").val() === '' ? 0.00 : $(".txtRentO").val();
@@ -92,11 +92,12 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00;
         $(".txtNetIn").val(parseFloat($salWa) + parseFloat($rentInB) + parseFloat($rentInO));
         calcMBI();
     }
-    function calcMBI() {
+    function calcMBI() { 
         $InO = $(".txtInO").val() === '' ? 0.00 : $(".txtInO").val();
         $netIn = $(".txtNetIn").val() === '' ? 0.00 : $(".txtNetIn").val();
 
         $(".txtFamiIn").val(parseFloat($InO) + parseFloat($netIn));
+        calcNetAnulaIncome();
     }
     function calcMExpenses() {
         $foodEx = $(".txtFood").val() === '' ? 0.00 : $(".txtFood").val();
@@ -116,9 +117,15 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00;
     }
     function calcNetAnulaIncome(){
         $famiIn = $(".txtFamiIn").val() === '' ? 0.00 : $(".txtFamiIn").val();
-        console.log($famiIn);
         $otherEx = $(".txtFExpense").val() === '' ? 0.00 : $(".txtFExpense").val();
-        console.log($otherEx);
-        
-        $(".txtNetAnualFIN").val(parseFloat($famiIn) - parseFloat($otherEx));
+        $(".txtNetAnualFIN").val((parseFloat($famiIn) - parseFloat($otherEx)).toFixed(2));
+        $(".txtAmountOPEx").val((parseFloat($(".txtNetAnualFIN").val())/12).toFixed(2));
+        $(".txtAmountFEx").val((((parseFloat($(".txtNetAnualFIN").val())/12)*40)/100).toFixed(2));
+        $(".txtAmountOPEx").prop('readonly', true);
+        $(".txtAmountFEx").prop('readonly', true);
     }
+    
+    function calcMaxAmountCanBeDisbursed(){
+        $(".txtMAD").val(($(".txtAmountFEx").val()* $('.txtFRPriod').val()).toFixed(2));
+        $(".txtMAD").prop('readonly', true);
+    };

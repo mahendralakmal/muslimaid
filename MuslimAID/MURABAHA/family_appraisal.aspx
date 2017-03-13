@@ -33,20 +33,20 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Salary & Wages <span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtSalWages" onchange="calcNetIn()" CssClass="form-control 
+                <div class="col-md-7"><asp:TextBox ID="txtSalWages" onchange="calcNetIn()" CssClass="numbersOnly form-control 
                 txtSalWa" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Rent income - Building</div>
-                <div class="col-md-7"><asp:TextBox ID="txtRentBuildingIn" onchange="calcNetIn()" CssClass="form-control txtRentB" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtRentBuildingIn" onchange="calcNetIn()" CssClass="numbersOnly form-control txtRentB" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Rent income – Others</div>
-                <div class="col-md-7"><asp:TextBox ID="txtRentInOther" onchange="calcNetIn()" CssClass="form-control txtRentO" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtRentInOther" onchange="calcNetIn()" CssClass="numbersOnly form-control txtRentO" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -59,7 +59,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Other income</div>
-                <div class="col-md-7"><asp:TextBox ID="txtInO" onchange="calcMBI()" CssClass="form-control txtInO" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtInO" onchange="calcMBI()" CssClass="form-control numbersOnly txtInO" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -75,55 +75,55 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Food</div>
-                <div class="col-md-7"><asp:TextBox ID="txtFoodEx" CssClass="form-control txtFood" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtFoodEx" CssClass="numbersOnly form-control txtFood" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Education</div>
-                <div class="col-md-7"><asp:TextBox ID="txtEduEx" CssClass="form-control txtEdu" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtEduEx" CssClass="numbersOnly form-control txtEdu" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Water, Electricity & Telephone</div>
-                <div class="col-md-7"><asp:TextBox ID="txtWETEx" CssClass="form-control txtWET" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtWETEx" CssClass="numbersOnly form-control txtWET" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Health & Sanitation</div>
-                <div class="col-md-7"><asp:TextBox ID="txtHSEx" CssClass="form-control txtHS" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtHSEx" CssClass="numbersOnly form-control txtHS" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Rent payments</div>
-                <div class="col-md-7"><asp:TextBox ID="txtRenPayEx" CssClass="form-control txtRenPay" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtRenPayEx" CssClass="numbersOnly form-control txtRenPay" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Other facility/advance installments</div>
-                <div class="col-md-7"><asp:TextBox ID="txtOFAIEx" CssClass="form-control txtOFAI" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtOFAIEx" CssClass="numbersOnly form-control txtOFAI" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Travel & Transport</div>
-                <div class="col-md-7"><asp:TextBox ID="txtTTransEx" CssClass="form-control txtTTrans" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtTTransEx" CssClass="numbersOnly form-control txtTTrans" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Clothes</div>
-                <div class="col-md-7"><asp:TextBox ID="txtClothsEx" CssClass="form-control txtCloths" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtClothsEx" CssClass="numbersOnly form-control txtCloths" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Others</div>
-                <div class="col-md-7"><asp:TextBox ID="txtOthersEx" CssClass="form-control txtOthers" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtOthersEx" CssClass="numbersOnly form-control txtOthers" onchange="calcMExpenses()" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -148,37 +148,37 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Amount that can be used for other purposes (monthly)</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtAmountOPEx" Enabled="true" CssClass="form-control" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtAmountOPEx" Enabled="true" CssClass="numbersOnly txtAmountOPEx form-control" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Maximum amount payable for the facility (monthly/ weekly)</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtAmountFEx" Enabled="true" CssClass="form-control" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtAmountFEx" Enabled="true" CssClass="numbersOnly txtAmountFEx form-control" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Facility Repayment period (months/weeks)</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtFRPriod" Enabled="true" CssClass="form-control" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtFRPriod" Enabled="true" onchange="calcMaxAmountCanBeDisbursed()" CssClass="numbersOnly txtFRPriod form-control" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Maximum amount can be disbursed</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtMAD" Enabled="true" CssClass="form-control" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtMAD" Enabled="true" CssClass="numbersOnly txtMAD form-control" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Maximum disbursable amount according to the institutional policy</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtMDAAIP" Enabled="true" CssClass="form-control" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtMDAAIP" Enabled="true" CssClass="numbersOnly txtMDAAIP form-control" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5"><strong>Requested amount as per the sfacility application</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtRAPSA" Enabled="true" CssClass="form-control" runat="server" TabIndex="8"></asp:TextBox></div>
+                <div class="col-md-5"><strong>Requested amount as per the facility application</strong></div>
+                <div class="col-md-7"><asp:TextBox ID="txtRAPSA" Enabled="true" CssClass="numbersOnly txtRAPSA form-control" runat="server" TabIndex="8"></asp:TextBox></div>
             </div>
         </div>
         

@@ -56,6 +56,10 @@ namespace MuslimAID.SALAM
                     }
                 }
             }
+            else
+            {
+                Response.Redirect("../Login.aspx");
+            }
         }
 
         private void Save()

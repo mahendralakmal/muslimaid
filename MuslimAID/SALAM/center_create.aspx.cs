@@ -41,7 +41,7 @@ namespace MuslimAID.SALAM
             }
             else
             {
-                Response.Redirect("../murabaha.aspx");
+                Response.Redirect("../Login.aspx");
             }
         }
 

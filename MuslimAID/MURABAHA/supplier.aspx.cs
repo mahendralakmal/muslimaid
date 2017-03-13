@@ -61,6 +61,10 @@ namespace MuslimAID.MURABAHA
                             txtCC.Enabled = true;
                         }
                     }
+                    else
+                    {
+                        Response.Redirect("../Login.aspx");
+                    }
                 }
             }
             catch (Exception)

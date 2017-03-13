@@ -41,6 +41,10 @@ namespace MuslimAID.MURABAHA
                             txtCC.Enabled = true;
                         }
                     }
+                    else
+                    {
+                        Response.Redirect("../Login.aspx");
+                    }
                 }
             }
             catch (Exception)
@@ -97,29 +101,29 @@ namespace MuslimAID.MURABAHA
                     cmdInsert.Parameters.Add("@create_user", MySqlDbType.VarChar, 45);
 
                     cmdInsert.Parameters["@contract_code"].Value = txtCC.Text.Trim();
-                    cmdInsert.Parameters["@salary_n_wages"].Value = Convert.ToDecimal(txtSalWages.Text.Trim());
-                    cmdInsert.Parameters["@rentIncome"].Value = Convert.ToDecimal(txtRentBuildingIn.Text.Trim());
-                    cmdInsert.Parameters["@rent_income_other"].Value = Convert.ToDecimal(txtRentInOther.Text.Trim());
-                    cmdInsert.Parameters["@net_Income_business"].Value = Convert.ToDecimal(txtNetBusinesIn.Text.Trim());
-                    cmdInsert.Parameters["@other_income"].Value = Convert.ToDecimal(txtInO.Text.Trim());
-                    cmdInsert.Parameters["@total_annual_family_in"].Value = Convert.ToDecimal(txtFamilyIn.Text.Trim());
-                    cmdInsert.Parameters["@food_ex"].Value = Convert.ToDecimal(txtFoodEx.Text.Trim());
-                    cmdInsert.Parameters["@education_ex"].Value = Convert.ToDecimal(txtEduEx.Text.Trim());
-                    cmdInsert.Parameters["@wet_ex"].Value = Convert.ToDecimal(txtWETEx.Text.Trim());
-                    cmdInsert.Parameters["@health_n_sanitation"].Value = Convert.ToDecimal(txtHSEx.Text.Trim());
-                    cmdInsert.Parameters["@rent_ex"].Value = Convert.ToDecimal(txtRenPayEx.Text.Trim());
-                    cmdInsert.Parameters["@other_facility_ex"].Value = Convert.ToDecimal(txtOFAIEx.Text.Trim());
-                    cmdInsert.Parameters["@travel_n_transport"].Value = Convert.ToDecimal(txtTTransEx.Text.Trim());
-                    cmdInsert.Parameters["@clothes_ex"].Value = Convert.ToDecimal(txtClothsEx.Text.Trim());
-                    cmdInsert.Parameters["@other_ex"].Value = Convert.ToDecimal(txtOthersEx.Text.Trim());
-                    cmdInsert.Parameters["@total_annual_family_ex"].Value = Convert.ToDecimal(txtFExpense.Text.Trim());
-                    cmdInsert.Parameters["@net_annual_family_in"].Value = Convert.ToDecimal(txtNetAnualFIn.Text.Trim());
-                    cmdInsert.Parameters["@amount_opex"].Value = Convert.ToDecimal(txtAmountOPEx.Text.Trim());
-                    cmdInsert.Parameters["@amount_fex"].Value = Convert.ToDecimal(txtAmountFEx.Text.Trim());
-                    cmdInsert.Parameters["@fr_period"].Value = Convert.ToDecimal(txtFRPriod.Text.Trim());
-                    cmdInsert.Parameters["@mad"].Value = Convert.ToDecimal(txtMAD.Text.Trim());
-                    cmdInsert.Parameters["@mdaaip"].Value = Convert.ToDecimal(txtMDAAIP.Text.Trim());
-                    cmdInsert.Parameters["@rapsa"].Value = Convert.ToDecimal(txtRAPSA.Text.Trim());
+                    cmdInsert.Parameters["@salary_n_wages"].Value = (txtSalWages.Text.Trim() != "")? Convert.ToDecimal(txtSalWages.Text.Trim()):00;
+                    cmdInsert.Parameters["@rentIncome"].Value = (txtRentBuildingIn.Text.Trim()!="")?Convert.ToDecimal(txtRentBuildingIn.Text.Trim()):00;
+                    cmdInsert.Parameters["@rent_income_other"].Value = (txtRentInOther.Text.Trim()!="")?Convert.ToDecimal(txtRentInOther.Text.Trim()):00;
+                    cmdInsert.Parameters["@net_Income_business"].Value = (txtNetBusinesIn.Text.Trim()!="")?Convert.ToDecimal(txtNetBusinesIn.Text.Trim()):00;
+                    cmdInsert.Parameters["@other_income"].Value = (txtInO.Text.Trim()!="")?Convert.ToDecimal(txtInO.Text.Trim()):00;
+                    cmdInsert.Parameters["@total_annual_family_in"].Value = (txtFamilyIn.Text.Trim()!="")?Convert.ToDecimal(txtFamilyIn.Text.Trim()):00;
+                    cmdInsert.Parameters["@food_ex"].Value = (txtFoodEx.Text.Trim()!="")?Convert.ToDecimal(txtFoodEx.Text.Trim()):00;
+                    cmdInsert.Parameters["@education_ex"].Value = (txtEduEx.Text.Trim()!="")?Convert.ToDecimal(txtEduEx.Text.Trim()):00;
+                    cmdInsert.Parameters["@wet_ex"].Value = (txtWETEx.Text.Trim()!="")?Convert.ToDecimal(txtWETEx.Text.Trim()):00;
+                    cmdInsert.Parameters["@health_n_sanitation"].Value = (txtHSEx.Text.Trim()!="")?Convert.ToDecimal(txtHSEx.Text.Trim()):00;
+                    cmdInsert.Parameters["@rent_ex"].Value = (txtRenPayEx.Text.Trim()!="")?Convert.ToDecimal(txtRenPayEx.Text.Trim()):00;
+                    cmdInsert.Parameters["@other_facility_ex"].Value = (txtOFAIEx.Text.Trim()!="")?Convert.ToDecimal(txtOFAIEx.Text.Trim()):00;
+                    cmdInsert.Parameters["@travel_n_transport"].Value = (txtTTransEx.Text.Trim()!="")?Convert.ToDecimal(txtTTransEx.Text.Trim()):00;
+                    cmdInsert.Parameters["@clothes_ex"].Value = (txtClothsEx.Text.Trim()!="")?Convert.ToDecimal(txtClothsEx.Text.Trim()):00;
+                    cmdInsert.Parameters["@other_ex"].Value = (txtOthersEx.Text.Trim()!="")?Convert.ToDecimal(txtOthersEx.Text.Trim()):00;
+                    cmdInsert.Parameters["@total_annual_family_ex"].Value = (txtFExpense.Text.Trim() != "") ? Convert.ToDecimal(txtFExpense.Text.Trim()) : 00;
+                    cmdInsert.Parameters["@net_annual_family_in"].Value = (txtNetAnualFIn.Text.Trim() != "") ? Convert.ToDecimal(txtNetAnualFIn.Text.Trim()) : 00;
+                    cmdInsert.Parameters["@amount_opex"].Value = (txtAmountOPEx.Text.Trim() != "") ? Convert.ToDecimal(txtAmountOPEx.Text.Trim()) : 00;
+                    cmdInsert.Parameters["@amount_fex"].Value = (txtAmountFEx.Text.Trim() != "") ? Convert.ToDecimal(txtAmountFEx.Text.Trim()) : 00;
+                    cmdInsert.Parameters["@fr_period"].Value = (txtFRPriod.Text.Trim() != "") ? Convert.ToDecimal(txtFRPriod.Text.Trim()) : 00;
+                    cmdInsert.Parameters["@mad"].Value = (txtMAD.Text.Trim() != "") ? Convert.ToDecimal(txtMAD.Text.Trim()) : 00;
+                    cmdInsert.Parameters["@mdaaip"].Value = (txtMDAAIP.Text.Trim() != "") ? Convert.ToDecimal(txtMDAAIP.Text.Trim()) : 00;
+                    cmdInsert.Parameters["@rapsa"].Value = (txtRAPSA.Text.Trim() != "") ? Convert.ToDecimal(txtRAPSA.Text.Trim()) : 00;
                     cmdInsert.Parameters["@create_date"].Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     cmdInsert.Parameters["@create_user"].Value = Request.UserHostAddress;
                     #endregion
@@ -130,7 +134,6 @@ namespace MuslimAID.MURABAHA
                         if (i > 0)
                         {
                             Response.Redirect("business_details.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim() + "");
-                            //Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
                         }
                         else
                         {

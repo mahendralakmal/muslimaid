@@ -89,29 +89,35 @@
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Client Photo</div>
-                <div class="col-md-7">
-                    <asp:FileUpload ID="fpPhoto" CssClass="form-control" runat="server" TabIndex="3" /><asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server"
-                   ControlToValidate="fpPhoto"
-                   ErrorMessage=".jpg,.png,.jpeg,.gif Files only"
-                   ValidationExpression="(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$"></asp:RegularExpressionValidator>
+                    <div class="col-md-7">
+                        <asp:FileUpload ID="fpPhoto" CssClass="form-control" runat="server" TabIndex="3" />
+                        <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server"
+                       ControlToValidate="fpPhoto"
+                       ErrorMessage=".jpg,.png,.jpeg,.gif Files only"
+                       ValidationExpression="(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$"></asp:RegularExpressionValidator>--%>
+                    </div>
                 </div>
-            </div></div>
+            </div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Product Photo<%--<span style="color:Red;"> *</span>--%></div>
-                <div class="col-md-7">
-                    <asp:FileUpload ID="fpBBPhoto" CssClass="form-control" runat="server" TabIndex="4" />
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
-                       ControlToValidate="fpBBPhoto"
-                       ErrorMessage=".jpg,.png,.jpeg,.gif Files only"
-                       ValidationExpression="(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$"></asp:RegularExpressionValidator>
+                    <div class="col-md-7">
+                        <asp:FileUpload ID="fpBBPhoto" CssClass="form-control" runat="server" TabIndex="4" />
+                        <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                           ControlToValidate="fpBBPhoto"
+                           ErrorMessage=".jpg,.png,.jpeg,.gif Files only"
+                           ValidationExpression="(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$"></asp:RegularExpressionValidator>--%>
+                    </div>
                 </div>
-            </div></div>
+            </div>
             <div class="col-md-6">
-            <div class="form-group">                
-                <div class="col-md-5">Province<span style="color:Red;"> *</span></div>
-                <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbProvince" runat="server" TabIndex="4"></asp:DropDownList></div>
-            </div></div>
+                <div class="form-group">                
+                    <div class="col-md-5">Province<span style="color:Red;"> *</span></div>
+                    <div class="col-md-7">
+                        <asp:DropDownList CssClass="form-control" ID="cmbProvince" runat="server" TabIndex="4"></asp:DropDownList>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">GS Ward<span style="color:Red;"> *</span></div>
@@ -204,17 +210,17 @@
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Mobile No<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtMobileNo" runat="server" MaxLength="10" TabIndex="14"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="numbersOnly form-control" ID="txtMobileNo" runat="server" MaxLength="10" TabIndex="14"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Tele No<%--<span style="color:Red;">*</span>--%></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtTele" runat="server" MaxLength="10" TabIndex="14"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="numbersOnly form-control" ID="txtTele" runat="server" MaxLength="10" TabIndex="14"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Occupation / Income Source<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtOccupation" runat="server" MaxLength="10" TabIndex="14"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtOccupation" runat="server" TabIndex="14"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
                 <div class="form-group">                

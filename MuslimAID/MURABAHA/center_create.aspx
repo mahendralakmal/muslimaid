@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-5">Leader Contact No<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtContactNo" TabIndex="5" MaxLength="10" CssClass="form-control" runat="server" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtContactNo" TabIndex="5" MaxLength="10" CssClass="numbersOnly form-control" runat="server" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
             <div class="form-group">
                 <div class="col-md-5">Center Day<span style="color:Red;">*</span></div>

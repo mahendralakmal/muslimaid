@@ -50,7 +50,7 @@ namespace MuslimAID.MURABAHA
             }
             else
             {
-                Response.Redirect("../muslimaid.aspx");
+                Response.Redirect("../Login.aspx");
             }
         }
 

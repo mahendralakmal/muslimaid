@@ -30,12 +30,12 @@
         <div class="form-group">
             <div class="col-md-5">Branch Code </div>
             <div class="col-md-7">
-            <asp:TextBox ID="txtBranchCode" Enabled="false" MaxLength="3" runat="server" TabIndex="20" CssClass="form-control"></asp:TextBox></div>
+            <asp:TextBox ID="txtBranchCode" Enabled="false" MaxLength="3" runat="server" TabIndex="20" CssClass="numbersOnly form-control"></asp:TextBox></div>
         </div>
         <div class="form-group">
             <div class="col-md-5">Account Number </div>
             <div class="col-md-7">
-            <asp:TextBox ID="txtAccountNo" MaxLength="20" runat="server" TabIndex="3" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtAccountNo" MaxLength="20" runat="server" TabIndex="3" CssClass="numbersOnly form-control"></asp:TextBox>
         </div>
         </div>
         <div class="form-group">

@@ -41,6 +41,10 @@ namespace MuslimAID.MURABHA
                             txtCC.Enabled = true;
                         }
                     }
+                    else
+                    {
+                        Response.Redirect("../Login.aspx");
+                    }
                 }
             }
             catch (Exception)
@@ -50,7 +54,7 @@ namespace MuslimAID.MURABHA
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string q = "INSERT INTO micro_loan_details(contra_code, loan_amount, product_category, brand, model_no, selling_price, down_payment, service_charges, registration_fee, walfare_fee, other_charges, interest_rate, period, monthly_instollment, reason_to_apply, any_unsettled_loans, other_unsettled_facilities,reg_approval,loan_approved) VALUES (@contra_code, @loan_amount, @product_category, @brand, @model_no, @selling_price, @down_payment, @service_charges, @registration_fee, @walfare_fee, @other_charges, @interest_rate, @period, @monthly_instollment, @reason_to_apply, @any_unsettled_loans, @other_unsettled_facilities,@reg_approval,@loan_approved)";
+            string q = "INSERT INTO micro_loan_details(contra_code, loan_amount, product_category, brand, model_no, selling_price, down_payment, service_charges, registration_fee, walfare_fee, other_charges, interest_rate, period, monthly_instollment, interest_amount, reason_to_apply, any_unsettled_loans, other_unsettled_facilities,reg_approval,loan_approved) VALUES (@contra_code, @loan_amount, @product_category, @brand, @model_no, @selling_price, @down_payment, @service_charges, @registration_fee, @walfare_fee, @other_charges, @interest_rate, @period, @monthly_instollment, @interest_amount, @reason_to_apply, @any_unsettled_loans, @other_unsettled_facilities,@reg_approval,@loan_approved)";
 
             try
             {
@@ -85,8 +89,8 @@ namespace MuslimAID.MURABHA
                     }
                 }
                 
-                else
-                {
+                //else
+                //{
                     MySqlCommand cmdInsert = new MySqlCommand(q);
                     #region Parameter Declarations
                     cmdInsert.Parameters.AddWithValue("@contra_code", txtCC.Text.Trim());
@@ -103,6 +107,7 @@ namespace MuslimAID.MURABHA
                     cmdInsert.Parameters.AddWithValue("@interest_rate", txtLDIntRate.Text.Trim());
                     cmdInsert.Parameters.AddWithValue("@period", cmbPeriod.SelectedValue.ToString());
                     cmdInsert.Parameters.AddWithValue("@monthly_instollment", Convert.ToDecimal(txtLDMInstoll.Text.Trim()));
+                    cmdInsert.Parameters.AddWithValue("@interest_amount", Convert.ToDecimal(txtLDMInterest.Text.Trim()));
                     cmdInsert.Parameters.AddWithValue("@reason_to_apply", txtResonToApply.Text.Trim());
                     if (rdoYes.Checked)
                     {
@@ -129,12 +134,13 @@ namespace MuslimAID.MURABHA
                     catch (Exception ex)
                     {
                     }
-                }
+                //}
             }
-            catch (Exception)
+            catch (Exception ml)
             {
             }
         }
+    //}
 
         protected void clean()
         {
@@ -147,6 +153,7 @@ namespace MuslimAID.MURABHA
             txtLDIntRate.Text = "";
             txtLDLAmount.Text = "";
             txtLDMInstoll.Text = "";
+            txtLDMInterest.Text = "";
             txtLDOtherCharg.Text = "";
             txtLDSerCharges.Text = "";
             txtModelNo.Text = "";

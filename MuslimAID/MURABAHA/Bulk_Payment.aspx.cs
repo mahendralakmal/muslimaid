@@ -38,7 +38,7 @@ namespace MuslimAID.MURABAHA
                 }
                 else
                 {
-                    Response.Redirect("Login.aspx");
+                    Response.Redirect("../Login.aspx");
                 }
             }
         }
@@ -887,10 +887,7 @@ namespace MuslimAID.MURABAHA
                 int id = grows.RowIndex;                
                 if (txtPayment.Text.Trim() != "")
                 {
-                    if (Convert.ToInt16(txtPayment.Text.Trim()) == 0)
-                    {
-                    }
-                    else
+                    if (Convert.ToInt32(txtPayment.Text.Trim()) != 0)
                     {
                         string strPayment = txtPayment.Text.Trim();
                         string strAmount = txtPayment.Text.Trim();
