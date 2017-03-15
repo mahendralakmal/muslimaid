@@ -35,29 +35,29 @@ namespace MuslimAID.MURABHA
                     {
                         lblAddress.Text = dsGetFullDetails.Tables[0].Rows[0]["p_address"].ToString();
                         lblBAddress.Text = dsGetFullDetails.Tables[0].Rows[0]["busi_address"].ToString();
-                        lblBDCost.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["direct_cost"].ToString()).ToString("#,##0.00");
+                        lblBDCost.Text = (dsGetFullDetails.Tables[0].Rows[0]["direct_cost"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["direct_cost"].ToString()).ToString("#,##0.00"):"0.00";
                         lblBDuration.Text = dsGetFullDetails.Tables[0].Rows[0]["busi_duration"].ToString();
-                        lblBICost.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["indirect_cost"].ToString()).ToString("#,##0.00");
-                        lblBIncome.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["busi_income"].ToString()).ToString("#,##0.00");
+                        lblBICost.Text = (dsGetFullDetails.Tables[0].Rows[0]["indirect_cost"].ToString() != "") ? Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["indirect_cost"].ToString()).ToString("#,##0.00") : "0.00";
+                        lblBIncome.Text = (dsGetFullDetails.Tables[0].Rows[0]["busi_income"].ToString()!="") ? Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["busi_income"].ToString()).ToString("#,##0.00") : "0.00";
                         lblBName.Text = dsGetFullDetails.Tables[0].Rows[0]["business_name"].ToString();
-                        lblBOExpenses.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["other_expenses"].ToString()).ToString("#,##0.00");
-                        lblBOIncome.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["other_income"].ToString()).ToString("#,##0.00");
-                        lblBPL.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["profit_lost"].ToString()).ToString("#,##0.00");
-                        lblBTExpenses.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["total_expenses"].ToString()).ToString("#,##0.00");
-                        lblBTIncome.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["total_income"].ToString()).ToString("#,##0.00");
+                        lblBOExpenses.Text = (dsGetFullDetails.Tables[0].Rows[0]["other_expenses"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["other_expenses"].ToString()).ToString("#,##0.00"):"0.00";
+                        lblBOIncome.Text = (dsGetFullDetails.Tables[0].Rows[0]["other_income"].ToString()!="") ? Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["other_income"].ToString()).ToString("#,##0.00") : "0.00";
+                        lblBPL.Text = (dsGetFullDetails.Tables[0].Rows[0]["profit_lost"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["profit_lost"].ToString()).ToString("#,##0.00"):"0.00";
+                        lblBTExpenses.Text = (dsGetFullDetails.Tables[0].Rows[0]["total_expenses"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["total_expenses"].ToString()).ToString("#,##0.00"):"0.00";
+                        lblBTIncome.Text = (dsGetFullDetails.Tables[0].Rows[0]["total_income"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["total_income"].ToString()).ToString("#,##0.00"):"0.00";
                         lblCACode.Text = dsGetFullDetails.Tables[0].Rows[0]["ca_code"].ToString();
                         lblCC.Text = dsGetFullDetails.Tables[0].Rows[0]["contract_code"].ToString();
                         //lblDep.Text = dsGetFullDetails.Tables[0].Rows[0]["dependers"].ToString();
                         lblEducation.Text = dsGetFullDetails.Tables[0].Rows[0]["education"].ToString();
-                        lblFExpenses.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["family_expenses"].ToString()).ToString("#,##0.00");
-                        lblIAmount.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["interest_amount"].ToString()).ToString("#,##0.00");
-                        lblImmPrope.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["immoveable_property"].ToString()).ToString("#,##0.00");
+                        lblFExpenses.Text = (dsGetFullDetails.Tables[0].Rows[0]["family_expenses"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["family_expenses"].ToString()).ToString("#,##0.00"):"0.00";
+                        lblIAmount.Text = (dsGetFullDetails.Tables[0].Rows[0]["interest_amount"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["interest_amount"].ToString()).ToString("#,##0.00"):"0.00";
+                        lblImmPrope.Text = (dsGetFullDetails.Tables[0].Rows[0]["immoveable_property"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["immoveable_property"].ToString()).ToString("#,##0.00"):"0.00";
                         lblInsDate.Text = dsGetFullDetails.Tables[0].Rows[0]["inspection_date"].ToString();
                         lblIRate.Text = dsGetFullDetails.Tables[0].Rows[0]["interest_rate"].ToString();
-                        lblLAmount.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["loan_amount"].ToString()).ToString("#,##0.00");
+                        lblLAmount.Text = (dsGetFullDetails.Tables[0].Rows[0]["loan_amount"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["loan_amount"].ToString()).ToString("#,##0.00"):"0.00";
                         lblLandNo.Text = dsGetFullDetails.Tables[0].Rows[0]["land_no"].ToString();
                         lblMobNo.Text = dsGetFullDetails.Tables[0].Rows[0]["mobile_no"].ToString();
-                        lblMovProperty.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["moveable_property"].ToString()).ToString("#,##0.00");
+                        lblMovProperty.Text = (dsGetFullDetails.Tables[0].Rows[0]["moveable_property"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["moveable_property"].ToString()).ToString("#,##0.00"):"0.00";
                         lblAccName.Text = dsGetFullDetails.Tables[0].Rows[0]["acc_name"].ToString();
                         lblAccNo.Text = dsGetFullDetails.Tables[0].Rows[0]["acc_number"].ToString();
 
@@ -92,20 +92,20 @@ namespace MuslimAID.MURABHA
                         }
 
                         lblName.Text = dsGetFullDetails.Tables[0].Rows[0]["full_name"].ToString();
-                        lblNetIncome.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["net_income"].ToString()).ToString("#,##0.00");
+                        lblNetIncome.Text = (dsGetFullDetails.Tables[0].Rows[0]["net_income"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["net_income"].ToString()).ToString("#,##0.00"):"0.00";
                         lblNIC.Text = dsGetFullDetails.Tables[0].Rows[0]["nic"].ToString();
                         lblOccupation.Text = dsGetFullDetails.Tables[0].Rows[0]["occupation"].ToString();
                         lblOCharge.Text = dsGetFullDetails.Tables[0].Rows[0]["other_charges"].ToString();
-                        lblOMemIncoem.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["other_fami_mem_income"].ToString()).ToString("#,##0.00");
+                        lblOMemIncoem.Text = (dsGetFullDetails.Tables[0].Rows[0]["other_fami_mem_income"].ToString()!="") ? Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["other_fami_mem_income"].ToString()).ToString("#,##0.00") : "0.00";
                         lblPeriod.Text = dsGetFullDetails.Tables[0].Rows[0]["period"].ToString();
-                        lblSaving.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["saving"].ToString()).ToString("#,##0.00");
-                        lblSCharge.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["service_charges"].ToString()).ToString("#,##0.00");
+                        lblSaving.Text = (dsGetFullDetails.Tables[0].Rows[0]["saving"].ToString()!="") ? Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["saving"].ToString()).ToString("#,##0.00") : "0.00";
+                        lblSCharge.Text = (dsGetFullDetails.Tables[0].Rows[0]["service_charges"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["service_charges"].ToString()).ToString("#,##0.00"):"0.00";
                         lblSDenders.Text = dsGetFullDetails.Tables[0].Rows[0]["dependers"].ToString();
-                        lblSIncome.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["spouse_income"].ToString()).ToString("#,##0.00");
+                        lblSIncome.Text = (dsGetFullDetails.Tables[0].Rows[0]["spouse_income"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["spouse_income"].ToString()).ToString("#,##0.00"):"0.00";
                         lblSName.Text = dsGetFullDetails.Tables[0].Rows[0]["spouse_name"].ToString();
                         lblSpouseNIC.Text = dsGetFullDetails.Tables[0].Rows[0]["spouse_nic"].ToString();
-                        lblMobileNo.Text = dsGetFullDetails.Tables[0].Rows[0]["mobileno"].ToString();
-                        lblWInstallment.Text = Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["monthly_instollment"].ToString()).ToString("#,##0.00");
+                        lblMobileNo.Text = dsGetFullDetails.Tables[0].Rows[0]["mobile_no"].ToString();
+                        lblWInstallment.Text = (dsGetFullDetails.Tables[0].Rows[0]["monthly_instollment"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["monthly_instollment"].ToString()).ToString("#,##0.00"):"0.00";
                         lblWelfareFee.Text = dsGetFullDetails.Tables[0].Rows[0]["walfare_fee"].ToString();
                         lblRegistrationFee.Text = dsGetFullDetails.Tables[0].Rows[0]["registration_fee"].ToString();
 

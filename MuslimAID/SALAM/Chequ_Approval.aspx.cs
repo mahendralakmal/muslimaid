@@ -79,14 +79,14 @@ namespace MuslimAID.SALAM
                 {
                     if (cmdSocietyNo.SelectedIndex == 0)
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,b.initial_name,l.loan_amount,l.interest_amount,l.period from salam_loan_details l, salam_basic_detail b where l.contra_code = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P';");
+                        dsLD = cls_Connection.getDataSet("select l.contra_code,b.initial_name,l.loan_amount,l.interest_amount,l.period from salam_loan_details l, salam_basic_detail b where l.ccode = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P';");
                     }
                     else
                     {
                         strBranch = cmbBranch.SelectedValue.ToString();
                         string strSoNo = cmdSocietyNo.SelectedItem.Value;
 
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,d.initial_name,l.loan_amount,l.interest_amount,l.period from salam_loan_details l,salam_basic_detail d where l.contra_code = d.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "';");
+                        dsLD = cls_Connection.getDataSet("select l.contra_code,d.initial_name,l.loan_amount,l.interest_amount,l.period from salam_loan_details l,salam_basic_detail d where l.ccode = d.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "';");
                     }
                 }
                 else
@@ -95,11 +95,11 @@ namespace MuslimAID.SALAM
                     string strSoNo = cmdSocietyNo.SelectedItem.Value;
                     if (cmdSocietyNo.SelectedIndex == 0)
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,b.initial_name,l.loan_amount,l.interest_amount,l.period from salam_loan_details l, salam_basic_detail b where l.contra_code = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and b.society_id = '" + strSoNo + "' and b.city_code = '" + strBranch + "';");
+                        dsLD = cls_Connection.getDataSet("select l.contra_code,b.initial_name,l.loan_amount,l.interest_amount,l.period from salam_loan_details l, salam_basic_detail b where l.ccode = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and b.society_id = '" + strSoNo + "' and b.city_code = '" + strBranch + "';");
                     }
                     else
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,d.initial_name,l.loan_amount,l.interest_amount,l.period from salam_loan_details l,salam_basic_detail d where l.contra_code = d.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "';");
+                        dsLD = cls_Connection.getDataSet("select l.contra_code,d.initial_name,l.loan_amount,l.interest_amount,l.period from salam_loan_details l,salam_basic_detail d where l.ccode = d.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "';");
                     }
                 }
 
