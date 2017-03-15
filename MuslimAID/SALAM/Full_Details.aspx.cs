@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 
-namespace MuslimAID.MURABHA
+namespace MuslimAID.SALAM
 {
     public partial class Full_Details : System.Web.UI.Page
     {
@@ -30,8 +30,7 @@ namespace MuslimAID.MURABHA
                 if (strCC != null)
                 {
                     //Get Full Detail
-                    DataSet dsGetFullDetails = cls_Connection.getDataSet("SELECT * FROM full_detail_murabaha WHERE contract_code = '" + strCC + "';");
-
+                    DataSet dsGetFullDetails = cls_Connection.getDataSet("SELECT * FROM full_detail_salam WHERE contract_code = '" + strCC + "';");
                     if (dsGetFullDetails.Tables[0].Rows.Count > 0)
                     {
                         lblAddress.Text = dsGetFullDetails.Tables[0].Rows[0]["p_address"].ToString();
@@ -49,7 +48,7 @@ namespace MuslimAID.MURABHA
                         lblCACode.Text = dsGetFullDetails.Tables[0].Rows[0]["ca_code"].ToString();
                         lblCC.Text = dsGetFullDetails.Tables[0].Rows[0]["contract_code"].ToString();
                         //lblDep.Text = dsGetFullDetails.Tables[0].Rows[0]["dependers"].ToString();
-                        lblEducation.Text = dsGetFullDetails.Tables[0].Rows[0]["basic_education"].ToString();
+                        lblEducation.Text = dsGetFullDetails.Tables[0].Rows[0]["education"].ToString();
                         lblFExpenses.Text = (dsGetFullDetails.Tables[0].Rows[0]["family_expenses"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["family_expenses"].ToString()).ToString("#,##0.00"):"0.00";
                         lblIAmount.Text = (dsGetFullDetails.Tables[0].Rows[0]["interest_amount"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["interest_amount"].ToString()).ToString("#,##0.00"):"0.00";
                         lblImmPrope.Text = (dsGetFullDetails.Tables[0].Rows[0]["immoveable_property"].ToString()!="")?Convert.ToDecimal(dsGetFullDetails.Tables[0].Rows[0]["immoveable_property"].ToString()).ToString("#,##0.00"):"0.00";

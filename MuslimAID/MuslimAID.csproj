@@ -450,6 +450,13 @@
     <Compile Include="SALAM\family_details.aspx.designer.cs">
       <DependentUpon>family_details.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SALAM\Full_Details.aspx.cs">
+      <DependentUpon>Full_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\Full_Details.aspx.designer.cs">
+      <DependentUpon>Full_Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SALAM\loan_approval.aspx.cs">
       <DependentUpon>loan_approval.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1130,6 +1137,7 @@
     <Content Include="SALAM\Debit_Note.aspx" />
     <Content Include="SALAM\family_appraisal.aspx" />
     <Content Include="SALAM\family_details.aspx" />
+    <Content Include="SALAM\Full_Details.aspx" />
     <Content Include="SALAM\loan_approval.aspx" />
     <Content Include="SALAM\Salam.Master" />
     <Content Include="Login.aspx" />
