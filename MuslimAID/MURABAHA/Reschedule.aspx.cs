@@ -475,14 +475,14 @@ namespace MuslimAID.MURABAHA
 
                 DataSet dtDataF = cls_Connection.getDataSet("select * from micro_family_details where contract_code = '" + lblConCode.Text + "';");
 
-                MySqlCommand cmdInsertF = new MySqlCommand("INSERT INTO micro_family_details(contract_code,spouse_nic,mobileno,spouse_name,occupation,no_of_fami_memb,education,dependers,spouse_income,other_fami_mem_income,moveable_property,immoveable_property,saving,create_user_nic,user_ip,date_time) VALUES(@contract_code,@spouse_nic,@mobileno,@spouse_name,@occupation,@no_of_fami_memb,@education,@dependers,@spouse_income,@other_fami_mem_income,@moveable_property,@immoveable_property,@saving,@create_user_nic,@user_ip,@date_time);");
+                MySqlCommand cmdInsertF = new MySqlCommand("INSERT INTO micro_family_details(contract_code,spouse_nic,spouse_contact_no,spouse_name,occupation,no_of_fami_memb,education,dependers,spouse_income,other_fami_mem_income,moveable_property,immoveable_property,saving,create_user_nic,user_ip,date_time) VALUES(@contract_code,@spouse_nic,@spouse_contact_no,@spouse_name,@occupation,@no_of_fami_memb,@education,@dependers,@spouse_income,@other_fami_mem_income,@moveable_property,@immoveable_property,@saving,@create_user_nic,@user_ip,@date_time);");
 
                 #region Get Values
                 strIp = Request.UserHostAddress;
                 string strCCode = strCC;
                 string strCACode = strCACodeNew;
                 string strSNIC = dtDataF.Tables[0].Rows[0]["spouse_nic"].ToString();
-                string strmobileno = dtDataF.Tables[0].Rows[0]["mobileno"].ToString();
+                string strmobileno = dtDataF.Tables[0].Rows[0]["spouse_contact_no"].ToString();
                 string strSPName = dtDataF.Tables[0].Rows[0]["spouse_name"].ToString();
                 string strOcc = dtDataF.Tables[0].Rows[0]["occupation"].ToString();
                 string strNFM = dtDataF.Tables[0].Rows[0]["no_of_fami_memb"].ToString();
@@ -499,7 +499,7 @@ namespace MuslimAID.MURABAHA
                 #region Declare Parameters
                 cmdInsertF.Parameters.Add("@contract_code", MySqlDbType.VarChar, 12);
                 cmdInsertF.Parameters.Add("@spouse_nic", MySqlDbType.VarChar, 10);
-                cmdInsertF.Parameters.Add("@mobileno", MySqlDbType.VarChar, 10);
+                cmdInsertF.Parameters.Add("@spouse_contact_no", MySqlDbType.VarChar, 10);
                 cmdInsertF.Parameters.Add("@spouse_name", MySqlDbType.VarChar, 100);
                 cmdInsertF.Parameters.Add("@occupation", MySqlDbType.VarChar, 45);
                 cmdInsertF.Parameters.Add("@no_of_fami_memb", MySqlDbType.VarChar, 2);
@@ -518,7 +518,7 @@ namespace MuslimAID.MURABAHA
                 #region Assign Values
                 cmdInsertF.Parameters["@contract_code"].Value = strCCode;
                 cmdInsertF.Parameters["@spouse_nic"].Value = strSNIC;
-                cmdInsertF.Parameters["@mobileno"].Value = strmobileno;
+                cmdInsertF.Parameters["@spouse_contact_no"].Value = strmobileno;
                 cmdInsertF.Parameters["@spouse_name"].Value = strSPName;
                 cmdInsertF.Parameters["@occupation"].Value = strOcc;
                 cmdInsertF.Parameters["@no_of_fami_memb"].Value = strNFM;
@@ -560,16 +560,16 @@ namespace MuslimAID.MURABAHA
                 string strBN = dtDataB.Tables[0].Rows[0]["business_name"].ToString();
                 string strDur = dtDataB.Tables[0].Rows[0]["busi_duration"].ToString();
                 string strBAdd = dtDataB.Tables[0].Rows[0]["busi_address"].ToString();
-                string strBIn = dtDataB.Tables[0].Rows[0]["busi_income"].ToString();
-                string strOIn = dtDataB.Tables[0].Rows[0]["other_income"].ToString();
-                string strTotalIn = dtDataB.Tables[0].Rows[0]["total_income"].ToString();
-                string strDcost = dtDataB.Tables[0].Rows[0]["direct_cost"].ToString();
-                string strICost = dtDataB.Tables[0].Rows[0]["indirect_cost"].ToString();
-                string strOEx = dtDataB.Tables[0].Rows[0]["other_expenses"].ToString();
-                string strTotalEx = dtDataB.Tables[0].Rows[0]["total_expenses"].ToString();
-                string strBPL = dtDataB.Tables[0].Rows[0]["profit_lost"].ToString();
-                string strFEx = dtDataB.Tables[0].Rows[0]["family_expenses"].ToString();
-                string strNet = dtDataB.Tables[0].Rows[0]["net_income"].ToString();
+                double strBIn = (dtDataB.Tables[0].Rows[0]["busi_income"].ToString() != "") ? Convert.ToDouble(dtDataB.Tables[0].Rows[0]["busi_income"].ToString()) : 0.00;
+                double strOIn = (dtDataB.Tables[0].Rows[0]["other_income"].ToString() != "") ? Convert.ToDouble(dtDataB.Tables[0].Rows[0]["other_income"].ToString()) : 0.00;
+                double strTotalIn = (dtDataB.Tables[0].Rows[0]["total_income"].ToString() != "") ? Convert.ToDouble(dtDataB.Tables[0].Rows[0]["total_income"].ToString()) : 0.00;
+                double strDcost = (dtDataB.Tables[0].Rows[0]["direct_cost"].ToString() != "") ? Convert.ToDouble(dtDataB.Tables[0].Rows[0]["direct_cost"].ToString()) : 0.00;
+                double strICost = (dtDataB.Tables[0].Rows[0]["indirect_cost"].ToString() != "") ? Convert.ToDouble(dtDataB.Tables[0].Rows[0]["indirect_cost"].ToString()) : 0.00;
+                double strOEx = (dtDataB.Tables[0].Rows[0]["other_expenses"].ToString() != "") ? Convert.ToDouble(dtDataB.Tables[0].Rows[0]["other_expenses"].ToString()) : 0.00;
+                double strTotalEx = (dtDataB.Tables[0].Rows[0]["total_expenses"].ToString() != "") ? Convert.ToDouble(dtDataB.Tables[0].Rows[0]["total_expenses"].ToString()) : 0.00;
+                double strBPL = (dtDataB.Tables[0].Rows[0]["profit_lost"].ToString() != "") ? Convert.ToDouble(dtDataB.Tables[0].Rows[0]["profit_lost"].ToString()) : 0.00;
+                double strFEx = (dtDataB.Tables[0].Rows[0]["family_expenses"].ToString() != "") ? Convert.ToDouble(dtDataB.Tables[0].Rows[0]["family_expenses"].ToString()) : 0.00;
+                double strNet = (dtDataB.Tables[0].Rows[0]["net_income"].ToString() != "") ? Convert.ToDouble(dtDataB.Tables[0].Rows[0]["net_income"].ToString()) : 0.00;
                 #endregion
 
                 #region DeclareValues
