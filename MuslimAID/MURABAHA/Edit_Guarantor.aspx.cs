@@ -135,132 +135,16 @@ namespace MuslimAID.MURABAHA
                 int i;
                 i = objDBTask.insertEditData(cmdUpdateGuar);
 
-                MySqlCommand cmdUpdateGuar1 = new MySqlCommand("Update micro_basic_detail set team_id = '" + strNewGID + "', promisers_id = '" + hidCACode.Value + "',promiser_id_2 = '" + strGur2 + "' where ca_code = '" + strGur1 + "';");
+                MySqlCommand cmdUpdateGuar1 = new MySqlCommand("Update micro_basic_detail set team_id = '" + strNewGID + "', promisers_id = '" + strGur1 + "',promiser_id_2 = '" + strGur2 + "' where contract_code = '" + strGur1 + "';");
 
                 int ii;
                 ii = objDBTask.insertEditData(cmdUpdateGuar1);
 
-                MySqlCommand cmdUpdateGuar2 = new MySqlCommand("Update micro_basic_detail set team_id = '" + strNewGID + "', promisers_id = '" + hidCACode.Value + "',promiser_id_2 = '" + strGur1 + "' where ca_code = '" + strGur2 + "';");
+                MySqlCommand cmdUpdateGuar2 = new MySqlCommand("Update micro_basic_detail set team_id = '" + strNewGID + "', promisers_id = '" + strGur1 + "',promiser_id_2 = '" + strGur2 + "' where contract_code = '" + strGur2 + "';");
 
                 int iii;
                 iii = objDBTask.insertEditData(cmdUpdateGuar2);
 
-                //Update Customer to POS/////////////////////////////////////////////////////////////////////
-                #region UpdateCustomertoPOS
-                try
-                {
-                    try
-                    {
-                        DataSet dsData = cls_Connection.getDataSet("select contract_code,initial_name,society_id,city_code,p_address,mobile_no,nic,root_id from micro_basic_detail where contract_code = '" + strCC + "';");
-                        if (dsData.Tables[0].Rows.Count > 0)
-                        {
-                            strCC1 = dsData.Tables[0].Rows[0]["contract_code"].ToString();
-                            strIniName = dsData.Tables[0].Rows[0]["initial_name"].ToString();
-                            strRootID = dsData.Tables[0].Rows[0]["root_id"].ToString();
-                            strCityCode = dsData.Tables[0].Rows[0]["city_code"].ToString();
-                            DataSet dsGetRoot = cls_Connection.getDataSet("select idrbf_exective_root from micro_exective_root where exe_id = '" + strRootID + "' and branch_code = '" + strCityCode + "' ;");
-                            if (dsGetRoot.Tables[0].Rows.Count > 0)
-                            {
-                                strRID = dsGetRoot.Tables[0].Rows[0][0].ToString();
-                            }
-                            strAddress = dsData.Tables[0].Rows[0]["p_address"].ToString();
-                            strMobNo = dsData.Tables[0].Rows[0]["mobile_no"].ToString();
-                            strNIC = dsData.Tables[0].Rows[0]["nic"].ToString();
-                            strSoNumber = dsData.Tables[0].Rows[0]["society_id"].ToString();
-                            DataSet dsGetCenter = cls_Connection.getDataSet("select center_name from center_details where idcenter_details = '" + strSoNumber + "' and city_code = '" + strCityCode + "' ;");
-                            if (dsGetCenter.Tables[0].Rows.Count > 0)
-                            {
-                                strSoNumber = strSoNumber + " " + dsGetCenter.Tables[0].Rows[0][0].ToString();
-                            }
-                        }
-                        string str = @"{api_key:'a8ea3ba312d2aa892d525230eec6655ddf865ae7abca08505bc9684bc802c3e3', customers:'[{""name"":""" + strIniName + @""",""customer_code"":""" + strCC1 + @""",""collector_code"":""" + strRID + @""",""address"":""" + strAddress + @""",""mobile"":""" + strMobNo + @""",""nic"":""" + strNIC + @""",""group_name"":""" + strNewGID + @""",""center_name"":""" + strSoNumber + @"""}]'}";
-
-                        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "updateCustGroup(" + str + ")", true);
-                    }
-                    catch (Exception)
-                    {
-                    }
-
-
-                    DataSet dsCA_code = cls_Connection.getDataSet("select contract_code from micro_basic_detail where ca_code = '" + strGur1 + "';");
-                    if (dsCA_code.Tables[0].Rows.Count > 0)
-                    {
-                        strCC = dsCA_code.Tables[0].Rows[0]["contract_code"].ToString();
-                    }
-                    try
-                    {
-                        DataSet dsData = cls_Connection.getDataSet("select contract_code,initial_name,society_id,city_code,p_address,mobile_no,nic,root_id from micro_basic_detail where contract_code = '" + strCC + "';");
-                        if (dsData.Tables[0].Rows.Count > 0)
-                        {
-                            strCC1 = dsData.Tables[0].Rows[0]["contract_code"].ToString();
-                            strIniName = dsData.Tables[0].Rows[0]["initial_name"].ToString();
-                            strRootID = dsData.Tables[0].Rows[0]["root_id"].ToString();
-                            strCityCode = dsData.Tables[0].Rows[0]["city_code"].ToString();
-                            DataSet dsGetRoot = cls_Connection.getDataSet("select idrbf_exective_root from micro_exective_root where exe_id = '" + strRootID + "' and branch_code = '" + strCityCode + "' ;");
-                            if (dsGetRoot.Tables[0].Rows.Count > 0)
-                            {
-                                strRID = dsGetRoot.Tables[0].Rows[0][0].ToString();
-                            }
-                            strAddress = dsData.Tables[0].Rows[0]["p_address"].ToString();
-                            strMobNo = dsData.Tables[0].Rows[0]["mobile_no"].ToString();
-                            strNIC = dsData.Tables[0].Rows[0]["nic"].ToString();
-                            strSoNumber = dsData.Tables[0].Rows[0]["society_id"].ToString();
-                            DataSet dsGetCenter = cls_Connection.getDataSet("select center_name from center_details where idcenter_details = '" + strSoNumber + "' and city_code = '" + strCityCode + "' ;");
-                            if (dsGetCenter.Tables[0].Rows.Count > 0)
-                            {
-                                strSoNumber = strSoNumber + " " + dsGetCenter.Tables[0].Rows[0][0].ToString();
-                            }
-                        }
-                        string str = @"{api_key:'a8ea3ba312d2aa892d525230eec6655ddf865ae7abca08505bc9684bc802c3e3', customers:'[{""name"":""" + strIniName + @""",""customer_code"":""" + strCC1 + @""",""collector_code"":""" + strRID + @""",""address"":""" + strAddress + @""",""mobile"":""" + strMobNo + @""",""nic"":""" + strNIC + @""",""group_name"":""" + strNewGID + @""",""center_name"":""" + strSoNumber + @"""}]'}";
-
-                        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "updateCustGroup(" + str + ")", true);
-                    }
-                    catch (Exception)
-                    {
-                    }
-
-                    DataSet dsCA_code1 = cls_Connection.getDataSet("select contract_code from micro_basic_detail where ca_code = '" + strGur2 + "';");
-                    if (dsCA_code1.Tables[0].Rows.Count > 0)
-                    {
-                        strCC = dsCA_code1.Tables[0].Rows[0]["contract_code"].ToString();
-                    }
-                    try
-                    {
-                        DataSet dsData = cls_Connection.getDataSet("select contract_code,initial_name,society_id,city_code,p_address,mobile_no,nic,root_id from micro_basic_detail where contract_code = '" + strCC + "';");
-                        if (dsData.Tables[0].Rows.Count > 0)
-                        {
-                            strCC1 = dsData.Tables[0].Rows[0]["contract_code"].ToString();
-                            strIniName = dsData.Tables[0].Rows[0]["initial_name"].ToString();
-                            strRootID = dsData.Tables[0].Rows[0]["root_id"].ToString();
-                            strCityCode = dsData.Tables[0].Rows[0]["city_code"].ToString();
-                            DataSet dsGetRoot = cls_Connection.getDataSet("select idrbf_exective_root from micro_exective_root where exe_id = '" + strRootID + "' and branch_code = '" + strCityCode + "' ;");
-                            if (dsGetRoot.Tables[0].Rows.Count > 0)
-                            {
-                                strRID = dsGetRoot.Tables[0].Rows[0][0].ToString();
-                            }
-                            strAddress = dsData.Tables[0].Rows[0]["p_address"].ToString();
-                            strMobNo = dsData.Tables[0].Rows[0]["mobile_no"].ToString();
-                            strNIC = dsData.Tables[0].Rows[0]["nic"].ToString();
-                            strSoNumber = dsData.Tables[0].Rows[0]["society_id"].ToString();
-                            DataSet dsGetCenter = cls_Connection.getDataSet("select center_name from center_details where idcenter_details = '" + strSoNumber + "' and city_code = '" + strCityCode + "' ;");
-                            if (dsGetCenter.Tables[0].Rows.Count > 0)
-                            {
-                                strSoNumber = strSoNumber + " " + dsGetCenter.Tables[0].Rows[0][0].ToString();
-                            }
-                        }
-                        string str = @"{api_key:'a8ea3ba312d2aa892d525230eec6655ddf865ae7abca08505bc9684bc802c3e3', customers:'[{""name"":""" + strIniName + @""",""customer_code"":""" + strCC1 + @""",""collector_code"":""" + strRID + @""",""address"":""" + strAddress + @""",""mobile"":""" + strMobNo + @""",""nic"":""" + strNIC + @""",""group_name"":""" + strNewGID + @""",""center_name"":""" + strSoNumber + @"""}]'}";
-
-                        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "updateCustGroup(" + str + ")", true);
-                    }
-                    catch (Exception)
-                    {
-                    }
-                }
-                catch (Exception)
-                {
-                }
-                #endregion
-                /////////////////////////////////////////////////////////////////////////////////////////////
                 Clean();
                 lblMsg.Text = "Updated Successfully";
             }

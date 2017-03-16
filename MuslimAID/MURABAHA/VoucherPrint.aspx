@@ -12,7 +12,7 @@
             //prtGrid.style.fontSize="12pt";
             prtGrid.style.fontFamily = "Calibri";
             var prtwin = window.open('', 'PrintGridViewData', 'left=0px,top=0px,right=0px,bottom=0px,width=672.755906px,height=340.15748px,tollbar=0,scrollbars=1,status=0,resizable=1');
-            //prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>Ventura Crystal Investments Ltd</div>");
+            //prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'> MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED </div>");
             prtwin.document.write(prtGrid.outerHTML);
             prtwin.document.close();
             prtwin.focus();
@@ -43,7 +43,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
     <div class="PageTitle"><h4>Voucher Printing</h4></div>
-    <div class="col-md-6 form-container">
+    <div class="col-md-9 form-container">
      <asp:Panel ID="pnlVoucherDetail" runat="server" Visible="true">
         <div class="form-group">
             <div class="col-md-5">Branch <span style="color: Red;">*</span></div>
@@ -122,7 +122,7 @@
       
     <asp:Panel ID="pnlVoucher" runat="server" Visible="true">
         <div align="center" id="prt">
-            <table id="tblVoucher" cellpadding="0" cellspacing="0" border="0px" width="804px"
+            <table id="tblVoucher" cellpadding="0" cellspacing="0" border="0px" width="804px" class="tblVoucher"
                 align="left">
                 <tr>
                     <td colspan="7" align="center">

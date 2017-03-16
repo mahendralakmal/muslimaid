@@ -30,8 +30,8 @@ namespace MuslimAID.MURABAHA
                     DataSet dsVoucher = GetPaymentVoucherDtl(contractcode);
                     if (dsVoucher.Tables[0].Rows.Count > 0)
                     {
-                        lblComName.Text = "Ventura Crystal Investments Ltd";
-                        lblAddress.Text = "No: 485/7A, Gunawardhana Mawatha, Wijerama, Gangodawila, Nugegoda.";
+                        lblComName.Text = " MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED ";
+                        lblAddress.Text = "No: 22, School Lane, Nawala Road, Rajagiriya, Sri Lanka.";
                         lblTitle.Text = "Payment Voucher";
 
                         lblPaidTo.Text = dsVoucher.Tables[0].Rows[0]["CusName"].ToString() + " - " + dsVoucher.Tables[0].Rows[0]["ca_code"].ToString();

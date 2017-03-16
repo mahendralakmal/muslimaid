@@ -13,7 +13,11 @@ body {
 	background: #ECECEC;
 	font: 13px/1.7em 'Open Sans';
 }  
-
+.tblVoucher {
+    background-color: #fff;
+    border: 1px solid silver;
+    padding: 10px;
+}
 p { 
 	font: 13px/1.7em 'Open Sans'; 	
 }
