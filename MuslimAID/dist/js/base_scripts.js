@@ -1,6 +1,4 @@
-﻿
-
-/* ~~ Murabaha basic details page ~~ */
+﻿/* ~~ Murabaha basic details page ~~ */
 $(function() {
     $('#DobCDB').datetimepicker({
         format: 'DD/MM/YYYY',
