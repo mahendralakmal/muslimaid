@@ -37,7 +37,6 @@ namespace MuslimAID.MURABHA
                         if (strCC != null && strCAC != null)
                         {
                             txtCC.Text = strCC;
-                            txtCACode.Text = strCAC;
                             txtCC.Enabled = false;
                             btnSubmit.Enabled = true;
                         }
@@ -61,10 +60,6 @@ namespace MuslimAID.MURABHA
             if (txtCC.Text.Trim() == "")
             {
                 lblMsg.Text = "Please Enter Facility Code";
-            }
-            else if (txtCACode.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please Enter CA Code";
             }
             else if (cmbPeriod.Text.Trim() == "")
             {
@@ -108,14 +103,13 @@ namespace MuslimAID.MURABHA
             //}
             else
             {
-                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_business_details(contract_code,business_name,busi_duration,busi_address,busi_population,busi_nature,key_person,no_of_ppl,br_no,contact_no_ofc,busi_income,sales_credit,other_income,total_income,purchase_cash,direct_cost,rent,water_elec_tele,wages,fla_rent,travel,maintenance,total_expenses,profit_lost,create_user_nic,user_ip,date_time)VALUES(@contract_code,@business_name,@busi_duration,@busi_address,@busi_population,@busi_nature,@key_person,@no_of_ppl,@br_no,@contact_no_ofc,@busi_income,@sales_credit,other_income,@total_income,@purchase_cash,@direct_cost,@rent,@water_elec_tele,@wages,@fla_rent,@travel,@maintenance,@total_expenses,@profit_lost,@create_user_nic,@user_ip,@date_time)");
+                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_business_details(contract_code,business_name,busi_duration,busi_address,busi_population,busi_nature,key_person,no_of_ppl,br_no,contact_no_ofc,busi_income,sales_credit,other_income,total_income,purchase_cash,direct_cost,grossProfit,rent,water_elec_tele,wages,fla_rent,travel,maintenance,total_expenses,profit_lost,create_user_nic,user_ip,date_time)VALUES(@contract_code,@business_name,@busi_duration,@busi_address,@busi_population,@busi_nature,@key_person,@no_of_ppl,@br_no,@contact_no_ofc,@busi_income,@sales_credit,other_income,@total_income,@purchase_cash,@direct_cost,@grossProfit,@rent,@water_elec_tele,@wages,@fla_rent,@travel,@maintenance,@total_expenses,@profit_lost,@create_user_nic,@user_ip,@date_time)");
 
                 #region GetValues
                 string strIp = Request.UserHostAddress;
                 string strloginID = Session["NIC"].ToString();
                 string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string strCC = txtCC.Text.Trim();
-                string strCA = txtCACode.Text.Trim();
                 string strBN = txtBuss.Text.Trim();
                 string strDur = cmbPeriod.SelectedValue;
                 string strBAdd = txtBisAddress.Text.Trim();
@@ -134,6 +128,8 @@ namespace MuslimAID.MURABHA
                 string strDcost = txtDCost.Text.Trim();
                 string strICost = txtICost.Text.Trim();
                 string strToEx = txtTotPurchase.Text.Trim();
+
+                string strGrossP = txtGrossProfit.Text.Trim();
 
                 string strRent = txtRent.Text.Trim();
                 string strWet = txtWET.Text.Trim();
@@ -164,6 +160,7 @@ namespace MuslimAID.MURABHA
                 cmdInsert.Parameters.AddWithValue("@purchase_cash", (strDcost != "") ? Convert.ToDecimal(strDcost) : 00);
                 cmdInsert.Parameters.AddWithValue("@purchase_credit", (strICost != "") ? Convert.ToDecimal(strICost) : 00);
                 cmdInsert.Parameters.AddWithValue("@direct_cost", (strToEx != "") ? Convert.ToDecimal(strToEx) : 00);
+                cmdInsert.Parameters.AddWithValue("@grossProfit", (strGrossP != "") ? Convert.ToDecimal(strGrossP) : 00);
                 cmdInsert.Parameters.AddWithValue("@rent", (strRent != "") ? Convert.ToDecimal(strRent) : 00);
                 cmdInsert.Parameters.AddWithValue("@water_elec_tele", (strWet != "") ? Convert.ToDecimal(strWet) : 00);
                 cmdInsert.Parameters.AddWithValue("@wages", (strWages != "") ? Convert.ToDecimal(strWages) : 00);
@@ -176,36 +173,6 @@ namespace MuslimAID.MURABHA
                 cmdInsert.Parameters.AddWithValue("@user_ip", strIp);
                 cmdInsert.Parameters.AddWithValue("@date_time", strDateTime);
                 #endregion
-                #region AssignValues
-                //cmdInsert.Parameters["@contract_code"].Value = strCC;
-                //cmdInsert.Parameters["@business_name"].Value = strBN;
-                //cmdInsert.Parameters["@busi_duration"].Value = strDur;
-                //cmdInsert.Parameters["@busi_address"].Value = strBAdd;
-                //cmdInsert.Parameters["@busi_population"].Value = strBPopu;
-                //cmdInsert.Parameters["@busi_nature"].Value = strBNature;
-                //cmdInsert.Parameters["@key_person"].Value = strKPerson;
-                //cmdInsert.Parameters["@no_of_ppl"].Value = strNoOfPpl;
-                //cmdInsert.Parameters["@br_no"].Value = strBrNo;
-                //cmdInsert.Parameters["@contact_no_ofc"].Value = strOfcContactNo;
-                //cmdInsert.Parameters["@busi_income"].Value = strBIn;
-                //cmdInsert.Parameters["@sales_credit"].Value = strCIn;
-                //cmdInsert.Parameters["@other_income"].Value = strOIn;
-                //cmdInsert.Parameters["@total_income"].Value = strTotalIn;
-                //cmdInsert.Parameters["@purchase_cash"].Value = strDcost;
-                //cmdInsert.Parameters["@purchase_credit"].Value = strICost;
-                //cmdInsert.Parameters["@direct_cost"].Value = strToEx;
-                //cmdInsert.Parameters["@rent"].Value = strRent;
-                //cmdInsert.Parameters["@water_elec_tele"].Value = strWet;
-                //cmdInsert.Parameters["@wages"].Value = strWages;
-                //cmdInsert.Parameters["@fla_rent"].Value = strFla;
-                //cmdInsert.Parameters["@travel"].Value = strTravelTrans;
-                //cmdInsert.Parameters["@maintenance"].Value = strRepairMain;
-                //cmdInsert.Parameters["@total_expenses"].Value = strTotalEx;
-                //cmdInsert.Parameters["@profit_lost"].Value = strBPL;
-                //cmdInsert.Parameters["@create_user_nic"].Value = strloginID;
-                //cmdInsert.Parameters["@user_ip"].Value = strIp;
-                //cmdInsert.Parameters["@date_time"].Value = strDateTime;
-                #endregion
 
                 try
                 {
@@ -213,7 +180,7 @@ namespace MuslimAID.MURABHA
                     if (i == 1)
                     {
                         //lblMsg.Text = "Success";
-                        Response.Redirect("family_appraisal.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
+                        Response.Redirect("family_appraisal.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCAC);
                         //Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
                         //Response.Redirect("loan_details.aspx?CC=" + strCC + "&CA=" + strCA + "");
                     }
@@ -307,7 +274,6 @@ namespace MuslimAID.MURABHA
             string strloginID = Session["NIC"].ToString();
             string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             string strCC = txtCC.Text.Trim();
-            string strCA = txtCACode.Text.Trim();
             string strBN = txtBuss.Text.Trim();
             string strDur = cmbPeriod.SelectedValue;
             string strBAdd = txtBisAddress.Text.Trim();
@@ -327,6 +293,8 @@ namespace MuslimAID.MURABHA
             string strICost = txtICost.Text.Trim();
             string strToEx = txtTotPurchase.Text.Trim();
 
+            string strGrossP = hidGross.Value.Trim();
+
             string strRent = txtRent.Text.Trim();
             string strWet = txtWET.Text.Trim();
             string strWages = txtWages.Text.Trim();
@@ -338,7 +306,7 @@ namespace MuslimAID.MURABHA
             string strBPL = txtPAndL.Text.Trim();
             #endregion
 
-            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_business_details SET business_name ='" + strBN + "',busi_duration ='" + strDur + "',busi_address ='" + strBAdd + "'@busi_income'" + strBIn + "',@busi_population'" + strBPopu + "',@busi_nature='" + strBNature + "',@key_person'" + strKPerson + "',@no_of_ppl'" + strNoOfPpl + "',@br_no='" + strBrNo + "',@contact_no_ofc='" + strOfcContactNo + "',@sales_credit='" + strCIn + "',other_income='" + strOIn + "',@total_income='" + strTotalIn + "',@purchase_cash='" + strDcost + "',@purchase_credit='" + strICost + "',@direct_cost='" + strToEx + "',@rent='" + strRent + "',@water_elec_tele='" + strWet + "',@wages='" + strWages + "',@fla_rent='" + strFla + "',@travel='" + strTravelTrans + "',@maintenance='" + strRepairMain + "',@total_expenses='" + strTotalEx + "',@profit_lost='" + strBPL + "',@create_user_nic='" + strloginID + ",user_ip ='" + strIp + "',date_time ='" + strDateTime + "' WHERE contract_code = '" + strCC + "';");
+            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_business_details SET business_name ='" + strBN + "',busi_duration ='" + strDur + "',busi_address ='" + strBAdd + "',busi_income='" + strBIn + "',busi_population='" + strBPopu + "',busi_nature='" + strBNature + "',key_person='" + strKPerson + "',no_of_ppl='" + strNoOfPpl + "',br_no='" + strBrNo + "',contact_no_ofc='" + strOfcContactNo + "',sales_credit='" + strCIn + "',other_income='" + strOIn + "',total_income='" + strTotalIn + "',purchase_cash='" + strDcost + "',indirect_cost='" + strICost + "',direct_cost='" + strToEx + "', grossProfit='" + strGrossP + "',rent='" + strRent + "',water_elec_tele='" + strWet + "',wages='" + strWages + "',fla_rent='" + strFla + "',travel='" + strTravelTrans + "',maintenance='" + strRepairMain + "',total_expenses='" + strTotalEx + "',profit_lost='" + strBPL + "',create_user_nic='" + strloginID + "',user_ip ='" + strIp + "',date_time ='" + strDateTime + "' WHERE contract_code = '" + strCC + "';");
 
             try
             {
@@ -363,7 +331,6 @@ namespace MuslimAID.MURABHA
             txtBIncome.Text = "";
             txtBisAddress.Text = "";
             txtBuss.Text = "";
-            txtCACode.Text = "";
             txtCC.Text = "";
             txtDCost.Text = "";
             //txtFExpenses.Text = "";
@@ -473,6 +440,52 @@ namespace MuslimAID.MURABHA
             string strTEx = txtTExpenses.Text == "" ? "0" : txtTExpenses.Text;
             string strTPu = txtTotPurchase.Text == "" ? "0" : txtTotPurchase.Text;
             txtPAndL.Text = (Convert.ToDecimal(strTin) - (Convert.ToDecimal(strTEx) + Convert.ToDecimal(strTPu))).ToString();
+        }
+
+        protected void txtCC_TextChanged(object sender, EventArgs e)
+        {
+
+            lblMsg.Text = "";
+            if (txtCC.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please Enter Contract Code";
+            }
+            else
+            {
+                string strCCode = txtCC.Text.Trim();
+                DataSet dsGetDetail = cls_Connection.getDataSet("select * from micro_business_details where contract_code = '" + strCCode + "';");
+                if (dsGetDetail.Tables[0].Rows.Count > 0)
+                {
+                    txtBuss.Text = dsGetDetail.Tables[0].Rows[0]["business_name"].ToString();
+                    cmbPeriod.SelectedValue = dsGetDetail.Tables[0].Rows[0]["busi_duration"].ToString();
+                    txtBisAddress.Text = dsGetDetail.Tables[0].Rows[0]["busi_address"].ToString();
+                    cmbBPopulation.SelectedValue = dsGetDetail.Tables[0].Rows[0]["busi_population"].ToString();
+                    txtBNature.Text = dsGetDetail.Tables[0].Rows[0]["busi_nature"].ToString();
+                    cmbKeyPerson.SelectedValue = dsGetDetail.Tables[0].Rows[0]["key_person"].ToString();
+                    txtNoOfPpl.Text = dsGetDetail.Tables[0].Rows[0]["no_of_ppl"].ToString();
+                    txtBRNo.Text = dsGetDetail.Tables[0].Rows[0]["br_no"].ToString();
+                    txtOffContact.Text = dsGetDetail.Tables[0].Rows[0]["contact_no_ofc"].ToString();
+                    txtBIncome.Text = dsGetDetail.Tables[0].Rows[0]["busi_income"].ToString();
+                    txtCrdtIncome.Text = dsGetDetail.Tables[0].Rows[0]["sales_credit"].ToString();
+                    txtOIncome.Text = dsGetDetail.Tables[0].Rows[0]["other_income"].ToString();
+                    txtTotalIncome.Text = dsGetDetail.Tables[0].Rows[0]["total_income"].ToString();
+                    txtDCost.Text = dsGetDetail.Tables[0].Rows[0]["purchase_cash"].ToString();
+                    txtICost.Text = dsGetDetail.Tables[0].Rows[0]["purchase_credit"].ToString();
+                    txtTotPurchase.Text = dsGetDetail.Tables[0].Rows[0]["total_expenses"].ToString();
+                    txtGrossProfit.Text = dsGetDetail.Tables[0].Rows[0]["grossProfit"].ToString();
+                    txtRent.Text = dsGetDetail.Tables[0].Rows[0]["rent"].ToString();
+                    txtWET.Text = dsGetDetail.Tables[0].Rows[0]["water_elec_tele"].ToString();
+                    txtWages.Text = dsGetDetail.Tables[0].Rows[0]["wages"].ToString();
+                    txtFLA.Text = dsGetDetail.Tables[0].Rows[0]["fla_rent"].ToString();
+                    txtTravelTrans.Text = dsGetDetail.Tables[0].Rows[0]["travel"].ToString();
+                    txtRepairMain.Text = dsGetDetail.Tables[0].Rows[0]["maintenance"].ToString();
+                    txtTExpenses.Text = dsGetDetail.Tables[0].Rows[0]["total_expenses"].ToString();
+                    txtPAndL.Text = dsGetDetail.Tables[0].Rows[0]["profit_lost"].ToString();
+                    
+                    btnSubmit.Enabled = false;
+                    btnUpdate.Enabled = true;
+                }
+            }
         }
     }
 }

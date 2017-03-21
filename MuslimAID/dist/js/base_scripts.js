@@ -44,6 +44,7 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
     function calcGP(){
         gp = totIn - totPu;
         $(".txtGrossProfit").val(gp);
+        $("#ctl00_ContentPlaceHolder1_hidGross").val(gp);
     }
     
     function calcBEx() {

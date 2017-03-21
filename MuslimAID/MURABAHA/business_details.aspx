@@ -10,14 +10,12 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Facility Code<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" AutoPostBack="false" Enabled="false" runat="server" TabIndex="1" ></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtCC" CssClass="form-control" 
+                        MaxLength="15" AutoPostBack="true" Enabled="false" runat="server" TabIndex="1" 
+                        ontextchanged="txtCC_TextChanged" ></asp:TextBox></div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-5">C. Applicant Code<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtCACode" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2"></asp:TextBox></div>
-            </div>
+        <div class="col-md-12">
         </div>
         <div class="col-md-6">
             <div class="form-group">
@@ -92,7 +90,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Business Registration No (if available)<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Business Registration No (if available)</div>
                 <div class="col-md-7"><asp:TextBox ID="txtBRNo" CssClass="form-control" runat="server" TabIndex="10" AutoPostBack="false"></asp:TextBox></div>
             </div>
         </div>
@@ -168,7 +166,7 @@
                 <div class="col-md-5"><strong>Gross Profit</strong><span style="color:Red;">*</span></div>
                 <div class="col-md-7">
                     <asp:TextBox TabIndex="18" CssClass="form-control txtGrossProfit" ID="txtGrossProfit" Enabled="false" runat="server"></asp:TextBox>
-                    <%--<asp:Label CssClass="form-control" ID="lblTotPurchase" runat="server"></asp:Label>--%>
+                    <asp:HiddenField ID="hidGross" runat="server" />
                 </div>
             </div>
         </div>
