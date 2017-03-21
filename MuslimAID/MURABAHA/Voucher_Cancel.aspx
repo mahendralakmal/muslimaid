@@ -44,7 +44,7 @@
                 <td colspan="3" height="10px"></td>
             </tr>
             <tr>
-                <td>Contract Code</td>
+                <td>Facility Code</td>
                 <td>:</td>
                 <td>
                     <asp:Label ID="lblContractCode" runat="server"></asp:Label> 

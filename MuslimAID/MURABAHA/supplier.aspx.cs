@@ -126,7 +126,8 @@ namespace MuslimAID.MURABAHA
 
                         if (i > 0)
                         {
-                            Response.Redirect("loan_details.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
+                            clean();
+                            lblMsg.Text = "Successfull";
                         }
                         else
                         {
@@ -143,6 +144,19 @@ namespace MuslimAID.MURABAHA
             {
 
             }
+        }
+
+        protected void clean() {
+            txtAccountName.Text = "";
+            txtAccountNumber.Text = "";
+            txtBisAddress.Text = "";
+            txtCACode.Text = "";
+            txtCC.Text = "";
+            txtSupplierMobile.Text = "";
+            txtSupplierName.Text = "";
+            txtSupplierTelephone.Text = "";
+            cmbBnkBranch.SelectedIndex = 0;
+            cmbSupplierBank.SelectedIndex = 0;
         }
     }
 }

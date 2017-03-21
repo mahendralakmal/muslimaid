@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="col-md-4 form-group row">
-            <div class="col-md-5">Contract Code</div>
+            <div class="col-md-5">Facility Code</div>
             <div class="col-md-7">
                 <asp:TextBox ID="txtContraCode" CssClass="form-control" runat="server" MaxLength="15"></asp:TextBox>
             </div>
@@ -157,7 +157,7 @@
                                             </a>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <%--<asp:BoundField DataField="contra_code" ItemStyle-VerticalAlign="Top" HeaderText="Contract Code" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />--%>
+                                    <%--<asp:BoundField DataField="contra_code" ItemStyle-VerticalAlign="Top" HeaderText="Facility Code" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />--%>
                                     <asp:BoundField DataField="NIC" ItemStyle-VerticalAlign="Top" HeaderText="Customer Code"
                                         HeaderStyle-Width="80px" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"
                                         HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White"

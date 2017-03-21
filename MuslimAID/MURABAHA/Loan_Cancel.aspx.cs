@@ -151,7 +151,7 @@ namespace MuslimAID.MURABAHA
         {
             if (txtContractCode.Text.Trim() == "")
             {
-                lblMsg.Text = "Please enter Contract Code.";
+                lblMsg.Text = "Please enter Facility Code.";
             }
             else if (txtDescription.Text.Trim() == "")
             {
@@ -173,7 +173,7 @@ namespace MuslimAID.MURABAHA
             else
             {
                 ClearT();
-                lblMsg.Text = "Please enter Contract Code.";
+                lblMsg.Text = "Please enter Facility Code.";
             }
         }
     }

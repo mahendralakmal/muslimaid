@@ -59,7 +59,7 @@ namespace MuslimAID.MURABHA
             try
             {
                 if (txtCC.Text.Trim() == "")
-                    lblMsg.Text = "Contract Code cannot be empty";
+                    lblMsg.Text = "Facility Code cannot be empty";
                 else if (txtLDIntRate.Text.Trim() == "")
                     lblMsg.Text = "Please enter Facility Amount/ Value";
                 else if (txtNameOrg1.Text.Trim() != "")
@@ -127,8 +127,7 @@ namespace MuslimAID.MURABHA
                         int i = objDBCon.insertEditData(cmdInsert);
                         if (i > 0)
                         {
-                            clean();
-                            lblMsg.Text = "Successfull";
+                            Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim() + "");
                         }
                     }
                     catch (Exception ex)

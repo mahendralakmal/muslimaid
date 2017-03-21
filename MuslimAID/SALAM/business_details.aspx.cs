@@ -60,7 +60,7 @@ namespace MuslimAID.SALAM
             lblMsg.Text = "";
             if (txtCC.Text.Trim() == "")
             {
-                lblMsg.Text = "Please Enter Contract Code";
+                lblMsg.Text = "Please Enter Facility Code";
             }
             else if (txtCACode.Text.Trim() == "")
             {
@@ -264,7 +264,7 @@ namespace MuslimAID.SALAM
             lblMsg.Text = "";
             if (txtCC.Text.Trim() == "")
             {
-                lblMsg.Text = "Please Enter Contract Code";
+                lblMsg.Text = "Please Enter Facility Code";
             }
             else if (cmbPeriod.Text.Trim() == "")
             {
@@ -324,7 +324,7 @@ namespace MuslimAID.SALAM
                     {
                         btnSubmit.Enabled = false;
                         btnUpdate.Enabled = false;
-                        lblMsg.Text = "Invalid Contract Code.";
+                        lblMsg.Text = "Invalid Facility Code.";
                     }
                 }
             }

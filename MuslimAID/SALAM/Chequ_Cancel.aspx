@@ -11,7 +11,7 @@
                         TabIndex="0" ontextchanged="txtRNo_TextChanged" ></asp:TextBox></div>
             </div>
             <div class="form-group">
-                <div class="col-md-5">Contract Code</div>
+                <div class="col-md-5">Facility Code</div>
                 <div class="col-md-7"><asp:Label ID="lblContractCode" runat="server"></asp:Label></div>
             </div>
             <div class="form-group">

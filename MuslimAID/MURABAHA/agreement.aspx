@@ -15,7 +15,7 @@
         <div class="PageTitle"><h4>MF Application - Agreement</h4></div>
         <div class="col-md-6 form-container">
             <div class="form-group">
-                <div class="col-md-5">Contract Code</div>
+                <div class="col-md-5">Facility Code</div>
                 <div class="col-md-7"><asp:TextBox ID="txtCC" runat="server" AutoPostBack="true" MaxLength="12" cssCl CssClass="form-control"></asp:TextBox></div>
             </div>
             <div class="form-group">

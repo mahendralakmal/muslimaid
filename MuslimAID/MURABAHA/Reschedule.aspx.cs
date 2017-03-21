@@ -96,12 +96,12 @@ namespace MuslimAID.MURABAHA
                     }
                     else
                     {
-                        lblMsg.Text = "No records found for your search Contract Code, Not activate or not approved. Please try again.";
+                        lblMsg.Text = "No records found for your search Facility Code, Not activate or not approved. Please try again.";
                     }
                 }
                 else
                 {
-                    lblMsg.Text = "Please enter Contract Code.";
+                    lblMsg.Text = "Please enter Facility Code.";
                 }
             }
             catch (Exception)
@@ -233,7 +233,7 @@ namespace MuslimAID.MURABAHA
                 string strloginID = Session["NIC"].ToString();
 
                 DataSet dtData = cls_Connection.getDataSet("select * from micro_basic_detail where contract_code = '" + lblConCode.Text + "';");
-                //Create Contract Code
+                //Create Facility Code
                 string Branch = dtData.Tables[0].Rows[0]["city_code"].ToString();
                 ccsetup(Branch);
                 //CO/MF/000001/1

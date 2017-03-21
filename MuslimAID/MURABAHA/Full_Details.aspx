@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td class="sub_title">
-                    MF Full Details - (Contract Code <asp:Label ID="lblCC" runat="server"></asp:Label> / Capital Aplicant Code <asp:Label ID="lblCACode" runat="server"></asp:Label>)
+                    MF Full Details - (Facility Code <asp:Label ID="lblCC" runat="server"></asp:Label> / Capital Aplicant Code <asp:Label ID="lblCACode" runat="server"></asp:Label>)
                 </td>
             </tr>
             <tr>

@@ -47,7 +47,7 @@
                                             <%#Container.DataItemIndex+1%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="contract_code" ItemStyle-VerticalAlign="Top" HeaderText="Contract Code"
+                                    <asp:BoundField DataField="contract_code" ItemStyle-VerticalAlign="Top" HeaderText="Facility Code"
                                         HeaderStyle-Width="90px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
                                         HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                                     <asp:BoundField DataField="ca_code" ItemStyle-VerticalAlign="Top" HeaderText="CA Code"

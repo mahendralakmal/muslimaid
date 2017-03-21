@@ -35,9 +35,18 @@ namespace MuslimAID.MURABAHA
                             txtCC.Text = strCC;
                             txtCACode.Text = strCAC;
                             txtCC.Enabled = false;
+
+                            //Assign Net profit from Business detals form to Net Income from Business 
+                            DataSet dsBranch;
+                            MySqlCommand cmdBranch = new MySqlCommand("SELECT profit_lost FROM salam_business_details WHERE contract_code ='" + strCC + "';");
+                            dsBranch = objDBCon.selectData(cmdBranch);
+
+                            txtNetBusinesIn.Text = dsBranch.Tables[0].Rows[0][0].ToString();
+
                         }
                         else
                         {
+                            txtNetBusinesIn.Text = "90000";
                             txtCC.Enabled = true;
                         }
                     }
@@ -58,7 +67,7 @@ namespace MuslimAID.MURABAHA
             {
                 if (txtCC.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please Enter Contract Code";
+                    lblMsg.Text = "Please Enter Facility Code";
                 }
                 else if (txtCACode.Text.Trim() == "")
                 {
@@ -133,7 +142,7 @@ namespace MuslimAID.MURABAHA
 
                         if (i > 0)
                         {
-                            Response.Redirect("business_details.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim() + "");
+                            Response.Redirect("loan_details.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim() + "");
                         }
                         else
                         {

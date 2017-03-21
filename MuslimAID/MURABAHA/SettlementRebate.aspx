@@ -8,7 +8,7 @@
     <div class="PageTitle"><h4>Settlement & Rebate</h4></div>
     <div class="form-container row col-lg-8 col-md-8 ">
         <div class="col-md-6 form-group">
-            <div class="col-md-5">Contract Code</div>
+            <div class="col-md-5">Facility Code</div>
             <div class="col-md-7"><asp:TextBox ID="txtCC" runat="server" AutoPostBack="true" CssClass="form-control"
                         ontextchanged="txtCC_TextChanged"></asp:TextBox></div>
         </div>

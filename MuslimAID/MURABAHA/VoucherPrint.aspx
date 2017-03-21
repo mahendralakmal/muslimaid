@@ -68,7 +68,7 @@
                                                     <%#Container.DataItemIndex+1%>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Contract Code" ItemStyle-HorizontalAlign="Center"
+                                            <asp:TemplateField HeaderText="Facility Code" ItemStyle-HorizontalAlign="Center"
                                                 HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">
                                                 <ItemTemplate>
                                                     <a ref="#" onclick="javascript:w=window.open(&#039;Full_Details.aspx?ConCode=<%#Eval("contra_code")%>&#039;,&#039;popup&#039;,&#039;target=_blank,width=800px,height=500px,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=100&#039;);w.focus();return false;"
@@ -102,7 +102,7 @@
         </div>   
          
         <div class="form-group">
-            <div class="col-md-5">Contract Code</div>
+            <div class="col-md-5">Facility Code</div>
             <div class="col-md-7">
                 <asp:TextBox ID="txtContraCode" CssClass="form-control" runat="server" MaxLength="15"></asp:TextBox>
             </div>

@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace MuslimAID.MURABHA
 {
@@ -330,7 +331,7 @@ namespace MuslimAID.MURABHA
                 {
                     string strloginID = Session["NIC"].ToString();
 
-                    //Create Contract Code
+                    //Create Facility Code
                     ccsetup();
                     //CO/MF/000001/1
                     string NIC = txtNIC.Text.Trim();
@@ -588,7 +589,7 @@ namespace MuslimAID.MURABHA
                 {
                     string strloginID = Session["NIC"].ToString();
 
-                    //Create Contract Code
+                    //Create Facility Code
                     //ccsetup();
 
                     //Create Capital Applicant Code
@@ -631,7 +632,7 @@ namespace MuslimAID.MURABHA
                     strOccupation = txtOccupation.Text.Trim();
                     #endregion
 
-                    MySqlCommand cmdInsert = new MySqlCommand("UPDATE micro_basic_detail SET nic = '" + strNIC + "',city_code = '" + strCityCode + "',society_id = '" + strSoNumber + "',province = '" + strProvince + "',gs_ward = '" + strGSWard + "',full_name = '" + strFullName + "',initial_name = '" + strIniName + "',other_name='" + strOName + "',marital_status='" + strMaStatus + "',education='" + strEducation + "',land_no='" + strTNumber + "',mobile_no='" + strMobNo + "',p_address='" + strAddress + "',client_id='" + strClientID + "',inspection_date='" + strInspDate + "',village='" + strVillage + "',root_id='" + strRootID + "'nic_issue_date='"+strNICIssuedDate+"',dob='"+strDOB+"',gender='"+strGender+"',r_address='"+strRAddress+"',income_source='"+strOccupation+"' WHERE idmicro_basic_detail = '" + hf3.Value + "';");
+                    MySqlCommand cmdInsert = new MySqlCommand("UPDATE micro_basic_detail SET nic = '" + strNIC + "',city_code = '" + strCityCode + "',society_id = '" + strSoNumber + "',province = '" + strProvince + "',gs_ward = '" + strGSWard + "',full_name = '" + strFullName + "',initial_name = '" + strIniName + "',other_name='" + strOName + "',marital_status='" + strMaStatus + "',education='" + strEducation + "',land_no='" + strTNumber + "',mobile_no='" + strMobNo + "',p_address='" + strAddress + "',client_id='" + strClientID + "',inspection_date='" + strInspDate + "',village='" + strVillage + "',root_id='" + strRootID + "',nic_issue_date='"+strNICIssuedDate+"',dob='"+strDOB+"',gender='"+strGender+"',r_address='"+strRAddress+"',income_source='"+strOccupation+"' WHERE idmicro_basic_detail = '" + hf3.Value + "';");
 
                     try
                     {
@@ -762,17 +763,24 @@ namespace MuslimAID.MURABHA
                             }
                             txtGSWard.Text = dsGetExsiNIC.Tables[0].Rows[0]["gs_ward"].ToString();
                             txtFullName.Text = dsGetExsiNIC.Tables[0].Rows[0]["full_name"].ToString();
+                            txtGivenName.Text = dsGetExsiNIC.Tables[0].Rows[0]["given_name"].ToString();
                             txtInwName.Text = dsGetExsiNIC.Tables[0].Rows[0]["initial_name"].ToString();
                             txtOtherName.Text = dsGetExsiNIC.Tables[0].Rows[0]["other_name"].ToString();
                             rdoMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
+                            txtDOB.Text = dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString();
+
+                            DateTime now = DateTime.UtcNow.Date;
+                            DateTime dt = DateTime.Parse(dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString(), new CultureInfo("en-CA"));
+                            int age = now.Year - dt.Year;
+
+                            lblAge.Text = age.ToString();
                             rdoFeMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
-                            //rdoMarried.Checked = dsGetExsiNIC.Tables[0].Rows[0]["marital_status"].ToString() == "M" ? true : false;
-                            //rdoSingle.Checked = dsGetExsiNIC.Tables[0].Rows[0]["marital_status"].ToString() != "M" ? true : false;
                             cmbEducation.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["education"].ToString();
                             txtTele.Text = dsGetExsiNIC.Tables[0].Rows[0]["land_no"].ToString();
                             txtMobileNo.Text = dsGetExsiNIC.Tables[0].Rows[0]["mobile_no"].ToString();
                             txtAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["p_address"].ToString();
-                            //txtGroupID.Text = dsGetExsiNIC.Tables[0].Rows[0]["team_id"].ToString();
+                            txtResiAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["r_address"].ToString();
+                            txtOccupation.Text = dsGetExsiNIC.Tables[0].Rows[0]["income_source"].ToString();
                             try
                             {
                                 cmbSocietyName.Text = dsGetExsiNIC.Tables[0].Rows[0]["center_name"].ToString();
@@ -812,6 +820,7 @@ namespace MuslimAID.MURABHA
                         else
                         {
                             hf3.Value = dsGetExsiNIC.Tables[0].Rows[0]["idmicro_basic_detail"].ToString();
+                            txtNicIssuDay.Text = dsGetExsiNIC.Tables[0].Rows[0]["nic_issue_date"].ToString();
                             cmbCityCode.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["city_code"].ToString();
                             City();
                             try
@@ -822,6 +831,7 @@ namespace MuslimAID.MURABHA
                             {
                             }
                             Villege();
+                            cmbSocietyName.SelectedIndex = Convert.ToInt16(dsGetExsiNIC.Tables[0].Rows[0]["society_id"].ToString());
                             txtSoNumber.Text = dsGetExsiNIC.Tables[0].Rows[0]["society_id"].ToString();
                             try
                             {
@@ -832,6 +842,7 @@ namespace MuslimAID.MURABHA
                             }
                             txtGSWard.Text = dsGetExsiNIC.Tables[0].Rows[0]["gs_ward"].ToString();
                             txtFullName.Text = dsGetExsiNIC.Tables[0].Rows[0]["full_name"].ToString();
+                            txtGivenName.Text = dsGetExsiNIC.Tables[0].Rows[0]["given_name"].ToString();
                             txtInwName.Text = dsGetExsiNIC.Tables[0].Rows[0]["initial_name"].ToString();
                             txtOtherName.Text = dsGetExsiNIC.Tables[0].Rows[0]["other_name"].ToString();
                             rdoMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
@@ -843,6 +854,15 @@ namespace MuslimAID.MURABHA
                             txtMobileNo.Text = dsGetExsiNIC.Tables[0].Rows[0]["mobile_no"].ToString();
                             txtAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["p_address"].ToString();
                             //txtGroupID.Text = dsGetExsiNIC.Tables[0].Rows[0]["team_id"].ToString();
+
+                            txtOccupation.Text = dsGetExsiNIC.Tables[0].Rows[0]["income_source"].ToString();
+                            txtDOB.Text = dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString();
+
+                            DateTime now = new DateTime();
+                            DateTime dt = DateTime.Parse(dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString(), new CultureInfo("en-CA"));
+                            int age = now.Year - dt.Year;
+
+                            lblAge.Text = age.ToString();
                             try
                             {
                                 cmbSocietyName.Text = dsGetExsiNIC.Tables[0].Rows[0]["center_name"].ToString();
@@ -912,8 +932,8 @@ namespace MuslimAID.MURABHA
                         }
                     }
                 }
-            }
-            catch (Exception)
+            }  
+            catch (Exception e)
             {
             }
         }

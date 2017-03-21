@@ -60,7 +60,7 @@ namespace MuslimAID.MURABHA
             lblMsg.Text = "";
             if (txtCC.Text.Trim() == "")
             {
-                lblMsg.Text = "Please Enter Contract Code";
+                lblMsg.Text = "Please Enter Facility Code";
             }
             else if (txtCACode.Text.Trim() == "")
             {
@@ -213,7 +213,8 @@ namespace MuslimAID.MURABHA
                     if (i == 1)
                     {
                         //lblMsg.Text = "Success";
-                        Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
+                        Response.Redirect("family_appraisal.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
+                        //Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
                         //Response.Redirect("loan_details.aspx?CC=" + strCC + "&CA=" + strCA + "");
                     }
                     else
@@ -233,7 +234,7 @@ namespace MuslimAID.MURABHA
             lblMsg.Text = "";
             if (txtCC.Text.Trim() == "")
             {
-                lblMsg.Text = "Please Enter Contract Code";
+                lblMsg.Text = "Please Enter Facility Code";
             }
             else if (cmbPeriod.Text.Trim() == "")
             {
@@ -293,7 +294,7 @@ namespace MuslimAID.MURABHA
                     {
                         btnSubmit.Enabled = false;
                         btnUpdate.Enabled = false;
-                        lblMsg.Text = "Invalid Contract Code.";
+                        lblMsg.Text = "Invalid Facility Code.";
                     }
                 }
             }

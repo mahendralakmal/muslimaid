@@ -8,7 +8,7 @@
         <div class="form-group">
             <asp:GridView ID="grvRebaAppr" runat="server" AutoGenerateColumns="false" OnPageIndexChanging="grvRebaAppr_PageIndexChanging">
                         <Columns>
-                            <asp:BoundField DataField="contra_code" HeaderText="Contract Code" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
+                            <asp:BoundField DataField="contra_code" HeaderText="Facility Code" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="arrears" HeaderText="Arrears" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="90px" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="in_amount" HeaderText="Interest Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="100px" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="prio" HeaderText="Period" HeaderStyle-Width="70px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />

@@ -9,7 +9,7 @@
     <div class="col-md-12 form-container">
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Contract Code<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Facility Code<span style="color:Red;">*</span></div>
                 <div class="col-md-7"><asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" AutoPostBack="false" Enabled="false" runat="server" TabIndex="0" ></asp:TextBox></div>
             </div>
         </div>

@@ -18,7 +18,7 @@
                 <td colspan="3" height="10px"></td>
             </tr>
             <tr>
-                <td width="100px">Contract Code<span style="color:Red;">*</span></td>
+                <td width="100px">Facility Code<span style="color:Red;">*</span></td>
                 <td width="20px">:</td>
                 <td width="380px">
                     <asp:Label ID="lblCC" runat="server"></asp:Label>

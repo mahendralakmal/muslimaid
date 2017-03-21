@@ -58,7 +58,7 @@ namespace MuslimAID.SALAM
             {
                 if (txtCC.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please Enter Contract Code";
+                    lblMsg.Text = "Please Enter Facility Code";
                 }
                 else if (txtCACode.Text.Trim() == "")
                 {

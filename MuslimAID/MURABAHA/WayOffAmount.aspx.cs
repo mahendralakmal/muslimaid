@@ -91,12 +91,12 @@ namespace MuslimAID.MURABAHA
                     }
                     else
                     {
-                        lblMsg.Text = "No records found for your search Contract Code, Not activate or not approved. Please try again.";
+                        lblMsg.Text = "No records found for your search Facility Code, Not activate or not approved. Please try again.";
                     }
                 }
                 else
                 {
-                    lblMsg.Text = "Please enter Contract Code.";
+                    lblMsg.Text = "Please enter Facility Code.";
                 }
             }
             catch (Exception)

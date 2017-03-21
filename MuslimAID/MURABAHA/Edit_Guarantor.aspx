@@ -9,7 +9,7 @@
         <asp:HiddenField ID="hidSoID" runat="server" />
         <asp:HiddenField ID="hidCACode" runat="server" />
         <div class="form-group">
-            <div class="col-md-5">Contract Code <span style="color:Red;">*</span></div>
+            <div class="col-md-5">Facility Code <span style="color:Red;">*</span></div>
             <div class="col-md-7"><asp:TextBox ID="txtCCode" runat="server" CssClass="form-control" AutoPostBack="true" 
                         ontextchanged="txtCCode_TextChanged" TabIndex="1"></asp:TextBox></div>
         </div>

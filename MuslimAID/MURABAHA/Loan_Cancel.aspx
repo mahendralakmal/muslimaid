@@ -9,7 +9,7 @@
         <div class="PageTitle"><h4>Loan Cancel Details</h4></div>
         <div class="col-md-6 form-container">
             <div class="form-group">
-                <div class="col-md-5">Contract Code <span style="color: Red;">*</span></div>
+                <div class="col-md-5">Facility Code <span style="color: Red;">*</span></div>
                 <div class="col-md-7"><asp:TextBox ID="txtContractCode" runat="server" CssClass="form-control"
                                     ontextchanged="txtContractCode_TextChanged" AutoPostBack="True"></asp:TextBox></div>
             </div>

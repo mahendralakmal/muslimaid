@@ -23,28 +23,35 @@
     <div class="col-md-12 form-container">
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Contract Code<span style="color:Red;">*</span></div>
+                <div class="col-md-5">Facility Code<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" AutoPostBack="true" runat="server" TabIndex="0"></asp:TextBox></div>
+                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" AutoPostBack="true" runat="server" TabIndex="1"></asp:TextBox></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-5">Capital Applicant Code<span style="color:Red;">*</span></div>
+                <div class="col-md-7">
+                    <asp:TextBox ID="txtCACode" CssClass="form-control" MaxLength="15" AutoPostBack="true" runat="server" TabIndex="2"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Facility Amount/ Value<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtLDLAmount" CssClass="numbersOnly form-control loanAmount" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtLDLAmount" CssClass="numbersOnly form-control loanAmount" MaxLength="12" runat="server" TabIndex="3"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Product type/ Category<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtProdCate" CssClass="form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtProdCate" CssClass="form-control" MaxLength="12" runat="server" TabIndex="4"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Brand<span style="color:Red;">*</span></div>
                 <div class="col-md-7"><asp:TextBox ID="txtBrand" CssClass="form-control" 
-                        MaxLength="12" runat="server" TabIndex="0"  
+                        MaxLength="12" runat="server" TabIndex="5"  
                         onkeydown="return isNumeric(event.keyCode);" 
                         onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
@@ -52,51 +59,51 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Model No<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtModelNo" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtModelNo" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="6"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Selling Price<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtSellPrice" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtSellPrice" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="7"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Down Payment<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtDownPay" CssClass="numbersOnly downpayment form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtDownPay" CssClass="numbersOnly downpayment form-control" MaxLength="12" runat="server" TabIndex="8"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Service Charges<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtLDSerCharges" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtLDSerCharges" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="9"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Registrtion Fee<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtRegistrationFee" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtRegistrationFee" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="10"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Walfare Fee<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtWalfareFee" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="0"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtWalfareFee" CssClass="numbersOnly form-control" MaxLength="12" runat="server" TabIndex="11"  onkeydown="return isNumeric(event.keyCode);" onKeypress="javascript:return check(event);"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Other Charges<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtLDOtherCharg" CssClass="numbersOnly form-control" MaxLength="10" runat="server" TabIndex="3"></asp:TextBox>&nbsp;</div>
+                    <asp:TextBox ID="txtLDOtherCharg" CssClass="numbersOnly form-control" MaxLength="10" runat="server" TabIndex="12"></asp:TextBox>&nbsp;</div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Interest Rate<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtLDIntRate" CssClass="numbersOnly form-control interest" MaxLength="5" runat="server" TabIndex="4"></asp:TextBox>&nbsp;
+                    <asp:TextBox ID="txtLDIntRate" CssClass="numbersOnly form-control interest" MaxLength="5" runat="server" TabIndex="13"></asp:TextBox>&nbsp;
                     Eg:(36)
                 </div>
             </div>
@@ -105,7 +112,7 @@
             <div class="form-group">
                 <div class="col-md-5">Period<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:DropDownList ID="cmbPeriod" CssClass="form-control period" runat="server" TabIndex="5">
+                    <asp:DropDownList ID="cmbPeriod" CssClass="form-control period" runat="server" TabIndex="14">
                         <asp:ListItem Value="0">Select Period</asp:ListItem>
                         <asp:ListItem Value="1">1 Month</asp:ListItem>
                         <asp:ListItem Value="2">2 Month</asp:ListItem>
@@ -117,7 +124,7 @@
             <div class="form-group">
                 <div class="col-md-5">Monthly Interest Amount<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtLDMInterest" CssClass="numbersOnly form-control interestAmount" MaxLength="9" runat="server" TabIndex="6"></asp:TextBox>
+                    <asp:TextBox ID="txtLDMInterest" CssClass="numbersOnly form-control interestAmount" MaxLength="9" runat="server" TabIndex="15"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -125,7 +132,7 @@
             <div class="form-group">
                 <div class="col-md-5">Monthly Instollment<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtLDMInstoll" CssClass="numbersOnly form-control monthInstall" MaxLength="9" runat="server" TabIndex="6"></asp:TextBox>
+                    <asp:TextBox ID="txtLDMInstoll" CssClass="numbersOnly form-control monthInstall" MaxLength="9" runat="server" TabIndex="16"></asp:TextBox>
                 </div>
             </div>
         </div>        
@@ -134,15 +141,15 @@
                 <div class="col-md-5">Reason to apply a facility<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtResonToApply" CssClass="form-control" 
-                        runat="server" TabIndex="10"></asp:TextBox>
+                        runat="server" TabIndex="17"></asp:TextBox>
                 </div>
             </div>
         </div>
         <div class="col-md-12">
             <div class="form-group">
                 <div class="col-md-12">Any unsettled advances/ facilities available :<span style="color:Red;">* </span>
-                    <asp:RadioButton GroupName="rdoUnsetlled" ID="rdoYes" runat="server" /> Yes &nbsp;&nbsp;
-                    <asp:RadioButton GroupName="rdoUnsetlled" ID="rdoNo" Checked="true" runat="server" /> No
+                    <asp:RadioButton GroupName="rdoUnsetlled" TabIndex="18" ID="rdoYes" runat="server" /> Yes &nbsp;&nbsp;
+                    <asp:RadioButton GroupName="rdoUnsetlled" TabIndex="19" ID="rdoNo" Checked="true" runat="server" /> No
                 </div>
             </div>
         </div>

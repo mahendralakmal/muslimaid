@@ -9,15 +9,17 @@
     <div class="col-md-12 form-container">
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Contract Code <span style="color:Red;">*</span></div>
+                <div class="col-md-5">Facility Code <span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" AutoPostBack="true" runat="server" TabIndex="0"></asp:TextBox></div>
+                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" 
+                        AutoPostBack="true" runat="server" TabIndex="1" 
+                        ontextchanged="txtCC_TextChanged"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">C. Applicant Code <span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtCACode" CssClass="form-control" MaxLength="12" runat="server" TabIndex="1"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtCACode" CssClass="form-control" MaxLength="12" runat="server" TabIndex="2"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -30,7 +32,7 @@
             <div class="form-group">
                 <div class="col-md-5">Spouse NIC</div>
                 <div class="col-md-7"><asp:TextBox ID="txtNIC" CssClass="form-control" 
-                        MaxLength="12" runat="server" TabIndex="2"></asp:TextBox></div>
+                        MaxLength="12" runat="server" TabIndex="4"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -38,7 +40,7 @@
                 <div class="col-md-5">Spouse NIC Issued Date</div>
                 <div class="col-md-7">
                     <div class='input-group date' id='datetimepicker1' name='datetimepicker1'>
-                        <asp:TextBox ID="txtNicIssuedDate" CssClass="form-control" runat="server" ></asp:TextBox>
+                        <asp:TextBox ID="txtNicIssuedDate" TabIndex="5" CssClass="form-control" runat="server" ></asp:TextBox>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
@@ -50,7 +52,7 @@
                 <div class="col-md-5">Spouse Date of Birth</div>
                 <div class="col-md-7">
                     <div class='input-group date' id='sDob' name='sDob'>
-                        <asp:TextBox ID="txtDOB" CssClass="form-control sDob" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtDOB" TabIndex="6" CssClass="form-control sDob" runat="server"></asp:TextBox>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
@@ -71,28 +73,28 @@
             <div class="form-group">
                 <div class="col-md-5">Spouse Gender</div>
                 <div class="col-md-7">
-                    <asp:RadioButton ID="rdoMale" Text="Male" runat="server" TabIndex="10" Checked="True" GroupName="rdoGender" />
-                    <asp:RadioButton ID="rdoFeMale" TabIndex="11" Text="Female" runat="server" GroupName="rdoGender"/>
+                    <asp:RadioButton ID="rdoMale" Text="Male" runat="server" TabIndex="7" GroupName="rdoGender" />
+                    <asp:RadioButton ID="rdoFeMale" TabIndex="8" Text="Female" runat="server" Checked="True"  GroupName="rdoGender"/>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Spouse Contact No</div>
-                <div class="col-md-7"><asp:TextBox ID="txtContact" CssClass="numbersOnly form-control" MaxLength="10" runat="server" TabIndex="2"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtContact" TabIndex="9" CssClass="numbersOnly form-control" MaxLength="10" runat="server"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Relationship with the Applicant</div>
-                <div class="col-md-7"><asp:TextBox ID="txtRelation" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtRelation" CssClass="form-control" MaxLength="10" runat="server" TabIndex="10"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Spouse Income</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtSIncome" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtSIncome" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="11" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -100,7 +102,7 @@
             <div class="form-group">
                 <div class="col-md-5">Occupation / Income Source</div>
                 <div class="col-md-7">
-                    <asp:DropDownList ID="cmbOccupa" CssClass="form-control" runat="server" TabIndex="4">
+                    <asp:DropDownList ID="cmbOccupa" CssClass="form-control" runat="server" TabIndex="12">
                         <asp:ListItem>Profession</asp:ListItem>
                         <asp:ListItem>Agriculture</asp:ListItem>
                         <asp:ListItem>Business</asp:ListItem>
@@ -116,7 +118,7 @@
             <div class="form-group">
                 <div class="col-md-5">No of Family Members</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtNoFMembers" CssClass="form-control numbersOnly" MaxLength="2" runat="server" TabIndex="5" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtNoFMembers" CssClass="form-control numbersOnly" MaxLength="2" runat="server" TabIndex="13" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -125,7 +127,7 @@
                 <div class="col-md-5">Education</div>
                 <div class="col-md-7">
                     
-                    <asp:DropDownList ID="cmbEducation" CssClass="form-control" runat="server" TabIndex="6">
+                    <asp:DropDownList ID="cmbEducation" CssClass="form-control" runat="server" TabIndex="14">
                         <asp:ListItem>Primary</asp:ListItem>
                         <asp:ListItem>Secondary</asp:ListItem>
                         <asp:ListItem>Undergraduate</asp:ListItem>
@@ -138,7 +140,7 @@
             <div class="form-group">
                 <div class="col-md-5">No of Dependants <span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtDepen" CssClass="numbersOnly form-control" MaxLength="2" runat="server" TabIndex="7"  onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtDepen" CssClass="numbersOnly form-control" MaxLength="2" runat="server" TabIndex="15"  onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -146,7 +148,7 @@
             <div class="form-group">
                 <div class="col-md-5">Other F. Member Income</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtFMIncome" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtFMIncome" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="16" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -154,7 +156,7 @@
             <div class="form-group">
                 <div class="col-md-5">Moveable Properties</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtMProperty" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtMProperty" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="17" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -162,7 +164,7 @@
             <div class="form-group">
                 <div class="col-md-5">Immoveable Properties</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtIProperty" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtIProperty" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="18" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -170,7 +172,7 @@
             <div class="form-group">
                 <div class="col-md-5">Savings</div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtSaving" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="8" onKeypress="javascript:return check(event);"></asp:TextBox>
+                    <asp:TextBox ID="txtSaving" CssClass="numbersOnly form-control" MaxLength="8" runat="server" TabIndex="19" onKeypress="javascript:return check(event);"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -178,7 +180,7 @@
         <div class="col-md-12">
             <div class="table-back form-group">
                 <div class="col-md-12 text-center"><h3>Family Details</h3></div>
-                <table class="" width="100%" cellpadding="0" cellspacing="0">
+                <table class="" width="100%" cellpadding="0" cellspacing="0" TabIndex="20">
                     <tr>
                         <th></th>
                         <th class="col-md-3">Name</th>

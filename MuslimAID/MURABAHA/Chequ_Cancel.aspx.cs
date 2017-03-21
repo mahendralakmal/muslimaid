@@ -111,7 +111,7 @@ namespace MuslimAID.MURABAHA
                 }
                 else if (lblContractCode.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter Contract Code.";
+                    lblMsg.Text = "Please enter Facility Code.";
                 }
                 else if (lblName.Text.Trim() == "")
                 {

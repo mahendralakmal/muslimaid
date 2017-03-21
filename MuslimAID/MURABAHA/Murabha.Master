@@ -86,11 +86,11 @@
                             <li><a href="center_create.aspx">Create Center</a></li>
                             <li><a href="Change_CRO.aspx">Change MFO</a></li>
                             <li><a href="client_basic_details.aspx">Basic Details</a></li>
-                            <li><a href="business_details.aspx">Business Details</a></li>
                             <li><a href="family_details.aspx">Family Details</a></li>
+                            <li><a href="business_details.aspx">Business Details</a></li>
                             <li><a href="family_appraisal.aspx">Family Appraisal</a></li>
-                            <li><a href="supplier.aspx">Supplier Details</a></li>
                             <li><a href="loan_details.aspx">Facility Detail</a></li>
+                            <li><a href="supplier.aspx">Supplier Details</a></li>
                             <li><a href="ChequeBookRegistry.aspx">Cheque Book Registry </a></li>
                         </ul>
                     </li>

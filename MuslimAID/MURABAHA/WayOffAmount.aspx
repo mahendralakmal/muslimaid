@@ -8,7 +8,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">
-                    Contract Code
+                    Facility Code
                 </div>
                 <div class="col-md-5">
                     <asp:TextBox ID="txtCC" CssClass="form-control
@@ -24,7 +24,7 @@
             <asp:Panel ID="pnlSummery" runat="server">
                 <div class="col-md-6 form-group">
                     <div class="col-md-5">
-                        Contract Code
+                        Facility Code
                     </div>
                     <div class="col-md-7">
                         <asp:Label ID="lblConCode" CssClass="form-control" runat="server"></asp:Label>

@@ -639,7 +639,7 @@ namespace MuslimAID.SALAM
             else
             {
                 //pnlSummery.Visible = false;
-                //lblMsg.Text = "Please enter Contract Code.";
+                //lblMsg.Text = "Please enter Facility Code.";
             }
         }
     }

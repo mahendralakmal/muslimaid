@@ -79,7 +79,7 @@ namespace MuslimAID.MURABAHA
                     }
                     else
                     {
-                        lblMsg.Text = "Invalid Contract Code.";
+                        lblMsg.Text = "Invalid Facility Code.";
                         btnChange.Enabled = false;
                     }
                 }
@@ -94,7 +94,7 @@ namespace MuslimAID.MURABAHA
             lblMsg.Text = "";
             if (txtCCode.Text.Trim() == "")
             {
-                lblMsg.Text = "Please enter Contract Code";
+                lblMsg.Text = "Please enter Facility Code";
             }
             else if (txtGuara1.Text.Trim() == ""/* && txtGura.Text.Trim() == ""*/)
             {

@@ -18,7 +18,7 @@ $(function() {
 });
 
 /* ~~ Murabaha business details page ~~ */
-var totIn = 0.00; var totPu = 0.00; var totEx = 0.00;
+var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
     function calcIncom() {
         $cashIn = $(".txtBIncome").val() === '' ? 0.00 : $(".txtBIncome").val();
         $creditIn = $(".txtCrdtIncome").val() === '' ? 0.00 : $(".txtCrdtIncome").val();
@@ -26,7 +26,8 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00;
 
         totIn = parseFloat($cashIn) + parseFloat($creditIn) + parseFloat($otherIn);
         $(".txtTotalIncome").val(totIn);
-        calcPnL(totIn, totPu, totEx);
+        calcGP();
+        calcPnL();
     }
     
     function calcPurchase() {
@@ -35,7 +36,14 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00;
 
         totPu = parseFloat($cashIn) + parseFloat($creditIn);
         $(".txtTotPurchase").val(totPu);
-        calcPnL(totIn, totPu, totEx);
+        
+        calcGP();
+        calcPnL();
+    }
+    
+    function calcGP(){
+        gp = totIn - totPu;
+        $(".txtGrossProfit").val(gp);
     }
     
     function calcBEx() {
@@ -48,16 +56,11 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00;
 
         totEx = parseFloat($Rent) + parseFloat($wet) + parseFloat($wages) + parseFloat($fla) + parseFloat($trans) + parseFloat($repir);
         $(".txtTExpenses").val(totEx);
-        calcPnL(totIn, totPu, totEx);
+        calcPnL();
     }
     
-    function calcPnL(totIn, totPu, totEx) {
-        totIn = totIn === '' ? 0.00 : totIn;
-        totPu = totPu === '' ? 0.00 : totPu;
-        totEx = totEx === '' ? 0.00 : totEx;
-        console.log("totIn  " + totIn + " totPU " + totPu + " totEx " + totEx);
-        $pnl = totIn - (totPu + totEx);
-        //console.log($pnl);
+    function calcPnL() {
+        $pnl = gp - totEx;
         $(".txtPAndL").val($pnl);
     }
     
@@ -86,17 +89,16 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00;
         $salWa = $(".txtSalWa").val() === '' ? 0.00 : $(".txtSalWa").val();
         $rentInB = $(".txtRentB").val() === '' ? 0.00 : $(".txtRentB").val();
         $rentInO = $(".txtRentO").val() === '' ? 0.00 : $(".txtRentO").val();
-
-        $(".txtNetIn").val(parseFloat($salWa) + parseFloat($rentInB) + parseFloat($rentInO));
-        calcMBI();
-    }
-    function calcMBI() { 
-        $InO = $(".txtInO").val() === '' ? 0.00 : $(".txtInO").val();
         $netIn = $(".txtNetIn").val() === '' ? 0.00 : $(".txtNetIn").val();
+        $InO = $(".txtInO").val() === '' ? 0.00 : $(".txtInO").val();
 
-        $(".txtFamiIn").val(parseFloat($InO) + parseFloat($netIn));
+        $(".txtFamiIn").val(parseFloat($salWa)+parseFloat($rentInB)+parseFloat($rentInO)+parseFloat($netIn)+parseFloat($InO));
         calcNetAnulaIncome();
     }
+//    function calcMBI($salWa,$rentInB,$rentInO,$netIn) { 
+//        $(".txtFamiIn").val(parseFloat($salWa) + parseFloat($rentInB) + parseFloat($rentInO) + parseFloat($netIn));
+//        calcNetAnulaIncome();
+//    }
     function calcMExpenses() {
         $foodEx = $(".txtFood").val() === '' ? 0.00 : $(".txtFood").val();
         $eduEx = $(".txtEdu").val() === '' ? 0.00 : $(".txtEdu").val();

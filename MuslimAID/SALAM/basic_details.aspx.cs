@@ -599,7 +599,7 @@ namespace MuslimAID.SALAM
                 {
                     string strloginID = Session["NIC"].ToString();
 
-                    //Create Contract Code
+                    //Create Facility Code
                     ccsetup();
                     //CO/MF/000001/1
                     string NIC = txtNIC.Text.Trim();

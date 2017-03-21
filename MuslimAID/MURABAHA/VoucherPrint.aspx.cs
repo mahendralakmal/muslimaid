@@ -153,12 +153,12 @@ namespace MuslimAID.MURABAHA
                 else
                 {
                     Clear();
-                    lblMsg.Text = "Invalid Contract Code";
+                    lblMsg.Text = "Invalid Facility Code";
                 }
             }
             catch (Exception)
             {
-                lblMsg.Text = "Invalid Contract Code";
+                lblMsg.Text = "Invalid Facility Code";
             }
         }
 
