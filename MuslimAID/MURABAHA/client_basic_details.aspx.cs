@@ -738,6 +738,7 @@ namespace MuslimAID.MURABHA
 
                         if (dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "S" || dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "C")
                         {
+                            lblMsg.Text = "Please complete the loan application form, unless you cannot be modify basic details...";
                             return;
                         }
                         else if (dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "P" && dsGetExsiLoan.Tables[0].Rows[0]["loan_approved"].ToString() == "Y" && dsGetExsiLoan.Tables[0].Rows[0]["chequ_no"].ToString() == "")

@@ -25,16 +25,12 @@
             <div class="form-group">
                 <div class="col-md-5">Facility Code<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" AutoPostBack="true" runat="server" TabIndex="1"></asp:TextBox></div>
+                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" 
+                        AutoPostBack="true" runat="server" TabIndex="1" 
+                        ontextchanged="txtCC_TextChanged"></asp:TextBox></div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-5">Capital Applicant Code<span style="color:Red;">*</span></div>
-                <div class="col-md-7">
-                    <asp:TextBox ID="txtCACode" CssClass="form-control" MaxLength="15" AutoPostBack="true" runat="server" TabIndex="2"></asp:TextBox></div>
-            </div>
-        </div>
+        <div class="col-md-12"></div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Facility Amount/ Value<span style="color:Red;">*</span></div>

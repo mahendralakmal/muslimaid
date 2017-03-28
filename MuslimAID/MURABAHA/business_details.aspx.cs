@@ -103,7 +103,7 @@ namespace MuslimAID.MURABHA
             //}
             else
             {
-                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_business_details(contract_code,business_name,busi_duration,busi_address,busi_population,busi_nature,key_person,no_of_ppl,br_no,contact_no_ofc,busi_income,sales_credit,other_income,total_income,purchase_cash,direct_cost,grossProfit,rent,water_elec_tele,wages,fla_rent,travel,maintenance,total_expenses,profit_lost,create_user_nic,user_ip,date_time)VALUES(@contract_code,@business_name,@busi_duration,@busi_address,@busi_population,@busi_nature,@key_person,@no_of_ppl,@br_no,@contact_no_ofc,@busi_income,@sales_credit,other_income,@total_income,@purchase_cash,@direct_cost,@grossProfit,@rent,@water_elec_tele,@wages,@fla_rent,@travel,@maintenance,@total_expenses,@profit_lost,@create_user_nic,@user_ip,@date_time)");
+                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_business_details(contract_code,business_name,busi_duration,busi_address,busi_population,busi_nature,key_person,no_of_ppl,br_no,contact_no_ofc,busi_income,sales_credit,other_income,total_income,purchase_cash,purchase_credit,grossProfit,rent,water_elec_tele,wages,fla_rent,travel,maintenance,total_expenses,profit_lost,create_user_nic,user_ip,date_time)VALUES(@contract_code,@business_name,@busi_duration,@busi_address,@busi_population,@busi_nature,@key_person,@no_of_ppl,@br_no,@contact_no_ofc,@busi_income,@sales_credit,other_income,@total_income,@purchase_cash,@direct_cost,@grossProfit,@rent,@water_elec_tele,@wages,@fla_rent,@travel,@maintenance,@total_expenses,@profit_lost,@create_user_nic,@user_ip,@date_time)");
 
                 #region GetValues
                 string strIp = Request.UserHostAddress;
@@ -129,7 +129,7 @@ namespace MuslimAID.MURABHA
                 string strICost = txtICost.Text.Trim();
                 string strToEx = txtTotPurchase.Text.Trim();
 
-                string strGrossP = txtGrossProfit.Text.Trim();
+                string strGrossP = hidGross.Value.Trim();
 
                 string strRent = txtRent.Text.Trim();
                 string strWet = txtWET.Text.Trim();
@@ -306,7 +306,7 @@ namespace MuslimAID.MURABHA
             string strBPL = txtPAndL.Text.Trim();
             #endregion
 
-            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_business_details SET business_name ='" + strBN + "',busi_duration ='" + strDur + "',busi_address ='" + strBAdd + "',busi_income='" + strBIn + "',busi_population='" + strBPopu + "',busi_nature='" + strBNature + "',key_person='" + strKPerson + "',no_of_ppl='" + strNoOfPpl + "',br_no='" + strBrNo + "',contact_no_ofc='" + strOfcContactNo + "',sales_credit='" + strCIn + "',other_income='" + strOIn + "',total_income='" + strTotalIn + "',purchase_cash='" + strDcost + "',indirect_cost='" + strICost + "',direct_cost='" + strToEx + "', grossProfit='" + strGrossP + "',rent='" + strRent + "',water_elec_tele='" + strWet + "',wages='" + strWages + "',fla_rent='" + strFla + "',travel='" + strTravelTrans + "',maintenance='" + strRepairMain + "',total_expenses='" + strTotalEx + "',profit_lost='" + strBPL + "',create_user_nic='" + strloginID + "',user_ip ='" + strIp + "',date_time ='" + strDateTime + "' WHERE contract_code = '" + strCC + "';");
+            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_business_details SET business_name ='" + strBN + "',busi_duration ='" + strDur + "',busi_address ='" + strBAdd + "',busi_income='" + strBIn + "',busi_population='" + strBPopu + "',busi_nature='" + strBNature + "',key_person='" + strKPerson + "',no_of_ppl='" + strNoOfPpl + "',br_no='" + strBrNo + "',contact_no_ofc='" + strOfcContactNo + "',sales_credit='" + strCIn + "',other_income='" + strOIn + "',total_income='" + strTotalIn + "',purchase_cash='" + strDcost + "',purchase_credit='" + strICost + "',direct_cost='" + strToEx + "', grossProfit='" + strGrossP + "',rent='" + strRent + "',water_elec_tele='" + strWet + "',wages='" + strWages + "',fla_rent='" + strFla + "',travel='" + strTravelTrans + "',maintenance='" + strRepairMain + "',total_expenses='" + strTotalEx + "',profit_lost='" + strBPL + "',create_user_nic='" + strloginID + "',user_ip ='" + strIp + "',date_time ='" + strDateTime + "' WHERE contract_code = '" + strCC + "';");
 
             try
             {
@@ -481,9 +481,14 @@ namespace MuslimAID.MURABHA
                     txtRepairMain.Text = dsGetDetail.Tables[0].Rows[0]["maintenance"].ToString();
                     txtTExpenses.Text = dsGetDetail.Tables[0].Rows[0]["total_expenses"].ToString();
                     txtPAndL.Text = dsGetDetail.Tables[0].Rows[0]["profit_lost"].ToString();
-                    
+
                     btnSubmit.Enabled = false;
                     btnUpdate.Enabled = true;
+                    
+                }
+                else {
+                    btnSubmit.Enabled = true;
+                    btnUpdate.Enabled = false;
                 }
             }
         }

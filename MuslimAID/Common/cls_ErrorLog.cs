@@ -16,7 +16,7 @@ namespace MuslimAID
         public void createErrorLog(string strException, string strSource, string strOther)
         {
             DateTime strDateTime = DateTime.Now;
-            String Path = Server.MapPath(@"\ErrorLogs");
+            String Path = System.Web.HttpContext.Current.Server.MapPath(@"\ErrorLogs");
             if (!Directory.Exists(Path))
             {
                 Directory.CreateDirectory(Path);
@@ -59,46 +59,46 @@ namespace MuslimAID
 
         public static void createSErrorLog(string strException, string strSource, string strOther)
         {
-            //DateTime strDateTime = DateTime.Now;
-            //String Path = Server.MapPath(@"\ErrorLogs");
-            //if (!Directory.Exists(Path))
-            //{
-            //    Directory.CreateDirectory(Path);
-            //}
+            DateTime strDateTime = DateTime.Now;
+            String Path = System.Web.HttpContext.Current.Server.MapPath(@"\ErrorLogs");
+            if (!Directory.Exists(Path))
+            {
+                Directory.CreateDirectory(Path);
+            }
 
-            //if (File.Exists(Path + "\\ErrorLog-" + strDateTime.ToString("yyyy-MM-dd") + ".txt"))
-            //{
-            //    StreamWriter sw = new StreamWriter(Path + "\\ErrorLog-" + strDateTime.ToString("yyyy-MM-dd") + ".txt");
-            //    sw.WriteLine("=============================================================");
-            //    sw.WriteLine("Time      : " + strDateTime.ToString("yyyy-MM-dd hh:mm:ss tt"));
-            //    sw.WriteLine("");
-            //    sw.WriteLine("Exception : " + strException);
-            //    sw.WriteLine("");
-            //    sw.WriteLine("Source    : " + strSource);
-            //    sw.WriteLine("");
-            //    sw.WriteLine("Other     : " + strOther);
-            //    sw.WriteLine("");
-            //    sw.WriteLine("=============================================================");
-            //    sw.Flush();
-            //    sw.Close();
-            //}
-            //else
-            //{
+            if (File.Exists(Path + "\\ErrorLog-" + strDateTime.ToString("yyyy-MM-dd") + ".txt"))
+            {
+                StreamWriter sw = new StreamWriter(Path + "\\ErrorLog-" + strDateTime.ToString("yyyy-MM-dd") + ".txt");
+                sw.WriteLine("=============================================================");
+                sw.WriteLine("Time      : " + strDateTime.ToString("yyyy-MM-dd hh:mm:ss tt"));
+                sw.WriteLine("");
+                sw.WriteLine("Exception : " + strException);
+                sw.WriteLine("");
+                sw.WriteLine("Source    : " + strSource);
+                sw.WriteLine("");
+                sw.WriteLine("Other     : " + strOther);
+                sw.WriteLine("");
+                sw.WriteLine("=============================================================");
+                sw.Flush();
+                sw.Close();
+            }
+            else
+            {
 
-            //    StreamWriter sw = new StreamWriter(Path + "\\ErrorLog-" + strDateTime.ToString("yyyy-MM-dd") + ".txt");
-            //    sw.WriteLine("=============================================================");
-            //    sw.WriteLine("Time      : " + strDateTime.ToString("yyyy-MM-dd hh:mm:ss tt"));
-            //    sw.WriteLine("");
-            //    sw.WriteLine("Exception : " + strException);
-            //    sw.WriteLine("");
-            //    sw.WriteLine("Source    : " + strSource);
-            //    sw.WriteLine("");
-            //    sw.WriteLine("Other     : " + strOther);
-            //    sw.WriteLine("");
-            //    sw.WriteLine("=============================================================");
-            //    sw.Flush();
-            //    sw.Close();
-            //}
+                StreamWriter sw = new StreamWriter(Path + "\\ErrorLog-" + strDateTime.ToString("yyyy-MM-dd") + ".txt");
+                sw.WriteLine("=============================================================");
+                sw.WriteLine("Time      : " + strDateTime.ToString("yyyy-MM-dd hh:mm:ss tt"));
+                sw.WriteLine("");
+                sw.WriteLine("Exception : " + strException);
+                sw.WriteLine("");
+                sw.WriteLine("Source    : " + strSource);
+                sw.WriteLine("");
+                sw.WriteLine("Other     : " + strOther);
+                sw.WriteLine("");
+                sw.WriteLine("=============================================================");
+                sw.Flush();
+                sw.Close();
+            }
         }
     }
 }

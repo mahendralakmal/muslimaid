@@ -19,13 +19,9 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Facility Code <span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" AutoPostBack="true" Enabled="false" runat="server" TabIndex="1" ></asp:TextBox></div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-5">C. Applicant Code <span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtCACode" CssClass="form-control" MaxLength="10" runat="server" TabIndex="2"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtCC" CssClass="form-control" 
+                        MaxLength="15" AutoPostBack="true" Enabled="false" runat="server" TabIndex="1" 
+                        ontextchanged="txtCC_TextChanged" ></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-12"></div>
@@ -52,8 +48,11 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Net Income from Business</div>
-                <div class="col-md-7"><asp:TextBox ID="txtNetBusinesIn" 
-                        CssClass="form-control txtNetIn" runat="server" TabIndex="6"></asp:TextBox></div>
+                <div class="col-md-7">
+                <asp:TextBox ID="txtNetBusinesIn" 
+                        CssClass="form-control txtNetIn" runat="server" TabIndex="6"></asp:TextBox>
+                <asp:HiddenField ID="hidNetIn" runat="server" />
+                        </div>
             </div>
         </div>
         <div class="col-md-6">

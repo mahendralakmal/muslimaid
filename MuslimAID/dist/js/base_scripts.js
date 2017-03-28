@@ -44,7 +44,7 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
     function calcGP(){
         gp = totIn - totPu;
         $(".txtGrossProfit").val(gp);
-        $("#ctl00_ContentPlaceHolder1_hidGross").val(gp);
+        $("#ContentPlaceHolder1_hidGross").val(gp);
     }
     
     function calcBEx() {
@@ -90,16 +90,16 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
         $salWa = $(".txtSalWa").val() === '' ? 0.00 : $(".txtSalWa").val();
         $rentInB = $(".txtRentB").val() === '' ? 0.00 : $(".txtRentB").val();
         $rentInO = $(".txtRentO").val() === '' ? 0.00 : $(".txtRentO").val();
-        $netIn = $(".txtNetIn").val() === '' ? 0.00 : $(".txtNetIn").val();
+        $netIn = $("#ContentPlaceHolder1_hidNetIn").val() === '' ? 0.00 : $("#ContentPlaceHolder1_hidNetIn").val();
         $InO = $(".txtInO").val() === '' ? 0.00 : $(".txtInO").val();
 
-        $(".txtFamiIn").val(parseFloat($salWa)+parseFloat($rentInB)+parseFloat($rentInO)+parseFloat($netIn)+parseFloat($InO));
+        calcTotalAnulaIncome($salWa,$rentInB,$rentInO,$netIn, $InO);
+    }
+    function calcTotalAnulaIncome($salWa,$rentInB,$rentInO,$netIn, $InO) { 
+        $().val()
+        $(".txtFamiIn").val(parseFloat($salWa) + parseFloat($rentInB) + parseFloat($rentInO) + parseFloat($netIn)+ parseInt($InO));
         calcNetAnulaIncome();
     }
-//    function calcMBI($salWa,$rentInB,$rentInO,$netIn) { 
-//        $(".txtFamiIn").val(parseFloat($salWa) + parseFloat($rentInB) + parseFloat($rentInO) + parseFloat($netIn));
-//        calcNetAnulaIncome();
-//    }
     function calcMExpenses() {
         $foodEx = $(".txtFood").val() === '' ? 0.00 : $(".txtFood").val();
         $eduEx = $(".txtEdu").val() === '' ? 0.00 : $(".txtEdu").val();
@@ -110,9 +110,10 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
         $tTranEx = $(".txtTTrans").val() === '' ? 0.00 : $(".txtTTrans").val();
         $clothEx = $(".txtCloths").val() === '' ? 0.00 : $(".txtCloths").val();
         $otherEx = $(".txtOthers").val() === '' ? 0.00 : $(".txtOthers").val();
-
-        $total = parseFloat($foodEx) + parseFloat($eduEx) + parseFloat($wetEx) + parseFloat($hsEx) + parseFloat($rentEx) + parseFloat($ofaiEx) + parseFloat($tTranEx) + parseFloat($clothEx) + parseFloat($otherEx)
-
+        
+        $total = parseFloat($foodEx)+parseFloat($eduEx)+parseFloat($wetEx)+parseFloat($hsEx)+parseFloat($rentEx)+parseFloat($ofaiEx)+parseFloat($tTranEx)+parseFloat($clothEx)+parseFloat($otherEx);
+        
+        console.log($total);
         $(".txtFExpense").val($total);
         calcNetAnulaIncome();
     }

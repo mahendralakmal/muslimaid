@@ -31,12 +31,12 @@ namespace MuslimAID
             }
             catch (MySqlException mye)
             {
-                //cls_ErrorLog.createSErrorLog(mye.Message, mye.Source, "MySQL error");
+                cls_ErrorLog.createSErrorLog(mye.Message, mye.Source, "MySQL error");
                 return null;
             }
             catch (Exception e)
             {
-                //cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Connection error");
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Connection error");
                 return null;
             }
         }
@@ -62,12 +62,12 @@ namespace MuslimAID
             }
             catch (MySqlException mye)
             {
-                //cls_ErrorLog.createSErrorLog(mye.Message, mye.Source, "MySQL error");
+                cls_ErrorLog.createSErrorLog(mye.Message, mye.Source, "MySQL error");
                 closeConnection();
             }
             catch (Exception e)
             {
-                //cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
                 closeConnection();
             }
         }
@@ -89,7 +89,7 @@ namespace MuslimAID
             }
             catch (Exception e)
             {
-                //cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
                 return 0;
             }
         }
@@ -108,7 +108,7 @@ namespace MuslimAID
             }
             catch (Exception e)
             {
-                //cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
                 return 0;
             }
         }
@@ -129,13 +129,13 @@ namespace MuslimAID
             }
             catch (MySqlException mye)
             {
-                //cls_ErrorLog.createSErrorLog(mye.Message, mye.Source, "MySQL error");
+                cls_ErrorLog.createSErrorLog(mye.Message, mye.Source, "MySQL error");
                 closeConnection();
                 return null;
             }
             catch (Exception e)
             {
-                //cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Downloading error");
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Downloading error");
                 closeConnection();
                 return null;
             }
@@ -165,13 +165,13 @@ namespace MuslimAID
             }
             catch (MySqlException mye)
             {
-                //cls_ErrorLog.createSErrorLog(mye.Message, mye.Source, "MySQL error");
+                cls_ErrorLog.createSErrorLog(mye.Message, mye.Source, "MySQL error");
                 closeConnection();
                 return null;
             }
             catch (Exception ex)
             {
-                //cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Downloading error");
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Downloading error");
                 closeConnection();
                 return null;
             }
@@ -194,7 +194,7 @@ namespace MuslimAID
             }
             catch (Exception e)
             {
-                //cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
                 return null;
             }
             finally { 
@@ -217,7 +217,7 @@ namespace MuslimAID
             }
             catch (Exception e)
             {
-                //cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
                 return null;
             }
         }
@@ -237,7 +237,7 @@ namespace MuslimAID
             }
             catch (Exception e)
             {
-                //cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
                 return null;
             }
         }
@@ -293,7 +293,7 @@ namespace MuslimAID
             }
             catch (Exception ex)
             {
-                //cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
                 throw new Exception("error in base64Encode" + ex.Message);
             }
         }

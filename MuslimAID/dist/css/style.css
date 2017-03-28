@@ -1321,6 +1321,7 @@ color: #333;
 .navbar-brand{padding: 0 15px;}
 .navbar-brand .topic {
     top: 15px;
+    font-size:17px;
 }
 
 .btn-primary {

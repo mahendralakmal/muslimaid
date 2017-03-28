@@ -240,9 +240,9 @@
         </div>
         <div class="col-md-12">
             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" 
-                Text="Submit" Enabled="false" TabIndex="11" onclick="btnSubmit_Click"/>
+                Text="Submit" TabIndex="11" onclick="btnSubmit_Click"/>
             <asp:Button ID="btnUpdate" CssClass="btn btn-primary" runat="server" 
-                Text="Update" TabIndex="12" Enabled="False" onclick="btnUpdate_Click"/>
+                Text="Update" TabIndex="12" onclick="btnUpdate_Click"/>
             <asp:Label ID="lblMsg" runat="server"></asp:Label>
         </div>
     </div>

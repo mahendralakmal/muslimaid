@@ -47,8 +47,9 @@ namespace MuslimAID.MURABHA
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
             }
         }
 
@@ -89,57 +90,56 @@ namespace MuslimAID.MURABHA
                     }
                 }
                 
-                //else
-                //{
-                    MySqlCommand cmdInsert = new MySqlCommand(q);
-                    #region Parameter Declarations
-                    cmdInsert.Parameters.AddWithValue("@contra_code", txtCC.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("@loan_amount", Convert.ToDecimal(txtLDLAmount.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("@product_category", txtProdCate.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("@brand", txtBrand.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("@model_no", txtProdCate.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("@selling_price", txtSellPrice.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("@down_payment", txtDownPay.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("@service_charges", Convert.ToDecimal(txtLDSerCharges.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("@registration_fee", Convert.ToDecimal(txtRegistrationFee.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("@walfare_fee", Convert.ToDecimal(txtWalfareFee.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("@other_charges", Convert.ToDecimal(txtLDOtherCharg.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("@interest_rate", txtLDIntRate.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("@period", cmbPeriod.SelectedValue.ToString());
-                    cmdInsert.Parameters.AddWithValue("@monthly_instollment", Convert.ToDecimal(txtLDMInstoll.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("@interest_amount", Convert.ToDecimal(txtLDMInterest.Text.Trim()));
-                    cmdInsert.Parameters.AddWithValue("@reason_to_apply", txtResonToApply.Text.Trim());
-                    if (rdoYes.Checked)
+                MySqlCommand cmdInsert = new MySqlCommand(q);
+                #region Parameter Declarations
+                cmdInsert.Parameters.AddWithValue("@contra_code", txtCC.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@loan_amount", Convert.ToDecimal(txtLDLAmount.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@product_category", txtProdCate.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@brand", txtBrand.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@model_no", txtProdCate.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@selling_price", txtSellPrice.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@down_payment", txtDownPay.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@service_charges", Convert.ToDecimal(txtLDSerCharges.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@registration_fee", Convert.ToDecimal(txtRegistrationFee.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@walfare_fee", Convert.ToDecimal(txtWalfareFee.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@other_charges", Convert.ToDecimal(txtLDOtherCharg.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@interest_rate", txtLDIntRate.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@period", cmbPeriod.SelectedValue.ToString());
+                cmdInsert.Parameters.AddWithValue("@monthly_instollment", Convert.ToDecimal(txtLDMInstoll.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@interest_amount", Convert.ToDecimal(txtLDMInterest.Text.Trim()));
+                cmdInsert.Parameters.AddWithValue("@reason_to_apply", txtResonToApply.Text.Trim());
+                if (rdoYes.Checked)
+                {
+                    cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 1);
+                    //cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", checkOtherFacility());
+                }
+                else
+                {
+                    cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 0);
+                    //cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", "[]");
+                }
+                cmdInsert.Parameters.AddWithValue("@reg_approval", "Y");
+                cmdInsert.Parameters.AddWithValue("@loan_approved", "P");
+                #endregion
+                try
+                {
+                    int i = objDBCon.insertEditData(cmdInsert);
+                    if (i > 0)
                     {
-                        cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 1);
-                        cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", checkOtherFacility());
+                        checkOtherFacility();
+                        Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCAC + "");
                     }
-                    else
-                    {
-                        cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 0);
-                        cmdInsert.Parameters.AddWithValue("@other_unsettled_facilities", "[]");
-                    }
-                    cmdInsert.Parameters.AddWithValue("@reg_approval", "Y");
-                    cmdInsert.Parameters.AddWithValue("@loan_approved", "P");
-                    #endregion
-                    try
-                    {
-                        int i = objDBCon.insertEditData(cmdInsert);
-                        if (i > 0)
-                        {
-                            Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim() + "");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                    }
-                //}
+                }
+                catch (Exception ex)
+                {
+                    cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
+                }
             }
             catch (Exception ml)
             {
+                cls_ErrorLog.createSErrorLog(ml.Message, ml.Source, "Data Sending error");
             }
         }
-    //}
 
         protected void clean()
         {
@@ -179,25 +179,47 @@ namespace MuslimAID.MURABHA
             cmbPeriod.SelectedIndex = 0;
         }
 
-        protected string checkOtherFacility() {
+        protected Boolean checkOtherFacility()
+        {
             string strOtherFacility = "";
-            strOtherFacility = "[";
+            strOtherFacility = "INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ";
             if (txtNameOrg1.Text.Trim() != "")
             {
-                strOtherFacility += "{'organization' = '" + txtNameOrg1.Text.Trim() + "','purpose' = '" + txtPurpos1.Text.Trim() + "','facilityAmount' = '" + txtFAmount1.Text.Trim() + "','outstanding' = '" + txtOutstandBal1.Text.Trim() + "','m_installment' = '" + txtMonthInstal1.Text.Trim() + "','re_no_of_installments' = '" + txtRemainInstal1.Text.Trim() + "'}]";
+                strOtherFacility += "('" + txtCC.Text.Trim() + "','" + txtNameOrg1.Text.Trim() + "','" + txtPurpos1.Text.Trim() + "'," + txtFAmount1.Text.Trim() + "," + txtOutstandBal1.Text.Trim() + "," + txtMonthInstal1.Text.Trim() + "," + txtRemainInstal1.Text.Trim() + ")";
             }
             if (txtNameOrg2.Text.Trim() != "")
             {
-                strOtherFacility += ",{'organization' = '" + txtNameOrg2.Text.Trim() + "','purpose' = '" + txtPurpos2.Text.Trim() + "','facilityAmount' = '" + txtFAmount2.Text.Trim() + "','outstanding' = '" + txtOutstandBal2.Text.Trim() + "','m_installment' = '" + txtMonthInstal2.Text.Trim() + "','re_no_of_installments' = '" + txtRemainInstal2.Text.Trim() + "'}";
+                strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")";
             }
             if (txtNameOrg3.Text.Trim() != "")
             {
-                strOtherFacility += ",{'organization' = '" + txtNameOrg3.Text.Trim() + "','purpose' = '" + txtPurpos3.Text.Trim() + "','facilityAmount' = '" + txtFAmount3.Text.Trim() + "','outstanding' = '" + txtOutstandBal3.Text.Trim() + "','m_installment' = '" + txtMonthInstal3.Text.Trim() + "','re_no_of_installments' = '" + txtRemainInstal3.Text.Trim() + "'}";
+                strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")";
             }
 
-            strOtherFacility += "]";
+            cls_Connection.setData(strOtherFacility.ToString());
+            return true;
+            //int i = cls_Connection.setData(strOtherFacility.ToString());
+        }
 
-            return strOtherFacility.ToString();
+        protected Boolean UpdateOtherFacility()
+        {
+            string strOtherFacility = "";
+            
+            if (txtNameOrg1.Text.Trim() != "")
+            {
+                strOtherFacility += "UPDATE `micro_other_unsetteled_loans` SET organization='" + txtNameOrg1.Text.Trim() + "',purpos='" + txtPurpos1.Text.Trim() + "',facility_amount=" + txtFAmount1.Text.Trim() + ",outstanding=" + txtOutstandBal1.Text.Trim() + ",monthly_installment=" + txtMonthInstal1.Text.Trim() + ",remaining_number_of_installment=" + txtRemainInstal1.Text.Trim() + " WHERE contra_code ='" + txtCC.Text.Trim() + "';";
+            }
+            if (txtNameOrg2.Text.Trim() != "")
+            {
+                strOtherFacility += "UPDATE `micro_other_unsetteled_loans` SET organization='" + txtNameOrg2.Text.Trim() + "',purpos='" + txtPurpos2.Text.Trim() + "',facility_amount=" + txtFAmount2.Text.Trim() + ",outstanding=" + txtOutstandBal2.Text.Trim() + ",monthly_installment=" + txtMonthInstal2.Text.Trim() + ",remaining_number_of_installment=" + txtRemainInstal2.Text.Trim() + " WHERE contra_code ='" + txtCC.Text.Trim() + "';";
+            }
+            if (txtNameOrg3.Text.Trim() != "")
+            {
+                strOtherFacility += "UPDATE `micro_other_unsetteled_loans` SET organization='" + txtNameOrg3.Text.Trim() + "',purpos='" + txtPurpos3.Text.Trim() + "',facility_amount=" + txtFAmount3.Text.Trim() + ",outstanding=" + txtOutstandBal3.Text.Trim() + ",monthly_installment=" + txtMonthInstal3.Text.Trim() + ",remaining_number_of_installment=" + txtRemainInstal3.Text.Trim() + " WHERE contra_code ='" + txtCC.Text.Trim() + "';";
+            }
+
+            int i = objDBCon.insertEditData(strOtherFacility.ToString());
+            return true;
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -209,19 +231,92 @@ namespace MuslimAID.MURABHA
             }
             else strAnyOtherFacility = 0;
 
-            string q = "UPDATE `muslimaid`.`micro_loan_details` SET loan_amount ='" + Convert.ToDecimal(txtLDLAmount.Text.Trim()) + "', product_category ='" + txtProdCate.Text.Trim() + "', brand ='" + txtBrand.Text.Trim() + "', model_no ='" + txtModelNo.Text.Trim() + "', selling_price ='" + txtSellPrice.Text.Trim() + "', down_payment ='" + txtDownPay.Text.Trim() + "', service_charges ='" + txtLDSerCharges.Text.Trim() + "', registration_fee = '" + txtRegistrationFee.Text.Trim() + "', walfare_fee ='" + txtWalfareFee.Text.Trim() + "', other_charges ='" + Convert.ToDecimal(txtLDOtherCharg.Text.Trim()) + "', interest_rate ='" + Convert.ToDecimal(txtLDIntRate.Text.Trim()) + "', period ='" + Convert.ToDecimal(cmbPeriod.SelectedValue.ToString()) + "', monthly_instollment ='" + Convert.ToDecimal(txtLDMInstoll.Text.Trim()) + "', reason_to_apply ='" + txtResonToApply.Text.Trim() + "', any_unsettled_loans ='" + strAnyOtherFacility + "', other_unsettled_facilities ='" + checkOtherFacility() + "' WHERE `contra_code` ='" + txtCC.Text.Trim() + "'";
+            string q = "UPDATE `micro_loan_details` SET loan_amount ='" + Convert.ToDecimal(txtLDLAmount.Text.Trim()) + "', product_category ='" + txtProdCate.Text.Trim() + "', brand ='" + txtBrand.Text.Trim() + "', model_no ='" + txtModelNo.Text.Trim() + "', selling_price ='" + txtSellPrice.Text.Trim() + "', down_payment ='" + txtDownPay.Text.Trim() + "', service_charges ='" + txtLDSerCharges.Text.Trim() + "', registration_fee = '" + txtRegistrationFee.Text.Trim() + "', walfare_fee ='" + txtWalfareFee.Text.Trim() + "', other_charges ='" + Convert.ToDecimal(txtLDOtherCharg.Text.Trim()) + "', interest_rate ='" + Convert.ToDecimal(txtLDIntRate.Text.Trim()) + "', period ='" + Convert.ToDecimal(cmbPeriod.SelectedValue.ToString()) + "', monthly_instollment ='" + Convert.ToDecimal(txtLDMInstoll.Text.Trim()) + "', reason_to_apply ='" + txtResonToApply.Text.Trim() + "', any_unsettled_loans ='" + strAnyOtherFacility + "' WHERE `contra_code` ='" + txtCC.Text.Trim() + "'";
             try
             {
                 int i = objDBCon.insertEditData(q);
                 if (i > 0)
                 {
+                    UpdateOtherFacility();
                     lblMsg.Text = "Successfull";
                 }
             }
             catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
             }
 
+        }
+
+        protected void txtCC_TextChanged(object sender, EventArgs e)
+        {
+            lblMsg.Text = "";
+            if (txtCC.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please Enter Contract Code";
+            }
+            else
+            {
+                string strCCode = txtCC.Text.Trim();
+
+                DataSet dsGetDetail = cls_Connection.getDataSet("SELECT * FROM micro_loan_details WHERE contra_code ='" + strCCode + "';");
+
+                txtLDLAmount.Text = dsGetDetail.Tables[0].Rows[0]["loan_amount"].ToString();
+                txtProdCate.Text = dsGetDetail.Tables[0].Rows[0]["product_category"].ToString();
+                txtBrand.Text = dsGetDetail.Tables[0].Rows[0]["brand"].ToString();
+                txtModelNo.Text = dsGetDetail.Tables[0].Rows[0]["model_no"].ToString();
+                txtSellPrice.Text = dsGetDetail.Tables[0].Rows[0]["selling_price"].ToString();
+                txtDownPay.Text = dsGetDetail.Tables[0].Rows[0]["down_payment"].ToString();
+                txtLDSerCharges.Text = dsGetDetail.Tables[0].Rows[0]["service_charges"].ToString();
+                txtRegistrationFee.Text = dsGetDetail.Tables[0].Rows[0]["registration_fee"].ToString();
+                txtWalfareFee.Text = dsGetDetail.Tables[0].Rows[0]["walfare_fee"].ToString();
+                txtLDOtherCharg.Text = dsGetDetail.Tables[0].Rows[0]["other_charges"].ToString();
+                txtLDIntRate.Text = dsGetDetail.Tables[0].Rows[0]["interest_rate"].ToString();
+                cmbPeriod.SelectedIndex = Convert.ToInt16(dsGetDetail.Tables[0].Rows[0]["period"].ToString());
+                txtLDMInterest.Text = dsGetDetail.Tables[0].Rows[0]["interest_amount"].ToString();
+                txtLDMInstoll.Text = dsGetDetail.Tables[0].Rows[0]["monthly_instollment"].ToString();
+                txtResonToApply.Text = dsGetDetail.Tables[0].Rows[0]["reason_to_apply"].ToString();
+                if (dsGetDetail.Tables[0].Rows[0]["any_unsettled_loans"].ToString() == "1"){
+                    rdoYes.Checked = true;
+                    DataSet dsOLoans = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code='" + strCCode + "'");
+                    if (dsOLoans.Tables[0].Rows.Count > 0)
+                    {
+                        for (int i = 0; i < dsOLoans.Tables[0].Rows.Count; i++)
+                        {
+                            if (i + 1 == 1)
+                            {
+                                txtNameOrg1.Text = dsOLoans.Tables[0].Rows[0]["organization"].ToString();
+                                txtPurpos1.Text = dsOLoans.Tables[0].Rows[0]["purpos"].ToString();
+                                txtFAmount1.Text = dsOLoans.Tables[0].Rows[0]["facility_amount"].ToString();
+                                txtOutstandBal1.Text = dsOLoans.Tables[0].Rows[0]["outstanding"].ToString();
+                                txtMonthInstal1.Text = dsOLoans.Tables[0].Rows[0]["monthly_installment"].ToString();
+                                txtRemainInstal1.Text = dsOLoans.Tables[0].Rows[0]["remaining_number_of_installment"].ToString();
+                            }
+                            if (i + 1 == 2)
+                            {
+                                txtNameOrg2.Text = dsOLoans.Tables[0].Rows[1]["organization"].ToString();
+                                txtPurpos2.Text = dsOLoans.Tables[0].Rows[1]["purpos"].ToString();
+                                txtFAmount2.Text = dsOLoans.Tables[0].Rows[1]["facility_amount"].ToString();
+                                txtOutstandBal2.Text = dsOLoans.Tables[0].Rows[1]["outstanding"].ToString();
+                                txtMonthInstal2.Text = dsOLoans.Tables[0].Rows[1]["monthly_installment"].ToString();
+                                txtRemainInstal2.Text = dsOLoans.Tables[0].Rows[1]["remaining_number_of_installment"].ToString();
+                            }
+                            if (i + 1 == 3)
+                            {
+                                txtNameOrg3.Text = dsOLoans.Tables[0].Rows[2]["organization"].ToString();
+                                txtPurpos3.Text = dsOLoans.Tables[0].Rows[2]["purpos"].ToString();
+                                txtFAmount3.Text = dsOLoans.Tables[0].Rows[2]["facility_amount"].ToString();
+                                txtOutstandBal3.Text = dsOLoans.Tables[0].Rows[2]["outstanding"].ToString();
+                                txtMonthInstal3.Text = dsOLoans.Tables[0].Rows[2]["monthly_installment"].ToString();
+                                txtRemainInstal3.Text = dsOLoans.Tables[0].Rows[2]["remaining_number_of_installment"].ToString();
+                            }
+                        }
+                    }
+                }
+                else{
+                    rdoNo.Checked = true;
+                }
+            }
         }
     }
 }
