@@ -18,6 +18,7 @@
     <script src="../bower_components/moment/min/moment.min.js" type="text/javascript"></script>
     <script src="../dist/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../dist/js/base_scripts.js"></script>
     <script>
     $(document).ready(function() {
         $('.numbersOnly').keypress(function (e) {
@@ -77,6 +78,7 @@
                     <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-book"></i><span>Application</span> </a>
                         <ul class="dropdown-menu">
+                            <%--
                             <li><a href="BranchAdd.aspx">Add Branch </a></li>                        
                             <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
                             <li><a href="Change_CRO.aspx">Change MFO</a></li>
@@ -87,6 +89,20 @@
                             <li><a href="family_details.aspx">Family Details</a></li>
                             <li><a href="family_appraisal.aspx">Family Appraisal</a></li>
                             <li><a href="repayment.aspx">Repayment Details</a></li>
+                            --%>
+                            
+                            
+                            <li><a href="BranchAdd.aspx">Add City </a></li>
+                            <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
+                            <li><a href="Add_Village.aspx">Add Area</a></li>
+                            <li><a href="center_create.aspx">Create Center</a></li>
+                            <li><a href="Change_CRO.aspx">Change MFO</a></li>
+                            <li><a href="client_basic_details.aspx">Basic Details</a></li>
+                            <li><a href="family_details.aspx">Family Details</a></li>
+                            <li><a href="business_details.aspx">Business Details</a></li>
+                            <li><a href="family_appraisal.aspx">Family Appraisal</a></li>
+                            <li><a href="repayment.aspx">Facility Detail</a></li>
+                            <li><a href="ChequeBookRegistry.aspx">Cheque Book Registry </a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -94,10 +110,15 @@
                     </a>
                         <ul class="dropdown-menu">
                             <li><a href="loan_approval.aspx">Loan Approval</a></li>
+                            <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
                             <li><a href="Chequ_Approval.aspx">Chequ Approval</a></li>
-                            <li><a href="Debit_Note.aspx">Debit Run</a></li>
-                            <li><a href="#">Document</a></li>
+                            <li><a href="VoucherPrint.aspx">Voucher Print</a></li>
+                            <li><a href="#">Document</a></li>                            
+                            <%--<li><a href="Debit_Note.aspx">Debit Run</a></li>--%>
                             <li><a href="Settlment.aspx">Settlment</a></li>
+                            <li><a href="Settlment.aspx">Settlment Approval</a></li>
+                            <li><a href="Settlment.aspx">Write Off</a></li>
+                            <li><a href="Settlment.aspx">Loan Reshedule</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">

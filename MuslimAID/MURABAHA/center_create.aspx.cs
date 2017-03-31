@@ -300,9 +300,12 @@ namespace MuslimAID.MURABHA
                     }
 
                     DataSet dsVillage = cls_Connection.getDataSet("select * from villages_name where city_code = '" + cmbCityCode.SelectedItem.Value + "' ORDER BY villages_name");
+                    cmbVillages.Items.Add("Select Village");
+                    cmbVillages.Items[0].Value = "";
                     for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
                     {
-                        cmbVillages.Items.Add(dsVillage.Tables[0].Rows[i][2].ToString());
+                        cmbVillages.Items.Add(dsVillage.Tables[0].Rows[i]["villages_name"].ToString());
+                        cmbVillages.Items[i+1].Value = dsVillage.Tables[0].Rows[i]["idvillages_name"].ToString();
                     }
 
                     string strBranch = cmbCityCode.SelectedItem.Value;
@@ -326,9 +329,13 @@ namespace MuslimAID.MURABHA
                     if (dsGetMaxID.Tables[0].Rows[0][0].ToString() != "")
                     {
                         string strGetMaxID = dsGetMaxID.Tables[0].Rows[0][0].ToString();
-                        intMaxID = Convert.ToInt32(strGetMaxID) + 1;
-                        strMaxID = Convert.ToString(intMaxID);
+                        strMaxID = (Convert.ToInt32(strGetMaxID) + 1).ToString();
+                        //strMaxID = Convert.ToString(intMaxID);
                         txtCenterID.Text = strMaxID;
+                    }
+                    else
+                    {
+                        txtCenterID.Text = "1";
                     }
                 }
                 else
@@ -337,8 +344,9 @@ namespace MuslimAID.MURABHA
                     btnSubmit.Enabled = false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Reteave error");
             }
         }
 

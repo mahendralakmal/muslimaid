@@ -134,6 +134,13 @@
     <Compile Include="MURABAHA\Chequ_Cancel.aspx.designer.cs">
       <DependentUpon>Chequ_Cancel.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\Chequ_Print.aspx.cs">
+      <DependentUpon>Chequ_Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Chequ_Print.aspx.designer.cs">
+      <DependentUpon>Chequ_Print.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MURABAHA\Client_Basic_Details_Report.aspx.cs">
       <DependentUpon>Client_Basic_Details_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -394,13 +401,6 @@
     <Compile Include="SALAM\BranchAdd.aspx.designer.cs">
       <DependentUpon>BranchAdd.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SALAM\business_details.aspx.cs">
-      <DependentUpon>business_details.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SALAM\business_details.aspx.designer.cs">
-      <DependentUpon>business_details.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SALAM\center_create.aspx.cs">
       <DependentUpon>center_create.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -415,6 +415,13 @@
     <Compile Include="SALAM\Change_CRO.aspx.designer.cs">
       <DependentUpon>Change_CRO.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SALAM\ChequeBookRegistry.aspx.cs">
+      <DependentUpon>ChequeBookRegistry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\ChequeBookRegistry.aspx.designer.cs">
+      <DependentUpon>ChequeBookRegistry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SALAM\Chequ_Approval.aspx.cs">
       <DependentUpon>Chequ_Approval.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -428,6 +435,20 @@
     </Compile>
     <Compile Include="SALAM\Chequ_Cancel.aspx.designer.cs">
       <DependentUpon>Chequ_Cancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\Chequ_Print.aspx.cs">
+      <DependentUpon>Chequ_Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\Chequ_Print.aspx.designer.cs">
+      <DependentUpon>Chequ_Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\client_basic_details.aspx.cs">
+      <DependentUpon>client_basic_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\client_basic_details.aspx.designer.cs">
+      <DependentUpon>client_basic_details.aspx</DependentUpon>
     </Compile>
     <Compile Include="SALAM\Debit_Note.aspx.cs">
       <DependentUpon>Debit_Note.aspx</DependentUpon>
@@ -463,6 +484,13 @@
     </Compile>
     <Compile Include="SALAM\loan_approval.aspx.designer.cs">
       <DependentUpon>loan_approval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\Loan_Cancel.aspx.cs">
+      <DependentUpon>Loan_Cancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\Loan_Cancel.aspx.designer.cs">
+      <DependentUpon>Loan_Cancel.aspx</DependentUpon>
     </Compile>
     <Compile Include="SALAM\Salam.Master.cs">
       <DependentUpon>Salam.Master</DependentUpon>
@@ -526,6 +554,13 @@
     </Compile>
     <Compile Include="SALAM\Settlment.aspx.designer.cs">
       <DependentUpon>Settlment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\VoucherPrint.aspx.cs">
+      <DependentUpon>VoucherPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\VoucherPrint.aspx.designer.cs">
+      <DependentUpon>VoucherPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="User_Create.aspx.cs">
       <DependentUpon>User_Create.aspx</DependentUpon>
@@ -1097,6 +1132,7 @@
     <Content Include="MURABAHA\Change_CRO.aspx" />
     <Content Include="MURABAHA\ChequeBookRegistry.aspx" />
     <Content Include="MURABAHA\Chequ_Cancel.aspx" />
+    <Content Include="MURABAHA\Chequ_Print.aspx" />
     <Content Include="MURABAHA\client_basic_details.aspx" />
     <Content Include="MURABAHA\business_details.aspx" />
     <Content Include="MURABAHA\center_create.aspx" />
@@ -1129,16 +1165,19 @@
     <Content Include="MURABAHA\WayOffAmount.aspx" />
     <Content Include="SALAM\Add_Village.aspx" />
     <Content Include="SALAM\BranchAdd.aspx" />
-    <Content Include="SALAM\business_details.aspx" />
     <Content Include="SALAM\center_create.aspx" />
     <Content Include="SALAM\Change_CRO.aspx" />
+    <Content Include="SALAM\ChequeBookRegistry.aspx" />
     <Content Include="SALAM\Chequ_Approval.aspx" />
     <Content Include="SALAM\Chequ_Cancel.aspx" />
+    <Content Include="SALAM\Chequ_Print.aspx" />
+    <Content Include="SALAM\client_basic_details.aspx" />
     <Content Include="SALAM\Debit_Note.aspx" />
     <Content Include="SALAM\family_appraisal.aspx" />
     <Content Include="SALAM\family_details.aspx" />
     <Content Include="SALAM\Full_Details.aspx" />
     <Content Include="SALAM\loan_approval.aspx" />
+    <Content Include="SALAM\Loan_Cancel.aspx" />
     <Content Include="SALAM\Salam.Master" />
     <Content Include="Login.aspx" />
     <Content Include="muslimaid.aspx" />
@@ -1148,6 +1187,7 @@
     <Content Include="SALAM\add_cro.aspx" />
     <Content Include="SALAM\Service_Charges.aspx" />
     <Content Include="SALAM\Settlment.aspx" />
+    <Content Include="SALAM\VoucherPrint.aspx" />
     <Content Include="User_Create.aspx" />
     <Content Include="under-constrction.aspx" />
   </ItemGroup>
@@ -1210,10 +1250,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="css\pages\" />
-    <Folder Include="MURABAHA\murahaha_client_photo\" />
-    <Folder Include="MURABAHA\murahaha_client_product\" />
-    <Folder Include="SALAM\salam_client_photo\" />
-    <Folder Include="SALAM\salam_client_product\" />
+    <Folder Include="MURABAHA\client_photo\" />
+    <Folder Include="MURABAHA\client_product\" />
+    <Folder Include="SALAM\client_photo\" />
+    <Folder Include="SALAM\client_product\" />
     <Folder Include="User_Photos\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -1231,7 +1271,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49855</DevelopmentServerPort>
+          <DevelopmentServerPort>52443</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

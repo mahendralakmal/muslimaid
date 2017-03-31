@@ -140,6 +140,15 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.TextBox txtTotalIncome;
         
         /// <summary>
+        /// hidtxtTotalIncome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidtxtTotalIncome;
+        
+        /// <summary>
         /// txtDCost control.
         /// </summary>
         /// <remarks>
@@ -165,6 +174,15 @@ namespace MuslimAID.MURABHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTotPurchase;
+        
+        /// <summary>
+        /// hidtxtTotPurchase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidtxtTotPurchase;
         
         /// <summary>
         /// txtGrossProfit control.
@@ -248,6 +266,15 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.TextBox txtTExpenses;
         
         /// <summary>
+        /// hidtxtTExpenses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidtxtTExpenses;
+        
+        /// <summary>
         /// txtPAndL control.
         /// </summary>
         /// <remarks>
@@ -255,6 +282,15 @@ namespace MuslimAID.MURABHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPAndL;
+        
+        /// <summary>
+        /// hidtxtPAndL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidtxtPAndL;
         
         /// <summary>
         /// btnSubmit control.

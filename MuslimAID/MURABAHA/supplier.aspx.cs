@@ -33,32 +33,13 @@ namespace MuslimAID.MURABAHA
                         if (strCC != null && strCAC != null)
                         {
                             txtCC.Text = strCC;
-                            txtCACode.Text = strCAC;
                             txtCC.Enabled = false;
-
-                            DataSet ds = cls_Connection.getDataSet("select * from bank_tbl");
-                            cmbSupplierBank.Items.Add(new ListItem("Select Bank",""));
-                            if (ds.Tables[0].Rows.Count > 0)
-                            {
-                                foreach (DataRow drRow in ds.Tables[0].Rows)
-                                {
-                                    cmbSupplierBank.Items.Add(new ListItem(drRow[1].ToString(), drRow[0].ToString()));
-                                }
-                            }
-
-                            //DataSet dsSC = cls_Connection.getDataSet("select * from supplier_category");
-                            //cmbSupplierCategory.Items.Add(new ListItem("Select Supplier Category",""));
-                            //if (dsSC.Tables[0].Rows.Count > 0)
-                            //{
-                            //    foreach (DataRow drRow in dsSC.Tables[0].Rows)
-                            //    {
-                            //        cmbSupplierCategory.Items.Add(new ListItem(drRow[1].ToString(), drRow[0].ToString()));
-                            //    }
-                            //}
+                            getBankDetails();                            
                         }
                         else
                         {
                             txtCC.Enabled = true;
+                            getBankDetails();
                         }
                     }
                     else
@@ -69,6 +50,19 @@ namespace MuslimAID.MURABAHA
             }
             catch (Exception)
             {
+            }
+        }
+
+        protected void getBankDetails()
+        {
+            DataSet ds = cls_Connection.getDataSet("SELECT * FROM `bank_tbl`");
+            cmbSupplierBank.Items.Add(new ListItem("Select Bank", ""));
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow drRow in ds.Tables[0].Rows)
+                {
+                    cmbSupplierBank.Items.Add(new ListItem(drRow[1].ToString(), drRow[0].ToString()));
+                }
             }
         }
 
@@ -105,7 +99,7 @@ namespace MuslimAID.MURABAHA
                 else if (txtAccountName.Text == "")
                     lblMsg.Text = "Plese enter the supplier account name";
                 else {
-                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO supplier_details(contract_code,name,address,tele,mobile,bank,branch,account_no,account_name)VALUES (@contract_code,@name,@address,@tele,@mobile,@bank,@branch,@account_no,@account_name)");
+                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_supplier_details(contract_code,name,address,tele,mobile,bank,branch,account_no,account_name)VALUES (@contract_code,@name,@address,@tele,@mobile,@bank,@branch,@account_no,@account_name)");
 
                     #region Parameter Declarations
                     cmdInsert.Parameters.AddWithValue("@contract_code", txtCC.Text.Trim());
@@ -150,7 +144,67 @@ namespace MuslimAID.MURABAHA
             txtAccountName.Text = "";
             txtAccountNumber.Text = "";
             txtBisAddress.Text = "";
-            txtCACode.Text = "";
+            txtCC.Text = "";
+            txtSupplierMobile.Text = "";
+            txtSupplierName.Text = "";
+            txtSupplierTelephone.Text = "";
+            cmbBnkBranch.SelectedIndex = 0;
+            cmbSupplierBank.SelectedIndex = 0;
+        }
+
+        protected void txtCC_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCC.Text.Trim() != "")
+            {
+                DataSet dsGetData = cls_Connection.getDataSet("SELECT * FROM `micro_supplier_details` WHERE contract_code ='"+txtCC.Text.Trim()+"'");
+                if (dsGetData.Tables[0].Rows.Count > 0)
+                {
+                    txtSupplierName.Text = dsGetData.Tables[0].Rows[0]["name"].ToString();
+                    txtBisAddress.Text = dsGetData.Tables[0].Rows[0]["address"].ToString();
+                    txtSupplierTelephone.Text = dsGetData.Tables[0].Rows[0]["tele"].ToString();
+                    txtSupplierMobile.Text = dsGetData.Tables[0].Rows[0]["mobile"].ToString();
+                    cmbSupplierBank.SelectedValue = dsGetData.Tables[0].Rows[0]["bank"].ToString();
+                    cmbBnkBranch.SelectedValue = dsGetData.Tables[0].Rows[0]["branch"].ToString();
+                    txtAccountName.Text = dsGetData.Tables[0].Rows[0]["account_name"].ToString();
+                    txtAccountNumber.Text = dsGetData.Tables[0].Rows[0]["account_no"].ToString();
+
+                    btnSubmit.Enabled = false;
+                    btnUpdate.Enabled = true;
+                }
+                else
+                {
+                    btnSubmit.Enabled = true;
+                    btnUpdate.Enabled = false;
+                }
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_supplier_details SET name='" + txtSupplierName.Text.Trim() + "', address='" + txtBisAddress.Text.Trim() + "', tele='" + txtSupplierTelephone.Text.Trim() + "', mobile='" + txtSupplierMobile.Text.Trim() + "',bank=" + cmbSupplierBank.SelectedValue + ", branch =" + cmbBnkBranch.SelectedValue + ",account_no='" + txtAccountNumber.Text.Trim() + "', account_name='" + txtAccountName.Text.Trim() + "'");
+            try
+            {
+                int i;
+                i = objDBCon.insertEditData(cmdUpdateQRY);
+
+                Clear();
+                lblMsg.Text = "Update Success.";
+
+
+
+                btnUpdate.Enabled = false;
+                btnSubmit.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        protected void Clear()
+        {
+            txtAccountName.Text = "";
+            txtAccountNumber.Text = "";
+            txtBisAddress.Text = "";
             txtCC.Text = "";
             txtSupplierMobile.Text = "";
             txtSupplierName.Text = "";

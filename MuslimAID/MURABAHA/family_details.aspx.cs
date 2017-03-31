@@ -40,7 +40,6 @@ namespace MuslimAID.MURABHA
                         if (strCC != null && strCAC != null)
                         {
                             txtCC.Text = strCC;
-                            txtCACode.Text = strCAC;
                             txtCC.Enabled = false;
                         }
                         else
@@ -68,10 +67,10 @@ namespace MuslimAID.MURABHA
                 {
                     lblMsg.Text = "Please Enter Facility Code";
                 }
-                else if (txtCACode.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Enter CA Code";
-                }
+                //else if (txtCACode.Text.Trim() == "")
+                //{
+                //    lblMsg.Text = "Please Enter CA Code";
+                //}
                 /* 
                 else if (txtSoName.Text.Trim() == "")
                 {
@@ -121,7 +120,7 @@ namespace MuslimAID.MURABHA
                     #region Values
                     string strIp = Request.UserHostAddress;
                     string strCCode = txtCC.Text.Trim();
-                    string strCACode = txtCACode.Text.Trim();
+                    //string strCACode = txtCACode.Text.Trim();
                     string strloginID = Session["NIC"].ToString();
                     string strNIC = txtNIC.Text.Trim();
                     string strNICissueDate = txtNicIssuedDate.Text.Trim();
@@ -237,7 +236,7 @@ namespace MuslimAID.MURABHA
                         {
                             //lblMsg.Text = "Success";
                             //Response.Redirect("family_appraisal.aspx?CC=" + strCCode + "&CA=" + strCACode);
-                            Response.Redirect("business_details.aspx?CC=" + strCCode + "&CA=" + strCACode + "");
+                            Response.Redirect("business_details.aspx?CC=" + strCCode + "&CA=" + strCAC + "");
                         }
                         else
                         {
@@ -326,7 +325,7 @@ namespace MuslimAID.MURABHA
             #region Values
             string strIp = Request.UserHostAddress;
             string strCCode = txtCC.Text.Trim();
-            string strCACode = txtCACode.Text.Trim();
+            //string strCACode = txtCACode.Text.Trim();
             string strloginID = Session["NIC"].ToString();
             string strNIC = txtNIC.Text.Trim();
             string strSPName = txtSoName.Text.Trim();
@@ -362,7 +361,7 @@ namespace MuslimAID.MURABHA
 
         protected void Clear()
         {
-            txtCACode.Text = "";
+            //txtCACode.Text = "";
             txtCC.Text = "";
             txtDepen.Text = "";
             txtFMIncome.Text = "";
@@ -414,7 +413,7 @@ namespace MuslimAID.MURABHA
                         txtSIncome.Text = dsGetDetail.Tables[0].Rows[0]["spouse_income"].ToString();
                         txtMProperty.Text = dsGetDetail.Tables[0].Rows[0]["moveable_property"].ToString();
                         txtSaving.Text = dsGetDetail.Tables[0].Rows[0]["saving"].ToString();
-                        txtCACode.Text = dsGetDetail.Tables[0].Rows[0]["ca_code"].ToString();
+                        //txtCACode.Text = dsGetDetail.Tables[0].Rows[0]["ca_code"].ToString();
                         txtNicIssuedDate.Text = dsGetDetail.Tables[0].Rows[0]["spouse_nic_issued_date"].ToString();
                         txtDOB.Text = dsGetDetail.Tables[0].Rows[0]["spouse_dob"].ToString();
 

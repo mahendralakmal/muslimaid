@@ -26,9 +26,7 @@ $(document).ready(function(){
         </div>
         <div class="col-md-12 form-container">
             <div class="PageTitle">
-                <h5>
-                    Business / Income Generational Activity Details<hr />
-                </h5>
+                <h5> Business / Income Generational Activity Details </h5><hr/>
             </div>
             <div class="col-md-12">
                 <div class="col-md-6">
@@ -40,6 +38,8 @@ $(document).ready(function(){
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">&nbsp;</div>
+                <%--
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="col-md-5">
@@ -50,6 +50,7 @@ $(document).ready(function(){
                         </div>
                     </div>
                 </div>
+                --%>
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="col-md-5">
@@ -61,6 +62,7 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
+            <div class="col-md-12">
             <div class="col-md-12">
                 <div class="form-group">
                     <div class="col-md-5">
@@ -134,6 +136,7 @@ $(document).ready(function(){
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
             <br />
             <div class="PageTitle">

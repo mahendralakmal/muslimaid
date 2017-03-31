@@ -169,14 +169,14 @@
                 <div class="col-md-5">Gender</div>
                 <div class="col-md-7">
                     <asp:RadioButton ID="rdoMale" Text="Male" runat="server" TabIndex="17" Checked="True" GroupName="rdoGender" />
-                    <asp:RadioButton ID="rdoFeMale" TabIndex="18" Text="Female" runat="server" GroupName="rdoGender" />
+                    <asp:RadioButton ID="rdoFeMale" TabIndex="17" Text="Female" runat="server" GroupName="rdoGender" />
                 </div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Marital Status<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:DropDownList ID="cmbMS" CssClass="form-control" runat="server" TabIndex="19">
+                    <asp:DropDownList ID="cmbMS" CssClass="form-control" runat="server" TabIndex="18">
                         <asp:ListItem Value="S">Single</asp:ListItem>
                         <asp:ListItem Value="M">Married</asp:ListItem>
                         <asp:ListItem Value="d">Divorce</asp:ListItem>
@@ -189,7 +189,7 @@
             <div class="form-group">                
                 <div class="col-md-5">Education</div>
                 <div class="col-md-7">
-                <asp:DropDownList ID="cmbEducation" CssClass="form-control" runat="server" TabIndex="20">
+                <asp:DropDownList ID="cmbEducation" CssClass="form-control" runat="server" TabIndex="19">
                     <asp:ListItem Value="P">Primary</asp:ListItem>
                     <asp:ListItem Value="S">Secondary</asp:ListItem>
                     <asp:ListItem Value="U">Undergraduate</asp:ListItem>
@@ -200,34 +200,34 @@
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Address as per NIC<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtAddress" Height="70px" TextMode="MultiLine" MaxLength="150" runat="server" TabIndex="21"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtAddress" Height="70px" TextMode="MultiLine" MaxLength="150" runat="server" TabIndex="20"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Current Residential Address</div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtResiAddress" Height="70px" TextMode="MultiLine" MaxLength="150" runat="server" TabIndex="22"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtResiAddress" Height="70px" TextMode="MultiLine" MaxLength="150" runat="server" TabIndex="21"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Mobile No<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="numbersOnly form-control" ID="txtMobileNo" runat="server" MaxLength="10" TabIndex="23"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="numbersOnly form-control" ID="txtMobileNo" runat="server" MaxLength="10" TabIndex="22"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Tele No<%--<span style="color:Red;">*</span>--%></div>
-                <div class="col-md-7"><asp:TextBox CssClass="numbersOnly form-control" ID="txtTele" runat="server" MaxLength="10" TabIndex="24"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="numbersOnly form-control" ID="txtTele" runat="server" MaxLength="10" TabIndex="23"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
             <div class="form-group">                
                 <div class="col-md-5">Occupation / Income Source<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtOccupation" runat="server" TabIndex="14"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtOccupation" runat="server" TabIndex="24"></asp:TextBox></div>
             </div></div>
             <div class="col-md-6">
                 <div class="form-group">                
                     <div class="col-md-5">Inspection Date<span style="color:Red;">*</span></div>
                     <div class="col-md-7">
                         <div class='input-group date' id='InspectionCDB' name="InspectionCDB">
-                            <asp:TextBox ID="txtInsDate" CssClass="form-control" runat="server" TabIndex="25"></asp:TextBox>
+                            <asp:TextBox ID="txtInsDate" CssClass="form-control" runat="server" TabIndex="26"></asp:TextBox>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>
@@ -239,10 +239,10 @@
             </div>
             <div class="col-md-12">
                 <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Enabled="false" 
-                    runat="server" Text="Submit" TabIndex="26" onclick="btnSubmit_Click"/>&nbsp;
+                    runat="server" Text="Submit" TabIndex="27" onclick="btnSubmit_Click"/>&nbsp;
                 <asp:Button ID="btnUpdate" CssClass="btn btn-primary" Enabled="false" 
                     runat="server" Text="Update" 
-                        TabIndex="27" onclick="btnUpdate_Click" />
+                        TabIndex="28" onclick="btnUpdate_Click" />
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
         </div>

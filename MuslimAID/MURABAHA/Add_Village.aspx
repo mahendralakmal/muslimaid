@@ -16,7 +16,7 @@
                         ontextchanged="txtVillage_TextChanged"></asp:TextBox></div>
             </div>
                 <asp:Button CssClass="btn btn-primary" ID="btnSubmit" runat="server" 
-                Text="Submit" Enabled="false" onclick="btnSubmit_Click"/>&nbsp;
+                Text="Submit" Enabled="true" onclick="btnSubmit_Click"/>&nbsp;
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
         </div>
     </div>

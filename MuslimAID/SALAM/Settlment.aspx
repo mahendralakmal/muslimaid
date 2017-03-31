@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class="PageTitle">
-            <h4>Salam - Repayment</h4>
+            <h4>Salam - Settlment</h4>
         </div>
         <div class="form-container col-md-12">
             <div class="col-md-6">
@@ -16,6 +16,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-12">&nbsp;</div>
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="col-md-5">
@@ -34,7 +35,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="col-md-5">
@@ -61,7 +61,6 @@
                         <asp:TextBox ID="txtSP" MaxLength="12" CssClass="form-control numbersOnly" runat="server" TabIndex="0"></asp:TextBox>
                     </div>
                 </div>
-            </div>
             </div>
             <div class="col-md-12">
                 <asp:Button ID="submit" runat="server" Text="Submit" />

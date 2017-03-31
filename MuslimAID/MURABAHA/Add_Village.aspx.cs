@@ -99,7 +99,7 @@ namespace MuslimAID.MURABHA
                     int i = objDBTask.insertEditData(cmdInsert);
                     if (i == 1)
                     {
-                        lblMsg.Text = "Successfully Added Village";
+                        lblMsg.Text = "Successfully Added Area";
                         Clear();
 
                     }
@@ -131,7 +131,7 @@ namespace MuslimAID.MURABHA
             }
             else if (txtVillage.Text.Trim() == "")
             {
-                lblMsg.Text = "Please enter Village.";
+                lblMsg.Text = "Please enter Area.";
             }
             else
             {

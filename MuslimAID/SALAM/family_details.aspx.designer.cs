@@ -23,15 +23,6 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.TextBox txtCC;
         
         /// <summary>
-        /// txtCACode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCACode;
-        
-        /// <summary>
         /// txtSoName control.
         /// </summary>
         /// <remarks>

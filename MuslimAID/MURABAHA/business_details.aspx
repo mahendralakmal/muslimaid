@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="business_details.aspx.cs" Inherits="MuslimAID.MURABHA.business_details"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" src="../dist/js/base_scripts.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
@@ -101,7 +100,7 @@
             </div>
         </div>
         <div class="col-md-12"></div>
-        <div class="col-md-12"><h4>Monthly Business Income (BI)</h4><hr /></div>
+        <div class="col-md-12"><h4>Annual Business Income (ABI)</h4><hr /></div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Sales (Cash)<span style="color:Red;">*</span></div>
@@ -130,12 +129,12 @@
                 <div class="col-md-5"><strong>Total Sales</strong><span style="color:Red;">*</span></div>
                 <div class="col-md-7">
                     <asp:TextBox TabIndex="15" CssClass="numbersOnly form-control txtTotalIncome" Enabled="false" ID="txtTotalIncome" runat="server"></asp:TextBox>
-                    <%--<asp:Label CssClass="form-control" ID="lblTotalIncome" runat="server"></asp:Label>--%>
+                    <asp:HiddenField ID="hidtxtTotalIncome" runat="server" />
                 </div>
             </div>
         </div>
         <div class="col-md-12"></div>
-        <div class="col-md-12"><h4>Monthly Business Expenses (BE)</h4><hr /></div>
+        <div class="col-md-12"><h4>Annual Business Expenses (ABE)</h4><hr /></div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Purchases (Cash)<span style="color:Red;">*</span></div>
@@ -157,7 +156,7 @@
                 <div class="col-md-5"><strong>Total Purchases</strong><span style="color:Red;">*</span></div>
                 <div class="col-md-7">
                     <asp:TextBox TabIndex="18" CssClass="form-control txtTotPurchase" ID="txtTotPurchase" Enabled="false" runat="server"></asp:TextBox>
-                    <%--<asp:Label CssClass="form-control" ID="lblTotPurchase" runat="server"></asp:Label>--%>
+                    <asp:HiddenField ID="hidtxtTotPurchase" runat="server" />
                 </div>
             </div>
         </div>
@@ -224,6 +223,7 @@
                 <div class="col-md-5">Total Business Expense<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
                     <asp:TextBox CssClass="form-control txtTExpenses" TabIndex="25" ID="txtTExpenses" Enabled="false" runat="server"></asp:TextBox>
+                    <asp:HiddenField ID="hidtxtTExpenses" runat="server" />
                     <%--<asp:Label CssClass="form-control" ID="lblTExpenses" runat="server"></asp:Label>--%>
                 </div>
             </div>
@@ -234,15 +234,16 @@
                 <div class="col-md-5">Net Profit<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
                     <asp:TextBox CssClass="form-control txtPAndL" TabIndex="26" ID="txtPAndL" Enabled="false" runat="server"></asp:TextBox>
+                    <asp:HiddenField ID="hidtxtPAndL" runat="server" />
                 <%--<asp:Label CssClass="form-control" ID="lblPAndL" runat="server"></asp:Label>--%>
                 </div>
             </div>
         </div>
         <div class="col-md-12">
             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" 
-                Text="Submit" TabIndex="11" onclick="btnSubmit_Click"/>
+                Text="Submit" TabIndex="27" onclick="btnSubmit_Click"/>
             <asp:Button ID="btnUpdate" CssClass="btn btn-primary" runat="server" 
-                Text="Update" TabIndex="12" onclick="btnUpdate_Click"/>
+                Text="Update" TabIndex="28" onclick="btnUpdate_Click"/>
             <asp:Label ID="lblMsg" runat="server"></asp:Label>
         </div>
     </div>

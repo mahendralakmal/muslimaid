@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions;
 using System.Text;
+using System.Globalization;
 
 namespace MuslimAID.SALAM
 {
@@ -39,7 +40,6 @@ namespace MuslimAID.SALAM
                         if (strCC != null && strCAC != null)
                         {
                             txtCC.Text = strCC;
-                            txtCACode.Text = strCAC;
                             txtCC.Enabled = false;
                         }
                         else
@@ -67,10 +67,10 @@ namespace MuslimAID.SALAM
                 {
                     lblMsg.Text = "Please Enter Facility Code";
                 }
-                else if (txtCACode.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Enter CA Code";
-                }
+                //else if (txtCACode.Text.Trim() == "")
+                //{
+                //    lblMsg.Text = "Please Enter CA Code";
+                //}
                 /* 
                 else if (txtSoName.Text.Trim() == "")
                 {
@@ -120,7 +120,7 @@ namespace MuslimAID.SALAM
                     #region Values
                     string strIp = Request.UserHostAddress;
                     string strCCode = txtCC.Text.Trim();
-                    string strCACode = txtCACode.Text.Trim();
+                    //string strCACode = txtCACode.Text.Trim();
                     string strloginID = Session["NIC"].ToString();
                     string strNIC = txtNIC.Text.Trim();
                     string strNICissueDate = txtNicIssuedDate.Text.Trim();
@@ -235,8 +235,8 @@ namespace MuslimAID.SALAM
                         if (i == 1)
                         {
                             //lblMsg.Text = "Success";
-                            Response.Redirect("family_appraisal.aspx?CC=" + strCCode + "&CA=" + strCACode);
-                            //Response.Redirect("Business_Details.aspx?CC=" + strCCode + "&CA=" + strCACode + "");
+                            //Response.Redirect("family_appraisal.aspx?CC=" + strCCode + "&CA=" + strCACode);
+                            Response.Redirect("business_details.aspx?CC=" + strCCode + "&CA=" + strCAC + "");
                         }
                         else
                         {
@@ -293,7 +293,7 @@ namespace MuslimAID.SALAM
                 else
                 {
                     string strCCode = txtCC.Text.Trim();
-                    DataSet dsGetDetail = cls_Connection.getDataSet("select * from micro_family_details where contract_code = '" + strCCode + "';");
+                    DataSet dsGetDetail = cls_Connection.getDataSet("select * from salam_family_details where contract_code = '" + strCCode + "';");
                     if (dsGetDetail.Tables[0].Rows.Count > 0)
                     {
                         Update();
@@ -301,7 +301,7 @@ namespace MuslimAID.SALAM
                     }
                     else
                     {
-                        DataSet dsGetBasicDetail = cls_Connection.getDataSet("select * from micro_basic_detail where contract_code = '" + strCCode + "';");
+                        DataSet dsGetBasicDetail = cls_Connection.getDataSet("select * from salam_basic_detail where contract_code = '" + strCCode + "';");
                         if (dsGetBasicDetail.Tables[0].Rows.Count > 0)
                         {
                             Update();
@@ -325,7 +325,7 @@ namespace MuslimAID.SALAM
             #region Values
             string strIp = Request.UserHostAddress;
             string strCCode = txtCC.Text.Trim();
-            string strCACode = txtCACode.Text.Trim();
+            //string strCACode = txtCACode.Text.Trim();
             string strloginID = Session["NIC"].ToString();
             string strNIC = txtNIC.Text.Trim();
             string strSPName = txtSoName.Text.Trim();
@@ -341,7 +341,7 @@ namespace MuslimAID.SALAM
             string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             #endregion
 
-            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_family_details SET spouse_nic = '" + strNIC + "',spouse_name = '" + strSPName + "',occupation = '" + strOcc + "',no_of_fami_memb = '" + strNFM + "',education = '" + strEdu + "',dependers = '" + strDep + "',spouse_income = '" + strSPIncome + "',other_fami_mem_income = '" + strOFMIncome + "',moveable_property = '" + strMP + "',immoveable_property = '" + strIMPro + "',saving = '" + strsaving + "',create_user_nic = '" + strloginID + "',user_ip = '" + strIp + "',date_time = '" + strDateTime + "' WHERE contract_code = '" + strCCode + "';");
+            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE salam_family_details SET spouse_nic = '" + strNIC + "',spouse_name = '" + strSPName + "',occupation = '" + strOcc + "',no_of_fami_memb = '" + strNFM + "',education = '" + strEdu + "',dependers = '" + strDep + "',spouse_income = '" + strSPIncome + "',other_fami_mem_income = '" + strOFMIncome + "',moveable_property = '" + strMP + "',immoveable_property = '" + strIMPro + "',saving = '" + strsaving + "',create_user_nic = '" + strloginID + "',user_ip = '" + strIp + "',date_time = '" + strDateTime + "' WHERE contract_code = '" + strCCode + "';");
 
             try
             {
@@ -361,7 +361,7 @@ namespace MuslimAID.SALAM
 
         protected void Clear()
         {
-            txtCACode.Text = "";
+            //txtCACode.Text = "";
             txtCC.Text = "";
             txtDepen.Text = "";
             txtFMIncome.Text = "";
@@ -379,6 +379,164 @@ namespace MuslimAID.SALAM
         protected void txtDOB_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void txtCC_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lblMsg.Text = "";
+                if (txtCC.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Enter Contract Code";
+                }
+                else
+                {
+                    string strCCode = txtCC.Text.Trim();
+                    //DataSet dsGetDetail = cls_Connection.getDataSet("select * from salam_family_details f left outer join salam_basic_detail b on f.contract_code = b.contract_code where f.contract_code = '" + strCCode + "';");
+
+                    DataSet dsGetDetail = cls_Connection.getDataSet("select * from salam_family_details f left outer join salam_basic_detail b on f.contract_code = b.contract_code where f.contract_code = '" + strCCode + "';");
+                    if (dsGetDetail.Tables[0].Rows.Count > 0)
+                    {
+                        btnSubmit.Enabled = false;
+                        btnUpdate.Enabled = true;
+                        txtCC.Enabled = false;
+                        txtNIC.Text = dsGetDetail.Tables[0].Rows[0]["spouse_nic"].ToString();
+                        //txtMobileNo.Text = dsGetDetail.Tables[0].Rows[0]["mobileno"].ToString();
+                        txtSoName.Text = dsGetDetail.Tables[0].Rows[0]["spouse_name"].ToString();
+                        txtNoFMembers.Text = dsGetDetail.Tables[0].Rows[0]["no_of_fami_memb"].ToString();
+                        txtDepen.Text = dsGetDetail.Tables[0].Rows[0]["dependers"].ToString();
+                        txtFMIncome.Text = dsGetDetail.Tables[0].Rows[0]["other_fami_mem_income"].ToString();
+                        txtIProperty.Text = dsGetDetail.Tables[0].Rows[0]["immoveable_property"].ToString();
+                        cmbOccupa.SelectedValue = dsGetDetail.Tables[0].Rows[0]["occupation"].ToString();
+                        cmbEducation.SelectedValue = dsGetDetail.Tables[0].Rows[0]["education"].ToString();
+                        txtSIncome.Text = dsGetDetail.Tables[0].Rows[0]["spouse_income"].ToString();
+                        txtMProperty.Text = dsGetDetail.Tables[0].Rows[0]["moveable_property"].ToString();
+                        txtSaving.Text = dsGetDetail.Tables[0].Rows[0]["saving"].ToString();
+                        //txtCACode.Text = dsGetDetail.Tables[0].Rows[0]["ca_code"].ToString();
+                        txtNicIssuedDate.Text = dsGetDetail.Tables[0].Rows[0]["spouse_nic_issued_date"].ToString();
+                        txtDOB.Text = dsGetDetail.Tables[0].Rows[0]["spouse_dob"].ToString();
+
+                        DateTime now = DateTime.UtcNow.Date;
+                        DateTime dt = DateTime.Parse(dsGetDetail.Tables[0].Rows[0]["spouse_dob"].ToString(), new CultureInfo("en-CA"));
+                        int age = now.Year - dt.Year;
+
+                        lblAge.Text = age.ToString();
+
+                        if (dsGetDetail.Tables[0].Rows[0]["spouse_gender"].ToString() == "1")
+                            rdoMale.Checked = true;
+                        else
+                            rdoFeMale.Checked = true;
+                        txtContact.Text = dsGetDetail.Tables[0].Rows[0]["spouse_contact_no"].ToString();
+                        txtRelation.Text = dsGetDetail.Tables[0].Rows[0]["spouse_relationship_with_applicant"].ToString();
+
+                        DataSet frd = cls_Connection.getDataSet("SELECT * FROM family_relationship_details where contract_code = '" + strCCode + "';");
+
+                        for (int i = 0; i <= frd.Tables[0].Rows.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                txtName1.Text = frd.Tables[0].Rows[i]["name"].ToString();
+                                txtRelation1.Text = frd.Tables[0].Rows[i]["relationship"].ToString();
+                                txtAge1.Text = frd.Tables[0].Rows[i]["age"].ToString();
+                                txtOcc1.Text = frd.Tables[0].Rows[i]["occupation"].ToString();
+                                txtInCome1.Text = frd.Tables[0].Rows[i]["income"].ToString();
+                            }
+                            if (i == 1)
+                            {
+                                txtName2.Text = frd.Tables[0].Rows[i]["name"].ToString();
+                                txtRelation2.Text = frd.Tables[0].Rows[i]["relationship"].ToString();
+                                txtAge2.Text = frd.Tables[0].Rows[i]["age"].ToString();
+                                txtOcc2.Text = frd.Tables[0].Rows[i]["occupation"].ToString();
+                                txtInCome2.Text = frd.Tables[0].Rows[i]["income"].ToString();
+                            }
+                            if (i == 2)
+                            {
+                                txtName3.Text = frd.Tables[0].Rows[i]["name"].ToString();
+                                txtRelation3.Text = frd.Tables[0].Rows[i]["relationship"].ToString();
+                                txtAge3.Text = frd.Tables[0].Rows[i]["age"].ToString();
+                                txtOcc3.Text = frd.Tables[0].Rows[i]["occupation"].ToString();
+                                txtInCome3.Text = frd.Tables[0].Rows[i]["income"].ToString();
+                            }
+                            if (i == 3)
+                            {
+                                txtName4.Text = frd.Tables[0].Rows[i]["name"].ToString();
+                                txtRelation4.Text = frd.Tables[0].Rows[i]["relationship"].ToString();
+                                txtAge4.Text = frd.Tables[0].Rows[i]["age"].ToString();
+                                txtOcc4.Text = frd.Tables[0].Rows[i]["occupation"].ToString();
+                                txtInCome4.Text = frd.Tables[0].Rows[i]["income"].ToString();
+                            }
+                            if (i == 4)
+                            {
+                                txtName5.Text = frd.Tables[0].Rows[i]["name"].ToString();
+                                txtRelation5.Text = frd.Tables[0].Rows[i]["relationship"].ToString();
+                                txtAge5.Text = frd.Tables[0].Rows[i]["age"].ToString();
+                                txtOcc5.Text = frd.Tables[0].Rows[i]["occupation"].ToString();
+                                txtInCome5.Text = frd.Tables[0].Rows[i]["income"].ToString();
+                            }
+                            if (i == 5)
+                            {
+                                txtName6.Text = frd.Tables[0].Rows[i]["name"].ToString();
+                                txtRelation6.Text = frd.Tables[0].Rows[i]["relationship"].ToString();
+                                txtAge6.Text = frd.Tables[0].Rows[i]["age"].ToString();
+                                txtOcc6.Text = frd.Tables[0].Rows[i]["occupation"].ToString();
+                                txtInCome6.Text = frd.Tables[0].Rows[i]["income"].ToString();
+                            }
+                            if (i == 6)
+                            {
+                                txtName7.Text = frd.Tables[0].Rows[i]["name"].ToString();
+                                txtRelation7.Text = frd.Tables[0].Rows[i]["relationship"].ToString();
+                                txtAge7.Text = frd.Tables[0].Rows[i]["age"].ToString();
+                                txtOcc7.Text = frd.Tables[0].Rows[i]["occupation"].ToString();
+                                txtInCome7.Text = frd.Tables[0].Rows[i]["income"].ToString();
+                            }
+                            if (i == 7)
+                            {
+                                txtName8.Text = frd.Tables[0].Rows[i]["name"].ToString();
+                                txtRelation8.Text = frd.Tables[0].Rows[i]["relationship"].ToString();
+                                txtAge8.Text = frd.Tables[0].Rows[i]["age"].ToString();
+                                txtOcc8.Text = frd.Tables[0].Rows[i]["occupation"].ToString();
+                                txtInCome8.Text = frd.Tables[0].Rows[i]["income"].ToString();
+                            }
+                            if (i == 8)
+                            {
+                                txtName9.Text = frd.Tables[0].Rows[i]["name"].ToString();
+                                txtRelation9.Text = frd.Tables[0].Rows[i]["relationship"].ToString();
+                                txtAge9.Text = frd.Tables[0].Rows[i]["age"].ToString();
+                                txtOcc9.Text = frd.Tables[0].Rows[i]["occupation"].ToString();
+                                txtInCome9.Text = frd.Tables[0].Rows[i]["income"].ToString();
+                            }
+                            if (i == 9)
+                            {
+                                txtName10.Text = frd.Tables[0].Rows[i]["name"].ToString();
+                                txtRelation10.Text = frd.Tables[0].Rows[i]["relationship"].ToString();
+                                txtAge10.Text = frd.Tables[0].Rows[i]["age"].ToString();
+                                txtOcc10.Text = frd.Tables[0].Rows[i]["occupation"].ToString();
+                                txtInCome10.Text = frd.Tables[0].Rows[i]["income"].ToString();
+                            }
+                        }
+                        //foreach()
+                    }
+                    else
+                    {
+                        //DataSet dsGetBasicDetail = objDBCon.selectData("select * from salam_basic_detail where contract_code = '" + strCCode + "';");
+                        //if (dsGetBasicDetail.Tables[0].Rows.Count > 0)
+                        //{
+                        //    btnSubmit.Enabled = true;
+                        //    btnUpdate.Enabled = false;
+                        //}
+                        //else
+                        //{
+                        //    btnSubmit.Enabled = false;
+                        //    btnUpdate.Enabled = false;
+                        //    lblMsg.Text = "Invalid Contract Code.";
+                        //}
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

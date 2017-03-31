@@ -32,7 +32,7 @@ namespace MuslimAID.SALAM
                         if (strCC != null && strCAC != null)
                         {
                             txtCC.Text = strCC;
-                            txtCACode.Text = strCAC;
+                            //txtCACode.Text = strCAC;
                             txtCC.Enabled = false;
                             btnSubmit.Enabled = true;
                         }
@@ -57,7 +57,7 @@ namespace MuslimAID.SALAM
                 MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_loan_details ( ccode, cacode, loan_amount, incomesource1_1, incomesource1_2, incomesource1_3, incomesource2_1, incomesource2_2, incomesource2_3, areaofFarming, typeofv1, typeofv2, ex_years, total_harvest, harvesting_period, seasons_for_year, rain_water, irrigation_water, bothRwNRw, min_expected_price, max_expected_price, unit, re_pay_period, ex_price_per_unit, annual_rate, rate_for_period, exp_profit, exp_sale_price, exp_unit, loan_approved, loan_approved_user_nic, loan_approved_on, loan_sta,reg_approval) VALUES ( @ccode, @cacode, @loan_amount, @incomesource1_1, @incomesource1_2, @incomesource1_3, @incomesource2_1, @incomesource2_2, @incomesource2_3, @areaofFarming, @typeofv1, @typeofv2, @ex_years, @total_harvest, @harvesting_period, @seasons_for_year, @rain_water, @irrigation_water, @bothRwNRw, @min_expected_price, @max_expected_price, @unit, @re_pay_period, @ex_price_per_unit, @annual_rate, @rate_for_period, @exp_profit, @exp_sale_price, @exp_unit, @loan_approved, @loan_approved_user_nic, @loan_approved_on, @loan_sta,@reg_approval)");
 
                 cmdInsert.Parameters.AddWithValue("@ccode", txtCC.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("@cacode", txtCACode.Text.Trim());
+                //cmdInsert.Parameters.AddWithValue("@cacode", txtCACode.Text.Trim());
                 cmdInsert.Parameters.AddWithValue("@loan_amount", (txtFinancialAmount.Text.Trim() != "") ? Convert.ToInt32(txtFinancialAmount.Text.Trim()) : 00);
                 cmdInsert.Parameters.AddWithValue("@incomesource1_1", cmbIncomeSource1_a.SelectedValue.ToString());
                 cmdInsert.Parameters.AddWithValue("@incomesource1_2", cmbIncomeSource1_b.SelectedValue.ToString());
@@ -117,7 +117,7 @@ namespace MuslimAID.SALAM
         protected void Clear()
         {
             txtCC.Text="";
-            txtCACode.Text="";
+            //txtCACode.Text="";
             cmbIncomeSource1_a.SelectedIndex = 0;
             cmbIncomeSource1_b.SelectedIndex = 0;
             cmbIncomeSource1_c.SelectedIndex = 0;

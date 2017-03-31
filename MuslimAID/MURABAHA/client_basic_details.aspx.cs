@@ -68,6 +68,49 @@ namespace MuslimAID.MURABHA
             }
         }
 
+
+
+        protected void CC_Create(int intVal)
+        {
+            try
+            {
+                string strcitycode = cmbCityCode.SelectedValue.ToString();
+                string strconCode;
+                //Last Basic Details code
+                string strVal = DateTime.Now.Year.ToString();
+
+                for (int i = (intVal.ToString()).Length; i < 4; i++)
+                {
+                    strVal += "0";
+                }
+                strVal += intVal.ToString();
+
+                //Village Code
+                int VC = Convert.ToInt16(cmbVillages.SelectedValue.ToString());
+                string vc = "";
+                for (int i = (VC.ToString()).Length; i < 3; i++)
+                {
+                    vc += "0";
+                }
+                vc += VC.ToString();
+                //Center Code
+                int CC = Convert.ToInt16(cmbSocietyName.SelectedValue.ToString());
+                string cc = "";
+                for (int i = (CC.ToString()).Length; i < 3; i++)
+                {
+                    cc += "0";
+                }
+                cc += CC.ToString();
+
+                strconCode = strcitycode + "/" + vc + "/" + cc + "/00/MBR/" + strVal;
+                hidCC.Value = strconCode;
+            }
+            catch (Exception e)
+            {
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "CC_Create");
+            }
+        }
+
         protected void ccsetup()
         {
             try
@@ -77,46 +120,20 @@ namespace MuslimAID.MURABHA
                     string strcitycode = cmbCityCode.SelectedValue.ToString();
                     string strconCode;
 
-                    dtCCode = cls_Connection.getDataSet("select max(idmicro_basic_detail) from micro_basic_detail");
-                    if (dtCCode.Tables[0].Rows[0][0].ToString() != "")
-                    {
-                        string strVal = dtCCode.Tables[0].Rows[0][0].ToString();
-                        int intVal = (Convert.ToInt32(strVal) + 1);
-                        strVal = intVal.ToString();
-                        if (((intVal).ToString()).Length < 2)
-                            strVal = "00000" + strVal;
-                        else if (((intVal).ToString()).Length < 3)
-                            strVal = "0000" + strVal;
-                        else if (((intVal).ToString()).Length < 4)
-                            strVal = "000" + strVal;
-                        else if (((intVal).ToString()).Length < 5)
-                            strVal = "00" + strVal;
-                        else if (((intVal).ToString()).Length < 6)
-                            strVal = "0" + strVal;
-                        else
-                        { }
-                        //txtID.Text = strVal;
-                        strconCode = strcitycode + "/MB/" + strVal;
-                        hidCC.Value = strconCode;
-                        //btnSubmit.Enabled = true;
-                        //cmbCityCode.Enabled = false;
-                    }
-                    else
-                    {
-                        //txtID.Text = "0001";
-                        strconCode = strcitycode + "/MB/" + "000001";
-                        hidCC.Value = strconCode;
-                        //btnSubmit.Enabled = true;
-                        //cmbCityCode.Enabled = false;
-                    }
+                    dtCCode = cls_Connection.getDataSet("select max(idmicro_basic_detail) from salam_basic_detail");
+
+                    int intVal = (dtCCode.Tables[0].Rows[0][0].ToString() != "") ? Convert.ToInt32(dtCCode.Tables[0].Rows[0][0].ToString()) + 1 : 1;
+
+                    CC_Create(intVal);
                 }
                 else
                 {
                     lblMsg.Text = "Please choose City Code";
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "ccsetup");
             }
         }
 
@@ -147,6 +164,7 @@ namespace MuslimAID.MURABHA
                         for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
                         {
                             cmbVillages.Items.Add(dsVillage.Tables[0].Rows[i][2].ToString());
+                            cmbVillages.Items[i+1].Value = dsVillage.Tables[0].Rows[i][0].ToString();
                         }
                     }
                     else
@@ -195,10 +213,10 @@ namespace MuslimAID.MURABHA
                 lblMsg.Text = "";
                 if (cmbSocietyName.SelectedIndex != 0 && cmbCityCode.SelectedIndex != 0 && cmbVillages.SelectedIndex != 0)
                 {
-                    DataSet dsGetSocietyID = cls_Connection.getDataSet("select idcenter_details, exective from center_details where city_code = '" + cmbCityCode.SelectedItem.Value + "' and center_name = '" + cmbSocietyName.SelectedItem.Value + "' and villages = '" + cmbVillages.SelectedItem.Value + "';");
+                    DataSet dsGetSocietyID = cls_Connection.getDataSet("select exective from center_details where city_code = '" + cmbCityCode.SelectedItem.Value + "' and idcenter_details = '" + cmbSocietyName.SelectedItem.Value + "' and villages = '" + cmbVillages.SelectedItem.Value + "';");
                     if (dsGetSocietyID.Tables[0].Rows.Count > 0)
                     {
-                        txtSoNumber.Text = dsGetSocietyID.Tables[0].Rows[0]["idcenter_details"].ToString();
+                        txtSoNumber.Text = cmbSocietyName.SelectedItem.Value.ToString();
                         //Edit 2014.09.18 CACode
                         //CACodeNew();
                         cmbRoot.SelectedValue = dsGetSocietyID.Tables[0].Rows[0]["exective"].ToString();
@@ -245,7 +263,7 @@ namespace MuslimAID.MURABHA
 
                     txtSoNumber.Text = "";
 
-                    DataSet dsSocietyName = cls_Connection.getDataSet("select center_name from center_details where city_code = '" + cmbCityCode.SelectedItem.Value + "' and villages = '" + cmbVillages.SelectedItem.Value + "';");
+                    DataSet dsSocietyName = cls_Connection.getDataSet("select * from center_details where city_code = '" + cmbCityCode.SelectedItem.Value + "' and villages = '" + cmbVillages.SelectedItem.Value + "';");
                     //MySqlCommand cmdSocietyName = new MySqlCommand("select center_name from center_details where city_code = '" + cmbCityCode.SelectedItem.Value + "' and villages = '" + cmbVillages.SelectedItem.Value + "';");
                     //dsSocietyName = objDBTask.selectData(cmdSocietyName);
                     if (dsSocietyName.Tables[0].Rows.Count > 0)
@@ -254,7 +272,7 @@ namespace MuslimAID.MURABHA
                         for (int i = 0; i < dsSocietyName.Tables[0].Rows.Count; i++)
                         {
                             cmbSocietyName.Items.Add(dsSocietyName.Tables[0].Rows[i]["center_name"].ToString());
-                            //cmbSocietyName.Items[i].Value = dsSocietyName.Tables[0].Rows[i]["idcenter_details"].ToString();
+                            cmbSocietyName.Items[i+1].Value = dsSocietyName.Tables[0].Rows[i]["idcenter_details"].ToString();
                         }
                         btnSubmit.Enabled = true;
                     }
@@ -338,7 +356,14 @@ namespace MuslimAID.MURABHA
                     DataSet dtCount = cls_Connection.getDataSet("select count(b.nic) + 1 AS Count from micro_basic_detail b inner join micro_loan_details l on b.contract_code = l.contra_code where nic = '" + NIC + "' and l.loan_approved = 'Y' and l.loan_sta != 'C' and chequ_no != null;");
                     if (dtCount.Tables[0].Rows[0][0].ToString() != "")
                     {
-                        hidCC.Value = hidCC.Value + "/" + dtCount.Tables[0].Rows[0][0].ToString();
+                        if(dtCount.Tables[0].Rows[0][0].ToString().Length == 2)
+                        {
+                            hidCC.Value = hidCC.Value + "/" + dtCount.Tables[0].Rows[0][0].ToString();
+                        }
+                        else if (dtCount.Tables[0].Rows[0][0].ToString().Length == 1)
+                        {
+                            hidCC.Value = hidCC.Value + "/0" + dtCount.Tables[0].Rows[0][0].ToString();
+                        }
                     }
 
                     MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_basic_detail(contract_code,ca_code,nic,city_code,society_id,province,gs_ward,full_name,initial_name,other_name,marital_status,education,land_no,mobile_no,p_address,client_id,inspection_date,create_user_id,user_ip,date_time,village,root_id,cli_photo,bb_photo,nic_issue_date,dob,gender,r_address,income_source)VALUES(@contract_code,@ca_code,@nic,@city_code,@society_id,@province,@gs_ward,@full_name,@initial_name,@other_name,@marital_status,@education,@land_no,@mobile_no,@p_address,@client_id,@inspection_date,@create_user_id,@user_ip,@date_time,@village,@root_id,@cli_photo,@bb_photo,@nic_issue_date,@dob,@gender,@r_address,@income_source)");
@@ -369,8 +394,8 @@ namespace MuslimAID.MURABHA
                     //string strNIC = Session["NICNo"].ToString();
                     string strNewFileName;
 
-                    strServerClientPhotoPath = Server.MapPath(".") + "\\murahaha_client_photo";
-                    strServerClientProductPath = Server.MapPath(".") + "\\murahaha_client_product";
+                    strServerClientPhotoPath = Server.MapPath(".") + "\\client_photo";
+                    strServerClientProductPath = Server.MapPath(".") + "\\client_product";
 
                     if (fpPhoto.HasFile)
                     {
@@ -527,6 +552,7 @@ namespace MuslimAID.MURABHA
                     }
                     catch (Exception ex)
                     {
+                        cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Inserting basic details");
                     }
                 }
             }

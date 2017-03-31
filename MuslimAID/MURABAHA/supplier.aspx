@@ -9,18 +9,14 @@
             <div class="form-group">
                 <div class="col-md-5">Facility Code<span style="color:Red;"> *</span></div>
                 <div class="col-md-7">
-                <asp:TextBox ID="txtCC" MaxLength="12" CssClass="form-control" runat="server" 
-                        AutoPostBack="true" TabIndex="1" Enabled="false"></asp:TextBox>
+                <asp:TextBox ID="txtCC" MaxLength="15" CssClass="form-control" runat="server" 
+                        AutoPostBack="true" TabIndex="1" Enabled="false" 
+                        ontextchanged="txtCC_TextChanged"></asp:TextBox>
                 </div>
              </div>
              </div>
-            <div class="col-md-6"> 
-            <div class="form-group">
-                <div class="col-md-5">Capital Applicant Code<span style="color:Red;"> *</span></div>
-                <div class="col-md-7">
-                <asp:TextBox ID="txtCACode" MaxLength="12" CssClass="form-control" runat="server" AutoPostBack="true" TabIndex="2"></asp:TextBox>
-                </div>
-             </div>
+            <div class="col-md-12"> 
+            
              </div>
              
              <div class="col-md-6"> 
@@ -114,6 +110,8 @@
              <div class="col-md-12">
                 <asp:Button ID="btnSubmit" CssClass="btn btn-primary"
                      runat="server" Text="Submit" TabIndex="11" onclick="btnSubmit_Click"/>&nbsp;
+                <asp:Button ID="btnUpdate" CssClass="btn btn-primary"
+                     runat="server" Text="Update" TabIndex="13" onclick="btnUpdate_Click"/>&nbsp;
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
              

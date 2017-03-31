@@ -23,15 +23,6 @@ namespace MuslimAID.MURABAHA {
         protected global::System.Web.UI.WebControls.TextBox txtCC;
         
         /// <summary>
-        /// txtCACode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCACode;
-        
-        /// <summary>
         /// txtSupplierName control.
         /// </summary>
         /// <remarks>
@@ -111,6 +102,15 @@ namespace MuslimAID.MURABAHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
+        /// btnUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
         /// lblMsg control.

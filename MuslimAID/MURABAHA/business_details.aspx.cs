@@ -39,6 +39,7 @@ namespace MuslimAID.MURABHA
                             txtCC.Text = strCC;
                             txtCC.Enabled = false;
                             btnSubmit.Enabled = true;
+
                         }
                         else
                         {
@@ -129,7 +130,7 @@ namespace MuslimAID.MURABHA
                 string strICost = txtICost.Text.Trim();
                 string strToEx = txtTotPurchase.Text.Trim();
 
-                string strGrossP = hidGross.Value.Trim();
+                string strGrossP = txtGrossProfit.Text.Trim();
 
                 string strRent = txtRent.Text.Trim();
                 string strWet = txtWET.Text.Trim();
@@ -333,14 +334,24 @@ namespace MuslimAID.MURABHA
             txtBuss.Text = "";
             txtCC.Text = "";
             txtDCost.Text = "";
-            //txtFExpenses.Text = "";
+            txtBNature.Text = "";
             txtICost.Text = "";
-            //txtNetIncome.Text = "";
-            //txtOExpenses.Text = "";
+            txtBRNo.Text = "";
+            txtOffContact.Text = "";
+            txtCrdtIncome.Text = "";
             txtOIncome.Text = "";
             txtPAndL.Text = "";
+            txtNoOfPpl.Text = "";
             txtTExpenses.Text = "";
             txtTotalIncome.Text = "";
+            txtTotPurchase.Text = "";
+            txtGrossProfit.Text = "";
+            txtRent.Text = "";
+            txtWET.Text = "";
+            txtWages.Text = "";
+            txtFLA.Text = "";
+            txtTravelTrans.Text = "";
+            txtRepairMain.Text = "";
             cmbBPopulation.SelectedIndex = 0;
             cmbPeriod.SelectedIndex = 0;
 
@@ -469,10 +480,17 @@ namespace MuslimAID.MURABHA
                     txtCrdtIncome.Text = dsGetDetail.Tables[0].Rows[0]["sales_credit"].ToString();
                     txtOIncome.Text = dsGetDetail.Tables[0].Rows[0]["other_income"].ToString();
                     txtTotalIncome.Text = dsGetDetail.Tables[0].Rows[0]["total_income"].ToString();
+
+                    hidtxtTotalIncome.Value = dsGetDetail.Tables[0].Rows[0]["total_income"].ToString();
+
                     txtDCost.Text = dsGetDetail.Tables[0].Rows[0]["purchase_cash"].ToString();
                     txtICost.Text = dsGetDetail.Tables[0].Rows[0]["purchase_credit"].ToString();
                     txtTotPurchase.Text = dsGetDetail.Tables[0].Rows[0]["total_expenses"].ToString();
+
+                    hidtxtTotPurchase.Value = dsGetDetail.Tables[0].Rows[0]["total_expenses"].ToString();
+
                     txtGrossProfit.Text = dsGetDetail.Tables[0].Rows[0]["grossProfit"].ToString();
+                    
                     txtRent.Text = dsGetDetail.Tables[0].Rows[0]["rent"].ToString();
                     txtWET.Text = dsGetDetail.Tables[0].Rows[0]["water_elec_tele"].ToString();
                     txtWages.Text = dsGetDetail.Tables[0].Rows[0]["wages"].ToString();
@@ -480,6 +498,9 @@ namespace MuslimAID.MURABHA
                     txtTravelTrans.Text = dsGetDetail.Tables[0].Rows[0]["travel"].ToString();
                     txtRepairMain.Text = dsGetDetail.Tables[0].Rows[0]["maintenance"].ToString();
                     txtTExpenses.Text = dsGetDetail.Tables[0].Rows[0]["total_expenses"].ToString();
+
+                    hidtxtTExpenses.Value = dsGetDetail.Tables[0].Rows[0]["total_expenses"].ToString();
+
                     txtPAndL.Text = dsGetDetail.Tables[0].Rows[0]["profit_lost"].ToString();
 
                     btnSubmit.Enabled = false;

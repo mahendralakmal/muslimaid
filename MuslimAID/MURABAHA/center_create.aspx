@@ -12,14 +12,15 @@
                         onselectedindexchanged="cmbCityCode_SelectedIndexChanged"></asp:DropDownList></div>
             </div>
             <div class="form-group">
+                <div class="col-md-5">Village<span style="color:Red;">*</span></div>
+                <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbVillages" 
+                        runat="server" TabIndex="2"></asp:DropDownList></div>
+            </div>
+            <div class="form-group">
                 <div class="col-md-5">Center ID<span style="color:Red;">*</span></div>
                 <div class="col-md-7"><asp:TextBox ID="txtCenterID" CssClass="form-control" 
                         TabIndex="6" MaxLength="10" Width="100px" runat="server" AutoPostBack="True" 
                         ontextchanged="txtCenterID_TextChanged" ></asp:TextBox></div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-5">Village<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbVillages" runat="server" TabIndex="2" ></asp:DropDownList></div>
             </div>
             <div class="form-group">
                 <div class="col-md-5">MFO<span style="color:Red;">*</span></div>
@@ -66,9 +67,9 @@
                 </div>
             </div>
             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" 
-                Text="Submit" Enabled="false" TabIndex="11" onclick="btnSubmit_Click"/>
+                Text="Submit" TabIndex="11" onclick="btnSubmit_Click"/>
             <asp:Button ID="btnUpdate" CssClass="btn btn-primary" runat="server" 
-                Text="Update" TabIndex="12" Enabled="False" onclick="btnUpdate_Click"/>
+                Text="Update" TabIndex="12" onclick="btnUpdate_Click"/>
             <asp:Label ID="lblMsg" runat="server"></asp:Label>
         </div>
     </div>

@@ -163,74 +163,39 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtNameOrg1" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtPurpos1" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="numbersOnly form-control" ID="txtFAmount1" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtOutstandBal1" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtMonthInstal1" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtRemainInstal1" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="20" CssClass="form-control" ID="txtNameOrg1" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="21" CssClass="form-control" ID="txtPurpos1" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="22" CssClass="numbersOnly form-control" ID="txtFAmount1" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="23" CssClass="form-control" ID="txtOutstandBal1" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="24" CssClass="form-control" ID="txtMonthInstal1" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="25" CssClass="form-control" ID="txtRemainInstal1" runat="server"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtNameOrg2" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtPurpos2" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="numbersOnly form-control" ID="txtFAmount2" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtOutstandBal2" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtMonthInstal2" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtRemainInstal2" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="26" CssClass="form-control" ID="txtNameOrg2" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="27" CssClass="form-control" ID="txtPurpos2" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="28" CssClass="numbersOnly form-control" ID="txtFAmount2" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="29" CssClass="form-control" ID="txtOutstandBal2" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="30" CssClass="form-control" ID="txtMonthInstal2" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="31" CssClass="form-control" ID="txtRemainInstal2" runat="server"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtNameOrg3" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtPurpos3" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="numbersOnly form-control" ID="txtFAmount3" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtOutstandBal3" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtMonthInstal3" runat="server"></asp:TextBox></td>
-                        <td><asp:TextBox CssClass="form-control" ID="txtRemainInstal3" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="32" CssClass="form-control" ID="txtNameOrg3" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="33" CssClass="form-control" ID="txtPurpos3" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="34" CssClass="numbersOnly form-control" ID="txtFAmount3" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="35" CssClass="form-control" ID="txtOutstandBal3" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="36" CssClass="form-control" ID="txtMonthInstal3" runat="server"></asp:TextBox></td>
+                        <td><asp:TextBox TabIndex="37" CssClass="form-control" ID="txtRemainInstal3" runat="server"></asp:TextBox></td>
                     </tr>
                 </table>
             </div>
         </div>
-        <%--
-        <div class="col-md-12">&nbsp;</div>
-        <div class="col-md-12"><h4>Supplier Detils</h4><hr /></div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-5">Supplier Name<span style="color:Red;">*</span></div>
-                <div class="col-md-7">
-                    <asp:TextBox ID="txtSupplier" MaxLength="4" CssClass="form-control" 
-                        runat="server" TabIndex="10"></asp:TextBox>
-                </div>
-            </div>
-        </div>         
-         <div class="col-md-6"> 
-            <div class="form-group">
-                <div class="col-md-5">Supplier Telephone<span style="color:Red;"> *</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtSupplierTelephone" MaxLength="12" CssClass="form-control" runat="server" TabIndex="0"></asp:TextBox></div>
-            </div>
-         </div>
-        <div class="col-md-6"> 
-            <div class="form-group">
-                <div class="col-md-5">Supplier Address<span style="color:Red;"> *</span></div>
-                <div class="col-md-7">
-                <asp:TextBox ID="txtSupplierAddress" CssClass="form-control" Height="70px" 
-                        TextMode="MultiLine" MaxLength="150" runat="server" TabIndex="10"></asp:TextBox>
-                </div>
-             </div>
-         </div>         
-         <div class="col-md-6"> 
-            <div class="form-group">
-                <div class="col-md-5">Supplier Mobile<span style="color:Red;"> *</span></div>
-                <div class="col-md-7">
-                <asp:TextBox ID="txtSupplierMobile" MaxLength="12" CssClass="form-control" runat="server" TabIndex="0"></asp:TextBox>
-                </div>
-             </div>
-         </div>--%>
         <div class="col-md-12">
             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" 
-                Text="Submit" TabIndex="11" onclick="btnSubmit_Click"/>
+                Text="Submit" TabIndex="38" onclick="btnSubmit_Click"/>
             <asp:Button ID="btnUpdate" CssClass="btn btn-primary" runat="server" 
-                Text="Update" TabIndex="12" onclick="btnUpdate_Click"/>
+                Text="Update" TabIndex="39" onclick="btnUpdate_Click"/>
             <asp:Label ID="lblMsg" runat="server"></asp:Label>
         </div>
     </div>

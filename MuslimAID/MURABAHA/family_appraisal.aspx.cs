@@ -39,6 +39,7 @@ namespace MuslimAID.MURABAHA
                             DataSet ds = cls_Connection.getDataSet("SELECT profit_lost FROM micro_business_details WHERE contract_code ='" + strCC + "';");
                             txtNetBusinesIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
                             hidNetIn.Value = ds.Tables[0].Rows[0]["profit_lost"].ToString();
+                            txtFamilyIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
                         }
                         else
                         {
@@ -226,10 +227,11 @@ namespace MuslimAID.MURABAHA
                     txtSalWages.Text = dsGetDetail.Tables[0].Rows[0]["salary_n_wages"].ToString();
                     txtRentBuildingIn.Text = dsGetDetail.Tables[0].Rows[0]["rentIncome"].ToString();
                     txtRentInOther.Text = dsGetDetail.Tables[0].Rows[0]["rent_income_other"].ToString();
-                    //txtNetBusinesIn.Text = dsGetDetail.Tables[0].Rows[0]["net_Income_business"].ToString();
-                    //hidNetIn.Value = dsGetDetail.Tables[0].Rows[0]["net_Income_business"].ToString();
                     txtInO.Text = dsGetDetail.Tables[0].Rows[0]["other_income"].ToString();
-                    txtFamilyIn.Text = dsGetDetail.Tables[0].Rows[0]["total_annual_family_in"].ToString();
+                    
+                    decimal calcTAF = Convert.ToDecimal(txtSalWages.Text.Trim()) + Convert.ToDecimal(txtRentBuildingIn.Text.Trim()) + Convert.ToDecimal(txtRentInOther.Text.Trim()) + Convert.ToDecimal(txtInO.Text.Trim()) + Convert.ToDecimal(hidNetIn.Value.Trim());
+                    hidNetIn.Value = calcTAF.ToString();
+                    txtFamilyIn.Text = calcTAF.ToString();
 
                     txtFoodEx.Text = dsGetDetail.Tables[0].Rows[0]["food_ex"].ToString();
                     txtEduEx.Text = dsGetDetail.Tables[0].Rows[0]["education_ex"].ToString();
@@ -240,13 +242,20 @@ namespace MuslimAID.MURABAHA
                     txtTTransEx.Text = dsGetDetail.Tables[0].Rows[0]["travel_n_transport"].ToString();
                     txtClothsEx.Text = dsGetDetail.Tables[0].Rows[0]["clothes_ex"].ToString();
                     txtOthersEx.Text = dsGetDetail.Tables[0].Rows[0]["other_ex"].ToString();
+
                     txtFExpense.Text = dsGetDetail.Tables[0].Rows[0]["total_annual_family_ex"].ToString();
 
-                    txtNetAnualFIn.Text = dsGetDetail.Tables[0].Rows[0]["net_annual_family_in"].ToString();
-                    txtAmountOPEx.Text = dsGetDetail.Tables[0].Rows[0]["amount_opex"].ToString();
-                    txtAmountFEx.Text = dsGetDetail.Tables[0].Rows[0]["amount_fex"].ToString();
+                    decimal fltNetAnualFIn =calcTAF - Convert.ToDecimal(dsGetDetail.Tables[0].Rows[0]["total_annual_family_ex"].ToString());
+                    decimal fltAmountOPEx = Math.Round((fltNetAnualFIn) / 12, 2);
+                    decimal fltAmountFEx = Math.Round((((fltNetAnualFIn) / 12) * 40) / 100, 2);
+                    decimal fltMAD = Math.Round((fltAmountFEx * Convert.ToDecimal(dsGetDetail.Tables[0].Rows[0]["fr_period"].ToString())), 2);
+
+
+                    txtNetAnualFIn.Text = fltNetAnualFIn.ToString();
+                    txtAmountOPEx.Text = fltAmountOPEx.ToString();
+                    txtAmountFEx.Text = fltAmountFEx.ToString();
                     txtFRPriod.Text = dsGetDetail.Tables[0].Rows[0]["fr_period"].ToString();
-                    txtMAD.Text = dsGetDetail.Tables[0].Rows[0]["mad"].ToString();
+                    txtMAD.Text = fltMAD.ToString();
                     txtMDAAIP.Text = dsGetDetail.Tables[0].Rows[0]["mdaaip"].ToString();
                     txtRAPSA.Text = dsGetDetail.Tables[0].Rows[0]["rapsa"].ToString();
 

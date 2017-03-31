@@ -23,15 +23,6 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.DropDownList cmbCityCode;
         
         /// <summary>
-        /// txtCenterID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCenterID;
-        
-        /// <summary>
         /// cmbVillages control.
         /// </summary>
         /// <remarks>
@@ -39,6 +30,15 @@ namespace MuslimAID.MURABHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbVillages;
+        
+        /// <summary>
+        /// txtCenterID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCenterID;
         
         /// <summary>
         /// cmbExecative control.

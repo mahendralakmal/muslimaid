@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~//SALAM/Salam.Master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true"
     CodeBehind="Debit_Note.aspx.cs" Inherits="MuslimAID.SALAM.Debit_Note" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

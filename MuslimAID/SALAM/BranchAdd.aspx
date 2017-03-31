@@ -6,12 +6,12 @@
     <div class="PageTitle"><h4>MF Application - Add Branch</h4></div>
     <div class="col-md-6 form-container">
         <div class="form-group">
-            <div class="col-md-5">Branch Code</div>
+            <div class="col-md-5">City Code</div>
             <div class="col-md-7"><asp:TextBox ID="txtBranchCode" runat="server" CssClass="form-control" AutoPostBack="true" 
                         TabIndex="1" ontextchanged="txtBranchCode_TextChanged" MaxLength="3"></asp:TextBox></div>
         </div>
         <div class="form-group">
-            <div class="col-md-5">Branch Name</div>
+            <div class="col-md-5">City</div>
             <div class="col-md-7"><asp:TextBox ID="txtBranchName" runat="server" CssClass="form-control" AutoPostBack="true" 
                        TabIndex="2" ontextchanged="txtBranchName_TextChanged" MaxLength="45" ></asp:TextBox></div>
         </div>

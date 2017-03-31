@@ -1,0 +1,10 @@
+=============================================================
+Time      : 2017-03-30 05:11:30 PM
+
+Exception : Unknown column 'l.ccode' in 'field list'
+
+Source    : MySql.Data
+
+Other     : MySQL error
+
+=============================================================

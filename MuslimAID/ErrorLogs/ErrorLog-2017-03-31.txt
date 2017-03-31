@@ -1,0 +1,10 @@
+=============================================================
+Time      : 2017-03-31 06:25:39 PM
+
+Exception : Thread was being aborted.
+
+Source    : mscorlib
+
+Other     : Inserting basic details
+
+=============================================================
