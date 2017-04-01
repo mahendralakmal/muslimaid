@@ -18,6 +18,119 @@ namespace MuslimAID.SALAM
     {
         string strCC, strCAC;
         cls_Connection conn = new cls_Connection();
+
+
+
+        protected void cmbIncomeSource2_a_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            get_income_type_2_a(Convert.ToInt32(cmbIncomeSource2_a.SelectedIndex));
+        }
+        protected void get_income_type_2_a(int param)
+        {
+            DataSet dsINS;
+            MySqlCommand cmdinsource = new MySqlCommand("SELECT * FROM salam_income_type_2 where income_type_1 = '" + param + "';");
+
+            cmbIncomeSource2_b.Items.Clear();
+            cmbIncomeSource2_b.Items.Add("~~ Select one ~~");
+            dsINS = conn.selectData(cmdinsource);
+            if (dsINS.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < dsINS.Tables[0].Rows.Count; i++)
+                {
+                    cmbIncomeSource2_b.Items.Add(dsINS.Tables[0].Rows[i][1].ToString());
+                    cmbIncomeSource2_b.Items[i + 1].Value = dsINS.Tables[0].Rows[i][0].ToString();
+                }
+            }
+        }
+
+        protected void cmbIncomeSource2_b_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            get_income_type_2_b(Convert.ToInt32(cmbIncomeSource2_b.SelectedValue));
+        }
+
+        protected void get_income_type_2_b(int param)
+        {
+            DataSet dsINS;
+            MySqlCommand cmdinsource = new MySqlCommand("SELECT * FROM salam_income_type_3 where income_type_2 ='" + param + "';");
+
+            cmbIncomeSource2_c.Items.Clear();
+            cmbIncomeSource2_c.Items.Add("~~ Select one ~~");
+            dsINS = conn.selectData(cmdinsource);
+            if (dsINS.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < dsINS.Tables[0].Rows.Count; i++)
+                {
+                    cmbIncomeSource2_c.Items.Add(dsINS.Tables[0].Rows[i][1].ToString());
+                    cmbIncomeSource2_c.Items[i + 1].Value = dsINS.Tables[0].Rows[i][0].ToString();
+                }
+            }
+        }
+
+
+        protected void cmbIncomeSource1_b_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            get_income_type_1_b(cmbIncomeSource1_b.SelectedIndex);
+        }
+
+        protected void get_income_type_1_b(int param)
+        {
+            DataSet dsINS;
+            MySqlCommand cmdinsource = new MySqlCommand("SELECT * FROM salam_income_type_3 where income_type_2 ='" + param + "';");
+
+            cmbIncomeSource1_c.Items.Clear();
+            cmbIncomeSource1_c.Items.Add("~~ Select one ~~");
+            dsINS = conn.selectData(cmdinsource);
+            if (dsINS.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < dsINS.Tables[0].Rows.Count; i++)
+                {
+                    cmbIncomeSource1_c.Items.Add(dsINS.Tables[0].Rows[i][1].ToString());
+                    cmbIncomeSource1_c.Items[i + 1].Value = dsINS.Tables[0].Rows[i][0].ToString();
+                }
+            }
+        }
+
+        protected void cmbIncomeSource1_a_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            get_income_type_1_a(cmbIncomeSource1_a.SelectedIndex);
+        }
+        
+        protected void get_income_type_1_a(int param)
+        {
+            DataSet dsINS;
+            MySqlCommand cmdinsource = new MySqlCommand("SELECT * FROM salam_income_type_2 where income_type_1 = '" + param + "';");
+
+            cmbIncomeSource1_b.Items.Clear();
+            cmbIncomeSource1_b.Items.Add("~~ Select one ~~");
+            dsINS = conn.selectData(cmdinsource);
+            if (dsINS.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < dsINS.Tables[0].Rows.Count; i++)
+                {
+                    cmbIncomeSource1_b.Items.Add(dsINS.Tables[0].Rows[i][1].ToString());
+                    cmbIncomeSource1_b.Items[i + 1].Value = dsINS.Tables[0].Rows[i][0].ToString();
+                }
+            }
+        }
+
+        protected void get_income_type()
+        {
+            DataSet dsINS;
+            MySqlCommand cmdinsource = new MySqlCommand("SELECT * FROM salam_income_type_1;");
+            dsINS = conn.selectData(cmdinsource);
+            cmbIncomeSource1_a.Items.Add("~~ Select one ~~");
+            cmbIncomeSource2_a.Items.Add("~~ Select one ~~");
+            if (dsINS.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < dsINS.Tables[0].Rows.Count; i++)
+                {
+                    cmbIncomeSource1_a.Items.Add(dsINS.Tables[0].Rows[i][1].ToString());
+                    cmbIncomeSource1_a.Items[i + 1].Value = dsINS.Tables[0].Rows[i][0].ToString();
+                    cmbIncomeSource2_a.Items.Add(dsINS.Tables[0].Rows[i][1].ToString());
+                    cmbIncomeSource2_a.Items[i + 1].Value = dsINS.Tables[0].Rows[i][0].ToString();
+                }
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["LoggedIn"].ToString() == "True")
@@ -35,11 +148,13 @@ namespace MuslimAID.SALAM
                             //txtCACode.Text = strCAC;
                             txtCC.Enabled = false;
                             btnSubmit.Enabled = true;
+                            get_income_type();
                         }
                         else
                         {
                             txtCC.Enabled = true;
                             btnSubmit.Enabled = true;
+                            get_income_type();
                         }
                     }
                 }

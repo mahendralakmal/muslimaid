@@ -106,7 +106,7 @@ namespace MuslimAID.SALAM
         {
             if (income_source_1.SelectedIndex != 0)
             {
-                get_income_type_2(income_source_1.SelectedIndex);
+                get_income_type_2(Convert.ToInt32(income_source_1.SelectedValue));
             }
         }
 

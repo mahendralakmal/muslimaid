@@ -70,31 +70,20 @@ $(document).ready(function(){
                         – Salam facility to be utilized</div>
                     <div class="col-md-7 form-group">
                         <div class="col-md-4">
-                            <asp:DropDownList ID="cmbIncomeSource1_a" CssClass="form-control" TabIndex="1" runat="server"
-                                AutoPostBack="true">
-                                <asp:ListItem Text="---Select---" Value="a0" />
-                                <asp:ListItem Text="Agriculture" Value="a1" />
-                                <asp:ListItem Text="Trading" Value="a2" />
-                                <asp:ListItem Text="Manufacturing" Value="a3" />
-                                <asp:ListItem Text="Other" Value="a4" />
+                            <asp:DropDownList ID="cmbIncomeSource1_a" CssClass="form-control" TabIndex="1" 
+                                runat="server" AutoPostBack="true" 
+                                onselectedindexchanged="cmbIncomeSource1_a_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div> 
                         <div class="col-md-4">
-                            <asp:DropDownList ID="cmbIncomeSource1_b" CssClass="form-control" TabIndex="1" runat="server"
-                                AutoPostBack="true">
-                                <asp:ListItem Text="---Select---" Value="b0" />
-                                <asp:ListItem Text="Paddy" Value="b1" />
-                                <asp:ListItem Text="Vegetable" Value="b2" />
-                                <asp:ListItem Text="Maize" Value="b3" />
-                                <asp:ListItem Text="Other" Value="b4" />
+                            <asp:DropDownList ID="cmbIncomeSource1_b" CssClass="form-control" TabIndex="1" runat="server" AutoPostBack="true" onselectedindexchanged="cmbIncomeSource1_b_SelectedIndexChanged">
+                                <asp:ListItem Text="~~Select~~" Value="c0" />
+                            
                             </asp:DropDownList>
                         </div> 
                         <div class="col-md-4">
-                            <asp:DropDownList ID="cmbIncomeSource1_c" CssClass="form-control" TabIndex="1" runat="server"
-                                AutoPostBack="true">
-                                <asp:ListItem Text="---Select---" Value="c0" />
-                                <asp:ListItem Text="Brick" Value="c1" />
-                                <asp:ListItem Text="Cement Blocks" Value="c2" />
+                            <asp:DropDownList ID="cmbIncomeSource1_c" CssClass="form-control" TabIndex="1" runat="server">
+                                <asp:ListItem Text="~~Select~~" Value="c0" />
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -107,31 +96,21 @@ $(document).ready(function(){
                         – Secondary</div>
                     <div class="col-md-7 form-group">
                         <div class="col-md-4">
-                            <asp:DropDownList ID="cmbIncomeSource2_a" CssClass="form-control" TabIndex="1" runat="server"
-                                AutoPostBack="true">
-                                <asp:ListItem Text="---Select---" Value="a0" />
-                                <asp:ListItem Text="Agriculture" Value="a1" />
-                                <asp:ListItem Text="Trading" Value="a2" />
-                                <asp:ListItem Text="Manufacturing" Value="a3" />
-                                <asp:ListItem Text="Other" Value="a4" />
+                            <asp:DropDownList ID="cmbIncomeSource2_a" CssClass="form-control" TabIndex="1" 
+                                runat="server" AutoPostBack="true" 
+                                onselectedindexchanged="cmbIncomeSource2_a_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div> 
                         <div class="col-md-4">
                             <asp:DropDownList ID="cmbIncomeSource2_b" CssClass="form-control" TabIndex="1" runat="server"
-                                AutoPostBack="true">
-                                <asp:ListItem Text="---Select---" Value="b0" />
-                                <asp:ListItem Text="Paddy" Value="b1" />
-                                <asp:ListItem Text="Vegetable" Value="b2" />
-                                <asp:ListItem Text="Maize" Value="b3" />
-                                <asp:ListItem Text="Other" Value="b4" />
+                                AutoPostBack="true" 
+                                onselectedindexchanged="cmbIncomeSource2_b_SelectedIndexChanged">
+                                <asp:ListItem Text="~~Select~~" Value="b0" />
                             </asp:DropDownList>
                         </div> 
                         <div class="col-md-4">
-                            <asp:DropDownList ID="cmbIncomeSource2_c" CssClass="form-control" TabIndex="1" runat="server"
-                                AutoPostBack="true">
-                                <asp:ListItem Text="---Select---" Value="c0" />
-                                <asp:ListItem Text="Brick" Value="c1" />
-                                <asp:ListItem Text="Cement Blocks" Value="c2" />
+                            <asp:DropDownList ID="cmbIncomeSource2_c" CssClass="form-control" TabIndex="1" runat="server">
+                                <asp:ListItem Text="~~Select~~" Value="b0" />                                
                             </asp:DropDownList>
                         </div>
                     </div>
