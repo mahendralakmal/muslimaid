@@ -1,0 +1,10 @@
+=============================================================
+Time      : 2017-04-01 03:13:27 PM
+
+Exception : Object reference not set to an instance of an object.
+
+Source    : MuslimAID
+
+Other     : Create Income source 2
+
+=============================================================

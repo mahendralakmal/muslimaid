@@ -450,6 +450,20 @@
     <Compile Include="SALAM\client_basic_details.aspx.designer.cs">
       <DependentUpon>client_basic_details.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SALAM\salam_income_source_2.aspx.cs">
+      <DependentUpon>salam_income_source_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\salam_income_source_2.aspx.designer.cs">
+      <DependentUpon>salam_income_source_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\salam_income_source_3.aspx.cs">
+      <DependentUpon>salam_income_source_3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\salam_income_source_3.aspx.designer.cs">
+      <DependentUpon>salam_income_source_3.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SALAM\Debit_Note.aspx.cs">
       <DependentUpon>Debit_Note.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -561,6 +575,13 @@
     </Compile>
     <Compile Include="SALAM\VoucherPrint.aspx.designer.cs">
       <DependentUpon>VoucherPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\salam_income_source_1.aspx.cs">
+      <DependentUpon>salam_income_source_1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\salam_income_source_1.aspx.designer.cs">
+      <DependentUpon>salam_income_source_1.aspx</DependentUpon>
     </Compile>
     <Compile Include="User_Create.aspx.cs">
       <DependentUpon>User_Create.aspx</DependentUpon>
@@ -1172,6 +1193,8 @@
     <Content Include="SALAM\Chequ_Cancel.aspx" />
     <Content Include="SALAM\Chequ_Print.aspx" />
     <Content Include="SALAM\client_basic_details.aspx" />
+    <Content Include="SALAM\salam_income_source_2.aspx" />
+    <Content Include="SALAM\salam_income_source_3.aspx" />
     <Content Include="SALAM\Debit_Note.aspx" />
     <Content Include="SALAM\family_appraisal.aspx" />
     <Content Include="SALAM\family_details.aspx" />
@@ -1188,6 +1211,7 @@
     <Content Include="SALAM\Service_Charges.aspx" />
     <Content Include="SALAM\Settlment.aspx" />
     <Content Include="SALAM\VoucherPrint.aspx" />
+    <Content Include="SALAM\salam_income_source_1.aspx" />
     <Content Include="User_Create.aspx" />
     <Content Include="under-constrction.aspx" />
   </ItemGroup>
@@ -1271,7 +1295,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52443</DevelopmentServerPort>
+          <DevelopmentServerPort>53430</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
