@@ -28,21 +28,26 @@
         <div class="form-group row">
             <div class="col-md-5">User Name (NIC)<span style="color:Red;">*</span></div>
             <div class="col-md-7">
-                    <asp:TextBox ID="txtUserName" MaxLength="10" runat="server" CssClass="form-control"
+                    <asp:TextBox ID="txtUserName" MaxLength="12" runat="server" CssClass="form-control"
                         ontextchanged="txtUserName_TextChanged" AutoPostBack="true"></asp:TextBox>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-md-5">Password <span style="color:Red;">*</span></div>
             <div class="col-md-7">
-                    <asp:TextBox ID="txtPassword" runat="server" MaxLength="5" CssClass="form-control" TextMode="Password"></asp:TextBox>&nbsp;(Max Length 05)
+                    <asp:TextBox ID="txtPassword" runat="server" MaxLength="45" CssClass="form-control" TextMode="Password"></asp:TextBox>&nbsp;(Max Length 45)
             </div>
         </div>
         <div class="form-group row">
             <div class="col-md-5">Confirm Password <span style="color:Red;">*</span></div>
             <div class="col-md-7">
-                    <asp:TextBox ID="txtConfirmPass" runat="server" MaxLength="5" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                    <asp:TextBox ID="txtConfirmPass" runat="server" MaxLength="45" CssClass="form-control" TextMode="Password"></asp:TextBox>
             </div>
+        </div>
+        <div>
+            <hr />
+            <h4> Personal Details </h4>
+            <br />
         </div>
         <div class="form-group row">
             <div class="col-md-5">Title <span style="color:Red;">*</span></div>
@@ -91,12 +96,16 @@
                ControlToValidate="fuPhoto"
                ErrorMessage=".jpg,.png,.jpeg,.gif Files only"
                ValidationExpression="(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$"></asp:RegularExpressionValidator>
+               
+                <asp:Label ID="img_path" runat="server"></asp:Label>
+                <asp:HiddenField ID="hid_img_path" runat="server" />
             </div>
         </div>
         <div class="form-group row">
             <div class="col-md-5">User Type <span style="color:Red;">*</span></div>
             <div class="col-md-7">
                 <asp:DropDownList ID="cmbUserType" runat="server" CssClass="form-control">
+                    <asp:ListItem>Select user type</asp:ListItem>
                     <asp:ListItem>Admin</asp:ListItem>
                     <asp:ListItem>Cashier</asp:ListItem>
                     <asp:ListItem>Cash Collector</asp:ListItem>
@@ -117,6 +126,8 @@
         </div>
         <div classs="form-group">
             <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary" Text="Create" onclick="btnSubmit_Click" />
+            <asp:Button ID="btnUpdate" Enabled="false" runat="server" Text="Update" 
+                CssClass="btn btn-primary" onclick="btnUpdate_Click" />
             <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
         </div>
     </div>

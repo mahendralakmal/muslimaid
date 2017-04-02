@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using MySql.Data.MySqlClient;
+using System.Text;
 
 namespace MuslimAID
 {
@@ -18,6 +19,7 @@ namespace MuslimAID
     {
         cls_CommonFunctions objCommonTask = new cls_CommonFunctions();
         cls_Connection objDBTask = new cls_Connection();
+        cls_ErrorLog er_log = new cls_ErrorLog();
         DataSet dtNIC = new DataSet();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -61,53 +63,15 @@ namespace MuslimAID
             txtLastName.Text = "";
             txtDateOfBirth.Text = "";
             txtAddress.Text = "";
+            img_path.Text = "";
             cmbTitle.SelectedIndex = 0;
             cmbUserType.SelectedIndex = 0;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (txtUserName.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please enter your NIC.";
-            }
-            else if (txtPassword.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please enter your Password.";
-            }
-            else if (txtPassword.Text.Trim() != txtConfirmPass.Text.Trim())
-            {
-                lblMsg.Text = "Password didn't Match.";
-            }
-            else if (txtConfirmPass.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please Re Enter your Password";
-            }
-            else if (txtFirstName.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please enter your First name";
-            }
-            else if (txtLastName.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please enter your Last name";
-            }
-            else if (txtAddress.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please enter Address.";
-            }
-            else if (txtDateOfBirth.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please enter Date Of Birth.";
-            }
-            else if (!fuPhoto.HasFile)
-            {
-                lblMsg.Text = "Please Add User Photo.";
-            }
-            else if (txtDesignation.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please enter your Designation";
-            }
-            else
+            
+            if(validatefrm("S"))
             {
                 MySqlCommand cmdInsertQRY = new MySqlCommand("insert into users(nic,user_password,first_name,last_name,user_type,designation,deleted,current_status,created_on,last_accessed_on,last_accessed_ip,created_user_nic,photo_path,user_address,date_of_birth,user_title) values(@NIC,@PASS,@FNAME,@LNAME,@UTYPE,@DESIG,@DEL,@CSTAT,@CREATEON,@LACCESS,@LASTIP,@CREATEDUNIC,@photo_path,@user_address,@date_of_birth,@user_title)");
 
@@ -129,8 +93,6 @@ namespace MuslimAID
                 string strServerImagePath;
                 string strPostedFileName;
                 string strImageType;
-                //string strLastID = hifRefID.Value;
-                //string strNIC = Session["NICNo"].ToString();
                 string strNewFileName;
 
                 strServerImagePath = Server.MapPath(".") + "\\User_Photos";
@@ -207,6 +169,7 @@ namespace MuslimAID
                 }
                 catch (Exception ex)
                 {
+                    er_log.createErrorLog(ex.Message, ex.Source, "User Create");
                 }
             }
         }
@@ -229,17 +192,136 @@ namespace MuslimAID
         protected void txtUserName_TextChanged(object sender, EventArgs e)
         {
             lblMsg.Text = "";
-            MySqlCommand cmdSelect = new MySqlCommand("select nic from users where nic='" + txtUserName.Text + "'");
+            MySqlCommand cmdSelect = new MySqlCommand("select * from users where nic='" + txtUserName.Text + "'");
 
             dtNIC = objDBTask.selectData(cmdSelect);
             if (dtNIC.Tables[0].Rows.Count == 1)
             {
+                cmbTitle.SelectedItem.Text = dtNIC.Tables[0].Rows[0]["user_title"].ToString();
+                txtAddress.Text = dtNIC.Tables[0].Rows[0]["user_address"].ToString();
+                txtDateOfBirth.Text = dtNIC.Tables[0].Rows[0]["date_of_birth"].ToString();
+                txtDesignation.Text = dtNIC.Tables[0].Rows[0]["designation"].ToString();
+                txtFirstName.Text = dtNIC.Tables[0].Rows[0]["first_name"].ToString();
+                txtLastName.Text = dtNIC.Tables[0].Rows[0]["last_name"].ToString();
+                img_path.Text = dtNIC.Tables[0].Rows[0]["photo_path"].ToString();
+                hid_img_path.Value = dtNIC.Tables[0].Rows[0]["photo_path"].ToString();
                 lblMsg.Text = "User NIC Already used...!";
                 btnSubmit.Enabled = false;
+                btnUpdate.Enabled = true;
             }
             else
             {
                 btnSubmit.Enabled = true;
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (validatefrm("U"))
+            {
+                string passwd = EncodePasswordToBase64(txtPassword.Text.Trim());
+                string strServerImagePath;
+                string strPostedFileName;
+                string strImageType;
+                string strNewFileName;
+                string fpath = "";
+
+                strServerImagePath = Server.MapPath(".") + "\\User_Photos";
+
+                if (fuPhoto.HasFile)
+                {
+                    strPostedFileName = fuPhoto.PostedFile.FileName;
+                    strImageType = strPostedFileName.Substring(strPostedFileName.LastIndexOf("."));
+                    strNewFileName = txtUserName.Text.Trim() + "-1" + strImageType;
+                    fuPhoto.PostedFile.SaveAs(strServerImagePath + "\\" + strNewFileName);
+                    hf1.Value = "User_Photos" + "\\" + strNewFileName;
+                    fpath = "User_Photos" + "\\" + strNewFileName;
+                }
+
+                StringBuilder q = new StringBuilder();
+
+                q.Append("UPDATE users SET user_password='" + passwd + "', user_title='" + cmbTitle.SelectedValue.ToString() + "', first_name='" + txtFirstName.Text.Trim() + "', last_name='" + txtLastName.Text.Trim() + "', user_address='" + txtAddress.Text.Trim() + "',date_of_birth='" + txtDateOfBirth.Text.Trim() + "', user_type='" + cmbUserType.SelectedValue.ToString() + "', designation='"+ txtDesignation.Text.Trim()+"'");
+
+                if (fpath != "")
+                {
+                    q.Append(", photo_path='" + fpath + "'");
+                }
+
+                q.Append(" WHERE nic = '" + txtUserName.Text.Trim() + "'");
+
+                try
+                {
+                    MySqlCommand cmdQ = new MySqlCommand(q.ToString());
+                    if (objDBTask.insertEditData(cmdQ) == 1)
+                    {
+                        Reset();
+                        lblMsg.Text = "User updated success";
+                    }
+                    else
+                    {
+                        lblMsg.Text = "Error Occured...!";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    er_log.createErrorLog(ex.Message, ex.Source, "User Update");
+                }
+            }
+        }
+
+        protected bool validatefrm(string param)
+        {
+            if (txtUserName.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter your NIC."; return false;
+            }
+            else if (txtPassword.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter your Password."; return false;
+            }
+            else if (txtPassword.Text.Trim() != txtConfirmPass.Text.Trim())
+            {
+                lblMsg.Text = "Password didn't Match."; return false;
+            }
+            else if (txtConfirmPass.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please Re Enter your Password"; return false;
+            }
+            else if (txtFirstName.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter your First name"; return false;
+            }
+            else if (txtLastName.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter your Last name"; return false;
+            }
+            else if (txtAddress.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter Address."; return false;
+            }
+            else if (txtDateOfBirth.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter Date Of Birth."; return false;
+            }
+            else if (param == "S")
+            {
+                if (!fuPhoto.HasFile)
+                {
+                    lblMsg.Text = "Please Add User Photo.";
+                }
+                return false;
+            }
+            else if (txtDesignation.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter your Designation"; return false;
+            }
+            else if (cmbUserType.SelectedIndex == 0)
+            {
+                lblMsg.Text = "Please select user type"; return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }
