@@ -128,6 +128,8 @@
             <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary" Text="Create" onclick="btnSubmit_Click" />
             <asp:Button ID="btnUpdate" Enabled="false" runat="server" Text="Update" 
                 CssClass="btn btn-primary" onclick="btnUpdate_Click" />
+            <asp:Button ID="btnDactivate" runat="server" Text="Deactivate" 
+                CssClass="btn btn-danger" Enabled="false" onclick="btnDactivate_Click"/>
             <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
         </div>
     </div>

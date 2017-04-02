@@ -21,6 +21,7 @@ namespace MuslimAID
         cls_Connection objDBTask = new cls_Connection();
         cls_ErrorLog er_log = new cls_ErrorLog();
         DataSet dtNIC = new DataSet();
+        string strType = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,10 +32,19 @@ namespace MuslimAID
                 DataSet dsUserTy = cls_Connection.getDataSet("select user_type from users where nic = '" + strloginID + "';");
                 if (dsUserTy.Tables[0].Rows.Count > 0)
                 {
-                    string strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
-                    if (strType == "Top Managment" || strType == "Manager")
+                    strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
+                    if (strType == "Cashier" || strType == "Cash Collector" || strType == "Document Officer" || strType == "Manager" || strType == "Recovery Officer" || strType == "Special Recovery Officer")
                     {
-                        
+                        btnSubmit.Enabled = false;
+                        btnUpdate.Enabled = true;
+                        //txtUserName.Enabled = false;
+                        txtFirstName.Enabled = false;
+                        txtLastName.Enabled = false;
+                        txtAddress.Enabled = false;
+                        txtDesignation.Enabled = false;
+                        txtDateOfBirth.Enabled = false;
+                        cmbTitle.Enabled = false;
+                        cmbUserType.Enabled = false;
                     }
                     else
                     {
@@ -208,6 +218,7 @@ namespace MuslimAID
                 lblMsg.Text = "User NIC Already used...!";
                 btnSubmit.Enabled = false;
                 btnUpdate.Enabled = true;
+                btnDactivate.Enabled = true;
             }
             else
             {
@@ -323,6 +334,15 @@ namespace MuslimAID
             {
                 return true;
             }
+        }
+
+        protected void btnDactivate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cls_Connection.setData("UPDATE users SET deleted='D' WHERE nic='" + txtUserName.Text.Trim() + "';");
+            }
+            catch (Exception x) { cls_ErrorLog.createSErrorLog(x.Message, x.Source, "deactivate"); }
         }
     }
 }

@@ -30,7 +30,7 @@ namespace MuslimAID.SALAM
                 if (dsUserTy.Tables[0].Rows.Count > 0)
                 {
                     string strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
-                    if (strType == "Top Managment" || strType == "Admin")
+                    if (strType == "Top Managment" || strType == "Admin"  || strType == "Manager")
                     {
                         if (!this.IsPostBack)
                         {

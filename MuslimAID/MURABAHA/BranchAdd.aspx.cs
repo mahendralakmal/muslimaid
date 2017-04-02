@@ -163,13 +163,13 @@ namespace MuslimAID.MURABAHA
                 if (dsUserTy.Tables[0].Rows.Count > 0)
                 {
                     string strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
-                    if (strType == "Top Managment" || strType == "Admin")
+                    if (strType == "Admin")
                     {
                         txtBranchCode.Focus();
                     }
                     else
                     {
-                        Response.Redirect("../Login.aspx");
+                        Response.Redirect("murabha.aspx");
                     }
                 }
             }

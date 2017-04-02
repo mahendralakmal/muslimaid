@@ -51,15 +51,37 @@ namespace MuslimAID
                     int intDeleCou = dsUserSta.Tables[0].Rows.Count;
                     if (intDeleCou > 0)
                     {
-                        Boolean bolAuthLogin = objDBTasks.loginValidation(txtUsername.Text.Trim(), txtPassword.Text.Trim());
-
-                        if (bolAuthLogin == true)
+                        if (dsUserSta.Tables[0].Rows[0]["deleted"].ToString() == "N")
                         {
-                            publishLogOnDetails();
+                            //if (dsUserSta.Tables[0].Rows[0]["current_status"].ToString() == "N" || dsUserSta.Tables[0].Rows[0]["current_status"].ToString() == "D")
+                            //{
+                                Boolean bolAuthLogin = objDBTasks.loginValidation(txtUsername.Text.Trim(), txtPassword.Text.Trim());
+
+                                //try
+                                //{
+                                //    objDBTasks.insertEditData("UPDATE muslimaid.users SET current_status='L' WHERE nic='" + strNIC + "';");
+                                //}
+                                //catch (Exception e) { cls_ErrorLog.createSErrorLog(e.Message, e.Source, "login"); }
+
+                                if (bolAuthLogin == true)
+                                {
+                                    publishLogOnDetails();
+                                }
+                                else
+                                {
+                                    lblMsgs.Text = "Invalid User Name or Password......";
+                                    ClientScript.RegisterStartupScript(this.GetType(), "HideLabel", "<script type=\"text/javascript\">setTimeout(\"document.getElementById('" + lblMsgs.ClientID + "').style.display='none'\",3000)</script>");
+                                }
+                            //}
+                            //else
+                            //{
+                            //    lblMsgs.Text = "This user already loged in......";
+                            //    ClientScript.RegisterStartupScript(this.GetType(), "HideLabel", "<script type=\"text/javascript\">setTimeout(\"document.getElementById('" + lblMsgs.ClientID + "').style.display='none'\",3000)</script>");
+                            //}
                         }
                         else
                         {
-                            lblMsgs.Text = "Invalid User Name or Password......";
+                            lblMsgs.Text = "This user may be deleted or deactivated......";
                             ClientScript.RegisterStartupScript(this.GetType(), "HideLabel", "<script type=\"text/javascript\">setTimeout(\"document.getElementById('" + lblMsgs.ClientID + "').style.display='none'\",3000)</script>");
                         }
                     }

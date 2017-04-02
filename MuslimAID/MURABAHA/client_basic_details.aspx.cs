@@ -32,30 +32,36 @@ namespace MuslimAID.MURABHA
                 {
                     if (Session["LoggedIn"].ToString() == "True")
                     {
-                        DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
-                        //MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
-                        //dsBranch = objDBTask.selectData(cmdBranch);
-                        cmbCityCode.Items.Add("");
-                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                        if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
                         {
-                            cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                            cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                        }
+                            DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
+                            //MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
+                            //dsBranch = objDBTask.selectData(cmdBranch);
+                            cmbCityCode.Items.Add("");
+                            for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                            {
+                                cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                                cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                            }
 
-                        DataSet dsProvince = cls_Connection.getDataSet("SELECT * FROM Province ORDER BY 2");
-                        //MySqlCommand cmdProvince = new MySqlCommand("SELECT * FROM Province ORDER BY 2");
-                        //dsProvince = objDBTask.selectData(cmdProvince);
-                        for (int i = 0; i < dsProvince.Tables[0].Rows.Count; i++)
-                        {
-                            cmbProvince.Items.Add(dsProvince.Tables[0].Rows[i][2].ToString());
-                            cmbProvince.Items[i].Value = dsProvince.Tables[0].Rows[i][1].ToString();
-                        }
+                            DataSet dsProvince = cls_Connection.getDataSet("SELECT * FROM Province ORDER BY 2");
+                            //MySqlCommand cmdProvince = new MySqlCommand("SELECT * FROM Province ORDER BY 2");
+                            //dsProvince = objDBTask.selectData(cmdProvince);
+                            for (int i = 0; i < dsProvince.Tables[0].Rows.Count; i++)
+                            {
+                                cmbProvince.Items.Add(dsProvince.Tables[0].Rows[i][2].ToString());
+                                cmbProvince.Items[i].Value = dsProvince.Tables[0].Rows[i][1].ToString();
+                            }
 
-                        if (!this.IsPostBack)
-                        {
+                            if (!this.IsPostBack)
+                            {
 
+                            }
+                            cmbProvince.SelectedValue = "WP";
                         }
-                        cmbProvince.SelectedValue = "WP";
+                        else {
+                            Response.Redirect("murabha.aspx");
+                        }
                     }
                     else
                     {
