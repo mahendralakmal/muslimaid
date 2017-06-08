@@ -14,7 +14,7 @@
             <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtRootID" runat="server" MaxLength="2" TabIndex="2"></asp:TextBox></div>
         </div>--%>
         <div class="form-group">
-            <div class="col-md-5">Executive Name</div>
+            <div class="col-md-5">Officer Name</div>
             <div class="col-md-7"><asp:TextBox CssClass="form-control" ID="txtRootName" 
                     MaxLength="100" runat="server" TabIndex="2" 
                     ontextchanged="txtRootName_TextChanged"></asp:TextBox></div>

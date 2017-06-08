@@ -22,9 +22,16 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (!this.IsPostBack)
+                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
                 {
-
+                    if (!this.IsPostBack)
+                    {
+                        GetDate();
+                    }
+                }
+                else
+                {
+                    Response.Redirect("murabha.aspx");
                 }
             }
             else
@@ -56,7 +63,7 @@ namespace MuslimAID.MURABAHA
                 string strUserType = Session["UserType"].ToString();
 
                 DataSet dsLD = new DataSet();
-                if (strUserType == "Top Managment")
+                if (strUserType == "Top Management")
                 {
                     dsLD = cls_Connection.getDataSet("select c.full_name, c.nic, f.contract_code,f.busi_income,f.total_income,f.direct_cost,f.total_expenses,l.loan_amount,l.period,l.interest_rate,l.chequ_no from micro_business_details f, micro_loan_details l, micro_basic_detail c where f.contract_code = l.contra_code and c.contract_code = l.contra_code and l.loan_approved = 'Y' and l.loan_sta = 'P' and c.contract_code = '" + txtContractCode.Text + "';");
                     if (dsLD.Tables[0].Rows.Count > 0)
@@ -110,7 +117,7 @@ namespace MuslimAID.MURABAHA
                 string strDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string strIp = Request.UserHostAddress;
 
-                if (strUserType == "Top Managment")
+                if (strUserType == "Top Management")
                 {
                     MySqlCommand cmdUpdateChequ = new MySqlCommand("Update micro_loan_details set loan_sta = '" + strStatus + "' where contra_code = '" + strCCode + "' and loan_approved = 'Y'");
 

@@ -204,12 +204,12 @@
     <Compile Include="MURABAHA\Murabha.Master.designer.cs">
       <DependentUpon>Murabha.Master</DependentUpon>
     </Compile>
-    <Compile Include="MURABAHA\Add_Village.aspx.cs">
-      <DependentUpon>Add_Village.aspx</DependentUpon>
+    <Compile Include="MURABAHA\add_area.aspx.cs">
+      <DependentUpon>add_area.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MURABAHA\Add_Village.aspx.designer.cs">
-      <DependentUpon>Add_Village.aspx</DependentUpon>
+    <Compile Include="MURABAHA\add_area.aspx.designer.cs">
+      <DependentUpon>add_area.aspx</DependentUpon>
     </Compile>
     <Compile Include="MURABAHA\agreement.aspx.cs">
       <DependentUpon>agreement.aspx</DependentUpon>
@@ -379,6 +379,41 @@
     <Compile Include="MURABAHA\WayOffAmount.aspx.designer.cs">
       <DependentUpon>WayOffAmount.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\FacilityApplicationForm.aspx.cs">
+      <DependentUpon>FacilityApplicationForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\FacilityApplicationForm.aspx.designer.cs">
+      <DependentUpon>FacilityApplicationForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\create_sub_center.aspx.cs">
+      <DependentUpon>create_sub_center.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\create_sub_center.aspx.designer.cs">
+      <DependentUpon>create_sub_center.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\AddNatureOfBusiness.aspx.cs">
+      <DependentUpon>AddNatureOfBusiness.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\AddNatureOfBusiness.aspx.designer.cs">
+      <DependentUpon>AddNatureOfBusiness.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\add_village.aspx.cs">
+      <DependentUpon>add_village.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\add_village.aspx.designer.cs">
+      <DependentUpon>add_village.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\AddOccupation.aspx.cs">
+      <DependentUpon>AddOccupation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\AddOccupation.aspx.designer.cs">
+      <DependentUpon>AddOccupation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MuslimAID.Master.cs">
       <DependentUpon>MuslimAID.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -449,6 +484,20 @@
     </Compile>
     <Compile Include="SALAM\client_basic_details.aspx.designer.cs">
       <DependentUpon>client_basic_details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\Rebate_Approval.aspx.cs">
+      <DependentUpon>Rebate_Approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\Rebate_Approval.aspx.designer.cs">
+      <DependentUpon>Rebate_Approval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\Reschedule.aspx.cs">
+      <DependentUpon>Reschedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\Reschedule.aspx.designer.cs">
+      <DependentUpon>Reschedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="SALAM\salam_income_source_2.aspx.cs">
       <DependentUpon>salam_income_source_2.aspx</DependentUpon>
@@ -583,6 +632,13 @@
     <Compile Include="SALAM\salam_income_source_1.aspx.designer.cs">
       <DependentUpon>salam_income_source_1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SALAM\WayOffAmount.aspx.cs">
+      <DependentUpon>WayOffAmount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\WayOffAmount.aspx.designer.cs">
+      <DependentUpon>WayOffAmount.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User_Create.aspx.cs">
       <DependentUpon>User_Create.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -603,7 +659,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MURABAHA\Murabha.Master" />
-    <Content Include="MURABAHA\Add_Village.aspx" />
+    <Content Include="MURABAHA\add_area.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bower_components\eonasdan-bootstrap-datetimepicker\build\css\bootstrap-datetimepicker-standalone.css" />
@@ -1184,6 +1240,11 @@
     <Content Include="MURABAHA\VoucherPrint.aspx" />
     <Content Include="MURABAHA\Voucher_Cancel.aspx" />
     <Content Include="MURABAHA\WayOffAmount.aspx" />
+    <Content Include="MURABAHA\FacilityApplicationForm.aspx" />
+    <Content Include="MURABAHA\create_sub_center.aspx" />
+    <Content Include="MURABAHA\AddNatureOfBusiness.aspx" />
+    <Content Include="MURABAHA\add_village.aspx" />
+    <Content Include="MURABAHA\AddOccupation.aspx" />
     <Content Include="SALAM\Add_Village.aspx" />
     <Content Include="SALAM\BranchAdd.aspx" />
     <Content Include="SALAM\center_create.aspx" />
@@ -1193,6 +1254,8 @@
     <Content Include="SALAM\Chequ_Cancel.aspx" />
     <Content Include="SALAM\Chequ_Print.aspx" />
     <Content Include="SALAM\client_basic_details.aspx" />
+    <Content Include="SALAM\Rebate_Approval.aspx" />
+    <Content Include="SALAM\Reschedule.aspx" />
     <Content Include="SALAM\salam_income_source_2.aspx" />
     <Content Include="SALAM\salam_income_source_3.aspx" />
     <Content Include="SALAM\Debit_Note.aspx" />
@@ -1212,6 +1275,7 @@
     <Content Include="SALAM\Settlment.aspx" />
     <Content Include="SALAM\VoucherPrint.aspx" />
     <Content Include="SALAM\salam_income_source_1.aspx" />
+    <Content Include="SALAM\WayOffAmount.aspx" />
     <Content Include="User_Create.aspx" />
     <Content Include="under-constrction.aspx" />
   </ItemGroup>

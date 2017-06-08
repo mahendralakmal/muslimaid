@@ -25,6 +25,9 @@ namespace MuslimAID.MURABHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
+                if (Session["UserType"].ToString() == "Admin" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Manager")
+                { }
+                else { Response.Redirect("murabha.aspx"); }
 
             }
             else

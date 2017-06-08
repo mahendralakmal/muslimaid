@@ -22,7 +22,13 @@ namespace MuslimAID.MURABAHA
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["LoggedIn"].ToString() == "True")
-            { }
+            {
+                if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
+                { }
+                else {
+                    Response.Redirect("murabha.aspx");
+                }
+            }
             else
             {
                 Response.Redirect("../Login.aspx");

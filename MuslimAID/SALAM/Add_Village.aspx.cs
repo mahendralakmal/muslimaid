@@ -38,7 +38,7 @@ namespace MuslimAID.SALAM
                         cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
                     }
 
-                    if (strUserType == "Top Managment")
+                    if (strUserType == "Top Management")
                     {
 
                     }

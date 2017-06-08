@@ -23,10 +23,14 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (!this.IsPostBack)
+                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
                 {
+                    if (!this.IsPostBack)
+                    {
 
+                    }
                 }
+                else { Response.Redirect("murabha.aspx"); }
             }
             else
             {
@@ -62,7 +66,7 @@ namespace MuslimAID.MURABAHA
                 hstrSelectQuery.Value = "";
                 if (txtCC.Text.Trim() != "")
                 {
-                    hstrSelectQuery.Value = "SELECT l.contra_code, b.initial_name, l.loan_amount, l.interest_amount, l.period, l.chequ_deta_on, l.current_loan_amount, l.due_installment, l.over_payment, l.arres_amou, l.def TotalDefault  FROM micro_loan_details l INNER JOIN micro_basic_detail b ON l.contra_code = b.contract_code WHERE l.contra_code = '" + txtCC.Text.Trim() + "' and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'P' ;";
+                    hstrSelectQuery.Value = "SELECT l.contra_code, b.initial_name, l.loan_amount, l.interest_amount, l.period, l.chequ_deta_on, l.current_loan_amount, l.due_installment, l.over_payment, l.arres_amou, l.def TotalDefault  FROM salam_loan_details l INNER JOIN salam_basic_detail b ON l.contra_code = b.contract_code WHERE l.contra_code = '" + txtCC.Text.Trim() + "' and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'P' ;";
 
                     string strQRY = hstrSelectQuery.Value;
                     DataSet dsGetTrans = cls_Connection.getDataSet(strQRY);
@@ -111,7 +115,7 @@ namespace MuslimAID.MURABAHA
             try
             {
                 decimal TotalCapital = 0, CapitalOutstanding = 0;
-                string strQRY = "SELECT IFNULL(sum(capital), 0) AS capital FROM micro_payme_summery  WHERE contra_code = '" + CusCode + "' AND p_type = 'DB' and p_status = 'D';";
+                string strQRY = "SELECT IFNULL(sum(capital), 0) AS capital FROM salam_payme_summery  WHERE contra_code = '" + CusCode + "' AND p_type = 'DB' and p_status = 'D';";
                 DataSet dsAllData = cls_Connection.getDataSet(strQRY);
                 if (dsAllData.Tables[0].Rows.Count > 0)
                 {
@@ -136,7 +140,7 @@ namespace MuslimAID.MURABAHA
             try
             {
                 decimal TotalInterest = 0, FutureInterest = 0;
-                string strQRY = "SELECT IFNULL(sum(interest), 0) AS capital FROM micro_payme_summery  WHERE contra_code = '" + CusCode + "' AND p_type = 'DB' and p_status = 'D';";
+                string strQRY = "SELECT IFNULL(sum(interest), 0) AS capital FROM salam_payme_summery  WHERE contra_code = '" + CusCode + "' AND p_type = 'DB' and p_status = 'D';";
                 DataSet dsAllData = cls_Connection.getDataSet(strQRY);
                 if (dsAllData.Tables[0].Rows.Count > 0)
                 {
@@ -161,7 +165,7 @@ namespace MuslimAID.MURABAHA
             try
             {
                 decimal TotalCapital = 0, LoanStock = 0;
-                string strQRY = "SELECT IFNULL(sum(capital), 0) AS capital FROM micro_payme_summery  WHERE contra_code = '" + CusCode + "' AND p_type = 'WI' and p_status = 'D';";
+                string strQRY = "SELECT IFNULL(sum(capital), 0) AS capital FROM salam_payme_summery  WHERE contra_code = '" + CusCode + "' AND p_type = 'WI' and p_status = 'D';";
                 DataSet dsAllData = cls_Connection.getDataSet(strQRY);
                 if (dsAllData.Tables[0].Rows.Count > 0)
                 {
@@ -191,13 +195,13 @@ namespace MuslimAID.MURABAHA
             {
                 if (txtInterRebate.Text!="")
                 {
-                    MySqlCommand cmdSelect = new MySqlCommand("select * from micro_loan_details l,micro_basic_detail c where c.contract_code = l.contra_code  and l.contra_code = '" + lblConCode.Text + "';");
+                    MySqlCommand cmdSelect = new MySqlCommand("select * from salam_loan_details l,salam_basic_detail c where c.contract_code = l.contra_code  and l.contra_code = '" + lblConCode.Text + "';");
                     DataSet dtLoanDet = cls_Connection.selectDataSet(cmdSelect);
                     if (dtLoanDet.Tables[0].Rows.Count > 0)
                     {
                         string strCCode = lblConCode.Text;
                         string DateT = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update micro_loan_details set arres_amou = '0.00',def = '0.00',arres_count = '0',loan_sta = 'W',closing_date = '" + DateT + "',current_loan_amount = '0.00' where contra_code = '" + strCCode + "';");
+                        MySqlCommand cmdUpdateLoanAmou = new MySqlCommand("Update salam_loan_details set arres_amou = '0.00',def = '0.00',arres_count = '0',loan_sta = 'W',closing_date = '" + DateT + "',current_loan_amount = '0.00' where contra_code = '" + strCCode + "';");
                         int ii;
                         ii = objDBTask.insertEditData(cmdUpdateLoanAmou);
                         
@@ -207,7 +211,7 @@ namespace MuslimAID.MURABAHA
                         string strDebitMI = txtInterRebate.Text;
                         string strZero = "0";
 
-                        MySqlCommand cmdInsertPaySumm = new MySqlCommand("INSERT INTO micro_payme_summery(contra_code,nic,amount,capital,interest,debit,c_default,rcp_no,p_type,date_time,curr_balance)VALUES(@contra_code,@nic,@amount,@capital,@interest,@debit,@c_default,@rcp_no,@p_type,@date_time,@curr_balance);");
+                        MySqlCommand cmdInsertPaySumm = new MySqlCommand("INSERT INTO salam_payme_summery(contra_code,nic,amount,capital,interest,debit,c_default,rcp_no,p_type,date_time,curr_balance)VALUES(@contra_code,@nic,@amount,@capital,@interest,@debit,@c_default,@rcp_no,@p_type,@date_time,@curr_balance);");
 
                         #region Assign Parameters
                         cmdInsertPaySumm.Parameters.Add("@contra_code", MySqlDbType.VarChar, 12);

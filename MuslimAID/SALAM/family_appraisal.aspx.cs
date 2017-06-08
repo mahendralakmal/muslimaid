@@ -27,23 +27,30 @@ namespace MuslimAID.SALAM
                 {
                     if (Session["LoggedIn"].ToString() == "True")
                     {
-                        strCC = Request.QueryString["CC"];
-                        strCAC = Request.QueryString["CA"];
-
-                        if (strCC != null && strCAC != null)
+                        if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
                         {
-                            txtCC.Text = strCC;
-                            txtCC.Enabled = false;
+                            strCC = Request.QueryString["CC"];
+                            strCAC = Request.QueryString["CA"];
 
-                            //Assign Net profit from Business detals form to Net Income from Business 
-                            DataSet ds = cls_Connection.getDataSet("SELECT profit_lost FROM salam_business_details WHERE contract_code ='" + strCC + "';");
-                            txtNetBusinesIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
-                            hidNetIn.Value = ds.Tables[0].Rows[0]["profit_lost"].ToString();
-                            txtFamilyIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
+                            if (strCC != null && strCAC != null)
+                            {
+                                txtCC.Text = strCC;
+                                txtCC.Enabled = false;
+
+                                //Assign Net profit from Business detals form to Net Income from Business 
+                                DataSet ds = cls_Connection.getDataSet("SELECT profit_lost FROM salam_business_details WHERE contract_code ='" + strCC + "';");
+                                txtNetBusinesIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
+                                hidNetIn.Value = ds.Tables[0].Rows[0]["profit_lost"].ToString();
+                                txtFamilyIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
+                            }
+                            else
+                            {
+                                txtCC.Enabled = true;
+                            }
                         }
                         else
                         {
-                            txtCC.Enabled = true;
+                            Response.Redirect("salam.apsx");
                         }
                     }
                     else

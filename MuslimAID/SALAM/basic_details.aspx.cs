@@ -30,30 +30,37 @@ namespace MuslimAID.SALAM
                 {
                     if (Session["LoggedIn"].ToString() == "True")
                     {
-                        DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
-                        //MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
-                        //dsBranch = objDBTask.selectData(cmdBranch);
-                        cmbCityCode.Items.Add("");
-                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                        if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
                         {
-                            cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                            cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                        }
+                            DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
+                            //MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
+                            //dsBranch = objDBTask.selectData(cmdBranch);
+                            cmbCityCode.Items.Add("");
+                            for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                            {
+                                cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                                cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                            }
 
-                        DataSet dsProvince = cls_Connection.getDataSet("SELECT * FROM Province ORDER BY 2");
-                        //MySqlCommand cmdProvince = new MySqlCommand("SELECT * FROM Province ORDER BY 2");
-                        //dsProvince = objDBTask.selectData(cmdProvince);
-                        for (int i = 0; i < dsProvince.Tables[0].Rows.Count; i++)
+                            DataSet dsProvince = cls_Connection.getDataSet("SELECT * FROM Province ORDER BY 2");
+                            //MySqlCommand cmdProvince = new MySqlCommand("SELECT * FROM Province ORDER BY 2");
+                            //dsProvince = objDBTask.selectData(cmdProvince);
+                            for (int i = 0; i < dsProvince.Tables[0].Rows.Count; i++)
+                            {
+                                cmbProvince.Items.Add(dsProvince.Tables[0].Rows[i][2].ToString());
+                                cmbProvince.Items[i].Value = dsProvince.Tables[0].Rows[i][1].ToString();
+                            }
+
+                            if (!this.IsPostBack)
+                            {
+
+                            }
+                            cmbProvince.SelectedValue = "WP";
+                        }
+                        else 
                         {
-                            cmbProvince.Items.Add(dsProvince.Tables[0].Rows[i][2].ToString());
-                            cmbProvince.Items[i].Value = dsProvince.Tables[0].Rows[i][1].ToString();
+                            Response.Redirect("salam.aspx");
                         }
-
-                        if (!this.IsPostBack)
-                        {
-
-                        }
-                        cmbProvince.SelectedValue = "WP";
                     }
                     else
                     {
@@ -186,7 +193,7 @@ namespace MuslimAID.SALAM
                             DataSet dsUserTy = cls_Connection.getDataSet("select user_type,module_name,company_code from users where nic = '" + strloginID + "';");
                             if (dsUserTy.Tables[0].Rows.Count > 0)
                             {
-                                if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Top Managment" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Admin")
+                                if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Top Management" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Admin")
                                 {
                                     btnSubmit.Enabled = true;
                                     //btnUpdate.Enabled = true;
@@ -257,7 +264,7 @@ namespace MuslimAID.SALAM
                             DataSet dsUserTy = cls_Connection.getDataSet("select user_type,module_name,company_code from users where nic = '" + strloginID + "';");
                             if (dsUserTy.Tables[0].Rows.Count > 0)
                             {
-                                if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Top Managment" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Admin")
+                                if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Top Management" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Admin")
                                 {
                                     btnSubmit.Enabled = true;
                                     //btnUpdate.Enabled = true;

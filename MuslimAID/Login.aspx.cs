@@ -40,8 +40,8 @@ namespace MuslimAID
 
         private void UserLogin()
         {
-            try
-            {
+            //try
+            //{
                 lblMsgs.Text = "";
                 lblMsgs.Visible = true;
                 if (txtUsername.Text.Trim() != "" && txtPassword.Text.Trim() != "")
@@ -94,11 +94,11 @@ namespace MuslimAID
                 {
                     lblMsgs.Text = "Please enter user details.";
                 }
-            }
-            catch (Exception)
-            {
-                lblMsgs.Text = "Database Conection fail...";
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    lblMsgs.Text = "Database Conection fail...";
+            //}
         }
 
         protected void Page_Load(object sender, EventArgs e)

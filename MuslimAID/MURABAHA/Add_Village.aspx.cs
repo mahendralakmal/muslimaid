@@ -11,153 +11,96 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using MySql.Data.MySqlClient;
-using System.Data;
 
-namespace MuslimAID.MURABHA
+namespace MuslimAID.MURABAHA
 {
-    public partial class Add_Village : System.Web.UI.Page
+    public partial class add_village : System.Web.UI.Page
     {
-        cls_CommonFunctions objCommonTask = new cls_CommonFunctions();
-        cls_Connection objDBTask = new cls_Connection();
-        cls_ErrorLog error = new cls_ErrorLog();
-        string strloginID, strBranch, strUserType;
+        cls_Connection objConn = new cls_Connection();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["LoggedIn"].ToString() == "True")
-            {
-                strBranch = Session["Branch"].ToString();
-                strUserType = Session["UserType"].ToString();
+            if (Session["LoggedIn"].ToString() == "True") {
                 if (!this.IsPostBack)
                 {
                     DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
-                    //MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
-                    //dsBranch = objDBTask.selectData(cmdBranch);
-                    cmbCityCode.Items.Add("");
-                    for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
-                    {
-                        cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                        cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                    }
-
-                    if (strUserType == "Top Managment")
-                    {
-
-                    }
-                    else
-                    {
-                        cmbCityCode.Text = strBranch;
-                        cmbCityCode.Enabled = false;
+                    if(dsBranch.Tables[0].Rows.Count>0){
+                        cmbCityCode.Items.Add("");
+                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                        {
+                            cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                            cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                        }
                     }
                 }
-
             }
-            else
-            {
+            else {
                 Response.Redirect("../Login.aspx");
+            }
+        }
+
+        protected void cmbCityCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataSet dsArea = cls_Connection.getDataSet("SELECT * FROM area WHERE branch_code = '"+ cmbCityCode.SelectedValue.ToString() +"' ORDER BY 2");
+            cmbArea.Items.Clear();
+            if (dsArea.Tables[0].Rows.Count > 0) {
+                cmbArea.Items.Add("");
+                for (int i = 0; i < dsArea.Tables[0].Rows.Count; i++)
+                {
+                    cmbArea.Items.Add(dsArea.Tables[0].Rows[i][1].ToString());
+                    cmbArea.Items[i + 1].Value = dsArea.Tables[0].Rows[i][2].ToString();
+                }
             }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            lblMsg.Text = "";
-            if (cmbCityCode.SelectedIndex == 0)
+            try
             {
-                lblMsg.Text = "Please select branch.";
-            }
-            else if (txtVillage.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please enter Village.";
-            }
-            else
-            {
-                string strVillage = txtVillage.Text.Trim();
-                string strBranchCode = cmbCityCode.SelectedItem.Value;
-                strloginID = Session["NIC"].ToString();
-                string strIP = Request.UserHostAddress;
-                string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                string strloginID = Session["NIC"].ToString();
+                string strUserType = Session["UserType"].ToString();
+                string strDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                string strIp = Request.UserHostAddress;
 
-                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO villages_name(city_code,villages_name,create_user_nic,user_ip,date_time)VALUES(@city_code,@villages_name,@create_user_nic,@user_ip,@date_time);");
-
-                #region DeclarareParamerts
-                cmdInsert.Parameters.Add("@city_code", MySqlDbType.VarChar, 3);
-                cmdInsert.Parameters.Add("@villages_name", MySqlDbType.VarChar, 45);
-                cmdInsert.Parameters.Add("@create_user_nic", MySqlDbType.VarChar, 12);
-                cmdInsert.Parameters.Add("@user_ip", MySqlDbType.VarChar, 45);
-                cmdInsert.Parameters.Add("@date_time", MySqlDbType.VarChar, 45);
-                #endregion
-
-                #region AssignParameters
-                cmdInsert.Parameters["@city_code"].Value = strBranchCode;
-                cmdInsert.Parameters["@villages_name"].Value = strVillage;
-                cmdInsert.Parameters["@create_user_nic"].Value = strloginID;
-                cmdInsert.Parameters["@user_ip"].Value = strIP;
-                cmdInsert.Parameters["@date_time"].Value = strDateTime;
-                #endregion
-
-                try
+                if (cmbCityCode.SelectedIndex == 0)
+                    lblMsg.Text = "Please select the Branch";
+                else if (cmbArea.SelectedIndex == 0)
+                    lblMsg.Text = "Please select the Area";
+                else if (txtVillage.Text.Trim() == "")
+                    lblMsg.Text = "Please enter the Village Name";
+                else if (txtVillageCode.Text.Trim() == "")
+                    lblMsg.Text = "Please enter the Village Code";
+                else
                 {
-                    int i = objDBTask.insertEditData(cmdInsert);
-                    if (i == 1)
-                    {
-                        lblMsg.Text = "Successfully Added Area";
-                        Clear();
+                    MySqlCommand cmdVillage = new MySqlCommand("INSERT INTO villages_name (city_code,area_code, villages_code, villages_name, create_user_nic, user_ip, date_time) VALUES (@city_code,@area_code, @villages_code, @villages_name, @create_user_nic, @user_ip, @date_time)");
 
+                    cmdVillage.Parameters.AddWithValue("@city_code", cmbCityCode.SelectedValue.ToString());
+                    cmdVillage.Parameters.AddWithValue("@area_code", cmbArea.SelectedValue.ToString());
+                    cmdVillage.Parameters.AddWithValue("@villages_name", txtVillage.Text.Trim());
+                    cmdVillage.Parameters.AddWithValue("@villages_code", txtVillageCode.Text.Trim());
+                    cmdVillage.Parameters.AddWithValue("@create_user_nic", strloginID);
+                    cmdVillage.Parameters.AddWithValue("@user_ip", strIp);
+                    cmdVillage.Parameters.AddWithValue("@date_time", strDate);
+
+                    if (objConn.insertEditData(cmdVillage) > 0)
+                    {
+                        clear();
+                        lblMsg.Text = "Successfully created.";
                     }
                     else
-                    {
-                        lblMsg.Text = "Error Occured!";
-                    }
+                        lblMsg.Text = "Error Occured";
                 }
-                catch (Exception ex)
-                {                            
-                    //error.createErrorLog(ex.Message, ex.Source, ex.StackTrace);
-                }
+            }
+            catch (Exception ex)
+            {
             }
         }
 
-        protected void Clear()
+        protected void clear()
         {
             cmbCityCode.SelectedIndex = 0;
+            cmbArea.SelectedIndex = 0;
             txtVillage.Text = "";
-
+            txtVillageCode.Text = "";
         }
-
-        protected void txtVillage_TextChanged(object sender, EventArgs e)
-        {
-            lblMsg.Text = "";
-            if (cmbCityCode.SelectedIndex == 0)
-            {
-                lblMsg.Text = "Please select branch.";
-            }
-            else if (txtVillage.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please enter Area.";
-            }
-            else
-            {
-                try
-                {
-                    string strVillage = txtVillage.Text.Trim();
-                    string strBranchCode = cmbCityCode.SelectedItem.Value;
-
-                    DataSet dsGetVillage = cls_Connection.getDataSet("select * from villages_name where city_code = '" + strBranchCode + "' and villages_name = '" + strVillage + "';");
-                    if (dsGetVillage.Tables[0].Rows.Count > 0)
-                    {
-                        lblMsg.Text = "Alredy created.";
-                        btnSubmit.Enabled = false;
-                    }
-                    else
-                    {
-                        btnSubmit.Enabled = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //error.createErrorLog(ex.Message, ex.Source, ex.StackTrace);
-                }
-            }
-        }
-
-
     }
 }

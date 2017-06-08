@@ -23,10 +23,14 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (!this.IsPostBack)
+                if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer" || Session["UserType"] != "Cashier")
                 {
+                    if (!this.IsPostBack)
+                    {
 
+                    }
                 }
+                else { Response.Redirect("murabha.aspx"); }
             }
             else
             {

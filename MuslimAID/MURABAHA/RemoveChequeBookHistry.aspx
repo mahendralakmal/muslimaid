@@ -4,126 +4,54 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div align="center">
-        <table cellpadding="0" cellspacing="0" border="0" width="860px" align="left" style="text-align: left;">
-            <tr>
-                <td colspan="3" height="10px">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" width="860px" class="PageTitle">
-                    Cheque Removal
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" height="10px">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Cheque
-                </td>
-                <td>
-                    :
-                </td>
-                <td>
-                    <asp:DropDownList ID="cmbChqNo" AutoPostBack="true" TabIndex="1" runat="server" OnSelectedIndexChanged="cmbChqNo_SelectedIndexChanged" Width="110px" >
-                    </asp:DropDownList>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" height="10px">
-                </td>
-            </tr>
-            <tr>
-                <td width="100px">
-                    Cheque No<span style="color: Red;">*</span>
-                </td>
-                <td width="20px">
-                    :
-                </td>
-                <td width="740px">
-                    <asp:TextBox ID="txtRNo" MaxLength="15" AutoPostBack="true" runat="server" Width="110px"
-                        TabIndex="0" OnTextChanged="txtRNo_TextChanged"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" height="10px">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Create User
-                </td>
-                <td>
-                    :
-                </td>
-                <td>
+    <div class="container">
+    <div class="PageTitle"><h4>Cheque Removal</h4></div>
+    <div class="col-md-6 form-container">
+        <div class="form-group">
+            <div class="col-md-5">Cheque <span style="color: Red;">*</span></div>
+            <div class="col-md-7">
+                <asp:DropDownList ID="cmbChqNo" AutoPostBack="true" TabIndex="1" runat="server" OnSelectedIndexChanged="cmbChqNo_SelectedIndexChanged" CssClass="form-control" ></asp:DropDownList>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5">Cheque No <span style="color: Red;">*</span></div>
+            <div class="col-md-7">
+                    <asp:TextBox ID="txtRNo" MaxLength="15" AutoPostBack="true" runat="server" CssClass="form-control" TabIndex="0" OnTextChanged="txtRNo_TextChanged"></asp:TextBox>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5">Create User </div>
+            <div class="col-md-7">
                     <asp:Label ID="lblNIC" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" height="10px">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Create Date
-                </td>
-                <td>
-                    :
-                </td>
-                <td>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5">Create Date </div>
+            <div class="col-md-7">
                     <asp:Label ID="lblChequeDate" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" height="10px">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Account No
-                </td>
-                <td>
-                    :
-                </td>
-                <td>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5">Account No </div>
+            <div class="col-md-7">
                     <asp:Label ID="lblAccountNo" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" height="10px">
-                </td>
-            </tr>
-            <tr>
-                <td valign="top">
-                    Comment <span style="color: Red;">*</span>
-                </td>
-                <td valign="top">
-                    :
-                </td>
-                <td>
-                    <asp:TextBox ID="txtComment" runat="server" Width="300px" TextMode="MultiLine" Height="75px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" height="10px">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                </td>
-                <td>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5">Comment </div>
+            <div class="col-md-7">
+                    <asp:TextBox ID="txtComment" runat="server" CssClass="form-control" TextMode="MultiLine" Height="75px"></asp:TextBox>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5"> </div>
+            <div class="col-md-7">
+                    
                     <asp:Button ID="btnPeied" runat="server" Enabled="false" TabIndex="3" Text="Remove"
-                        OnClick="btnPeied_Click" />&nbsp;
+                        OnClick="btnPeied_Click" CssClass="btn btn-primary" />&nbsp;
                     <asp:Label ID="lblMsg" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" height="30px">
-                </td>
-            </tr>
-        </table>
+            </div>
+        </div>
+    </div>
     </div>
 </asp:Content>

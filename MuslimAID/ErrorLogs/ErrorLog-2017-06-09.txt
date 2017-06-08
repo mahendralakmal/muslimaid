@@ -1,10 +1,10 @@
 =============================================================
-Time      : 2017-03-28 11:47:43 PM
+Time      : 2017-06-09 12:06:25 AM
 
-Exception : Access denied for user 'autobot'@'localhost' (using password: YES)
+Exception : Table 'muslimaid.micro_full_detail' doesn't exist
 
 Source    : MySql.Data
 
-Other     : MySQL error
+Other     : Data Sending error
 
 =============================================================

@@ -837,7 +837,7 @@ namespace MuslimAID.SALAM
                             DataSet dsUserTy = cls_Connection.getDataSet("select user_type,module_name,company_code from users where nic = '" + strloginID + "';");
                             if (dsUserTy.Tables[0].Rows.Count > 0)
                             {
-                                if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Top Managment" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Admin")
+                                if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Top Management" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Admin")
                                 {
                                     btnSubmit.Enabled = true;
                                     btnUpdate.Enabled = true;
@@ -920,7 +920,7 @@ namespace MuslimAID.SALAM
                             DataSet dsUserTy = cls_Connection.getDataSet("select user_type,module_name,company_code from users where nic = '" + strloginID + "';");
                             if (dsUserTy.Tables[0].Rows.Count > 0)
                             {
-                                if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Top Managment" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Admin")
+                                if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Top Management" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Admin")
                                 {
                                     btnSubmit.Enabled = true;
                                     btnUpdate.Enabled = true;

@@ -22,13 +22,17 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                grvRebaAppr.AllowPaging = true;
-                grvRebaAppr.PageSize = 30;
-
-                if (!this.IsPostBack)
+                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
                 {
-                    GetDate();
+                    grvRebaAppr.AllowPaging = true;
+                    grvRebaAppr.PageSize = 30;
+
+                    if (!this.IsPostBack)
+                    {
+                        GetDate();
+                    }
                 }
+                else { Response.Redirect("murabha.aspx"); }
             }
             else
             {

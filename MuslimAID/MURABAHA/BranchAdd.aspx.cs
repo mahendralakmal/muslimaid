@@ -159,18 +159,13 @@ namespace MuslimAID.MURABAHA
             {
                 string strloginID = Session["NIC"].ToString();
 
-                DataSet dsUserTy = cls_Connection.getDataSet("select user_type from users where nic = '" + strloginID + "';");
-                if (dsUserTy.Tables[0].Rows.Count > 0)
+                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
                 {
-                    string strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
-                    if (strType == "Admin")
-                    {
-                        txtBranchCode.Focus();
-                    }
-                    else
-                    {
-                        Response.Redirect("murabha.aspx");
-                    }
+                    txtBranchCode.Focus();
+                }
+                else
+                {
+                    Response.Redirect("murabha.aspx");
                 }
             }
             else

@@ -28,21 +28,27 @@ namespace MuslimAID.SALAM
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-
-                if (!this.IsPostBack)
+                if (Session["UserType"] != "Top Management" || Session["UserType"] != "Admin")
                 {
-                    //GetDate();
-                    string strBranch = Session["Branch"].ToString();
-                    string strUserType = Session["UserType"].ToString();
+                    if (!this.IsPostBack)
+                    {
+                        //GetDate();
+                        string strBranch = Session["Branch"].ToString();
+                        string strUserType = Session["UserType"].ToString();
 
-                    if (strUserType == "Top Managment")
-                    {
-                        initial_load();
+                        if (strUserType == "Top Management")
+                        {
+                            initial_load();
+                        }
+                        else
+                        {
+                            Response.Redirect("../SALAM/salam.aspx");
+                        }
                     }
-                    else
-                    {
-                        Response.Redirect("../SALAM/salam.aspx");
-                    }
+                }
+                else
+                {
+                    Response.Redirect("salam.aspx");
                 }
             }
             else

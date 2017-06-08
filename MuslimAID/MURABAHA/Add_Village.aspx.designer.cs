@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MuslimAID.MURABHA {
+namespace MuslimAID.MURABAHA {
     
     
-    public partial class Add_Village {
+    public partial class add_village {
         
         /// <summary>
         /// cmbCityCode control.
@@ -23,6 +23,15 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.DropDownList cmbCityCode;
         
         /// <summary>
+        /// cmbArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbArea;
+        
+        /// <summary>
         /// txtVillage control.
         /// </summary>
         /// <remarks>
@@ -30,6 +39,15 @@ namespace MuslimAID.MURABHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtVillage;
+        
+        /// <summary>
+        /// txtVillageCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVillageCode;
         
         /// <summary>
         /// btnSubmit control.

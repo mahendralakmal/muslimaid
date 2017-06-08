@@ -9,7 +9,7 @@
             <div class="form-group">
                 <div class="col-md-5">Facility Code <span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" 
+                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="30" 
                         AutoPostBack="true" runat="server" TabIndex="1" 
                         ontextchanged="txtCC_TextChanged"></asp:TextBox></div>
             </div>

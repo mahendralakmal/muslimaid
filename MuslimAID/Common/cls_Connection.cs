@@ -87,10 +87,11 @@ namespace MuslimAID
 
                 return i;
             }
-            catch (Exception e)
+            catch (MySqlException e)
             {
+                //e.
                 cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Data Sending error");
-                return 0;
+                return e.Number;
             }
         }
 

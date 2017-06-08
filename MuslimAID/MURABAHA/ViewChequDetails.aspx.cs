@@ -37,12 +37,14 @@ namespace MuslimAID.MURABHA
                         DataSet dsLDCheck = cls_Connection.getDataSet("select * from micro_loan_details where loan_approved = 'Y' and chequ_no is null and contra_code = '" + strCC + "';");
                         if (dsLDCheck.Tables[0].Rows.Count > 0)
                         {
-                            DataSet dsLD = cls_Connection.getDataSet("select loan_amount, concat(initial_name,'   ',nic) as acc_name,bank_name from micro_loan_details l inner join micro_basic_detail b on l.contra_code = b.contract_code where l.contra_code = '" + strCC + "';");
+                            DataSet dsLD = cls_Connection.getDataSet("select loan_amount, s.name as acc_name, s.bank, s.branch, s.account_no from micro_loan_details l INNER JOIN micro_supplier_details s on l.contra_code = s.contract_code where l.contra_code = '" + strCC + "';");
                             if (dsLD.Tables[0].Rows.Count > 0)
                             {
                                 txtCAmount.Text = dsLD.Tables[0].Rows[0]["loan_amount"].ToString();
                                 txtChequName.Text = dsLD.Tables[0].Rows[0]["acc_name"].ToString();
-                                txtBankName.Text = dsLD.Tables[0].Rows[0]["bank_name"].ToString();
+                                cmbBankName.SelectedValue = dsLD.Tables[0].Rows[0]["bank"].ToString();
+                                //txtBankName.Text = cmbBankName.Sele
+                                txtAccNo.Text = dsLD.Tables[0].Rows[0]["account_no"].ToString();
 
                                 txtDate1.Text = ChqDate.Substring(8, 1).ToString();
                                 txtDate2.Text = ChqDate.Substring(9, 1).ToString();

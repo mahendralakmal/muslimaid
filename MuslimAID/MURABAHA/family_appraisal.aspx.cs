@@ -23,27 +23,48 @@ namespace MuslimAID.MURABAHA
         {
             try
             {
+
+                cmbTmePeriod.Items.Add("Select Period");
+                cmbTmePeriod.Items[0].Value = 0.ToString();
+                for (int i = 0; i < 24; i++)
+                {
+                    cmbTmePeriod.Items.Add(i + 1 + " Month");
+                    cmbTmePeriod.Items[i + 1].Value = (i + 1).ToString();
+                }
+
                 if (!IsPostBack)
                 {
                     if (Session["LoggedIn"].ToString() == "True")
                     {
-                        strCC = Request.QueryString["CC"];
-                        strCAC = Request.QueryString["CA"];
-
-                        if (strCC != null && strCAC != null)
+                        if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
                         {
-                            txtCC.Text = strCC;
-                            txtCC.Enabled = false;
+                            strCC = Request.QueryString["CC"];
+                            strCAC = Request.QueryString["CA"];
 
-                            //Assign Net profit from Business detals form to Net Income from Business 
-                            DataSet ds = cls_Connection.getDataSet("SELECT profit_lost FROM micro_business_details WHERE contract_code ='" + strCC + "';");
-                            txtNetBusinesIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
-                            hidNetIn.Value = ds.Tables[0].Rows[0]["profit_lost"].ToString();
-                            txtFamilyIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
+                            if (strCC != null && strCAC != null)
+                            {
+                                txtCC.Text = strCC;
+                                txtCC.Enabled = false;
+
+                                
+                                //Assign Net profit from Business detals form to Net Income from Business 
+                                DataSet ds = cls_Connection.getDataSet("SELECT profit_lost FROM micro_business_details WHERE contract_code ='" + strCC + "';");
+                                txtNetBusinesIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
+                                hidNetIn.Value = ds.Tables[0].Rows[0]["profit_lost"].ToString();
+                                txtFamilyIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
+
+                                DataSet dsFacility = cls_Connection.getDataSet("SELECT loan_amount, period from micro_loan_details WHERE contra_code = '" + strCC + "';");
+                                txtRAPSA.Text = dsFacility.Tables[0].Rows[0]["loan_amount"].ToString();
+                                cmbTmePeriod.SelectedValue = dsFacility.Tables[0].Rows[0]["period"].ToString();
+                            }
+                            else
+                            {
+                                txtCC.Enabled = true;
+                            }
                         }
                         else
                         {
-                            txtCC.Enabled = true;
+                            Response.Redirect("murabha.aspx");
                         }
                     }
                     else
@@ -57,10 +78,11 @@ namespace MuslimAID.MURABAHA
             }
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)  
         {
             try
             {
+                string strCA = Request.QueryString["CA"];
                 if (txtCC.Text.Trim() == "")
                 {
                     lblMsg.Text = "Please Enter Facility Code";
@@ -121,7 +143,7 @@ namespace MuslimAID.MURABAHA
                     cmdInsert.Parameters["@net_annual_family_in"].Value = (txtNetAnualFIn.Text.Trim() != "") ? Convert.ToDecimal(txtNetAnualFIn.Text.Trim()) : 00;
                     cmdInsert.Parameters["@amount_opex"].Value = (txtAmountOPEx.Text.Trim() != "") ? Convert.ToDecimal(txtAmountOPEx.Text.Trim()) : 00;
                     cmdInsert.Parameters["@amount_fex"].Value = (txtAmountFEx.Text.Trim() != "") ? Convert.ToDecimal(txtAmountFEx.Text.Trim()) : 00;
-                    cmdInsert.Parameters["@fr_period"].Value = (txtFRPriod.Text.Trim() != "") ? Convert.ToDecimal(txtFRPriod.Text.Trim()) : 00;
+                    cmdInsert.Parameters["@fr_period"].Value = (cmbTmePeriod.SelectedValue != "") ? Convert.ToDecimal(cmbTmePeriod.SelectedValue.ToString()) : 00;
                     cmdInsert.Parameters["@mad"].Value = (txtMAD.Text.Trim() != "") ? Convert.ToDecimal(txtMAD.Text.Trim()) : 00;
                     cmdInsert.Parameters["@mdaaip"].Value = (txtMDAAIP.Text.Trim() != "") ? Convert.ToDecimal(txtMDAAIP.Text.Trim()) : 00;
                     cmdInsert.Parameters["@rapsa"].Value = (txtRAPSA.Text.Trim() != "") ? Convert.ToDecimal(txtRAPSA.Text.Trim()) : 00;
@@ -130,11 +152,11 @@ namespace MuslimAID.MURABAHA
                     #endregion
 
                     try {
-                        int i = objDBCon.insertEditData(cmdInsert);
-
-                        if (i > 0)
+                        if (objDBCon.insertEditData(cmdInsert) > 0)
                         {
-                            Response.Redirect("loan_details.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCAC + "");
+                            MySqlCommand cmdUpdatLoanDetails = new MySqlCommand("UPDATE micro_loan_details set period= '" + cmbTmePeriod.SelectedValue.ToString() + "' WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                            if (objDBCon.insertEditData(cmdUpdatLoanDetails) > 0)
+                                Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCA + "");
                         }
                         else
                         {
@@ -154,7 +176,8 @@ namespace MuslimAID.MURABAHA
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_family_appraisal SET salary_n_wages = '" + txtSalWages.Text.Trim() + "',rentIncome = '" + txtRentBuildingIn.Text.Trim() + "',rent_income_other = '" + txtRentInOther.Text.Trim() + "',net_Income_business = '" + hidNetIn.Value.Trim() + "',other_income = '" + txtInO.Text.Trim() + "',total_annual_family_in = '" + txtFamilyIn.Text.Trim() + "',food_ex = '" + txtFoodEx.Text.Trim() + "',education_ex = '" + txtEduEx.Text.Trim() + "',wet_ex = '" + txtWETEx.Text.Trim() + "',health_n_sanitation = '" + txtHSEx.Text.Trim() + "',rent_ex = '" + txtRenPayEx.Text.Trim() + "',other_facility_ex = '" + txtOFAIEx.Text.Trim() + "',travel_n_transport = '" + txtTTransEx.Text.Trim() + "',clothes_ex = '" + txtClothsEx.Text.Trim() + "',other_ex = '" + txtOthersEx.Text.Trim() + "',total_annual_family_ex = '" + txtFExpense.Text.Trim() + "', net_annual_family_in = '" + txtNetAnualFIn.Text.Trim()+ "',amount_opex = '" + txtAmountOPEx.Text.Trim() + "',amount_fex = '" + txtAmountFEx.Text.Trim() + "',fr_period = '" + txtFRPriod.Text.Trim() + "',mad = '" + txtMAD.Text.Trim() + "',mdaaip = '" + txtMDAAIP.Text.Trim() + "',rapsa = '" + txtRAPSA.Text.Trim() + "',update_date = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "',update_user = '" + Request.UserHostAddress + "' WHERE contract_code = '" + txtCC.Text.Trim() + "';");
+            string strCA = Request.QueryString["CA"];
+            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_family_appraisal SET salary_n_wages = '" + txtSalWages.Text.Trim() + "',rentIncome = '" + txtRentBuildingIn.Text.Trim() + "',rent_income_other = '" + txtRentInOther.Text.Trim() + "',net_Income_business = '" + hidNetIn.Value.Trim() + "',other_income = '" + txtInO.Text.Trim() + "',total_annual_family_in = '" + txtFamilyIn.Text.Trim() + "',food_ex = '" + txtFoodEx.Text.Trim() + "',education_ex = '" + txtEduEx.Text.Trim() + "',wet_ex = '" + txtWETEx.Text.Trim() + "',health_n_sanitation = '" + txtHSEx.Text.Trim() + "',rent_ex = '" + txtRenPayEx.Text.Trim() + "',other_facility_ex = '" + txtOFAIEx.Text.Trim() + "',travel_n_transport = '" + txtTTransEx.Text.Trim() + "',clothes_ex = '" + txtClothsEx.Text.Trim() + "',other_ex = '" + txtOthersEx.Text.Trim() + "',total_annual_family_ex = '" + txtFExpense.Text.Trim() + "', net_annual_family_in = '" + txtNetAnualFIn.Text.Trim()+ "',amount_opex = '" + txtAmountOPEx.Text.Trim() + "',amount_fex = '" + txtAmountFEx.Text.Trim() + "',fr_period = '" + cmbTmePeriod.SelectedValue.ToString() + "',mad = '" + txtMAD.Text.Trim() + "',mdaaip = '" + txtMDAAIP.Text.Trim() + "',rapsa = '" + txtRAPSA.Text.Trim() + "',update_date = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "',update_user = '" + Request.UserHostAddress + "' WHERE contract_code = '" + txtCC.Text.Trim() + "';");
 
             try
             {
@@ -164,6 +187,7 @@ namespace MuslimAID.MURABAHA
                 {
                     Clear();
                     lblMsg.Text = "Update Success.";
+                    Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCA + "");
                 }
                 else
                 {
@@ -187,7 +211,7 @@ namespace MuslimAID.MURABAHA
             txtFamilyIn.Text = "";
             txtFExpense.Text = "";
             txtFoodEx.Text = "";
-            txtFRPriod.Text = "";
+            cmbTmePeriod.SelectedValue = "";
             txtHSEx.Text = "";
             txtInO.Text = "";
             txtMAD.Text = "";
@@ -220,6 +244,7 @@ namespace MuslimAID.MURABAHA
                 DataSet ds = cls_Connection.getDataSet("SELECT profit_lost FROM micro_business_details WHERE contract_code ='" + strCCode + "';");
                 txtNetBusinesIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
                 hidNetIn.Value = ds.Tables[0].Rows[0]["profit_lost"].ToString();
+                txtFamilyIn.Text = ds.Tables[0].Rows[0]["profit_lost"].ToString();
 
                 DataSet dsGetDetail = cls_Connection.getDataSet("select * from micro_family_appraisal where contract_code = '" + strCCode + "';");
                 if (dsGetDetail.Tables[0].Rows.Count > 0)
@@ -254,7 +279,7 @@ namespace MuslimAID.MURABAHA
                     txtNetAnualFIn.Text = fltNetAnualFIn.ToString();
                     txtAmountOPEx.Text = fltAmountOPEx.ToString();
                     txtAmountFEx.Text = fltAmountFEx.ToString();
-                    txtFRPriod.Text = dsGetDetail.Tables[0].Rows[0]["fr_period"].ToString();
+                    cmbTmePeriod.SelectedValue = dsGetDetail.Tables[0].Rows[0]["fr_period"].ToString();
                     txtMAD.Text = fltMAD.ToString();
                     txtMDAAIP.Text = dsGetDetail.Tables[0].Rows[0]["mdaaip"].ToString();
                     txtRAPSA.Text = dsGetDetail.Tables[0].Rows[0]["rapsa"].ToString();

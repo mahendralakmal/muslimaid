@@ -23,39 +23,37 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (!this.IsPostBack)
+                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
                 {
-                    string strBranch = Session["Branch"].ToString();
-                    string strUserType = Session["UserType"].ToString();
-
-                    DataSet dsBranch;
-                    MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
-                    dsBranch = objDBTask.selectData(cmdBranch);
-                    cmbBranch.Items.Add("");
-                    for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                    if (!this.IsPostBack)
                     {
-                        cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                        cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                    }
+                        string strBranch = Session["Branch"].ToString();
+                        string strUserType = Session["UserType"].ToString();
 
-                    DataSet dsCenter = new DataSet();
-                    if (strUserType == "Top Managment")
-                    {
-                        dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details ORDER BY idcenter_details asc");
-                    }
-                    else
-                    {
-                        dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details where city_code = '" + strBranch + "' ORDER BY idcenter_details asc");
-                    }
+                        DataSet dsBranch;
+                        MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
+                        dsBranch = objDBTask.selectData(cmdBranch);
+                        cmbBranch.Items.Add("");
+                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                        {
+                            cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                            cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                        }
 
-                    //dsCenter = objDBTask.selectData(cmdCenter);
-                    //cmdSocietyNo.Items.Add("");
-
-                    //for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
-                    //{
-                    //    cmdSocietyNo.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"] + "] - " + dsCenter.Tables[0].Rows[i]["villages"].ToString());
-                    //    cmdSocietyNo.Items[i + 1].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
-                    //}
+                        DataSet dsCenter = new DataSet();
+                        if (strUserType == "Top Management")
+                        {
+                            dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details ORDER BY idcenter_details asc");
+                        }
+                        else
+                        {
+                            dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details where city_code = '" + strBranch + "' ORDER BY idcenter_details asc");
+                        }
+                    }
+                }
+                else
+                {
+                    Response.Redirect("murabha.aspx");
                 }
             }
             else
@@ -75,18 +73,18 @@ namespace MuslimAID.MURABAHA
                 //{
                 DataSet dsLD = new DataSet();
 
-                if (strUserType == "Top Managment")
+                if (strUserType == "Top Management")
                 {
                     if (cmdSocietyNo.SelectedIndex == 0)
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,b.initial_name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l, micro_basic_detail b where l.contra_code = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P';");
+                        dsLD = cls_Connection.getDataSet("select l.contra_code,s.name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l, micro_basic_detail b, micro_supplier_details s where l.contra_code = b.contract_code and l.contra_code = s.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P';");
                     }
                     else
                     {
                         strBranch = cmbBranch.SelectedValue.ToString();
                         string strSoNo = cmdSocietyNo.SelectedItem.Value;
 
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,d.initial_name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l,micro_basic_detail d where l.contra_code = d.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "';");
+                        dsLD = cls_Connection.getDataSet("select l.contra_code,s.name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l,micro_basic_detail d, micro_supplier_details s where l.contra_code = d.contract_code and l.contra_code = s.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "';");
                     }
                 }
                 else
@@ -95,11 +93,11 @@ namespace MuslimAID.MURABAHA
                     string strSoNo = cmdSocietyNo.SelectedItem.Value;
                     if (cmdSocietyNo.SelectedIndex == 0)
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,b.initial_name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l, micro_basic_detail b where l.contra_code = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and b.society_id = '" + strSoNo + "' and b.city_code = '" + strBranch + "';");
+                        dsLD = cls_Connection.getDataSet("select l.contra_code,s.name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l, micro_basic_detail b, micro_supplier_details s where l.contra_code = b.contract_code and l.contra_code = s.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and b.society_id = '" + strSoNo + "' and b.city_code = '" + strBranch + "';");
                     }
                     else
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,d.initial_name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l,micro_basic_detail d where l.contra_code = d.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "';");
+                        dsLD = cls_Connection.getDataSet("select l.contra_code,s.name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l,micro_basic_detail d, micro_supplier_details s where l.contra_code = d.contract_code and l.contra_code = s.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "';");
                     }
                 }
 

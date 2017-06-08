@@ -23,29 +23,36 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-
-                if (!this.IsPostBack)
+                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
                 {
-                    //GetDate();
-                    string strBranch = Session["Branch"].ToString();
-                    string strUserType = Session["UserType"].ToString();
 
-                    if (strUserType == "Top Managment")
+                    if (!this.IsPostBack)
                     {
-                        DataSet dsBranch;
-                        MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
-                        dsBranch = objDBTask.selectData(cmdBranch);
-                        cmbBranch.Items.Add("");
-                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                        //GetDate();
+                        string strBranch = Session["Branch"].ToString();
+                        string strUserType = Session["UserType"].ToString();
+
+                        if (strUserType == "Top Management")
                         {
-                            cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                            cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                            DataSet dsBranch;
+                            MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
+                            dsBranch = objDBTask.selectData(cmdBranch);
+                            cmbBranch.Items.Add("");
+                            for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                            {
+                                cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                                cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                            }
+                        }
+                        else
+                        {
+                            Response.Redirect("murabha.aspx");
                         }
                     }
-                    else
-                    {
-                        Response.Redirect("../MURABAHA/murabha.aspx");
-                    }
+                }
+                else
+                {
+                    Response.Redirect("murabha.aspx");
                 }
             }
             else
@@ -90,7 +97,7 @@ namespace MuslimAID.MURABAHA
             catch (Exception)
             {
             }
-            //if (strUserType == "Top Managment")
+            //if (strUserType == "Top Management")
             //{
             //    if (cmdSocietyNo.SelectedIndex == 0)
             //    {

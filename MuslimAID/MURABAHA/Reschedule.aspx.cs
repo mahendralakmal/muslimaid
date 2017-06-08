@@ -25,10 +25,14 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (!this.IsPostBack)
+                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
                 {
+                    if (!this.IsPostBack)
+                    {
 
+                    }
                 }
+                else { Response.Redirect("murabha.aspx"); }
             }
             else
             {

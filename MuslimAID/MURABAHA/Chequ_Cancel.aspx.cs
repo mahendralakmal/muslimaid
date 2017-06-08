@@ -23,7 +23,14 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                txtOther.Visible = false;
+                if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
+                {
+                    txtOther.Visible = false;
+                }
+                else
+                {
+                    Response.Redirect("murbha.aspx");
+                }
             }
             else
             {

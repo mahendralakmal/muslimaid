@@ -24,8 +24,15 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                lblMsg.Text = "";
-                pnlVoucher.Visible = false;
+                if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
+                {
+                    lblMsg.Text = "";
+                    pnlVoucher.Visible = false;
+                }
+                else
+                {
+                    Response.Redirect("murabha.aspx");
+                }
             }
             else
             {

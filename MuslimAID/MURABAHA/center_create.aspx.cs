@@ -28,14 +28,11 @@ namespace MuslimAID.MURABHA
                 if (!this.IsPostBack)
                 {
                     DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
-                    //MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
-                    //dsBranch = objDBTask.selectData(cmdBranch);
-
-                    cmbCityCode.Items.Add("");
+                    cmbBranch.Items.Add("Select Branch");
                     for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
                     {
-                        cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                        cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                        cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                        cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
                     }
                 }
             }
@@ -54,13 +51,17 @@ namespace MuslimAID.MURABHA
                 {
                     lblMsg.Text = "Please enter center name.";
                 }
-                else if (cmbCityCode.SelectedIndex == 0)
+                else if (cmbBranch.SelectedIndex == 0)
                 {
                     lblMsg.Text = "Please chose city code.";
                 }
                 else if (cmbExecative.SelectedIndex == 0)
                 {
                     lblMsg.Text = "Please chose CRO.";
+                }
+                else if (cmbArea.SelectedIndex < 0)
+                {
+                    lblMsg.Text = "Please chose Area name.";
                 }
                 else if (cmbVillages.SelectedIndex < 0)
                 {
@@ -76,21 +77,19 @@ namespace MuslimAID.MURABHA
                 }
                 else
                 {
-                    string strCenterName, strCityCode, strVillage, strLName, strContactNO, strIP, strDateTime, strCenterDay, strExecative;
+                    string strCenterName, strCityCode, strVillage, strLName, strContactNO, strIP, strDateTime, strCenterDay, strExecative, strArea;
                     string Longitude, Latitude;
-                    strCenterName = txtCenterName.Text.Trim();
-                    strCityCode = cmbCityCode.SelectedItem.Value;
+                    strCenterName = hidCenterName.Value.Trim();
+                    strCityCode = cmbBranch.SelectedItem.Value;
                     strVillage = cmbVillages.SelectedItem.Value;
+                    strArea = cmbArea.SelectedValue.ToString();
                     strLName = txtLName.Text.Trim();
                     strContactNO = txtContactNo.Text.Trim();
-                    //strCenterDay = txtCenDate.Text.Trim();
                     strCenterDay = cmbCenterDay.SelectedValue.ToString();
                     strloginID = Session["NIC"].ToString();
                     strIP = Request.UserHostAddress;
                     strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     strExecative = cmbExecative.SelectedItem.Value;
-                    Longitude = txtLongitude.Text == "" ? "0.00" : txtLongitude.Text;
-                    Latitude = txtLatitude.Text == "" ? "0.00" : txtLatitude.Text;
 
                     string strMaxID = "1";
                     int intMaxID = 1;
@@ -102,13 +101,14 @@ namespace MuslimAID.MURABHA
                         strMaxID = Convert.ToString(intMaxID);
                     }
 
-                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO center_details(idcenter_details,center_name,city_code,villages,leader_name,conta_no,create_userID,create_ip,date_time,center_day,Latitude,Longitude,exective)VALUES(@idcenter_details,@center_name,@city_code,@villages,@leader_name,@conta_no,@create_userID,@create_ip,@date_time,@center_day,@Latitude,@Longitude,@exective);");
+                    MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO center_details(idcenter_details,center_name,city_code,villages,leader_name,conta_no,create_userID,create_ip,date_time,center_day,area_code,exective)VALUES(@idcenter_details,@center_name,@city_code,@villages,@leader_name,@conta_no,@create_userID,@create_ip,@date_time,@center_day,@area_code,@exective);");
 
                     #region DeclarareParamerts
                     cmdInsert.Parameters.Add("@idcenter_details", MySqlDbType.Int32);
                     cmdInsert.Parameters.Add("@center_name", MySqlDbType.VarChar, 45);
-                    cmdInsert.Parameters.Add("@city_code", MySqlDbType.VarChar, 45);
-                    cmdInsert.Parameters.Add("@villages", MySqlDbType.VarChar, 45);
+                    cmdInsert.Parameters.Add("@city_code", MySqlDbType.VarChar, 3);
+                    cmdInsert.Parameters.Add("@area_code", MySqlDbType.VarChar, 3);
+                    cmdInsert.Parameters.Add("@villages", MySqlDbType.VarChar, 3);
                     cmdInsert.Parameters.Add("@leader_name", MySqlDbType.VarChar, 45);
                     cmdInsert.Parameters.Add("@conta_no", MySqlDbType.VarChar, 45);
                     cmdInsert.Parameters.Add("@create_userID", MySqlDbType.VarChar, 45);
@@ -116,14 +116,15 @@ namespace MuslimAID.MURABHA
                     cmdInsert.Parameters.Add("@date_time", MySqlDbType.VarChar, 45);
                     cmdInsert.Parameters.Add("@center_day", MySqlDbType.VarChar, 10);
                     cmdInsert.Parameters.Add("@exective", MySqlDbType.VarChar, 45);
-                    cmdInsert.Parameters.Add("@Longitude", MySqlDbType.VarChar, 45);
-                    cmdInsert.Parameters.Add("@Latitude", MySqlDbType.VarChar, 45);
+                    //cmdInsert.Parameters.Add("@Longitude", MySqlDbType.VarChar, 45);
+                    //cmdInsert.Parameters.Add("@Latitude", MySqlDbType.VarChar, 45);
                     #endregion
 
                     #region AssignParameters
                     cmdInsert.Parameters["@idcenter_details"].Value = intMaxID;
                     cmdInsert.Parameters["@center_name"].Value = strCenterName;
                     cmdInsert.Parameters["@city_code"].Value = strCityCode;
+                    cmdInsert.Parameters["@area_code"].Value = strArea;
                     cmdInsert.Parameters["@villages"].Value = strVillage;
                     cmdInsert.Parameters["@leader_name"].Value = strLName;
                     cmdInsert.Parameters["@conta_no"].Value = strContactNO;
@@ -132,8 +133,8 @@ namespace MuslimAID.MURABHA
                     cmdInsert.Parameters["@date_time"].Value = strDateTime;
                     cmdInsert.Parameters["@center_day"].Value = strCenterDay;
                     cmdInsert.Parameters["@exective"].Value = strExecative;
-                    cmdInsert.Parameters["@Longitude"].Value = Longitude;
-                    cmdInsert.Parameters["@Latitude"].Value = Latitude;
+                    //cmdInsert.Parameters["@Longitude"].Value = Longitude;
+                    //cmdInsert.Parameters["@Latitude"].Value = Latitude;
                     #endregion
 
                     try
@@ -176,7 +177,7 @@ namespace MuslimAID.MURABHA
                 {
                     lblMsg.Text = "Please enter center name.";
                 }
-                else if (cmbCityCode.SelectedIndex == 0)
+                else if (cmbBranch.SelectedIndex == 0)
                 {
                     lblMsg.Text = "Please chose city code.";
                 }
@@ -198,11 +199,12 @@ namespace MuslimAID.MURABHA
                 }
                 else
                 {
-                    string strCenterName, strCityCode, strVillage, strLName, strContactNO, strIP, strDateTime, strCenterDay, strExecative;
+                    string strArea, strCenterName, strCityCode, strVillage, strLName, strContactNO, strIP, strDateTime, strCenterDay, strExecative;
                     string Longitude, Latitude;
-                    strCenterName = txtCenterName.Text.Trim();
-                    strCityCode = cmbCityCode.SelectedItem.Value;
+                    strCenterName = hidCenterName.Value.Trim();
+                    strCityCode = cmbBranch.SelectedItem.Value;
                     strVillage = cmbVillages.SelectedItem.Value;
+                    strArea = cmbArea.SelectedValue.ToString();
                     strLName = txtLName.Text.Trim();
                     strContactNO = txtContactNo.Text.Trim();
                     //strCenterDay = txtCenDate.Text.Trim();
@@ -211,18 +213,19 @@ namespace MuslimAID.MURABHA
                     strIP = Request.UserHostAddress;
                     strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     strExecative = cmbExecative.SelectedItem.Value;
-                    Longitude = txtLongitude.Text == "" ? "0.00" : txtLongitude.Text;
-                    Latitude = txtLatitude.Text == "" ? "0.00" : txtLatitude.Text;
+                    //Longitude = txtLongitude.Text == "" ? "0.00" : txtLongitude.Text;
+                    //Latitude = txtLatitude.Text == "" ? "0.00" : txtLatitude.Text;
 
                     string strMaxID = txtCenterID.Text.Trim();
 
-                    MySqlCommand cmdInsert = new MySqlCommand("update center_details set center_name = @center_name,city_code = @city_code,villages = @villages,leader_name = @leader_name,conta_no = @conta_no,center_day = @center_day,Latitude = @Latitude,Longitude = @Longitude,exective = @exective where idcenter_details = @idcenter_details;");
+                    MySqlCommand cmdInsert = new MySqlCommand("update center_details set center_name = @center_name,city_code = @city_code,villages = @villages, area_code = @area_code, leader_name = @leader_name,conta_no = @conta_no,center_day = @center_day,Latitude = @Latitude,Longitude = @Longitude,exective = @exective where idcenter_details = @idcenter_details;");
 
                     #region DeclarareParamerts
                     cmdInsert.Parameters.Add("@idcenter_details", MySqlDbType.Int32);
                     cmdInsert.Parameters.Add("@center_name", MySqlDbType.VarChar, 45);
                     cmdInsert.Parameters.Add("@city_code", MySqlDbType.VarChar, 45);
                     cmdInsert.Parameters.Add("@villages", MySqlDbType.VarChar, 45);
+                    cmdInsert.Parameters.Add("@area_code", MySqlDbType.VarChar, 3);
                     cmdInsert.Parameters.Add("@leader_name", MySqlDbType.VarChar, 45);
                     cmdInsert.Parameters.Add("@conta_no", MySqlDbType.VarChar, 45);
                     cmdInsert.Parameters.Add("@create_userID", MySqlDbType.VarChar, 45);
@@ -239,6 +242,7 @@ namespace MuslimAID.MURABHA
                     cmdInsert.Parameters["@center_name"].Value = strCenterName;
                     cmdInsert.Parameters["@city_code"].Value = strCityCode;
                     cmdInsert.Parameters["@villages"].Value = strVillage;
+                    cmdInsert.Parameters["@area_code"].Value = strArea;
                     cmdInsert.Parameters["@leader_name"].Value = strLName;
                     cmdInsert.Parameters["@conta_no"].Value = strContactNO;
                     cmdInsert.Parameters["@create_userID"].Value = strloginID;
@@ -246,8 +250,6 @@ namespace MuslimAID.MURABHA
                     cmdInsert.Parameters["@date_time"].Value = strDateTime;
                     cmdInsert.Parameters["@center_day"].Value = strCenterDay;
                     cmdInsert.Parameters["@exective"].Value = strExecative;
-                    cmdInsert.Parameters["@Longitude"].Value = Longitude;
-                    cmdInsert.Parameters["@Latitude"].Value = Latitude;
                     #endregion
 
                     try
@@ -273,87 +275,20 @@ namespace MuslimAID.MURABHA
             txtCenterName.Text = "";
             txtContactNo.Text = "";
             txtLName.Text = "";
-            cmbCityCode.SelectedIndex = 0;
-            //cmbVillages.SelectedIndex = 0;
+            cmbBranch.SelectedIndex = 0;
             cmbVillages.Items.Clear();
-            //txtCenDate.Text = "";
             cmbCenterDay.SelectedIndex = 0;
-            txtLongitude.Text = "";
-            txtLatitude.Text = "";
             cmbExecative.SelectedIndex = 0;
             txtCenterID.Text = "";
             btnSubmit.Visible = true;
             btnUpdate.Visible = false;
-        }
-
-        protected void cmbCityCode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                lblMsg.Text = "";
-                if (cmbCityCode.SelectedIndex != 0)
-                {
-                    if (cmbVillages.Items.Count > 0)
-                    {
-                        //cmbVillages.Items.RemoveAt(0);
-                        cmbVillages.Items.Clear();
-                    }
-
-                    DataSet dsVillage = cls_Connection.getDataSet("select * from villages_name where city_code = '" + cmbCityCode.SelectedItem.Value + "' ORDER BY villages_name");
-                    cmbVillages.Items.Add("Select Village");
-                    cmbVillages.Items[0].Value = "";
-                    for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
-                    {
-                        cmbVillages.Items.Add(dsVillage.Tables[0].Rows[i]["villages_name"].ToString());
-                        cmbVillages.Items[i+1].Value = dsVillage.Tables[0].Rows[i]["idvillages_name"].ToString();
-                    }
-
-                    string strBranch = cmbCityCode.SelectedItem.Value;
-
-                    DataSet dsGetRootID = cls_Connection.getDataSet("select exe_id,exe_name from micro_exective_root where branch_code = '" + strBranch + "';");
-
-                    if (cmbExecative.Items.Count > 0)
-                    {
-                        cmbExecative.Items.Clear();
-                    }
-                    cmbExecative.Items.Add("");
-                    for (int i = 0; i < dsGetRootID.Tables[0].Rows.Count; i++)
-                    {
-                        cmbExecative.Items.Add("[" + dsGetRootID.Tables[0].Rows[i]["exe_id"] + "] - " + dsGetRootID.Tables[0].Rows[i]["exe_name"].ToString());
-                        cmbExecative.Items[i + 1].Value = dsGetRootID.Tables[0].Rows[i]["exe_id"].ToString();
-                    }
-
-                    string strMaxID = "1";
-                    int intMaxID = 1;
-                    DataSet dsGetMaxID = cls_Connection.getDataSet("select max(idcenter_details) from center_details where city_code = '" + strBranch + "';");
-                    if (dsGetMaxID.Tables[0].Rows[0][0].ToString() != "")
-                    {
-                        string strGetMaxID = dsGetMaxID.Tables[0].Rows[0][0].ToString();
-                        strMaxID = (Convert.ToInt32(strGetMaxID) + 1).ToString();
-                        //strMaxID = Convert.ToString(intMaxID);
-                        txtCenterID.Text = strMaxID;
-                    }
-                    else
-                    {
-                        txtCenterID.Text = "1";
-                    }
-                }
-                else
-                {
-                    lblMsg.Text = "Please chose city code.";
-                    btnSubmit.Enabled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Reteave error");
-            }
+            cmbArea.SelectedIndex = 0;
         }
 
         protected void txtCenterName_TextChanged(object sender, EventArgs e)
         {
             lblMsg.Text = "";
-            if (cmbCityCode.SelectedIndex == 0)
+            if (cmbBranch.SelectedIndex == 0)
             {
                 lblMsg.Text = "Please chose city code.";
             }
@@ -367,7 +302,7 @@ namespace MuslimAID.MURABHA
             }
             else
             {
-                DataSet dsGetCenterName = cls_Connection.getDataSet("select * from center_details where city_code = '" + cmbCityCode.SelectedItem.Value + "' and villages = '" + cmbVillages.SelectedItem.Value + "' and center_name = '" + txtCenterName.Text.Trim() + "';");
+                DataSet dsGetCenterName = cls_Connection.getDataSet("select * from center_details where city_code = '" + cmbBranch.SelectedItem.Value + "' and villages = '" + cmbVillages.SelectedItem.Value + "' and center_name = '" + txtCenterName.Text.Trim() + "';");
                 if (dsGetCenterName.Tables[0].Rows.Count > 0)
                 {
                     lblMsg.Text = "This center name is already used...!";
@@ -386,7 +321,7 @@ namespace MuslimAID.MURABHA
             {
                 try
                 {
-                    DataSet dsGetCenterName = cls_Connection.getDataSet("select * from center_details where city_code = '" + cmbCityCode.SelectedItem.Value + "' and idcenter_details = '" + txtCenterID.Text.Trim() + "';");
+                    DataSet dsGetCenterName = cls_Connection.getDataSet("select * from center_details where city_code = '" + cmbBranch.SelectedItem.Value + "' and idcenter_details = '" + txtCenterID.Text.Trim() + "';");
                     if (dsGetCenterName.Tables[0].Rows.Count > 0)
                     {
                         cmbVillages.SelectedValue = dsGetCenterName.Tables[0].Rows[0]["villages"].ToString();
@@ -396,8 +331,8 @@ namespace MuslimAID.MURABHA
                         txtContactNo.Text = dsGetCenterName.Tables[0].Rows[0]["conta_no"].ToString();
                         cmbCenterDay.SelectedValue = dsGetCenterName.Tables[0].Rows[0]["center_day"].ToString();
                         cmbCenterDay.SelectedValue = dsGetCenterName.Tables[0].Rows[0]["center_day"].ToString();
-                        txtLatitude.Text = dsGetCenterName.Tables[0].Rows[0]["Latitude"].ToString();
-                        txtLongitude.Text = dsGetCenterName.Tables[0].Rows[0]["Longitude"].ToString();
+                        //txtLatitude.Text = dsGetCenterName.Tables[0].Rows[0]["Latitude"].ToString();
+                        //txtLongitude.Text = dsGetCenterName.Tables[0].Rows[0]["Longitude"].ToString();
                         btnUpdate.Visible = true;
                         btnSubmit.Visible = false;
                     }
@@ -412,6 +347,84 @@ namespace MuslimAID.MURABHA
 
                     throw;
                 }
+            }
+        }
+
+        protected void cmbArea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataSet dsVillage = cls_Connection.getDataSet("select * from villages_name where city_code = '" + cmbBranch.SelectedItem.Value.ToString() + "' AND area_code = '"+cmbArea.SelectedValue.ToString()+"' ORDER BY villages_name");
+            cmbVillages.Items.Clear();
+            cmbVillages.Items.Add("Select Village");
+            cmbVillages.Items[0].Value = "";
+            for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
+            {
+                cmbVillages.Items.Add(dsVillage.Tables[0].Rows[i]["villages_name"].ToString());
+                cmbVillages.Items[i + 1].Value = dsVillage.Tables[0].Rows[i]["villages_code"].ToString();
+            }
+        }
+
+        protected void cmbVillages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Select MFO
+            DataSet dsGetRootID = cls_Connection.getDataSet("select exe_id,exe_name from micro_exective_root where branch_code = '" + cmbBranch.SelectedValue.ToString() + "';");
+
+            cmbExecative.Items.Clear();
+            cmbExecative.Items.Add("Select MFO");
+            for (int i = 0; i < dsGetRootID.Tables[0].Rows.Count; i++)
+            {
+                cmbExecative.Items.Add("[" + dsGetRootID.Tables[0].Rows[i]["exe_id"] + "] - " + dsGetRootID.Tables[0].Rows[i]["exe_name"].ToString());
+                cmbExecative.Items[i + 1].Value = dsGetRootID.Tables[0].Rows[i]["exe_id"].ToString();
+            }
+
+            //Center Code
+            string strMaxID = "1";
+            int intMaxID = 1;
+            DataSet dsGetMaxID = cls_Connection.getDataSet("select max(idcenter_details) from center_details where city_code = '" + cmbBranch.SelectedValue.ToString() + "';");
+            if (dsGetMaxID.Tables[0].Rows[0][0].ToString() != "")
+            {
+                string strGetMaxID = dsGetMaxID.Tables[0].Rows[0][0].ToString();
+                strMaxID = (Convert.ToInt32(strGetMaxID) + 1).ToString();
+                txtCenterID.Text = strMaxID;
+                txtCenterName.Text = cmbVillages.SelectedItem.Text + "-" + strMaxID;
+                hidCenterName.Value = cmbVillages.SelectedItem.Text + "-" + strMaxID;
+            }
+            else
+            {
+                txtCenterID.Text = "1";
+                txtCenterName.Text = cmbVillages.SelectedItem.Text + "-1";
+                hidCenterName.Value = cmbVillages.SelectedItem.Text + "-1";
+            }
+        }
+
+        protected void cmbBranch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lblMsg.Text = "";
+                if (cmbBranch.SelectedIndex != 0)
+                {
+                    cmbArea.Items.Clear();
+                    DataSet dsArea = cls_Connection.getDataSet("SELECT * FROM area WHERE branch_code = '" + cmbBranch.SelectedValue.ToString() + "' ORDER BY 2");
+                    cmbArea.Items.Clear();
+                    if (dsArea.Tables[0].Rows.Count > 0)
+                    {
+                        cmbArea.Items.Add("Select Area");
+                        for (int i = 0; i < dsArea.Tables[0].Rows.Count; i++)
+                        {
+                            cmbArea.Items.Add(dsArea.Tables[0].Rows[i][1].ToString());
+                            cmbArea.Items[i + 1].Value = dsArea.Tables[0].Rows[i][2].ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    lblMsg.Text = "Please chose city code.";
+                    btnSubmit.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Reteave error");
             }
         }
     }

@@ -139,22 +139,29 @@ namespace MuslimAID.SALAM
                 {
                     if (Session["LoggedIn"].ToString() == "True")
                     {
-                        strCC = Request.QueryString["CC"];
-                        strCAC = Request.QueryString["CA"];
-
-                        if (strCC != null && strCAC != null)
+                        if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
                         {
-                            txtCC.Text = strCC;
-                            //txtCACode.Text = strCAC;
-                            txtCC.Enabled = false;
-                            btnSubmit.Enabled = true;
-                            get_income_type();
+                            strCC = Request.QueryString["CC"];
+                            strCAC = Request.QueryString["CA"];
+
+                            if (strCC != null && strCAC != null)
+                            {
+                                txtCC.Text = strCC;
+                                //txtCACode.Text = strCAC;
+                                txtCC.Enabled = false;
+                                btnSubmit.Enabled = true;
+                                get_income_type();
+                            }
+                            else
+                            {
+                                txtCC.Enabled = true;
+                                btnSubmit.Enabled = true;
+                                get_income_type();
+                            }
                         }
                         else
                         {
-                            txtCC.Enabled = true;
-                            btnSubmit.Enabled = true;
-                            get_income_type();
+                            Response.Redirect("salam.aspx");
                         }
                     }
                 }

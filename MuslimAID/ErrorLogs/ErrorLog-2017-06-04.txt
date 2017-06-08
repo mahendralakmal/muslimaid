@@ -1,0 +1,10 @@
+=============================================================
+Time      : 2017-06-04 11:58:59 PM
+
+Exception : Column 'invoice_value' does not belong to table Table.
+
+Source    : System.Data
+
+Other     : Data Sending error
+
+=============================================================

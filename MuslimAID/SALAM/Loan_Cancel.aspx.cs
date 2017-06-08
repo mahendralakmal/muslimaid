@@ -22,10 +22,14 @@ namespace MuslimAID.SALAM
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (!this.IsPostBack)
+                if (Session["UserType"].ToString() == "Admin" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Manager")
                 {
+                    if (!this.IsPostBack)
+                    {
 
+                    }
                 }
+                else { Response.Redirect("salam.aspx"); }
             }
             else
             {
@@ -56,7 +60,7 @@ namespace MuslimAID.SALAM
                 string strUserType = Session["UserType"].ToString();
 
                 DataSet dsLD = new DataSet();
-                if (strUserType == "Top Managment")
+                if (strUserType == "Top Management")
                 {
                     dsLD = cls_Connection.getDataSet("select c.full_name, c.nic, f.contract_code,f.busi_income,f.total_income,f.direct_cost,f.total_expenses,l.loan_amount,l.period,l.interest_rate,l.chequ_no from salam_business_details f, salam_loan_details l, salam_basic_detail c where f.contract_code = l.contra_code and c.contract_code = l.contra_code and l.loan_approved = 'Y' and l.loan_sta = 'P' and c.contract_code = '" + txtContractCode.Text + "';");
                     if (dsLD.Tables[0].Rows.Count > 0)
@@ -110,7 +114,7 @@ namespace MuslimAID.SALAM
                 string strDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string strIp = Request.UserHostAddress;
 
-                if (strUserType == "Top Managment")
+                if (strUserType == "Top Management")
                 {
                     MySqlCommand cmdUpdateChequ = new MySqlCommand("Update salam_loan_details set loan_sta = '" + strStatus + "' where contra_code = '" + strCCode + "' and loan_approved = 'Y'");
 

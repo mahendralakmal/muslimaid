@@ -24,39 +24,43 @@ namespace MuslimAID.SALAM
             {
                 if (Session["LoggedIn"].ToString() == "True")
                 {
-                    try
+                    if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
                     {
-                        //Add Bank
-                        DataSet dsBank;
-                        MySqlCommand cmdBank = new MySqlCommand("select * from bank_tbl ORDER BY 2");
-                        dsBank = objDBTask.selectData(cmdBank);
-                        cmbBankName.Items.Add("");
-                        for (int i = 0; i < dsBank.Tables[0].Rows.Count; i++)
+                        try
                         {
-                            cmbBankName.Items.Add(dsBank.Tables[0].Rows[i][1].ToString());
-                            cmbBankName.Items[i + 1].Value = dsBank.Tables[0].Rows[i][0].ToString();
+                            //Add Bank
+                            DataSet dsBank;
+                            MySqlCommand cmdBank = new MySqlCommand("select * from bank_tbl ORDER BY 2");
+                            dsBank = objDBTask.selectData(cmdBank);
+                            cmbBankName.Items.Add("");
+                            for (int i = 0; i < dsBank.Tables[0].Rows.Count; i++)
+                            {
+                                cmbBankName.Items.Add(dsBank.Tables[0].Rows[i][1].ToString());
+                                cmbBankName.Items[i + 1].Value = dsBank.Tables[0].Rows[i][0].ToString();
+                            }
                         }
-                    }
-                    catch (Exception)
-                    {
-                    }
-                    try
-                    {
-                        string Bank = cmbBankName.SelectedValue.ToString();
-                        DataSet dsCheqno;
-                        MySqlCommand cmdBank = new MySqlCommand("SELECT max(cheq_no) cheq_no FROM chequebook_registry WHERE bank = '" + Bank + "';");
-                        dsCheqno = objDBTask.selectData(cmdBank);
-                        if (dsCheqno.Tables[0].Rows.Count > 0)
+                        catch (Exception)
                         {
-                            txtStartChqNo.Text = (Convert.ToInt64(dsCheqno.Tables[0].Rows[0]["cheq_no"]) + 1).ToString();
-                            txtStartChqNo.Enabled = false;
                         }
+                        try
+                        {
+                            string Bank = cmbBankName.SelectedValue.ToString();
+                            DataSet dsCheqno;
+                            MySqlCommand cmdBank = new MySqlCommand("SELECT max(cheq_no) cheq_no FROM chequebook_registry WHERE bank = '" + Bank + "';");
+                            dsCheqno = objDBTask.selectData(cmdBank);
+                            if (dsCheqno.Tables[0].Rows.Count > 0)
+                            {
+                                txtStartChqNo.Text = (Convert.ToInt64(dsCheqno.Tables[0].Rows[0]["cheq_no"]) + 1).ToString();
+                                txtStartChqNo.Enabled = false;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            txtStartChqNo.Enabled = true;
+                        }
+                        lblLastDate.Text = "";
                     }
-                    catch (Exception)
-                    {
-                        txtStartChqNo.Enabled = true;
-                    }
-                    lblLastDate.Text = "";
+                    else { Response.Redirect("salam.aspx"); }
                 }
                 else
                 {

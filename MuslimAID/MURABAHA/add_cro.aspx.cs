@@ -30,7 +30,7 @@ namespace MuslimAID.MURABAHA
                 if (dsUserTy.Tables[0].Rows.Count > 0)
                 {
                     string strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
-                    if (strType == "Top Managment" || strType == "Admin" || strType == "Manager")
+                    if (strType == "Top Management" || strType == "Admin" || strType == "Manager")
                     {
                         if (!this.IsPostBack)
                         {
@@ -46,13 +46,13 @@ namespace MuslimAID.MURABAHA
                     }
                     else
                     {
-                        Response.Redirect("../Login.aspx");
+                        Response.Redirect("murabha.aspx");
                     }
 
                 }
                 else
                 {
-                    Response.Redirect("../Login.aspx");
+                    Response.Redirect("murabha.aspx");
                 }
             }
             else

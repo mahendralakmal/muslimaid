@@ -1,7 +1,7 @@
 =============================================================
-Time      : 2017-04-01 04:28:37 PM
+Time      : 2017-06-08 10:39:41 PM
 
-Exception : Timeout expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+Exception : Unknown column 'b.idmicro_basic_detail' in 'order clause'
 
 Source    : MySql.Data
 

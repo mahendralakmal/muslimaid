@@ -77,6 +77,16 @@
                 <td colspan="3" height="10px"></td>
             </tr>
             <tr>
+                <td valign="top">Account No<span style="color:Red;">*</span></td>
+                <td valign="top">:</td>
+                <td>
+                    <asp:TextBox ID="txtAccNo" runat="server" Width="250px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" height="10px"></td>
+            </tr>
+            <tr>
                 <td valign="top">Chequ Date<span style="color:Red;">*</span></td>
                 <td valign="top">:</td>
                 <td align="left">

@@ -53,7 +53,7 @@
                                     </a>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="initial_name" HeaderText="Name" HeaderStyle-Width="200px"
+                            <asp:BoundField DataField="name" HeaderText="Supplier Name" HeaderStyle-Width="200px"
                                 ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White"
                                 HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="period" HeaderText="Period" HeaderStyle-Width="90px" ItemStyle-HorizontalAlign="Center"

@@ -230,41 +230,40 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (!this.IsPostBack)
+                if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
                 {
-                    string strBranch = Session["Branch"].ToString();
-                    string strUserType = Session["UserType"].ToString();
-
-                    DataSet dsBranch;
-                    MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
-                    dsBranch = cls_Connection.selectDataSet(cmdBranch);
-                    cmbBranch.Items.Add("");
-                    for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                    if (!this.IsPostBack)
                     {
-                        cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                        cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                    }
+                        string strBranch = Session["Branch"].ToString();
+                        string strUserType = Session["UserType"].ToString();
 
-                    DataSet dsCenter = new DataSet();
-                    if (strUserType == "Top Managment")
-                    {
-                        dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details ORDER BY idcenter_details asc");
-                    }
-                    else
-                    {
-                        dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details where city_code = '" + strBranch + "' ORDER BY idcenter_details asc");
-                    }
+                        DataSet dsBranch;
+                        MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
+                        dsBranch = cls_Connection.selectDataSet(cmdBranch);
+                        cmbBranch.Items.Add("");
+                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                        {
+                            cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                            cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                        }
 
-                    //dsCenter = cls_Connection.getDataSet(cmdCenter);
-                    //cmdSocietyNo.Items.Add("");
+                        DataSet dsCenter = new DataSet();
+                        if (strUserType == "Top Management")
+                        {
+                            dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details ORDER BY idcenter_details asc");
+                        }
+                        else
+                        {
+                            dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details where city_code = '" + strBranch + "' ORDER BY idcenter_details asc");
+                        }
 
-                    //for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
-                    //{
-                    //    cmdSocietyNo.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"] + "] - " + dsCenter.Tables[0].Rows[i]["villages"].ToString());
-                    //    cmdSocietyNo.Items[i + 1].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
-                    //}
-                    Clear();
-                    btnPrint.Visible = false;
+                        Clear();
+                        btnPrint.Visible = false;
+                    }
+                }
+                else
+                {
+                    Response.Redirect("murabha.aspx");
                 }
             }
             else
@@ -395,7 +394,7 @@ namespace MuslimAID.MURABAHA
                 DataSet dsLD = new DataSet();
                 grvChequAppr.DataSource = null;
                 grvChequAppr.DataBind();
-                if (strUserType == "Top Managment")
+                if (strUserType == "Top Management")
                 {
                     if (cmdSocietyNo.SelectedIndex == 0)
                     {

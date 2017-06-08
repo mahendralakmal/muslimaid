@@ -6,15 +6,23 @@
     <div class="PageTitle"><h4>MF Application - Create a Center</h4></div>
     <div class="col-md-6 form-container">
             <div class="form-group">
-                <div class="col-md-5">City Code<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:DropDownList ID="cmbCityCode" CssClass="form-control" 
+                <div class="col-md-5">Branch<span style="color:Red;">*</span></div>
+                <div class="col-md-7">
+                    <asp:DropDownList ID="cmbBranch" CssClass="form-control" 
                         TabIndex="1" runat="server" AutoPostBack="true" 
-                        onselectedindexchanged="cmbCityCode_SelectedIndexChanged"></asp:DropDownList></div>
+                        onselectedindexchanged="cmbBranch_SelectedIndexChanged"></asp:DropDownList></div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-5">Area<span style="color:Red;">*</span></div>
+                <div class="col-md-7"><asp:DropDownList ID="cmbArea" CssClass="form-control" 
+                        TabIndex="1" runat="server" AutoPostBack="true" 
+                        onselectedindexchanged="cmbArea_SelectedIndexChanged" ></asp:DropDownList></div>
             </div>
             <div class="form-group">
                 <div class="col-md-5">Village<span style="color:Red;">*</span></div>
                 <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbVillages" 
-                        runat="server" TabIndex="2"></asp:DropDownList></div>
+                        runat="server" TabIndex="2" AutoPostBack="True" 
+                        onselectedindexchanged="cmbVillages_SelectedIndexChanged"></asp:DropDownList></div>
             </div>
             <div class="form-group">
                 <div class="col-md-5">Center ID<span style="color:Red;">*</span></div>
@@ -28,9 +36,12 @@
             </div>
             <div class="form-group">
                 <div class="col-md-5">Center Name<span style="color:Red;">*</span></div>
-                <div class="col-md-7"><asp:TextBox ID="txtCenterName" CssClass="form-control" 
+                <div class="col-md-7">
+                    <asp:TextBox ID="txtCenterName" CssClass="form-control" 
                         AutoPostBack="true" TabIndex="3" runat="server" 
-                        ontextchanged="txtCenterName_TextChanged"></asp:TextBox></div>
+                        ontextchanged="txtCenterName_TextChanged" Enabled="False"></asp:TextBox>
+                    <asp:HiddenField ID="hidCenterName" runat="server" />
+                </div>
             </div>
             <div class="form-group">
                 <div class="col-md-5">Leader Name<span style="color:Red;">*</span></div>
@@ -54,7 +65,7 @@
                     </asp:DropDownList>
                 </div>
             </div>            
-            <div class="form-group">
+<%--            <div class="form-group">
                 <div class="col-md-5">Latitude</div>
                 <div class="col-md-7">
                 <asp:TextBox ID="txtLatitude" CssClass="form-control" TabIndex="6" MaxLength="10" Width="100px" runat="server" ></asp:TextBox>
@@ -65,7 +76,7 @@
                 <div class="col-md-7">
                 <asp:TextBox ID="txtLongitude" CssClass="form-control" TabIndex="6" MaxLength="10" Width="100px" runat="server" ></asp:TextBox>
                 </div>
-            </div>
+            </div>--%>
             <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" 
                 Text="Submit" TabIndex="11" onclick="btnSubmit_Click"/>
             <asp:Button ID="btnUpdate" CssClass="btn btn-primary" runat="server" 

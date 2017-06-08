@@ -23,21 +23,29 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                try
+                if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
                 {
-                    //Add Cheque                    
-                    DataSet dsCheqNo;
-                    MySqlCommand cmdCheqNo = new MySqlCommand("SELECT cheq_no FROM chequebook_registry where status = 1;");
-                    dsCheqNo = cls_Connection.selectDataSet(cmdCheqNo);
-                    cmbChqNo.Items.Add("");
-                    for (int i = 0; i < dsCheqNo.Tables[0].Rows.Count; i++)
+                    try
                     {
-                        cmbChqNo.Items.Add(dsCheqNo.Tables[0].Rows[i][0].ToString());
-                        cmbChqNo.Items[i + 1].Value = dsCheqNo.Tables[0].Rows[i][0].ToString();
+                        //Add Cheque                    
+                        DataSet dsCheqNo;
+                        MySqlCommand cmdCheqNo = new MySqlCommand("SELECT cheq_no FROM chequebook_registry where status = 1;");
+                        dsCheqNo = cls_Connection.selectDataSet(cmdCheqNo);
+                        cmbChqNo.Items.Add("");
+                        for (int i = 0; i < dsCheqNo.Tables[0].Rows.Count; i++)
+                        {
+                            cmbChqNo.Items.Add(dsCheqNo.Tables[0].Rows[i][0].ToString());
+                            cmbChqNo.Items[i + 1].Value = dsCheqNo.Tables[0].Rows[i][0].ToString();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "");
                     }
                 }
-                catch (Exception)
+                else
                 {
+                    Response.Redirect("murabha.aspx");
                 }
             }
             else

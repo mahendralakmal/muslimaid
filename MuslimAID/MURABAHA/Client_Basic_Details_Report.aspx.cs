@@ -62,39 +62,40 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
-                hstrSelectQuery.Value = "SELECT c.center_name AS Center,b.team_id,b.ca_code nic, b.contract_code ,b.initial_name full_name, b.p_address, b.mobile_no FROM micro_basic_detail b left outer join center_details c on b.city_code = c.city_code and b.society_id = c.idcenter_details left outer join micro_exective_root e on b.root_id = e.exe_id and e.branch_code = b.city_code WHERE idmicro_basic_detail > 0 ";
+                hstrSelectQuery.Value = "SELECT * FROM micro_full_details WHERE idmicro_basic_detail > 0";
+                //hstrSelectQuery.Value = "SELECT c.center_name AS Center,b.team_id,b.ca_code nic, b.contract_code ,b.initial_name full_name, b.p_address, b.mobile_no FROM micro_basic_detail b left outer join center_details c on b.city_code = c.city_code and b.society_id = c.idcenter_details left outer join micro_exective_root e on b.root_id = e.exe_id and e.branch_code = b.city_code WHERE idmicro_basic_detail > 0 ";
                 if (cmbCityCode.SelectedIndex != 0 || ddlCro.SelectedIndex != 0 || ddlCenter.SelectedIndex != 0 || txtDateFrom.Text.Trim() != "" || cmbCenterDay.SelectedIndex != 0)
                 {
                     if (cmbCityCode.SelectedIndex != 0)
                     {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and b.city_code = '" + cmbCityCode.SelectedValue.ToString() + "' ";
+                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and city_code = '" + cmbCityCode.SelectedValue.ToString() + "' ";
                         if (ddlCro.SelectedIndex != 0)
                         {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and e.exe_id = '" + ddlCro.SelectedValue.ToString() + "' ";
+                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and exe_id = '" + ddlCro.SelectedValue.ToString() + "' ";
                         }
                         if (ddlCenter.SelectedIndex != 0)
                         {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.idcenter_details = '" + ddlCenter.SelectedValue.ToString() + "' ";
+                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and idcenter_details = '" + ddlCenter.SelectedValue.ToString() + "' ";
                         }
                     }
                     if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
                     {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and (DATE_FORMAT((b.date_time),'%Y-%m-%d')) between '" + txtDateFrom.Text.Trim() + "' and '" + txtDateTo.Text.Trim() + "'";
+                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and (DATE_FORMAT((date_time),'%Y-%m-%d')) between '" + txtDateFrom.Text.Trim() + "' and '" + txtDateTo.Text.Trim() + "'";
                     }
                     if (cmbCenterDay.SelectedIndex != 0)
                     {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.center_day = '" + cmbCenterDay.SelectedValue.ToString() + "' ";
+                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and center_day = '" + cmbCenterDay.SelectedValue.ToString() + "' ";
                     }
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by b.idmicro_basic_detail asc;";
+                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by idmicro_basic_detail asc;";
                     loadDataToRepeater(hstrSelectQuery.Value);
                 }
                 else
                 {
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by b.idmicro_basic_detail asc;";
+                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by idmicro_basic_detail asc;";
                     loadDataToRepeater(hstrSelectQuery.Value);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
             }
         }
@@ -127,12 +128,12 @@ namespace MuslimAID.MURABHA
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
                     DataRow dr = dt.NewRow();
-                    dr["Center"] = ds.Tables[0].Rows[i]["Center"].ToString();
+                    dr["Center"] = ds.Tables[0].Rows[i]["center_name"].ToString();
                     dr["nic"] = ds.Tables[0].Rows[i]["nic"].ToString();
                     dr["contra_code"] = ds.Tables[0].Rows[i]["contract_code"].ToString();
                     dr["full_name"] = ds.Tables[0].Rows[i]["full_name"].ToString();
                     dr["p_address"] = ds.Tables[0].Rows[i]["p_address"].ToString();
-                    dr["mobile_no"] = ds.Tables[0].Rows[i]["mobile_no"].ToString();
+                    dr["mobile_no"] = (ds.Tables[0].Rows[i]["mobile_no"].ToString() !="") ? ds.Tables[0].Rows[i]["land_no"].ToString() + "/" + ds.Tables[0].Rows[i]["mobile_no"].ToString() : ds.Tables[0].Rows[i]["land_no"].ToString();
                     dt.Rows.Add(dr);
                 }
 

@@ -26,14 +26,21 @@ namespace MuslimAID.MURABAHA
             {
                 if (Session["LoggedIn"].ToString() == "True")
                 {
-                    DataSet dsCity;
-                    MySqlCommand cmdCity = new MySqlCommand("SELECT b_code,b_name FROM branch ORDER BY 2");
-                    dsCity = objDBTask.selectData(cmdCity);
-                    cmbCityCode.Items.Add("");
-                    for (int i = 0; i < dsCity.Tables[0].Rows.Count; i++)
+                    if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
                     {
-                        cmbCityCode.Items.Add("[" + dsCity.Tables[0].Rows[i]["b_code"] + "] - " + dsCity.Tables[0].Rows[i]["b_name"].ToString());
-                        cmbCityCode.Items[i+1].Value = dsCity.Tables[0].Rows[i]["b_code"].ToString();
+                        DataSet dsCity;
+                        MySqlCommand cmdCity = new MySqlCommand("SELECT b_code,b_name FROM branch ORDER BY 2");
+                        dsCity = objDBTask.selectData(cmdCity);
+                        cmbCityCode.Items.Add("");
+                        for (int i = 0; i < dsCity.Tables[0].Rows.Count; i++)
+                        {
+                            cmbCityCode.Items.Add("[" + dsCity.Tables[0].Rows[i]["b_code"] + "] - " + dsCity.Tables[0].Rows[i]["b_name"].ToString());
+                            cmbCityCode.Items[i + 1].Value = dsCity.Tables[0].Rows[i]["b_code"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect("murabha.aspx");
                     }
                 }
                 else

@@ -23,21 +23,25 @@ namespace MuslimAID.SALAM
                 {
                     if (Session["LoggedIn"].ToString() == "True")
                     {
-                        //strCC = Request.QueryString["CC"];
-                        //strCAC = Request.QueryString["CA"];
+                        if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
+                        {
+                            //strCC = Request.QueryString["CC"];
+                            //strCAC = Request.QueryString["CA"];
 
-                        //if (strCC != null && strCAC != null)
-                        //{
-                        //    txtCC.Text = strCC;
-                        //    txtCACode.Text = strCAC;
-                        //    txtCC.Enabled = false;
-                        //    btnSubmit.Enabled = true;
-                        //}
-                        //else
-                        //{
-                        //    txtCC.Enabled = true;
-                        //    btnSubmit.Enabled = false;
-                        //}
+                            //if (strCC != null && strCAC != null)
+                            //{
+                            //    txtCC.Text = strCC;
+                            //    txtCACode.Text = strCAC;
+                            //    txtCC.Enabled = false;
+                            //    btnSubmit.Enabled = true;
+                            //}
+                            //else
+                            //{
+                            //    txtCC.Enabled = true;
+                            //    btnSubmit.Enabled = false;
+                            //}
+                        }
+                        else { Response.Redirect("salam.aspx"); }
                     }
                 }
             }

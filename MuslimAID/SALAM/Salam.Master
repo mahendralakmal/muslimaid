@@ -99,12 +99,14 @@
                             <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
                             <li><a href="Chequ_Approval.aspx">Chequ Approval</a></li>
                             <li><a href="VoucherPrint.aspx">Voucher Print</a></li>
-                            <li><a href="#">Document</a></li>                            
+                            <!-- ************************************************************* -->
+                            <!-- <li><a href="#">Document</a></li> This section has to be done -->
+                            <!-- ************************************************************* -->
                             <%--<li><a href="Debit_Note.aspx">Debit Run</a></li>--%>
                             <li><a href="Settlment.aspx">Settlment</a></li>
-                            <li><a href="Settlment.aspx">Settlment Approval</a></li>
-                            <li><a href="Settlment.aspx">Write Off</a></li>
-                            <li><a href="Settlment.aspx">Loan Reshedule</a></li>
+                            <li><a href="Rebate_Approval.aspx">Settlment Approval</a></li>
+                            <li><a href="WayOffAmount.aspx">Write Off</a></li>
+                            <li><a href="Reschedule.aspx">Loan Reshedule</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
