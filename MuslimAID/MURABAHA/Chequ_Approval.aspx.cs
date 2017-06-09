@@ -69,55 +69,55 @@ namespace MuslimAID.MURABAHA
                 string strBranch = Session["Branch"].ToString();
                 string strUserType = Session["UserType"].ToString();
 
-                //if (strBranch == "BE")
-                //{
-                DataSet dsLD = new DataSet();
+                if (cmbBranch.SelectedIndex == 0)
+                    lblMsg.Text = "Please Select the branch...";
+                //else if (cmdSocietyNo.SelectedIndex == 0)
+                //    lblMsg.Text = "Please Select the Center...";
+                else {
+                    DataSet dsLD = new DataSet();
 
-                if (strUserType == "Top Management")
-                {
-                    if (cmdSocietyNo.SelectedIndex == 0)
+                    if (strUserType == "Top Management")
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,s.name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l, micro_basic_detail b, micro_supplier_details s where l.contra_code = b.contract_code and l.contra_code = s.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P';");
+                        if (cmdSocietyNo.SelectedIndex == 0)
+                        {
+                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE loan_approved = 'Y' AND chequ_no IS NULL AND loan_sta = 'P';");
+                        }
+                        else
+                        {
+                            strBranch = cmbBranch.SelectedValue.ToString();
+                            string strSoNo = cmdSocietyNo.SelectedItem.Value;
+
+                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE loan_approved = 'Y' AND chequ_no IS NULL AND loan_sta = 'P' AND society_id = '" + strSoNo + "' AND city_code = '" + strBranch + "';");
+                        }
                     }
                     else
                     {
                         strBranch = cmbBranch.SelectedValue.ToString();
                         string strSoNo = cmdSocietyNo.SelectedItem.Value;
-
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,s.name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l,micro_basic_detail d, micro_supplier_details s where l.contra_code = d.contract_code and l.contra_code = s.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "';");
+                        if (cmdSocietyNo.SelectedIndex == 0)
+                        {
+                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE loan_approved = 'Y' AND chequ_no IS NULL AND loan_sta = 'P' AND society_id = '" + strSoNo + "' AND city_code = '" + strBranch + "';");
+                        }
+                        else
+                        {
+                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE loan_approved = 'Y' AND chequ_no IS NULL AND loan_sta = 'P' AND society_id = '" + strSoNo + "' AND city_code = '" + strBranch + "';");
+                        }
                     }
-                }
-                else
-                {
-                    strBranch = cmbBranch.SelectedValue.ToString();
-                    string strSoNo = cmdSocietyNo.SelectedItem.Value;
-                    if (cmdSocietyNo.SelectedIndex == 0)
+
+                    if (dsLD.Tables[0].Rows.Count > 0)
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,s.name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l, micro_basic_detail b, micro_supplier_details s where l.contra_code = b.contract_code and l.contra_code = s.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and b.society_id = '" + strSoNo + "' and b.city_code = '" + strBranch + "';");
+                        grvChequAppr.DataSource = dsLD;
+                        grvChequAppr.DataBind();
                     }
                     else
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,s.name,l.loan_amount,l.interest_amount,l.period from micro_loan_details l,micro_basic_detail d, micro_supplier_details s where l.contra_code = d.contract_code and l.contra_code = s.contract_code and l.loan_approved = 'Y' and l.chequ_no is null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "';");
+                        lblMsg.Text = "No records found for your search criteria. Please try again.";
                     }
-                }
-
-                if (dsLD.Tables[0].Rows.Count > 0)
-                {
-                    grvChequAppr.DataSource = dsLD;
-                    grvChequAppr.DataBind();
-                }
-                else
-                {
-                    lblMsg.Text = "No records found for your search criteria. Please try again.";
-                }
-                //}
-                //else
-                //{
-                //    lblMsg.Text = "Tempoaraly suspance the cheque printing option. Please Contact Finance Section.";
-                //}
+                }                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Cheque Approval");
                 grvChequAppr.DataSource = null;
                 grvChequAppr.DataBind();
                 lblMsg.Text = "No records found for your search criteria. Please try again.";

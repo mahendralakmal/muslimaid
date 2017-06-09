@@ -1,10 +1,10 @@
 =============================================================
-Time      : 2017-06-09 12:06:25 AM
+Time      : 2017-06-09 10:36:13 AM
 
-Exception : Table 'muslimaid.micro_full_detail' doesn't exist
+Exception : Unknown column 's.bank' in 'field list'
 
 Source    : MySql.Data
 
-Other     : Data Sending error
+Other     : MySQL error
 
 =============================================================

@@ -156,7 +156,7 @@ namespace MuslimAID.MURABHA
             decimal decMI = (txtLDMInstoll.Text.Trim() != "") ? Convert.ToDecimal(txtLDMInstoll.Text.Trim()) : 00;
             string strPe = cmbPeriod.SelectedValue.ToString();
 
-            string upq = "UPDATE micro_loan_details SET loan_amount ='" + decLA + "', selling_price ='" + strSP + "', down_payment='" + strDP + "', service_charges='" + decSC + "', registration_fee ='" + strRF + "', walfare_fee ='" + strWF + "', other_charges = '" + decOC + "', interest_rate='" + strIR + "', monthly_instollment='" + decMI + "', period ='" + strPe + "' WHERE contra_code ='" + txtCC.Text.Trim() + "';";
+            string upq = "UPDATE micro_loan_details SET loan_amount ='" + decLA + "', selling_price ='" + strSP + "', down_payment='" + strDP + "', service_charges='" + decSC + "', registration_fee ='" + strRF + "', walfare_fee ='" + strWF + "', other_charges = '" + decOC + "', interest_rate='" + strIR + "', monthly_instollment='" + decMI + "', period ='" + strPe + "',reg_approval ='Y',loan_approved='P' WHERE contra_code ='" + txtCC.Text.Trim() + "';";
 
             try
             {
