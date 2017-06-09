@@ -23,6 +23,24 @@ namespace MuslimAID.MURABAHA {
         protected global::System.Web.UI.WebControls.DropDownList cmbBranch;
         
         /// <summary>
+        /// cmbArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbArea;
+        
+        /// <summary>
+        /// cmbVillage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbVillage;
+        
+        /// <summary>
         /// cmdSocietyNo control.
         /// </summary>
         /// <remarks>

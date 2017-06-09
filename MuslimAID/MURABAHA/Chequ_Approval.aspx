@@ -10,10 +10,11 @@
                 Cheque Approval</h4>
         </div>
         <div class="col-md-9 form-container">
+            
             <div class="form-group">
                 <div class="col-md-2">
                     Branch</div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <asp:DropDownList ID="cmbBranch" runat="server" CssClass="form-control" AutoPostBack="true"
                         OnSelectedIndexChanged="cmbBranch_SelectedIndexChanged">
                     </asp:DropDownList>
@@ -21,9 +22,27 @@
             </div>
             <div class="form-group">
                 <div class="col-md-2">
+                    Area</div>
+                <div class="col-md-4">
+                    <asp:DropDownList ID="cmbArea" runat="server" CssClass="form-control" 
+                        AutoPostBack="true" onselectedindexchanged="cmbArea_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    Village</div>
+                <div class="col-md-4">
+                    <asp:DropDownList ID="cmbVillage" runat="server" CssClass="form-control" 
+                        AutoPostBack="true" onselectedindexchanged="cmbVillage_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
                     Center</div>
-                <div class="col-md-5">
-                    <asp:DropDownList CssClass="form-control" ID="cmdSocietyNo" runat="server">
+                <div class="col-md-4">
+                    <asp:DropDownList ID="cmdSocietyNo" runat="server" CssClass="form-control">
                     </asp:DropDownList>
                 </div>
             </div>

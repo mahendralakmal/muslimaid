@@ -20,7 +20,25 @@
             </div>
             <div class="form-group">
                 <div class="col-md-2">
-                    Society No :</div>
+                    Area</div>
+                <div class="col-md-4">
+                    <asp:DropDownList ID="cmbArea" runat="server" CssClass="form-control" 
+                        AutoPostBack="true" onselectedindexchanged="cmbArea_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    Village</div>
+                <div class="col-md-4">
+                    <asp:DropDownList ID="cmbVillage" runat="server" CssClass="form-control" 
+                        AutoPostBack="true" onselectedindexchanged="cmbVillage_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    Center</div>
                 <div class="col-md-4">
                     <asp:DropDownList ID="cmdSocietyNo" runat="server" CssClass="form-control">
                     </asp:DropDownList>
@@ -47,9 +65,9 @@
                             <asp:TemplateField HeaderText="Facility Code" ItemStyle-HorizontalAlign="Center"
                                 HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">
                                 <ItemTemplate>
-                                    <a ref="#" onclick="javascript:w=window.open(&#039;Full_Details.aspx?ConCode=<%#Eval("contra_code")%>&#039;,&#039;popup&#039;,&#039;target=_blank,width=800px,height=500px,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=100&#039;);w.focus();return false;"
+                                    <a ref="#" onclick="javascript:w=window.open(&#039;Full_Details.aspx?ConCode=<%#Eval("contract_code")%>&#039;,&#039;popup&#039;,&#039;target=_blank,width=800px,height=500px,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=100&#039;);w.focus();return false;"
                                         style="text-decoration: underline;">
-                                        <%#Eval("contra_code")%>
+                                        <%#Eval("contract_code")%>
                                     </a>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -90,7 +108,7 @@
                                 ReadOnly="true" />
                             <asp:TemplateField HeaderStyle-ForeColor="#009905" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White">
                                 <ItemTemplate>
-                                    <a ref="#" onclick="javascript:w=window.open(&#039;ViewLoanDetails.aspx?ConCode=<%#Eval("contra_code")%>&#039;,&#039;popup&#039;,&#039;target=_blank,width=520px,height=300px,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=100&#039;);w.focus();return false;"
+                                    <a ref="#" onclick="javascript:w=window.open(&#039;ViewLoanDetails.aspx?ConCode=<%#Eval("contract_code")%>&#039;,&#039;popup&#039;,&#039;target=_blank,width=520px,height=300px,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=100&#039;);w.focus();return false;"
                                         style="text-decoration: underline;">Approval </a>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -100,7 +118,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-12">
-                    <asp:Label ID="lblMsg" runat="server"></asp:Label>
+                    <asp:Label ID="lblMsg" CssClass="alert-danger" runat="server"></asp:Label>
                 </div>
             </div>
         </div>

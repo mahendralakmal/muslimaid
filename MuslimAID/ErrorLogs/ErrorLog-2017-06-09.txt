@@ -1,10 +1,10 @@
 =============================================================
-Time      : 2017-06-09 10:36:13 AM
+Time      : 2017-06-09 02:49:08 PM
 
-Exception : Unknown column 's.bank' in 'field list'
+Exception : Object reference not set to an instance of an object.
 
-Source    : MySql.Data
+Source    : MuslimAID
 
-Other     : MySQL error
+Other     : Cheque Approval
 
 =============================================================
