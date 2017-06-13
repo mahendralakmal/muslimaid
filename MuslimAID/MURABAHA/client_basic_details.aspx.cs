@@ -168,16 +168,24 @@ namespace MuslimAID.MURABHA
                 else
                 {
                     DateTime now = DateTime.UtcNow.Date;
-                    DateTime dt = DateTime.Parse(txtDOB.Text.Trim(), new CultureInfo("en-CA"));
-                    DateTime dtSo = DateTime.Parse(txtSoDOB.Text.Trim(), new CultureInfo("en-CA"));
-                    int age = now.Year - dt.Year;
-                    int ageSo = now.Year - dtSo.Year;
-                    lblAge.Text = age.ToString();
-                    lblSoAge.Text = ageSo.ToString();
+                    DateTime dt, dtSo;
+                    if (txtDOB.Text.Trim() != "")
+                    {
+                        dt = DateTime.Parse(txtDOB.Text.Trim(), new CultureInfo("en-CA"));
+                        int age = now.Year - dt.Year;
+                        lblAge.Text = age.ToString();
+                    }
+                    if (txtSoDOB.Text.Trim() != "")
+                    {
+                        dtSo = DateTime.Parse(txtSoDOB.Text.Trim(), new CultureInfo("en-CA"));
+                        int ageSo = now.Year - dtSo.Year;
+                        lblSoAge.Text = ageSo.ToString();
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "client bsic details");
             }
         }
 
@@ -301,8 +309,10 @@ namespace MuslimAID.MURABHA
                         btnSubmit.Enabled = false;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Client basic details report load Area according to selected branch");
+                    return;
                 }
 
                 try
@@ -323,9 +333,10 @@ namespace MuslimAID.MURABHA
                     }
                     //cmbRoot.Enabled = true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Client basic details form load MFO according to selected branch");
+                    return;
                 }
             }
             else
@@ -375,8 +386,10 @@ namespace MuslimAID.MURABHA
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Client basic details form load Villages according to selected Area");
+                return;
             }
         }
 
@@ -437,6 +450,7 @@ namespace MuslimAID.MURABHA
                         //Edit 2014.09.18 CACode
                         //CACodeNew();
                         cmbRoot.SelectedValue = dsGetSocietyID.Tables[0].Rows[0]["exective"].ToString();
+                        hidRoot.Value = dsGetSocietyID.Tables[0].Rows[0]["exective"].ToString();
                         btnSubmit.Enabled = true;
                     }
                     else
@@ -451,8 +465,10 @@ namespace MuslimAID.MURABHA
                     btnSubmit.Enabled = false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Client basic details form load centers according to selected village");
+                return;
             }
         }
 
@@ -523,6 +539,7 @@ namespace MuslimAID.MURABHA
             }
             catch (Exception x)
             {
+                cls_ErrorLog.createSErrorLog(x.Message, x.Source, "Save method");
                 lblMsg.Text = x.ToString();
             }
         }
@@ -573,7 +590,8 @@ namespace MuslimAID.MURABHA
                 strGender = "1";
             else strGender = "0";
             strMaStatus = cmbMS.SelectedItem.Value;
-            strRootID = cmbRoot.SelectedItem.Value;
+            strRootID = hidRoot.Value.Trim().ToString();
+            //strRootID = cmbRoot.SelectedItem.Value;
             //strEducation = cmbEducation.SelectedItem.Value;
             strTNumber = txtTele.Text.Trim();
             //strMobNo = txtMobileNo.Text.Trim();
@@ -786,6 +804,7 @@ namespace MuslimAID.MURABHA
             }
             catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Inserting family details");
                 return false;
             }
         }
@@ -839,6 +858,7 @@ namespace MuslimAID.MURABHA
             }
             catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Inserting Business details");
                 return false;
             }
         }
@@ -911,29 +931,37 @@ namespace MuslimAID.MURABHA
         }
         protected bool checkOtherFacility()
         {
-            string strOtherFacility = "";
-            strOtherFacility = "INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ";
-            if (txtNameOrg1.Text.Trim() != "")
+            try
             {
-                strOtherFacility += "('" + txtCC.Text.Trim() + "','" + txtNameOrg1.Text.Trim() + "','" + txtPurpos1.Text.Trim() + "'," + txtFAmount1.Text.Trim() + "," + txtOutstandBal1.Text.Trim() + "," + txtMonthInstal1.Text.Trim() + "," + txtRemainInstal1.Text.Trim() + ")";
-            }
-            if (txtNameOrg2.Text.Trim() != "")
-            {
-                strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")";
-            }
-            if (txtNameOrg3.Text.Trim() != "")
-            {
-                strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")";
-            }
+                string strOtherFacility = "";
+                strOtherFacility = "INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ";
+                if (txtNameOrg1.Text.Trim() != "")
+                {
+                    strOtherFacility += "('" + txtCC.Text.Trim() + "','" + txtNameOrg1.Text.Trim() + "','" + txtPurpos1.Text.Trim() + "'," + txtFAmount1.Text.Trim() + "," + txtOutstandBal1.Text.Trim() + "," + txtMonthInstal1.Text.Trim() + "," + txtRemainInstal1.Text.Trim() + ")";
+                }
+                if (txtNameOrg2.Text.Trim() != "")
+                {
+                    strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")";
+                }
+                if (txtNameOrg3.Text.Trim() != "")
+                {
+                    strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")";
+                }
 
-            cls_Connection.setData(strOtherFacility.ToString());
-            return true;
+                cls_Connection.setData(strOtherFacility.ToString());
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Inserting other facility details");
+                return false;
+            }
             //int i = cls_Connection.setData(strOtherFacility.ToString());
         }
         protected bool otherFamilyDetails() 
         {
-            //if (rdoOFDy.Checked)
-            //{
+            try
+            {
                 string strCCode = hidCC.Value.Trim();
                 string strIp = Request.UserHostAddress;
                 string strloginID = Session["NIC"].ToString();
@@ -973,10 +1001,12 @@ namespace MuslimAID.MURABHA
                     lblMsg.Text = "Error Occured";
                     return false;
                 }
-            //}
-            //else {
-            //    return true;
-            //}
+            }
+            catch (Exception ex)
+            {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Inserting other family details");
+                return false;
+            }
         }
 
         private void Update()
@@ -1057,7 +1087,8 @@ namespace MuslimAID.MURABHA
                     //strIniName = txtInwName.Text.Trim();
                     //strOName = txtOtherName.Text.Trim();
                     strMaStatus = cmbMS.SelectedItem.Value;
-                    strRootID = cmbRoot.SelectedItem.Value;                    
+                    strRootID = hidRoot.Value.Trim().ToString();
+                    //strRootID = cmbRoot.SelectedItem.Value;                    
                     //strEducation = cmbEducation.SelectedItem.Value;
                     strTNumber = txtTele.Text.Trim();
                     //strMobNo = txtMobileNo.Text.Trim();
@@ -1094,11 +1125,15 @@ namespace MuslimAID.MURABHA
                     }
                     catch (Exception ex)
                     {
+                        cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Updating basic details");
+                        return;
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Updating basic details");
+                return;
             }
         }
 
@@ -1225,6 +1260,7 @@ namespace MuslimAID.MURABHA
                             try
                             {
                                 cmbRoot.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
+                                hidRoot.Value = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
                             }
                             catch (Exception)
                             {
@@ -1478,6 +1514,7 @@ namespace MuslimAID.MURABHA
                             try
                             {
                                 cmbRoot.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
+                                hidRoot.Value = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
                             }
                             catch (Exception)
                             {
@@ -1577,7 +1614,8 @@ namespace MuslimAID.MURABHA
                 txtSoNumber.Enabled = false;
                 cmbRoot.Enabled = true;
                 cmbRoot.SelectedValue = dsSubCenter.Tables[0].Rows[0]["exective"].ToString();
-                
+                hidRoot.Value = dsSubCenter.Tables[0].Rows[0]["exective"].ToString();
+                cmbRoot.Enabled = false;
                 ccsetup();
             }
         }
@@ -1638,7 +1676,7 @@ namespace MuslimAID.MURABHA
             txtNIC1.Text = txtNIC.Text.Trim();
             cmbRelation1.SelectedIndex = 1;
             txtDOB1.Text = txtDOB.Text.Trim();
-            txtOcc1.Text = cmbOccupa.SelectedItem.Text.Trim();
+            txtOcc1.Text = cmbOccupation.SelectedItem.Text.Trim();
         }
 
         protected void cmbOccupa_SelectedIndexChanged(object sender, EventArgs e)

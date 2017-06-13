@@ -30,7 +30,7 @@ namespace MuslimAID.MURABHA
                 if (strCC != null)
                 {
                     //Get Full Detail
-                    DataSet dsGetFullDetails = cls_Connection.getDataSet("SELECT * FROM full_detail_murabaha WHERE contract_code = '" + strCC + "';");
+                    DataSet dsGetFullDetails = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE contract_code = '" + strCC + "';");
 
                     if (dsGetFullDetails.Tables[0].Rows.Count > 0)
                     {
@@ -178,19 +178,19 @@ namespace MuslimAID.MURABHA
             DataSet dsSelectData = new DataSet();
             daData.Fill(dsSelectData);
 
-            rpImg.DataSource = dsSelectData;
-            rpImg.DataBind();
+            //rpImg.DataSource = dsSelectData;
+            //rpImg.DataBind();
 
             if (dsSelectData.Tables[0].Rows.Count > 0)
             {
-                pnlNoImg.Visible = false;
-                pnlImg.Visible = true;
+                //pnlNoImg.Visible = false;
+                //pnlImg.Visible = true;
             }
             else
             {
-                pnlNoImg.Visible = true;
-                lblImgMsg.Text = "No Photos.";
-                pnlImg.Visible = false;
+                //pnlNoImg.Visible = true;
+                //lblImgMsg.Text = "No Photos.";
+                //pnlImg.Visible = false;
             }
         }
     }

@@ -95,7 +95,10 @@
             <div class="col-md-6">
                 <div class="form-group">                
                     <div class="col-md-5">MFO<span style="color:Red;"> *</span></div>
-                    <div class="col-md-7"><asp:DropDownList CssClass="form-control" TabIndex="4" ID="cmbRoot" runat="server"></asp:DropDownList></div>
+                    <div class="col-md-7">
+                    <asp:DropDownList CssClass="form-control" TabIndex="4" ID="cmbRoot" runat="server"></asp:DropDownList>
+                        <asp:HiddenField ID="hidRoot" runat="server" />
+                    </div>
                 </div>
             </div>
             <div class="col-md-12"></div> 

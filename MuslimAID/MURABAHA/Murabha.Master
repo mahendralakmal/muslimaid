@@ -96,7 +96,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="loan_approval.aspx">Loan Approval</a></li>
                             <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
-                            <li><a href="Chequ_Approval.aspx">Chequ Approval </a></li>
+                            <li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>
                             <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
                             <li><a href="Debit_Note.aspx">Debit Run</a></li>
                             <!-- ************************************************************* -->

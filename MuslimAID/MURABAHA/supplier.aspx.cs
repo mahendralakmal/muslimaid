@@ -74,7 +74,12 @@ namespace MuslimAID.MURABAHA
                     lblMsg.Text = "Plese enter the NIC";
                 else if (txtBisAddress.Text == "")
                     lblMsg.Text = "Plese enter the business address";
+                //else if (rdoIndividual.Checked && txtNameOnChecque.Text == "")
+                //   lblMsg.Text = "Plese enter name you prefer to print on cheque.";
+                //else if (rdoIndividual.Checked && txtNameOnChecque.Text.Length < 5)
+                //    lblMsg.Text = "Name you prefer to print on cheque must be more than 5 charaters.";
                 else {
+                    //MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_supplier_details(contract_code,name,address,tele,mobile,br,nic,contact_person,invoice_value,suplier_type,name_on_cheque)VALUES (@contract_code,@name,@address,@tele,@mobile,@br,@nic,@contact_person,@invoice_value,@suplier_type,@name_on_cheque)");
                     MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_supplier_details(contract_code,name,address,tele,mobile,br,nic,contact_person,invoice_value,suplier_type)VALUES (@contract_code,@name,@address,@tele,@mobile,@br,@nic,@contact_person,@invoice_value,@suplier_type)");
 
                     #region Parameter Declarations
@@ -87,7 +92,8 @@ namespace MuslimAID.MURABAHA
                     cmdInsert.Parameters.AddWithValue("@nic", txtNIC.Text.Trim());
                     cmdInsert.Parameters.AddWithValue("@contact_person", txtContactPerson.Text.Trim());
                     cmdInsert.Parameters.AddWithValue("@invoice_value", (txtInvoiceValue.Text.Trim()!="")? Convert.ToDouble(txtInvoiceValue.Text.Trim()):0.00);
-                    cmdInsert.Parameters.AddWithValue("@suplier_type", (rdoIndividual.Checked)? "I":"B");
+                    cmdInsert.Parameters.AddWithValue("@suplier_type", (rdoIndividual.Checked) ? "I" : "B");
+                    //cmdInsert.Parameters.AddWithValue("@name_on_cheque", txtNameOnChecque.Text.Trim());
                     #endregion
 
                     try
@@ -137,9 +143,23 @@ namespace MuslimAID.MURABAHA
                 if (dsGetData.Tables[0].Rows.Count > 0)
                 {
                     txtSupplierName.Text = dsGetData.Tables[0].Rows[0]["name"].ToString();
+                    if (dsGetData.Tables[0].Rows[0]["suplier_type"].ToString() == "I") {
+                        rdoIndividual.Checked = true;
+                        txtBrNo.ReadOnly = true;
+                        //txtNameOnChecque.ReadOnly = true;
+                        //txtNameOnChecque.Text = dsGetData.Tables[0].Rows[0]["name_on_cheque"].ToString();
+                    } else {
+                        rdoBusines.Checked = true;
+                        txtBrNo.ReadOnly = false;
+                        //txtNameOnChecque.ReadOnly = false;
+                        txtBrNo.Text = dsGetData.Tables[0].Rows[0]["br"].ToString();
+                    }
+                    txtNIC.Text = dsGetData.Tables[0].Rows[0]["nic"].ToString();
+                    txtContactPerson.Text = dsGetData.Tables[0].Rows[0]["contact_person"].ToString();
                     txtBisAddress.Text = dsGetData.Tables[0].Rows[0]["address"].ToString();
                     txtTelephone.Text = dsGetData.Tables[0].Rows[0]["tele"].ToString();
                     txtMobile.Text = dsGetData.Tables[0].Rows[0]["mobile"].ToString();
+                    txtInvoiceValue.Text = dsGetData.Tables[0].Rows[0]["invoice_value"].ToString();
 
                     btnSubmit.Enabled = false;
                     btnUpdate.Enabled = true;
@@ -157,26 +177,45 @@ namespace MuslimAID.MURABAHA
 
             string sType = (rdoIndividual.Checked) ? "I" : "B";
             strCAC = Request.QueryString["CA"];
+            strCC = txtCC.Text.Trim();
 
-            MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_supplier_details SET name='" + txtSupplierName.Text.Trim() + "', address='" + txtBisAddress.Text.Trim() + "', tele='" + txtTelephone.Text.Trim() + "', mobile='" + txtMobile.Text.Trim() + "', nic='" + txtNIC.Text.Trim() + "', invoice_value='" + txtInvoiceValue.Text.Trim() + "', contact_person='" + txtContactPerson.Text.Trim() + "', br='" + txtBrNo.Text.Trim() + "', suplier_type='" + sType + "' where contract_code='" + strCAC + "';");
-            try
+            if (txtSupplierName.Text == "")
+                    lblMsg.Text = "Plese enter the supplier name";
+                else if (txtContactPerson.Text.Trim() == "")
+                    lblMsg.Text = "Plese enter the contact person";
+                else if (txtNIC.Text.Trim() == "")
+                    lblMsg.Text = "Plese enter the NIC";
+                else if (txtBisAddress.Text == "")
+                    lblMsg.Text = "Plese enter the business address";
+            //    else if (rdoIndividual.Checked && txtNameOnChecque.Text == "")
+            //        lblMsg.Text = "Plese enter name you prefer to print on cheque.";
+            //else if (rdoIndividual.Checked && txtNameOnChecque.Text.Length < 5)
+            //    lblMsg.Text = "Name you prefer to print on cheque must be more than 5 charaters.";
+            else
             {
-                if (objDBCon.insertEditData(cmdUpdateQRY) > 0)
+                MySqlCommand cmdUpdateQRY = new MySqlCommand("UPDATE micro_supplier_details SET name='" + txtSupplierName.Text.Trim() + "', address='" + txtBisAddress.Text.Trim() + "', tele='" + txtTelephone.Text.Trim() + "', mobile='" + txtMobile.Text.Trim() + "', nic='" + txtNIC.Text.Trim() + "', invoice_value='" + txtInvoiceValue.Text.Trim() + "', contact_person='" + txtContactPerson.Text.Trim() + "', br='" + txtBrNo.Text.Trim() + "', suplier_type='" + sType + "'  where contract_code='" + txtCC.Text.Trim() + "';");
+                try
                 {
+                    if (objDBCon.insertEditData(cmdUpdateQRY) > 0)
+                    {
+                        Clear();
+                        lblMsg.Text = "Update Success.";
+                        if (strCAC == "")
+                            Response.Redirect("loan_details.aspx?CC=" + strCC + "&CA=" + strCAC + "");
+                        else
+                            Response.Redirect("loan_details.aspx?CC=" + strCC);
 
-                    Clear();
-                    lblMsg.Text = "Update Success.";
-                    Response.Redirect("loan_details.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCAC + "");
-                    btnUpdate.Enabled = false;
-                    btnSubmit.Enabled = true;
+                        btnUpdate.Enabled = false;
+                        btnSubmit.Enabled = true;
+                    }
+                    else
+                    {
+                        lblMsg.Text = "Error Occured";
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                lblMsg.Text = "Error Occured";
                 }
-            }
-            catch (Exception ex)
-            {
             }
         }
 
@@ -191,6 +230,7 @@ namespace MuslimAID.MURABAHA
 
         protected void rdoIndividual_CheckedChanged(object sender, EventArgs e)
         {
+            txtBrNo.Text = "";
             txtBrNo.ReadOnly = true;
         }
 

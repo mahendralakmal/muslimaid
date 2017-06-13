@@ -71,6 +71,15 @@
                     </div>
                  </div>
              </div>
+            <%--<div class="col-md-6"> 
+                <div class="form-group" id="div1">
+                    <div class="col-md-5">Name you prefer to print on cheque</div>
+                    <div class="col-md-7">
+                    <asp:TextBox ID="txtNameOnChecque" CssClass="form-control" MaxLength="50"
+                            runat="server" TabIndex="7"></asp:TextBox>
+                    </div>
+                 </div>
+             </div>--%>
             <div class="col-md-6"> 
                 <div class="form-group">
                     <div class="col-md-5">Contact Person<span style="color:Red;"> *</span></div>

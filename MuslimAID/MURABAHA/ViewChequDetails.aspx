@@ -63,7 +63,7 @@
             <tr>
                 <td colspan="3" height="10px"></td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td valign="top">Bank Name<span style="color:Red;">*</span></td>
                 <td valign="top">:</td>
                 <td>
@@ -82,7 +82,7 @@
                 <td>
                     <asp:TextBox ID="txtAccNo" runat="server" Width="250px"></asp:TextBox>
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td colspan="3" height="10px"></td>
             </tr>

@@ -64,13 +64,31 @@
                                 </asp:DropDownList></div>
             </div>
             <div class="col-md-3 form-group">
-                <div class="col-md-4">CRO</div>
-                <div class="col-md-8"><asp:DropDownList ID="ddlCro" CssClass="form-control" TabIndex="0" runat="server">
+                <div class="col-md-4">Area</div>
+                <div class="col-md-8">
+                    <asp:DropDownList ID="cmbArea" CssClass="form-control" 
+                        TabIndex="0" runat="server" 
+                        onselectedindexchanged="cmbArea_SelectedIndexChanged" AutoPostBack="True" >
+                                </asp:DropDownList></div>
+            </div>
+            <div class="col-md-3 form-group">
+                <div class="col-md-4">Village</div>
+                <div class="col-md-8"><asp:DropDownList ID="cmbVillage" CssClass="form-control" 
+                        TabIndex="0" runat="server" 
+                        onselectedindexchanged="cmbVillage_SelectedIndexChanged" 
+                        AutoPostBack="True">
+                                </asp:DropDownList></div>
+            </div>
+            <div class="col-md-3 form-group">
+                <div class="col-md-4">MFO</div>
+                <div class="col-md-8"><asp:DropDownList ID="cmbRoot" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="True">
                                 </asp:DropDownList></div>
             </div>
             <div class="col-md-3 form-group">
                 <div class="col-md-4">Center</div>
-                <div class="col-md-8"><asp:DropDownList ID="ddlCenter" CssClass="form-control" TabIndex="0" runat="server">
+                <div class="col-md-8"><asp:DropDownList ID="cmbCenter" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="True">
                                 </asp:DropDownList></div>
             </div>
             <div class="col-md-3 form-group">

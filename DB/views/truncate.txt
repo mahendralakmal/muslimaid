@@ -1,0 +1,9 @@
+TRUNCATE micro_basic_detail;
+TRUNCATE micro_business_details;
+TRUNCATE micro_family_appraisal;
+TRUNCATE micro_family_details;
+TRUNCATE micro_loan_details;
+TRUNCATE micro_other_unsetteled_loans;
+TRUNCATE micro_supplier_details;
+TRUNCATE family_relationship_details;
+TRUNCATE target_detail;

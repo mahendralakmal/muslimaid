@@ -37,7 +37,7 @@ namespace MuslimAID.MURABHA
                             cmbPeriod.Items[i + 1].Value = (i+1).ToString();
                         }
 
-                        if (strCC != null && strCAC != null)
+                        if (strCC != null)
                         {
                             txtCC.Text = strCC;
                             DataSet dsLD = cls_Connection.getDataSet("SELECT loan_amount,period FROM micro_loan_details WHERE contra_code = '" + strCC + "';");
@@ -141,6 +141,7 @@ namespace MuslimAID.MURABHA
             txtSellPrice.Text = "";
             txtWalfareFee.Text = "";
             cmbPeriod.SelectedIndex = 0;
+            txtRTotal.Text = "";
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)

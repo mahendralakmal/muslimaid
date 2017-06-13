@@ -29,7 +29,7 @@
                 <td width="760px" valign="top">
                     <table cellpadding="0" cellspacing="0" border="0" width="760px" style="text-align:left;">
                         <tr>
-                            <td colspan="3" width="760px" align="center">
+                            <%--<td colspan="3" width="760px" align="center">
                                 <asp:Panel ID="pnlNoImg" runat="server" Visible="false">
                                     <asp:Label ID="lblImgMsg" runat="server"></asp:Label>
                                 </asp:Panel>
@@ -48,7 +48,7 @@
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </asp:Panel>
-                            </td>
+                            </td>--%>
                         </tr>
                         <tr>
                             <td colspan="3" height="10px"></td>

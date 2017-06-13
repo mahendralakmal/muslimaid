@@ -30,21 +30,21 @@ namespace MuslimAID.MURABHA
                 {
                     if (!this.IsPostBack)
                     {
-                        Bank();
+                        //Bank();
                         strCC = Request.QueryString["ConCode"].ToString();
                         lblCC.Text = strCC;
 
                         DataSet dsLDCheck = cls_Connection.getDataSet("select * from micro_loan_details where loan_approved = 'Y' and chequ_no is null and contra_code = '" + strCC + "';");
                         if (dsLDCheck.Tables[0].Rows.Count > 0)
                         {
-                            DataSet dsLD = cls_Connection.getDataSet("select loan_amount, s.name as acc_name, s.bank, s.branch, s.account_no from micro_loan_details l INNER JOIN micro_supplier_details s on l.contra_code = s.contract_code where l.contra_code = '" + strCC + "';");
+                            DataSet dsLD = cls_Connection.getDataSet("SELECT * FROM micro_loan_details LEFT OUTER JOIN micro_supplier_details ON micro_loan_details.contra_code = micro_supplier_details.contract_code WHERE micro_loan_details.contra_code = '" + strCC + "';");
                             if (dsLD.Tables[0].Rows.Count > 0)
                             {
                                 txtCAmount.Text = dsLD.Tables[0].Rows[0]["loan_amount"].ToString();
-                                txtChequName.Text = dsLD.Tables[0].Rows[0]["acc_name"].ToString();
-                                cmbBankName.SelectedValue = dsLD.Tables[0].Rows[0]["bank"].ToString();
+                                txtChequName.Text = dsLD.Tables[0].Rows[0]["name"].ToString();
+                                //cmbBankName.SelectedValue = dsLD.Tables[0].Rows[0]["bank"].ToString();
                                 //txtBankName.Text = cmbBankName.Sele
-                                txtAccNo.Text = dsLD.Tables[0].Rows[0]["account_no"].ToString();
+                                //txtAccNo.Text = dsLD.Tables[0].Rows[0]["account_no"].ToString();
 
                                 txtDate1.Text = ChqDate.Substring(8, 1).ToString();
                                 txtDate2.Text = ChqDate.Substring(9, 1).ToString();
@@ -105,10 +105,10 @@ namespace MuslimAID.MURABHA
                 {
                     lblCDMsg.Text = "Please enter Chequ Amount.";
                 }
-                else if (txtBankName.Text.Trim() == "")
-                {
-                    lblCDMsg.Text = "Please enter Bank Name.";
-                }
+                //else if (txtBankName.Text.Trim() == "")
+                //{
+                //    lblCDMsg.Text = "Please enter Bank Name.";
+                //}
                 else if (txtChequName.Text.Trim() == "")
                 {
                     lblCDMsg.Text = "Please enter Chequ Name.";
@@ -192,32 +192,34 @@ namespace MuslimAID.MURABHA
                     string strDue = due.ToString("yyyy-MM-dd");
 
                     //Chk Holiday
-                    try
-                    {
-                        DataSet dsHoliday = cls_Connection.getDataSet("select holiday_date from recovery_holiday where date_sta = 'A' and holiday_date = '" + strDue + "' and branch_code = 'AL' and center_id = 'AL' ;");
-                        if (dsHoliday.Tables[0].Rows.Count > 0)
-                        {
-                            due = due.AddDays(7);
-                        }
-                        else
-                        {
-                            DataSet dsHday = cls_Connection.getDataSet("select holiday_date from recovery_holiday where date_sta = 'A' and holiday_date = '" + strDue + "' and branch_code = '" + strBranchCode + "' and center_id = '" + CenterCode + "' ;");
-                            if (dsHday.Tables[0].Rows.Count > 0)
-                            {
-                                due = due.AddDays(7);
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-                    }
+                    //try
+                    //{
+                    //    DataSet dsHoliday = cls_Connection.getDataSet("select holiday_date from recovery_holiday where date_sta = 'A' and holiday_date = '" + strDue + "' and branch_code = 'AL' and center_id = 'AL' ;");
+                    //    if (dsHoliday.Tables[0].Rows.Count > 0)
+                    //    {
+                    //        due = due.AddDays(7);
+                    //    }
+                    //    else
+                    //    {
+                    //        DataSet dsHday = cls_Connection.getDataSet("select holiday_date from recovery_holiday where date_sta = 'A' and holiday_date = '" + strDue + "' and branch_code = '" + strBranchCode + "' and center_id = '" + CenterCode + "' ;");
+                    //        if (dsHday.Tables[0].Rows.Count > 0)
+                    //        {
+                    //            due = due.AddDays(7);
+                    //        }
+                    //    }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //}
                     //-----
 
                     DateTime dtMatuDate = now.AddDays(intPeriod);
                     string strMatuDate = dtMatuDate.ToString("yyyy-MM-dd");
                     strDue = due.ToString("yyyy-MM-dd");
 
-                    MySqlCommand cmdUpdateChequ = new MySqlCommand("Update micro_loan_details set current_loan_amount = '" + strPayAmount + "',chequ_no = '" + strCN + "',chequ_amount = '" + strCA + "',chequ_deta_on = '" + strDate + "',cheq_detai_app_nic = '" + strloginID + "',due_date = '" + strDue + "',maturity_date = '" + strMatuDate + "',bank_name = '" + txtBankName.Text + "' where contra_code = '" + strCCode + "';");
+                    //MySqlCommand cmdUpdateChequ = new MySqlCommand("Update micro_loan_details set current_loan_amount = '" + strPayAmount + "',chequ_no = '" + strCN + "',chequ_amount = '" + strCA + "',chequ_deta_on = '" + strDate + "',cheq_detai_app_nic = '" + strloginID + "',due_date = '" + strDue + "',maturity_date = '" + strMatuDate + "',bank_name = '" + txtBankName.Text + "' where contra_code = '" + strCCode + "';"); tring("yyyy-MM-dd");
+
+                    MySqlCommand cmdUpdateChequ = new MySqlCommand("Update micro_loan_details set current_loan_amount = '" + strPayAmount + "',chequ_no = '" + strCN + "',chequ_amount = '" + strCA + "',chequ_deta_on = '" + strDate + "',cheq_detai_app_nic = '" + strloginID + "',due_date = '" + strDue + "',maturity_date = '" + strMatuDate + "' where contra_code = '" + strCCode + "';");
 
                     try
                     {
@@ -486,47 +488,47 @@ namespace MuslimAID.MURABHA
             }
         }
 
-        protected void cmbBankName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cmbBankName.SelectedIndex == 0)
-                {
-                    txtBankName.Text = "";
-                }
-                else
-                {
-                    string strBank = cmbBankName.SelectedItem.Text;
-                    txtBankName.Text = strBank;                    
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
+        //protected void cmbBankName_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (cmbBankName.SelectedIndex == 0)
+        //        {
+        //            txtBankName.Text = "";
+        //        }
+        //        else
+        //        {
+        //            string strBank = cmbBankName.SelectedItem.Text;
+        //            txtBankName.Text = strBank;                    
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
 
-        private void Bank()
-        {
-            try
-            {
-                if (cmbBankName.Items.Count > 0)
-                {
-                    cmbBankName.Items.Clear();
-                }
-                //Add Bank
-                DataSet dsBank;
-                MySqlCommand cmdBank = new MySqlCommand("select * from bank_tbl ORDER BY 2");
-                dsBank = objDBTask.selectData(cmdBank);
-                cmbBankName.Items.Add("");
-                for (int i = 0; i < dsBank.Tables[0].Rows.Count; i++)
-                {
-                    cmbBankName.Items.Add(dsBank.Tables[0].Rows[i][1].ToString());
-                    cmbBankName.Items[i + 1].Value = dsBank.Tables[0].Rows[i][0].ToString();
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
+        //private void Bank()
+        //{
+        //    try
+        //    {
+        //        if (cmbBankName.Items.Count > 0)
+        //        {
+        //            cmbBankName.Items.Clear();
+        //        }
+        //        //Add Bank
+        //        DataSet dsBank;
+        //        MySqlCommand cmdBank = new MySqlCommand("select * from bank_tbl ORDER BY 2");
+        //        dsBank = objDBTask.selectData(cmdBank);
+        //        cmbBankName.Items.Add("");
+        //        for (int i = 0; i < dsBank.Tables[0].Rows.Count; i++)
+        //        {
+        //            cmbBankName.Items.Add(dsBank.Tables[0].Rows[i][1].ToString());
+        //            cmbBankName.Items[i + 1].Value = dsBank.Tables[0].Rows[i][0].ToString();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //    }
+        //}
     }
 }
