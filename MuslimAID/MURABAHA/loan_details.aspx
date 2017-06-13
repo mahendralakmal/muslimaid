@@ -6,29 +6,7 @@
             $('.period').on('change', function(){calcMarkup();});      
         });
         
-        function calcMarkup(){
-            var FA = $(".loanAmount").val(); //Facility Amount
-                var IV = $(".invoiceVal").val(); //Invoice Value
-                var IR = $(".interest").val(); //Interest rate
-                var P = $(".period").val(); //Period
-                if(IV > FA)
-                    $(".downpayment").val(IV - FA); //Down payment
-                else 
-                    $(".downpayment").val("0.00");
-                
-                var AM = parseFloat((FA*IR)/100);//Calculate annual Markup amount
-                var MM = parseFloat(AM/12);//Calculate monthly Markup amount
-                var MC = parseFloat(FA/P) //Calculate monthly capital amount
-                  
-                $('.interestAmount').val((MM).toFixed(2));
-                $('.capitalPortion').val((MC).toFixed(2));
-                $('.monthInstall').val((MC+MM).toFixed(2));
-                var A = parseFloat($('.txtLDSerCharges').val());
-                var B = parseFloat($('.txtWalfareFee').val());
-                var C = parseFloat($('.txtRegistrationFee').val());
-                var D = parseFloat($('.txtLDOtherCharg').val());
-                $('.RTotal').val((A+B+C+D+((MC+MM)*P)).toFixed(2));
-        }
+        
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

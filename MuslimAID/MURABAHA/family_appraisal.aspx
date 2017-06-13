@@ -7,6 +7,8 @@
             $(".txtFamiIn").attr("readonly","true");
             $(".txtFExpense").attr("readonly","true");
             $(".txtNetAnualFIN").attr("readonly","true");
+            
+            $('.period').on('change', function(){calcMaxAmountCanBeDisbursed();});
         });
     </script>
     

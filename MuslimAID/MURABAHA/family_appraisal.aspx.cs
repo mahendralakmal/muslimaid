@@ -23,7 +23,7 @@ namespace MuslimAID.MURABAHA
         {
             try
             {
-
+                cmbTmePeriod.Items.Clear();
                 cmbTmePeriod.Items.Add("Select Period");
                 cmbTmePeriod.Items[0].Value = 0.ToString();
                 for (int i = 0; i < 24; i++)
