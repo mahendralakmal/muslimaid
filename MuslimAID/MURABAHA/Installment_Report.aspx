@@ -118,8 +118,7 @@
                 <table cellpadding="0" cellspacing="0" border="0" width="860px" align="left">
                     <tr>
                         <td width="860px">
-                            <asp:GridView ID="grvMIn" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top"
-                                Font-Size="8pt">
+                            <asp:GridView ID="grvMIn" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top" CssClass="table">
                                 <Columns>
                                     <asp:TemplateField HeaderText="S.No." ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top"
                                         HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">

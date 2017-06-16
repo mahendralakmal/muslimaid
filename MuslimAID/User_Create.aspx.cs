@@ -33,11 +33,50 @@ namespace MuslimAID
                 if (dsUserTy.Tables[0].Rows.Count > 0)
                 {
                     strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
-                    if (strType == "Cashier" || strType == "Cash Collector" || strType == "Document Officer" || strType == "Manager" || strType == "Recovery Officer" || strType == "Special Recovery Officer")
+                    if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
                     {
-                        btnSubmit.Enabled = false;
+                        btnSubmit.Enabled = true;
                         btnUpdate.Enabled = true;
-                        //txtUserName.Enabled = false;
+                        btnDactivate.Enabled = true;
+                        btnUpdate.Visible = true;
+                        btnDactivate.Visible = true;
+                        txtUserName.Enabled = true;
+                        txtFirstName.Enabled = true;
+                        txtLastName.Enabled = true;
+                        txtAddress.Enabled = true;
+                        txtDesignation.Enabled = true;
+                        txtDateOfBirth.Enabled = true;
+                        cmbTitle.Enabled = true;
+                        cmbUserType.Enabled = true;
+                        fuPhoto.Enabled = true;
+                        txtPassword.Enabled = true;
+                        txtConfirmPass.Enabled = true;
+                    }
+                    else if (strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" || strType == "BFA" || strType == "MFO") 
+                    {
+                        txtUserName.Text = Session["NIC"].ToString();
+                        DataSet dsUser = cls_Connection.getDataSet("SELECT * FROM users WHERE nic = '" + Session["NIC"].ToString() + "'");
+
+                        cmbTitle.SelectedValue = dsUser.Tables[0].Rows[0]["user_title"].ToString();
+                        txtFirstName.Text = dsUser.Tables[0].Rows[0]["first_name"].ToString();
+                        txtLastName.Text = dsUser.Tables[0].Rows[0]["last_name"].ToString();
+                        txtAddress.Text = dsUser.Tables[0].Rows[0]["user_address"].ToString();
+                        txtDateOfBirth.Text = dsUser.Tables[0].Rows[0]["date_of_birth"].ToString();
+                        txtDesignation.Text = dsUser.Tables[0].Rows[0]["designation"].ToString();
+                        cmbUserType.SelectedValue = dsUser.Tables[0].Rows[0]["user_type"].ToString();
+                        img_path.Text = dsUser.Tables[0].Rows[0]["photo_path"].ToString();
+                        hid_img_path.Value = dsUser.Tables[0].Rows[0]["photo_path"].ToString();
+                        
+                        txtUserName.Enabled = false;
+
+                        btnSubmit.Visible = false;
+                        btnDactivate.Visible = false;
+                        btnUpdate.Enabled = true;
+                        btnUpdate.Visible = true;
+
+                        fuPhoto.Enabled = true;
+                        txtPassword.Enabled = true;
+                        txtConfirmPass.Enabled = true;
                         txtFirstName.Enabled = false;
                         txtLastName.Enabled = false;
                         txtAddress.Enabled = false;

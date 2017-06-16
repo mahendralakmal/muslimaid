@@ -1305,6 +1305,11 @@ color: #333;
 	border:1px solid #008e0c;
 }
 
+.table
+{
+	font-size: 12px !important;
+}
+
 .table-back
 {
 	background-color:#fbfafa;

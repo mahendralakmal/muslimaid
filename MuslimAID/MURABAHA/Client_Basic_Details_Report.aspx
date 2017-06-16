@@ -138,7 +138,7 @@
             <div class="col-md-12 form-group">
                 
                     <asp:Panel ID="pnlClientDetail" runat="server">
-                        <asp:GridView ID="grvCliDeta" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top" Font-Size="8pt">
+                        <asp:GridView ID="grvCliDeta" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top" CssClass="table">
                             <Columns>
                                 <asp:TemplateField HeaderText="S.No." ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="40px" ItemStyle-VerticalAlign="Top" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">
                                     <ItemTemplate>

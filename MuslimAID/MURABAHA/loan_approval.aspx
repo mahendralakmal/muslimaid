@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-12">
-                    <asp:GridView ID="grvLoanAppr" runat="server" AutoGenerateColumns="false">
+                    <asp:GridView ID="grvLoanAppr" runat="server" AutoGenerateColumns="false" CssClass="table">
                         <Columns>
                             <asp:TemplateField HeaderText="S.No." ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top"
                                 HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">
@@ -74,7 +74,7 @@
                             <asp:BoundField DataField="ca_code" HeaderText="C.Aplica. Code" ItemStyle-HorizontalAlign="Center"
                                 HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White"
                                 ReadOnly="true" />
-                            <asp:BoundField DataField="initial_name" HeaderText="Name" ItemStyle-HorizontalAlign="Left"
+                            <asp:BoundField DataField="full_name" HeaderText="Name" ItemStyle-HorizontalAlign="Left"
                                 HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White"
                                 ReadOnly="true" />
                             <asp:BoundField DataField="nic" HeaderText="NIC" ItemStyle-HorizontalAlign="Left"

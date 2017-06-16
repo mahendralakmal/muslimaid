@@ -191,7 +191,6 @@ namespace MuslimAID.MURABHA
                 if (dsGetDetail.Tables[0].Rows.Count > 0)
                 {
                     txtLDLAmount.Text = dsGetDetail.Tables[0].Rows[0]["loan_amount"].ToString();
-                    txtSellPrice.Text = dsGetDetail.Tables[0].Rows[0]["selling_price"].ToString();
                     txtDownPay.Text = dsGetDetail.Tables[0].Rows[0]["down_payment"].ToString();
                     txtLDSerCharges.Text = dsGetDetail.Tables[0].Rows[0]["service_charges"].ToString();
                     txtRegistrationFee.Text = dsGetDetail.Tables[0].Rows[0]["registration_fee"].ToString();
@@ -202,6 +201,31 @@ namespace MuslimAID.MURABHA
                     txtLDMInterest.Text = dsGetDetail.Tables[0].Rows[0]["interest_amount"].ToString();
                     txtLDMInstoll.Text = dsGetDetail.Tables[0].Rows[0]["monthly_instollment"].ToString();
                 }
+
+                DataSet dsSD = cls_Connection.getDataSet("SELECT invoice_value FROM micro_supplier_details WHERE contract_code = '" + strCCode + "';");
+                if (dsSD.Tables[0].Rows.Count > 0)
+                {
+                    txtSellPrice.Text = dsSD.Tables[0].Rows[0]["invoice_value"].ToString();
+                }
+                double SC = (txtLDSerCharges.Text.Trim()!="")?Convert.ToDouble(txtLDSerCharges.Text.Trim()):0.00;
+                double RF = (txtRegistrationFee.Text.Trim()!="")?Convert.ToDouble(txtRegistrationFee.Text.Trim()):0.00;
+                double WF = (txtWalfareFee.Text.Trim() != "") ? Convert.ToDouble(txtWalfareFee.Text.Trim()) : 0.00;
+                double OC = (txtLDOtherCharg.Text.Trim() != "") ? Convert.ToDouble(txtLDOtherCharg.Text.Trim()) : 0.00;
+                double IV = (txtSellPrice.Text.Trim() != "") ? Convert.ToDouble(txtSellPrice.Text.Trim()) : 0.00;
+                double FA = (txtLDLAmount.Text.Trim() != "") ? Convert.ToDouble(txtLDLAmount.Text.Trim()) : 0.00;
+                int MR = (txtLDIntRate.Text.Trim() != "") ? Convert.ToInt32(txtLDIntRate.Text.Trim()) : 0;
+                int P = (cmbPeriod.SelectedIndex.ToString() != "") ? Convert.ToInt32(cmbPeriod.SelectedIndex.ToString()) : 0;
+
+                
+                if (IV > FA)
+                    txtDownPay.Text = (IV - FA).ToString();
+                else
+                    txtDownPay.Text = "0.00";
+
+                txtLDMInterest.Text = (((FA * MR) / 100) / P).ToString();
+                TextBox1.Text = (FA / P).ToString();
+
+                txtRTotal.Text = (SC + RF + WF + OC + ((((FA * MR) / 100)) + (FA))).ToString();
             }
         }
     }

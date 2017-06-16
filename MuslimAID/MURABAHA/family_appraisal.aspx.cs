@@ -279,10 +279,14 @@ namespace MuslimAID.MURABAHA
                     txtNetAnualFIn.Text = fltNetAnualFIn.ToString();
                     txtAmountOPEx.Text = fltAmountOPEx.ToString();
                     txtAmountFEx.Text = fltAmountFEx.ToString();
-                    cmbTmePeriod.SelectedValue = dsGetDetail.Tables[0].Rows[0]["fr_period"].ToString();
+                    //cmbTmePeriod.SelectedValue = dsGetDetail.Tables[0].Rows[0]["fr_period"].ToString();
                     txtMAD.Text = fltMAD.ToString();
                     txtMDAAIP.Text = dsGetDetail.Tables[0].Rows[0]["mdaaip"].ToString();
-                    txtRAPSA.Text = dsGetDetail.Tables[0].Rows[0]["rapsa"].ToString();
+                    //txtRAPSA.Text = dsGetDetail.Tables[0].Rows[0]["rapsa"].ToString();
+
+                    DataSet dsFacility = cls_Connection.getDataSet("SELECT loan_amount, period from micro_loan_details WHERE contra_code = '" + strCC + "';");
+                    txtRAPSA.Text = dsFacility.Tables[0].Rows[0]["loan_amount"].ToString();
+                    cmbTmePeriod.SelectedValue = dsFacility.Tables[0].Rows[0]["period"].ToString();
 
                     btnSubmit.Enabled = false;
                     btnUpdate.Enabled = true;

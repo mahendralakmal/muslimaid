@@ -128,7 +128,7 @@
             </div>
             <div class="col-md-12">
                     <asp:Panel ID="pnlCenterDetail" runat="server">
-                        <asp:GridView ID="grvCenDeta" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top">
+                        <asp:GridView ID="grvCenDeta" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top" CssClass="table">
                             <Columns>
                                 <asp:TemplateField HeaderText="S.No." ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top"
                                     HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">

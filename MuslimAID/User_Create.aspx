@@ -105,15 +105,17 @@
             <div class="col-md-5">User Type <span style="color:Red;">*</span></div>
             <div class="col-md-7">
                 <asp:DropDownList ID="cmbUserType" runat="server" CssClass="form-control">
-                    <asp:ListItem>Select user type</asp:ListItem>
-                    <asp:ListItem>Admin</asp:ListItem>
-                    <asp:ListItem>Cashier</asp:ListItem>
-                    <asp:ListItem>Cash Collector</asp:ListItem>
-                    <asp:ListItem>Document Officer</asp:ListItem>
-                    <asp:ListItem>Manager</asp:ListItem>
-                    <asp:ListItem>Recovery Officer</asp:ListItem>
-                    <asp:ListItem>Special Recovery Officer</asp:ListItem>
-                    <asp:ListItem>Top Management</asp:ListItem>
+                    <asp:ListItem Value="">Select user type</asp:ListItem>
+                    <asp:ListItem Value="ADM">Admin</asp:ListItem>
+                    <asp:ListItem Value="BOD">BOD</asp:ListItem>
+                    <asp:ListItem Value="CMG">Chief Manager</asp:ListItem>
+                    <asp:ListItem Value="OMG">Operations Manager</asp:ListItem>
+                    <asp:ListItem Value="FAO">Finance & Admin Officer</asp:ListItem>
+                    <asp:ListItem Value="RMG">Regional Manager</asp:ListItem>
+                    <asp:ListItem Value="RFA">Regional Finance & Admin Officer</asp:ListItem>
+                    <asp:ListItem Value="BMG">Branch Manager</asp:ListItem>
+                    <asp:ListItem Value="BFA">Branch Finance & Admin Officer</asp:ListItem>
+                    <asp:ListItem Value="MFO">Micro Finance Officer</asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>

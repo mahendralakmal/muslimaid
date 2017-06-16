@@ -6,7 +6,7 @@
     <div class="PageTitle"><h4>Rebate Approval Details</h4></div>
     <div class="form-container row col-lg-10 col-md-10 ">
         <div class="form-group">
-            <asp:GridView ID="grvRebaAppr" runat="server" AutoGenerateColumns="false" OnPageIndexChanging="grvRebaAppr_PageIndexChanging">
+            <asp:GridView ID="grvRebaAppr" runat="server" AutoGenerateColumns="false" OnPageIndexChanging="grvRebaAppr_PageIndexChanging" CssClass="table">
                         <Columns>
                             <asp:BoundField DataField="contra_code" HeaderText="Facility Code" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="arrears" HeaderText="Arrears" ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="90px" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />

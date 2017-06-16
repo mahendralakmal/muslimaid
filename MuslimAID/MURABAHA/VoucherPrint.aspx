@@ -60,7 +60,7 @@
         <asp:Button ID="btnSearch" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="btnSearch_Click" /></div>    
         
         <div class="form-group">
-             <asp:GridView ID="grvChequAppr" runat="server" AutoGenerateColumns="false" OnRowCommand="grvChequAppr_RowCommand">
+             <asp:GridView ID="grvChequAppr" runat="server" AutoGenerateColumns="false" OnRowCommand="grvChequAppr_RowCommand" CssClass="table">
                                         <Columns>
                                             <asp:TemplateField HeaderText="S.No." ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top"
                                                 HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">
@@ -219,8 +219,7 @@
                 </tr>
                 <tr>
                     <td colspan="7" width="800px" align="center">
-                        <asp:GridView ID="grdVoucherBody" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top"
-                            ShowHeader="False" Width="800px">
+                        <asp:GridView ID="grdVoucherBody" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top" ShowHeader="False" CssClass="table">
                             <Columns>
                                 <asp:BoundField DataField="ChequeNo" ItemStyle-VerticalAlign="Top" HeaderText="Cheque No"
                                     HeaderStyle-Font-Bold="true" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Center"
@@ -266,8 +265,7 @@
                 </tr>
                 <tr>
                     <td colspan="7">
-                        <asp:GridView ID="grdApproval" runat="server" Height="120px" ShowHeader="False" Width="800px"
-                            AutoGenerateColumns="False">
+                        <asp:GridView ID="grdApproval" runat="server" Height="120px" ShowHeader="False" CssClass="table" AutoGenerateColumns="False">
                             <Columns>
                                 <asp:BoundField DataField="p1" HeaderText="p1" ItemStyle-VerticalAlign="Top" HeaderStyle-Font-Bold="true"
                                     ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="140px" HeaderStyle-BackColor="#009905"

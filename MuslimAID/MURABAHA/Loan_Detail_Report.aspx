@@ -129,7 +129,7 @@
         </div>
         <div class="col-md-12 form-group">
             <asp:Panel ID="pnlLoanDeta" runat="server" CssClass="pnlChqDetail">
-                <asp:GridView ID="grvLoanDeta" Width="860px" runat="server" AutoGenerateColumns="false" Font-Size="8pt">
+                <asp:GridView ID="grvLoanDeta" runat="server" AutoGenerateColumns="false" CssClass="table">
                     <Columns>
                         <asp:TemplateField HeaderText="S.No." ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top"
                             HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">
