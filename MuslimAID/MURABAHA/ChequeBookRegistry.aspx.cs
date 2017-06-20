@@ -24,7 +24,9 @@ namespace MuslimAID.MURABAHA
             {
                 if (Session["LoggedIn"].ToString() == "True")
                 {
-                    if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
+                    string strType = Session["UserType"].ToString();
+                    if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG" ||
+                        strType == "FAO" || strType == "RFA" || strType == "BFA")
                     {
                         try
                         {

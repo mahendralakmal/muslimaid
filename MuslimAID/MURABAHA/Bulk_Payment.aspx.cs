@@ -26,7 +26,9 @@ namespace MuslimAID.MURABAHA
             {
                 if (Session["LoggedIn"].ToString() == "True")
                 {
-                    if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
+                    string strType = Session["UserType"].ToString();
+                    if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG" ||
+                        strType == "FAO" || strType == "RFA" || strType == "BFA")
                     {
                         DataSet dsCity;
                         MySqlCommand cmdCity = new MySqlCommand("SELECT b_code,b_name FROM branch ORDER BY 2");
