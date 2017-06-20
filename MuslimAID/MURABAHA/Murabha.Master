@@ -70,86 +70,83 @@
       </div><!-- /.container-fluid -->
     </nav>
     <!-- Start subnavbar -->
-    <div class="subnavbar">
-        <div class="subnavbar-inner">
-            <div class="container">
-                <ul class="mainnav">
-                <li class="dropdown"><img width="100px" src="../Images/Murabaha.jpg" /></li>
-                    <li class="dropdown">
-                    <a href="../muslimaid.aspx">
-                        <i class="icon-home"></i><span>&nbsp;Home&nbsp;</span> </a></li>
-                    <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-book"></i><span>Application</span> </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="client_basic_details.aspx">Facility Application Form</a></li>
-                            <li><a href="business_details.aspx">Business Details</a></li>
-                            <li><a href="family_appraisal.aspx">Family Appraisal</a></li>
-                            <li><a href="supplier.aspx">Supplier Details</a></li>
-                            <li><a href="loan_details.aspx">Facility Detail</a></li>
-                            <%--<li><a href="Edit_Guarantor.aspx">Map Guarantor </a></li>--%>
-                            <li><a href="ChequeBookRegistry.aspx">Cheque Book Registry </a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-check"></i><span>&nbsp;&nbsp;Approval&nbsp;&nbsp;</span>
-                    </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="loan_approval.aspx">Loan Approval</a></li>
-                            <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
-                            <li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>
-                            <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
-                            <li><a href="Debit_Note.aspx">Debit Run</a></li>
-                            <!-- ************************************************************* -->
-                            <!-- <li><a href="#">Document</a></li> This section has to be done -->
-                            <!-- ************************************************************* -->
-                            <li><a href="SettlementRebate.aspx">Settlement &amp; Rebate</a></li>
-                            <li><a href="Rebate_Approval.aspx">Rebate Approval </a></li>
-                            <li><a href="WayOffAmount.aspx">Write Off</a></li>
-                            <li><a href="Reschedule.aspx">Loan Re-Schedule</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-download-alt"></i><span>Installment</span>
-                    </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="Bulk_Payment.aspx">Installment</a></li>
-                            <li><a href="Recipt_Cancel.aspx">Receipt Cancel</a></li>
-                            <%--<li><a href="Service_Charges.aspx">Service Charges</a></li>--%>
-                            <li><a href="Voucher_Cancel.aspx">Voucher Cancel</a></li>
-                            <li><a href="Chequ_Cancel.aspx">Cheque Cancel</a></li>
-                            <li><a href="RemoveChequeBookHistry.aspx">Remove Cheque</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-print"></i><span>&nbsp;&nbsp;Reports&nbsp;&nbsp;</span> <b class="caret">
-                        </b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="Client_Basic_Details_Report.aspx">Client Detail</a></li>
-                            <li><a href="Center_details_Report.aspx">Center Detail</a></li>
-                            <li><a href="Installment_Report.aspx">Installment Detail</a></li>
-                            <li><a href="Loan_Detail_Report.aspx">Loan Detail</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-print"></i><span>&nbsp;&nbsp;Settings&nbsp;&nbsp;</span> <b class="caret">
-                        </b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="BranchAdd.aspx">Add Branch </a></li>
-                            <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
-                            <li><a href="add_area.aspx">Add Area</a></li>
-                            <li><a href="add_village.aspx">Add Village</a></li>
-                            <li><a href="center_create.aspx">Create Center</a></li>
-                            <li><a href="Change_CRO.aspx">Change MFO</a></li>
-                            <li><a href="AddNatureOfBusiness.aspx">Add Nature of Business</a></li>
-                            <li><a href="AddOccupation.aspx">Add Occupation</a></li>
-                        </ul>
-                    </li>
-                </ul>
+    
+    <asp:Panel ID="pnlFullControl" runat="server">
+        <div class="subnavbar">
+            <div class="subnavbar-inner">
+                <div class="container">
+                    <ul class="mainnav">
+                        <li class="dropdown"><img width="100px" src="../Images/Murabaha.jpg" /></li>
+                        <li class="dropdown">
+                        <a href="../muslimaid.aspx">
+                            <i class="icon-home"></i><span>&nbsp;Home&nbsp;</span> </a></li>
+                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-book"></i><span>Application</span> </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="client_basic_details.aspx">Facility Application Form</a></li>
+                                <li><a href="business_details.aspx">Business Details</a></li>
+                                <li><a href="family_appraisal.aspx">Family Appraisal</a></li>
+                                <li><a href="supplier.aspx">Supplier Details</a></li>
+                                <li><a href="loan_details.aspx">Facility Detail</a></li>
+                               <li><a href="ChequeBookRegistry.aspx">Cheque Book Registry </a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-check"></i><span>&nbsp;&nbsp;Approval&nbsp;&nbsp;</span>
+                        </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="loan_approval.aspx">Loan Approval</a></li>
+                                <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
+                                <li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>
+                                <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
+                                <li><a href="Debit_Note.aspx">Debit Run</a></li>
+                                <li><a href="SettlementRebate.aspx">Settlement &amp; Rebate</a></li>
+                                <li><a href="Rebate_Approval.aspx">Rebate Approval </a></li>
+                                <li><a href="WayOffAmount.aspx">Write Off</a></li>
+                                <li><a href="Reschedule.aspx">Loan Re-Schedule</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-download-alt"></i><span>Installment</span>
+                        </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Bulk_Payment.aspx">Installment</a></li>
+                                <li><a href="Recipt_Cancel.aspx">Receipt Cancel</a></li>
+                                <li><a href="Voucher_Cancel.aspx">Voucher Cancel</a></li>
+                                <li><a href="Chequ_Cancel.aspx">Cheque Cancel</a></li>
+                                <li><a href="RemoveChequeBookHistry.aspx">Remove Cheque</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-print"></i><span>&nbsp;&nbsp;Reports&nbsp;&nbsp;</span> <b class="caret">
+                            </b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Client_Basic_Details_Report.aspx">Client Detail</a></li>
+                                <li><a href="Center_details_Report.aspx">Center Detail</a></li>
+                                <li><a href="Installment_Report.aspx">Installment Detail</a></li>
+                                <li><a href="Loan_Detail_Report.aspx">Loan Detail</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-print"></i><span>&nbsp;&nbsp;Settings&nbsp;&nbsp;</span> <b class="caret">
+                            </b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="BranchAdd.aspx">Add Branch </a></li>
+                                <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
+                                <li><a href="add_area.aspx">Add Area</a></li>
+                                <li><a href="add_village.aspx">Add Village</a></li>
+                                <li><a href="center_create.aspx">Create Center</a></li>
+                                <li><a href="Change_CRO.aspx">Change MFO</a></li>
+                                <li><a href="AddNatureOfBusiness.aspx">Add Nature of Business</a></li>
+                                <li><a href="AddOccupation.aspx">Add Occupation</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <!-- /container -->
         </div>
-        <!-- /subnavbar-inner -->
-    </div>
+    </asp:Panel>
     <!-- /subnavbar -->
     <form id="frmMurabha" class="form-horizontal clsForm" runat="server">
     <div>

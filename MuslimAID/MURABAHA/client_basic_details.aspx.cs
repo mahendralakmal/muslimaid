@@ -33,7 +33,10 @@ namespace MuslimAID.MURABHA
                 {
                     if (Session["LoggedIn"].ToString() == "True")
                     {
-                        if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
+                        string strType = Session["UserType"].ToString();
+                        if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG" || 
+                            strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" ||
+                            strType == "BFA")
                         {
                             DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
                             cmbBranch.Items.Add("Select Branch");
@@ -93,67 +96,61 @@ namespace MuslimAID.MURABHA
                             txtRemainInstal2.Enabled = false;
                             txtRemainInstal3.Enabled = false;
                             #endregion
-                            #region
-                            //txtName1.Enabled = false;
-                            //txtName2.Enabled = false;
-                            //txtName3.Enabled = false;
-                            //txtName4.Enabled = false;
-                            //txtName5.Enabled = false;
-                            //txtName6.Enabled = false;
-                            //txtName7.Enabled = false;
-                            //txtName8.Enabled = false;
-                            //txtName9.Enabled = false;
+                        }
+                        else if (strType == "MFO")
+                        {
+                            string strUser = Session["NIC"].ToString();
+                            DataSet dsExe = cls_Connection.getDataSet("SELECT * FROM micro_exective_root, branch, center_details WHERE micro_exective_root.exe_nic = '" + strUser + "' AND branch.b_code = center_details.city_code AND center_details.exective = micro_exective_root.exe_id;");
 
-                            //cmbRelation1.Enabled = false;
-                            //cmbRelation2.Enabled = false;
-                            //cmbRelation3.Enabled = false;
-                            //cmbRelation4.Enabled = false;
-                            //cmbRelation5.Enabled = false;
-                            //cmbRelation6.Enabled = false;
-                            //cmbRelation7.Enabled = false;
-                            //cmbRelation8.Enabled = false;
-                            //cmbRelation9.Enabled = false;
+                            DataSet dsBrnh = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
+                            cmbBranch.Items.Add("Select Branch");
+                            for (int i = 0; i < dsBrnh.Tables[0].Rows.Count; i++)
+                            {
+                                cmbBranch.Items.Add(dsBrnh.Tables[0].Rows[i][2].ToString());
+                                cmbBranch.Items[i + 1].Value = dsBrnh.Tables[0].Rows[i][1].ToString();
+                            }
+                            cmbBranch.SelectedValue = dsExe.Tables[0].Rows[0]["branch_code"].ToString();
+                            cmbBranch.Enabled = false;
 
-                            //txtNIC1.Enabled = false;
-                            //txtNIC2.Enabled = false;
-                            //txtNIC3.Enabled = false;
-                            //txtNIC4.Enabled = false;
-                            //txtNIC5.Enabled = false;
-                            //txtNIC6.Enabled = false;
-                            //txtNIC7.Enabled = false;
-                            //txtNIC8.Enabled = false;
-                            //txtNIC9.Enabled = false;
+                            DataSet dsArea = cls_Connection.getDataSet("SELECT * FROM area WHERE branch_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' ORDER BY area");
+                            cmbArea.Items.Add("Select Area");
+                            for (int i = 0; i < dsArea.Tables[0].Rows.Count; i++)
+                            {
+                                cmbArea.Items.Add(dsArea.Tables[0].Rows[i][1].ToString());
+                                cmbArea.Items[i + 1].Value = dsArea.Tables[0].Rows[i][2].ToString();
+                            }
+                            cmbArea.SelectedValue = dsExe.Tables[0].Rows[0]["area_code"].ToString();
 
-                            //txtDOB1.Enabled = false;
-                            //txtDOB2.Enabled = false;
-                            //txtDOB3.Enabled = false;
-                            //txtDOB4.Enabled = false;
-                            //txtDOB5.Enabled = false;
-                            //txtDOB6.Enabled = false;
-                            //txtDOB7.Enabled = false;
-                            //txtDOB8.Enabled = false;
-                            //txtDOB9.Enabled = false;
+                            DataSet dsVillage = cls_Connection.getDataSet("SELECT * FROM villages_name WHERE city_code='"+dsExe.Tables[0].Rows[0]["branch_code"].ToString()+"' AND area_code = '"+dsExe.Tables[0].Rows[0]["area_code"].ToString()+"';");
 
-                            //txtOcc1.Enabled = false;
-                            //txtOcc2.Enabled = false;
-                            //txtOcc3.Enabled = false;
-                            //txtOcc4.Enabled = false;
-                            //txtOcc5.Enabled = false;
-                            //txtOcc6.Enabled = false;
-                            //txtOcc7.Enabled = false;
-                            //txtOcc8.Enabled = false;
-                            //txtOcc9.Enabled = false;
+                            cmbVillage.Items.Add("Select Village");
+                            for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
+                            {
+                                cmbVillage.Items.Add(dsVillage.Tables[0].Rows[i]["villages_name"].ToString());
+                                cmbVillage.Items[i + 1].Value = dsVillage.Tables[0].Rows[i]["villages_code"].ToString();
+                            }
+                            cmbVillage.SelectedValue = dsExe.Tables[0].Rows[0]["villages"].ToString();
 
-                            //txtInCome1.Enabled = false;
-                            //txtInCome2.Enabled = false;
-                            //txtInCome3.Enabled = false;
-                            //txtInCome4.Enabled = false;
-                            //txtInCome5.Enabled = false;
-                            //txtInCome6.Enabled = false;
-                            //txtInCome7.Enabled = false;
-                            //txtInCome8.Enabled = false;
-                            //txtInCome9.Enabled = false;
-                            #endregion
+                            DataSet dsCenter = cls_Connection.getDataSet("SELECT * FROM center_details WHERE city_code='" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' AND area_code = '" + dsExe.Tables[0].Rows[0]["area_code"].ToString() + "' AND villages='" + dsExe.Tables[0].Rows[0]["villages"].ToString() + "';");
+                            cmbCenter.Items.Add("Select Center");
+                            for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
+                            {
+                                cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"].ToString());
+                                cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
+                            }
+                            cmbCenter.SelectedValue = dsExe.Tables[0].Rows[0]["idcenter_details"].ToString();
+                            txtSoNumber.Text = dsExe.Tables[0].Rows[0]["idcenter_details"].ToString();
+
+                            DataSet dsMFO = cls_Connection.getDataSet("SELECT * FROM micro_exective_root WHERE branch_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "'");
+                            cmbRoot.Items.Add("Select MFO");
+                            for (int i = 0; i < dsMFO.Tables[0].Rows.Count; i++)
+                            {
+                                cmbRoot.Items.Add(dsMFO.Tables[0].Rows[i]["exe_name"].ToString());
+                                cmbRoot.Items[i + 1].Value = dsMFO.Tables[0].Rows[i]["exe_id"].ToString();
+                            }
+                            cmbRoot.SelectedValue = dsExe.Tables[0].Rows[0]["exe_id"].ToString();
+                            cmbRoot.Enabled = false;
+                            ccsetup();
                         }
                         else
                         {
@@ -1585,7 +1582,13 @@ namespace MuslimAID.MURABHA
 
         protected void txtNIC_TextChanged(object sender, EventArgs e)
         {
-            IsExist();
+            string strType = Session["UserType"].ToString();
+            if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG" || 
+                            strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" ||
+                            strType == "BFA")
+                IsExist();
+            else
+                ccsetup();
         }
 
         protected void cmbBranch_SelectedIndexChanged(object sender, EventArgs e)

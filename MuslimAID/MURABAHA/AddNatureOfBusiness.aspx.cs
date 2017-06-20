@@ -22,7 +22,8 @@ namespace MuslimAID.MURABAHA
             {
                 if (Session["LoggedIn"].ToString() == "True")
                 {
-                    if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
+                    string strType = Session["UserType"].ToString();
+                    if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
                     {
 
                     }

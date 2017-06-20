@@ -25,30 +25,30 @@ namespace MuslimAID.MURABHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                strBranch = Session["Branch"].ToString();
-                strUserType = Session["UserType"].ToString();
-                if (!this.IsPostBack)
+                string strType = Session["UserType"].ToString();
+                if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
                 {
-                    DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
-                    
-                    cmbCityCode.Items.Add("");
-                    for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                    strBranch = Session["Branch"].ToString();
+                    strUserType = Session["UserType"].ToString();
+                    if (!this.IsPostBack)
                     {
-                        cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                        cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                    }
+                        DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
 
-                    if (strUserType == "Top Management")
-                    {
+                        cmbCityCode.Items.Add("");
+                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                        {
+                            cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                            cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                        }
 
-                    }
-                    else
-                    {
                         cmbCityCode.Text = strBranch;
                         cmbCityCode.Enabled = false;
                     }
                 }
-
+                else
+                {
+                    Response.Redirect("murabha.aspx");
+                }
             }
             else
             {

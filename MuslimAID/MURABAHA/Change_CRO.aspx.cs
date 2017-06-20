@@ -23,37 +23,44 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (!this.IsPostBack)
+                string strType = Session["UserType"].ToString();
+                if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
                 {
-                    string strBranch = Session["Branch"].ToString();
-                    //lblBranch.Text = strBranch;
-                    if (cmbCityCode.Items.Count > 0)
+                    if (!this.IsPostBack)
                     {
-                        cmbCityCode.Items.Clear();
-                    }
-                    DataSet dsBranch;
-                    MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
-                    dsBranch = objDBTask.selectData(cmdBranch);
-                    cmbCityCode.Items.Add("Select Branch");
-                    for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
-                    {
-                        cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                        cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                    }
-                    cmbCityCode.SelectedValue = strBranch;
-                    if (cmbRoot.Items.Count > 0)
-                    {
-                        cmbRoot.Items.Clear();
-                    }
-                    DataSet dsGetRootID = cls_Connection.getDataSet("select exe_id,exe_name from micro_exective_root where branch_code = '" + strBranch + "';");
+                        string strBranch = Session["Branch"].ToString();
+                        //lblBranch.Text = strBranch;
+                        if (cmbCityCode.Items.Count > 0)
+                        {
+                            cmbCityCode.Items.Clear();
+                        }
+                        DataSet dsBranch;
+                        MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
+                        dsBranch = objDBTask.selectData(cmdBranch);
+                        cmbCityCode.Items.Add("Select Branch");
+                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                        {
+                            cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                            cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                        }
+                        cmbCityCode.SelectedValue = strBranch;
+                        if (cmbRoot.Items.Count > 0)
+                        {
+                            cmbRoot.Items.Clear();
+                        }
+                        DataSet dsGetRootID = cls_Connection.getDataSet("select exe_id,exe_name from micro_exective_root where branch_code = '" + strBranch + "';");
 
-                    cmbRoot.Items.Add("Select Branch");
+                        cmbRoot.Items.Add("Select Branch");
 
-                    for (int i = 0; i < dsGetRootID.Tables[0].Rows.Count; i++)
-                    {
-                        cmbRoot.Items.Add("[" + dsGetRootID.Tables[0].Rows[i]["exe_id"] + "] - " + dsGetRootID.Tables[0].Rows[i]["exe_name"].ToString());
-                        cmbRoot.Items[i + 1].Value = dsGetRootID.Tables[0].Rows[i]["exe_id"].ToString();
+                        for (int i = 0; i < dsGetRootID.Tables[0].Rows.Count; i++)
+                        {
+                            cmbRoot.Items.Add("[" + dsGetRootID.Tables[0].Rows[i]["exe_id"] + "] - " + dsGetRootID.Tables[0].Rows[i]["exe_name"].ToString());
+                            cmbRoot.Items[i + 1].Value = dsGetRootID.Tables[0].Rows[i]["exe_id"].ToString();
+                        }
                     }
+                }
+                else {
+                    Response.Redirect("murabha.aspx");
                 }
             }
             else

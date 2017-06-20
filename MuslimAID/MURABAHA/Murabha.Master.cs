@@ -17,7 +17,7 @@ namespace MuslimAID.MURABHA
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            pnlFullControl.Visible = true;
         }
     }
 }

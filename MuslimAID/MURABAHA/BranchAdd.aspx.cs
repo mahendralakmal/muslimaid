@@ -159,7 +159,8 @@ namespace MuslimAID.MURABAHA
             {
                 string strloginID = Session["NIC"].ToString();
 
-                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
+                string strType = Session["UserType"].ToString();
+                if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
                 {
                     txtBranchCode.Focus();
                 }

@@ -29,15 +29,15 @@ namespace MuslimAID
             {
                 string strloginID = Session["NIC"].ToString();
 
-                DataSet dsUserTy = cls_Connection.getDataSet("select user_type from users where nic = '" + strloginID + "';");
+                DataSet dsUserTy = cls_Connection.getDataSet("SELECT user_type FROM users WHERE nic = '" + strloginID + "';");
                 if (dsUserTy.Tables[0].Rows.Count > 0)
                 {
                     strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
                     if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
                     {
                         btnSubmit.Enabled = true;
-                        btnUpdate.Enabled = true;
-                        btnDactivate.Enabled = true;
+                        btnUpdate.Enabled = false;
+                        btnDactivate.Enabled = false;
                         btnUpdate.Visible = true;
                         btnDactivate.Visible = true;
                         txtUserName.Enabled = true;
@@ -188,7 +188,7 @@ namespace MuslimAID
                 cmdInsertQRY.Parameters["@PASS"].Value = strPassw;
                 cmdInsertQRY.Parameters["@FNAME"].Value = txtFirstName.Text.Trim();
                 cmdInsertQRY.Parameters["@LNAME"].Value = txtLastName.Text.Trim();
-                cmdInsertQRY.Parameters["@UTYPE"].Value = cmbUserType.SelectedItem.ToString();
+                cmdInsertQRY.Parameters["@UTYPE"].Value = cmbUserType.SelectedValue.ToString();
                 cmdInsertQRY.Parameters["@DESIG"].Value = txtDesignation.Text.Trim();
                 cmdInsertQRY.Parameters["@DEL"].Value = strDel;
                 cmdInsertQRY.Parameters["@CSTAT"].Value = strCStat;
@@ -358,8 +358,9 @@ namespace MuslimAID
                 if (!fuPhoto.HasFile)
                 {
                     lblMsg.Text = "Please Add User Photo.";
-                }
-                return false;
+                    return false;
+                } else
+                    return true;
             }
             else if (txtDesignation.Text.Trim() == "")
             {

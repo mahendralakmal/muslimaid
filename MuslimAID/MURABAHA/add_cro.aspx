@@ -19,6 +19,12 @@
                     MaxLength="100" runat="server" TabIndex="2" 
                     ontextchanged="txtRootName_TextChanged"></asp:TextBox></div>
         </div>
+        <div class="form-group row">
+            <div class="col-md-5">NIC <span style="color:Red;">*</span></div>
+            <div class="col-md-7">
+                <asp:TextBox ID="txtNIC" CssClass="form-control" runat="server"></asp:TextBox>
+            </div>
+        </div>
         <asp:Button ID="btnChange" CssClass="btn btn-primary" runat="server" Text="Add" 
             TabIndex="3" onclick="btnChange_Click" />
         <asp:Label ID="lblMsg" runat="server"></asp:Label>

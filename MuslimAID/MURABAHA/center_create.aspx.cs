@@ -25,15 +25,23 @@ namespace MuslimAID.MURABHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (!this.IsPostBack)
+                string strType = Session["UserType"].ToString();
+                if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
                 {
-                    DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
-                    cmbBranch.Items.Add("Select Branch");
-                    for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                    if (!this.IsPostBack)
                     {
-                        cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                        cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                        DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
+                        cmbBranch.Items.Add("Select Branch");
+                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                        {
+                            cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                            cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                        }
                     }
+                }
+                else
+                {
+                    Response.Redirect("murabha.aspx");
                 }
             }
             else

@@ -20,17 +20,26 @@ namespace MuslimAID.MURABAHA
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["LoggedIn"].ToString() == "True") {
-                if (!this.IsPostBack)
+                string strType = Session["UserType"].ToString();
+                if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
                 {
-                    DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
-                    if(dsBranch.Tables[0].Rows.Count>0){
-                        cmbCityCode.Items.Add("");
-                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                    if (!this.IsPostBack)
+                    {
+                        DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
+                        if (dsBranch.Tables[0].Rows.Count > 0)
                         {
-                            cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                            cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                            cmbCityCode.Items.Add("");
+                            for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                            {
+                                cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                                cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                            }
                         }
                     }
+                }
+                else
+                {
+                    Response.Redirect("murabha.aspx");
                 }
             }
             else {

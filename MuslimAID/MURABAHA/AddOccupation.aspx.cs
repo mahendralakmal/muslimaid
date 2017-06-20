@@ -22,22 +22,13 @@ namespace MuslimAID.MURABAHA
             {
                 string strloginID = Session["NIC"].ToString();
 
-                DataSet dsUserTy = cls_Connection.getDataSet("SELECT user_type FROM users WHERE nic = '" + strloginID + "';");
-                if (dsUserTy.Tables[0].Rows.Count > 0)
+                string strType = Session["UserType"].ToString();
+                if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
                 {
-                    string strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
-                    if (strType == "Top Management" || strType == "Admin" || strType == "Manager")
+                    if (!this.IsPostBack)
                     {
-                        if (!this.IsPostBack)
-                        {
-                            
-                        }
-                    }
-                    else
-                    {
-                        Response.Redirect("murabha.aspx");
-                    }
 
+                    }
                 }
                 else
                 {

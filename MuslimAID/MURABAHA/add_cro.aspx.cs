@@ -25,30 +25,20 @@ namespace MuslimAID.MURABAHA
             if (Session["LoggedIn"].ToString() == "True")
             {
                 string strloginID = Session["NIC"].ToString();
-
-                DataSet dsUserTy = cls_Connection.getDataSet("SELECT user_type FROM users WHERE nic = '" + strloginID + "';");
-                if (dsUserTy.Tables[0].Rows.Count > 0)
+                string strType = Session["UserType"].ToString();
+                if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
                 {
-                    string strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
-                    if (strType == "Top Management" || strType == "Admin" || strType == "Manager")
+                    if (!this.IsPostBack)
                     {
-                        if (!this.IsPostBack)
+                        DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
+                        cmbCityCode.Items.Add("Select Branch");
+
+                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
                         {
-                            DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
-                            cmbCityCode.Items.Add("Select Branch");
-                            
-                            for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
-                            {
-                                cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                                cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                            }
+                            cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                            cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
                         }
                     }
-                    else
-                    {
-                        Response.Redirect("murabha.aspx");
-                    }
-
                 }
                 else
                 {
@@ -83,18 +73,19 @@ namespace MuslimAID.MURABAHA
                     //string strloginID = Session["NIC"].ToString();
                     string strIP = Request.UserHostAddress;
                     string strDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    //string strNewID = txtRootID.Text.Trim();
+                    string strRootNIC = txtNIC.Text.Trim();
 
                     DataSet dsGetCurrPassword = cls_Connection.getDataSet("select (IFNULL(MAX(exe_id),0) + 1) AS MAX from micro_exective_root where branch_code ='" + strBranch + "'");
                     if (dsGetCurrPassword.Tables[0].Rows.Count > 0)
                     {
                         string strNewID = dsGetCurrPassword.Tables[0].Rows[0][0].ToString();
 
-                        MySqlCommand cmdInsertQRY = new MySqlCommand("INSERT INTO micro_exective_root(exe_id,exe_name,branch_code,create_user_id,create_ip,create_date_time)VALUES(@exe_id,@exe_name,@branch_code,@create_user_id,@create_ip,@create_date_time);");
+                        MySqlCommand cmdInsertQRY = new MySqlCommand("INSERT INTO micro_exective_root(exe_id,exe_name,exe_nic, branch_code,create_user_id,create_ip,create_date_time)VALUES(@exe_id,@exe_name, @exe_nic, @branch_code,@create_user_id,@create_ip,@create_date_time);");
 
                         #region Assign Parameters
                         cmdInsertQRY.Parameters.Add("@exe_id", MySqlDbType.VarChar, 2);
                         cmdInsertQRY.Parameters.Add("@exe_name", MySqlDbType.VarChar, 100);
+                        cmdInsertQRY.Parameters.Add("@exe_nic", MySqlDbType.VarChar, 12);
                         cmdInsertQRY.Parameters.Add("@branch_code", MySqlDbType.VarChar, 10);
                         cmdInsertQRY.Parameters.Add("@create_user_id", MySqlDbType.VarChar, 10);
                         cmdInsertQRY.Parameters.Add("@create_ip", MySqlDbType.VarChar, 45);
@@ -104,6 +95,7 @@ namespace MuslimAID.MURABAHA
                         #region DEclare Parametes
                         cmdInsertQRY.Parameters["@exe_id"].Value = strNewID;
                         cmdInsertQRY.Parameters["@exe_name"].Value = strRootName;
+                        cmdInsertQRY.Parameters["@exe_nic"].Value = strRootNIC;
                         cmdInsertQRY.Parameters["@branch_code"].Value = strBranch;
                         cmdInsertQRY.Parameters["@create_user_id"].Value = strloginID;
                         cmdInsertQRY.Parameters["@create_ip"].Value = strIP;
