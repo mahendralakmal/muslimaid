@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using MySql.Data.MySqlClient;
+using System.Text;
 
 namespace MuslimAID.MURABAHA
 {
@@ -21,18 +22,17 @@ namespace MuslimAID.MURABAHA
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["LoggedIn"].ToString() == "True")
+            if (!IsPostBack)
             {
-                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
+                if (Session["LoggedIn"].ToString() == "True")
                 {
-
                     if (!this.IsPostBack)
                     {
                         //GetDate();
-                        string strBranch = Session["Branch"].ToString();
-                        string strUserType = Session["UserType"].ToString();
-
-                        if (strUserType == "Top Management")
+                        string strBranch = Session["Branch"].ToString(); 
+                        string strType = Session["UserType"].ToString();
+                        if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG" ||
+                            strType == "RMG" || strType == "BMG")
                         {
                             DataSet dsBranch;
                             MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
@@ -49,15 +49,15 @@ namespace MuslimAID.MURABAHA
                             Response.Redirect("murabha.aspx");
                         }
                     }
+                    else
+                    {
+                        Response.Redirect("murabha.aspx");
+                    }
                 }
                 else
                 {
-                    Response.Redirect("murabha.aspx");
+                    Response.Redirect("../Login.aspx");
                 }
-            }
-            else
-            {
-                Response.Redirect("../Login.aspx");
             }
         }
 
@@ -72,31 +72,31 @@ namespace MuslimAID.MURABAHA
                     lblMsg.Text = "Please Select the branch...";
                 else
                 {
+                    string strType = Session["UserType"].ToString();
+                    StringBuilder strBQ = new StringBuilder("SELECT * FROM micro_full_details WHERE team_id != '' AND loan_approved = 'P' AND loan_sta = 'P' AND reg_approval = 'Y'");
+
+                    if (cmbArea.SelectedIndex > 0)
+                        strBQ.Append(" AND city_code = '" + cmbBranch.SelectedValue.ToString() + "'");
+                    if(cmbArea.SelectedIndex > 0)
+                        strBQ.Append(" AND area_code ='" + cmbArea.SelectedValue.ToString() + "'");
+                    if (cmbVillage.SelectedIndex > 0)
+                        strBQ.Append("' AND villages_code = '" + cmbVillage.SelectedValue.ToString() + "'");
+                    if (cmdSocietyNo.SelectedIndex > 0)
+                        strBQ.Append(" AND society_id = '" + cmdSocietyNo.SelectedValue.ToString() + "'");
+                    if (strType == "BMG")
+                        strBQ.Append(" AND loan_amount BETWEEN 0 AND 30000");
+                    if (strType == "RMG")
+                        strBQ.Append(" AND loan_amount BETWEEN 0 AND 50000");
+                    if (strType == "OMG")
+                        strBQ.Append(" AND loan_amount BETWEEN 0 AND 75000");
+                    if (strType == "CMG")
+                        strBQ.Append(" AND loan_amount BETWEEN 0 AND 100000");
+                    if (strType == "BOD" || strType == "ADM")
+                        strBQ.Append(" AND loan_amount > 0");
+                    strBQ.Append(";");
                     DataSet dsLD = new DataSet();
-
-                    if (strUserType == "Top Management")
-                    {
-                        if (cmbArea.SelectedIndex == 0 && cmbVillage.SelectedIndex == -1 && cmdSocietyNo.SelectedIndex == -1)
-                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE team_id != '' AND loan_approved = 'P' AND loan_sta = 'P' AND reg_approval = 'Y';");
-                        else if (cmbArea.SelectedIndex > 0 && cmbVillage.SelectedIndex == 0 && cmdSocietyNo.SelectedIndex == -1)
-                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE team_id != '' AND loan_approved = 'P' AND loan_sta = 'P' AND reg_approval = 'Y' AND city_code = '" + cmbBranch.SelectedValue.ToString() + "' AND area_code ='" + cmbArea.SelectedValue.ToString() + "';");
-                        else if (cmbArea.SelectedIndex > 0 && cmbVillage.SelectedIndex > 0 && cmdSocietyNo.SelectedIndex == 0)
-                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE  team_id != '' AND loan_approved = 'P' AND loan_sta = 'P' AND reg_approval = 'Y' AND city_code = '" + cmbBranch.SelectedValue.ToString() + "' AND area_code ='" + cmbArea.SelectedValue.ToString() + "' AND villages_code = '" + cmbVillage.SelectedValue.ToString() + "';");
-                        else
-                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE team_id != '' AND loan_approved = 'P' AND loan_sta = 'P' AND reg_approval = 'Y' AND society_id = '" + cmdSocietyNo.SelectedValue.ToString() + "' AND city_code = '" + cmbBranch.SelectedValue.ToString() + "' AND area_code ='" + cmbArea.SelectedValue.ToString() + "'AND villages_code='" + cmbVillage.SelectedValue.ToString() + "';");
-                    }
-                    else
-                    {
-                        if (cmbArea.SelectedIndex == 0 && cmbVillage.SelectedIndex == -1 && cmdSocietyNo.SelectedIndex == -1)
-                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE team_id != '' AND loan_approved = 'P' AND loan_sta = 'P' AND reg_approval = 'Y';");
-                        else if (cmbArea.SelectedIndex > 0 && cmbVillage.SelectedIndex == 0 && cmdSocietyNo.SelectedIndex == -1)
-                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE team_id != '' AND loan_approved = 'P' AND loan_sta = 'P' AND reg_approval = 'Y' AND city_code = '" + cmbBranch.SelectedValue.ToString() + "' AND area_code ='" + cmbArea.SelectedValue.ToString() + "';");
-                        else if (cmbArea.SelectedIndex > 0 && cmbVillage.SelectedIndex > 0 && cmdSocietyNo.SelectedIndex == -1)
-                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE team_id != '' AND loan_approved = 'P' AND loan_sta = 'P' AND reg_approval = 'Y' AND city_code = '" + cmbBranch.SelectedValue.ToString() + "' AND area_code ='" + cmbArea.SelectedValue.ToString() + "' AND villages_code = '" + cmbVillage.SelectedValue.ToString() + "';");
-                        else
-                            dsLD = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE team_id != '' AND loan_approved = 'P' AND loan_sta = 'P' AND reg_approval = 'Y' AND society_id = '" + cmdSocietyNo.SelectedValue.ToString() + "' AND city_code = '" + cmbBranch.SelectedValue.ToString() + "' AND area_code ='" + cmbArea.SelectedValue.ToString() + "'AND villages_code='" + cmbVillage.SelectedValue.ToString() + "';");
-                    }
-
+                    dsLD = cls_Connection.getDataSet(strBQ.ToString());
+                    
                     if (dsLD.Tables[0].Rows.Count > 0)
                     {
                         grvLoanAppr.DataSource = dsLD;
