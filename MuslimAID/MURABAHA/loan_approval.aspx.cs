@@ -75,7 +75,7 @@ namespace MuslimAID.MURABAHA
                     string strType = Session["UserType"].ToString();
                     StringBuilder strBQ = new StringBuilder("SELECT * FROM micro_full_details WHERE team_id != '' AND loan_approved = 'P' AND loan_sta = 'P' AND reg_approval = 'Y'");
 
-                    if (cmbArea.SelectedIndex > 0)
+                    if (cmbBranch.SelectedIndex > 0)
                         strBQ.Append(" AND city_code = '" + cmbBranch.SelectedValue.ToString() + "'");
                     if(cmbArea.SelectedIndex > 0)
                         strBQ.Append(" AND area_code ='" + cmbArea.SelectedValue.ToString() + "'");

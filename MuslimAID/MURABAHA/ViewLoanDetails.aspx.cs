@@ -67,7 +67,7 @@ namespace MuslimAID.MURABAHA
 
                 string strDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                if (strUserType == "Top Management")
+                if (strUserType == "BMG" || strUserType == "rMG" || strUserType == "OMG" || strUserType == "CMG" || strUserType == "BOD" || strUserType == "ADM")
                 {
                     MySqlCommand cmdUpdateChequ = new MySqlCommand("Update micro_loan_details set loan_approved = '" + strStatus + "', loan_approved_user_nic = '" + strloginID + "',loan_approved_on = '" + strDate + "',OtherDescription = '" + strDescri + "', next_center_day = '" + strNextCentday + "' where contra_code = '" + strCCode + "' and loan_approved = 'P' and reg_approval = 'Y';");
                     //int i = objDBTask.insertEditData(cmdUpdateChequ);
@@ -96,7 +96,8 @@ namespace MuslimAID.MURABAHA
 
                     }
                 }
-                else if (strUserType == "Regional Manager CS")
+                if (strUserType == "BMG" || strUserType == "rMG" || strUserType == "OMG" || strUserType == "CMG" || strUserType == "BOD" || strUserType == "ADM")
+                //else if (strUserType == "Regional Manager CS")
                 {
                     MySqlCommand cmdUpdateChequ = new MySqlCommand("Update micro_loan_details set reg_approval = '" + strStatus + "', reg_approval_nic = '" + strloginID + "',reg_approval_on = '" + strDate + "',reg_approval_des = '" + strDescri + "' where contra_code = '" + strCCode + "' and reg_approval is null;");
                     //int i = objDBTask.insertEditData(cmdUpdateChequ);
