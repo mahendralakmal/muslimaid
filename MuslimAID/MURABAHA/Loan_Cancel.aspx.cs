@@ -20,23 +20,25 @@ namespace MuslimAID.MURABAHA
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["LoggedIn"].ToString() == "True")
+            if (!IsPostBack)
             {
-                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
+                if (Session["LoggedIn"].ToString() == "True")
                 {
-                    if (!this.IsPostBack)
+
+                    string strUserType = Session["UserType"].ToString();
+                    if (strUserType == "OMG" || strUserType == "CMG" || strUserType == "BOD" || strUserType == "ADM")
                     {
                         GetDate();
+                    }
+                    else
+                    {
+                        Response.Redirect("murabha.aspx");
                     }
                 }
                 else
                 {
-                    Response.Redirect("murabha.aspx");
+                    Response.Redirect("../Login.aspx");
                 }
-            }
-            else
-            {
-                Response.Redirect("../Login.aspx");
             }
         }
 
@@ -63,7 +65,7 @@ namespace MuslimAID.MURABAHA
                 string strUserType = Session["UserType"].ToString();
 
                 DataSet dsLD = new DataSet();
-                if (strUserType == "Top Management")
+                if (strUserType == "OMG" || strUserType == "CMG" || strUserType == "BOD" || strUserType == "ADM")
                 {
                     dsLD = cls_Connection.getDataSet("select c.full_name, c.nic, f.contract_code,f.busi_income,f.total_income,f.direct_cost,f.total_expenses,l.loan_amount,l.period,l.interest_rate,l.chequ_no from micro_business_details f, micro_loan_details l, micro_basic_detail c where f.contract_code = l.contra_code and c.contract_code = l.contra_code and l.loan_approved = 'Y' and l.loan_sta = 'P' and c.contract_code = '" + txtContractCode.Text + "';");
                     if (dsLD.Tables[0].Rows.Count > 0)
@@ -99,8 +101,9 @@ namespace MuslimAID.MURABAHA
                     lblMsg.Text = "No Access.";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Checqu cancel");
             }
         }
 
@@ -117,7 +120,7 @@ namespace MuslimAID.MURABAHA
                 string strDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string strIp = Request.UserHostAddress;
 
-                if (strUserType == "Top Management")
+                if (strUserType == "OMG" || strUserType == "CMG" || strUserType == "BOD" || strUserType == "ADM")
                 {
                     MySqlCommand cmdUpdateChequ = new MySqlCommand("Update micro_loan_details set loan_sta = '" + strStatus + "' where contra_code = '" + strCCode + "' and loan_approved = 'Y'");
 
@@ -143,14 +146,16 @@ namespace MuslimAID.MURABAHA
                     }
                     catch (Exception ex)
                     {
+                        cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Loan cncel murabaha approval method");
                     }
                 }
                 else
                 {
                 }
             }
-            catch (Exception)
+            catch (Exception exx)
             {
+                cls_ErrorLog.createSErrorLog(exx.Message, exx.Source, "Loan cncel murabaha approval method");
             }
         }
 

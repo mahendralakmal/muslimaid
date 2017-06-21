@@ -67,7 +67,7 @@ namespace MuslimAID.MURABAHA
 
                 string strDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                if (strUserType == "BMG" || strUserType == "rMG" || strUserType == "OMG" || strUserType == "CMG" || strUserType == "BOD" || strUserType == "ADM")
+                if (strUserType == "BMG" || strUserType == "RMG" || strUserType == "OMG" || strUserType == "CMG" || strUserType == "BOD" || strUserType == "ADM")
                 {
                     MySqlCommand cmdUpdateChequ = new MySqlCommand("Update micro_loan_details set loan_approved = '" + strStatus + "', loan_approved_user_nic = '" + strloginID + "',loan_approved_on = '" + strDate + "',OtherDescription = '" + strDescri + "', next_center_day = '" + strNextCentday + "' where contra_code = '" + strCCode + "' and loan_approved = 'P' and reg_approval = 'Y';");
                     //int i = objDBTask.insertEditData(cmdUpdateChequ);

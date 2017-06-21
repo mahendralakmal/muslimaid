@@ -23,16 +23,20 @@ namespace MuslimAID.MURABHA
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["LoggedIn"].ToString() == "True")
+            if (!IsPostBack)
             {
-                if (Session["UserType"].ToString() == "Admin" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Manager")
-                { }
-                else { Response.Redirect("murabha.aspx"); }
+                if (Session["LoggedIn"].ToString() == "True")
+                {
+                    string strUserType = Session["UserType"].ToString();
+                    if (strUserType == "OMG" || strUserType == "CMG" || strUserType == "BOD" || strUserType == "ADM")
+                    { }
+                    else { Response.Redirect("murabha.aspx"); }
 
-            }
-            else
-            {
-                Response.Redirect("../Login.aspx");
+                }
+                else
+                {
+                    Response.Redirect("../Login.aspx");
+                }
             }
         }
 

@@ -4,6 +4,10 @@
         $("document").ready(function(){
             $('.interest').on('change', function(){calcMarkup();});
             $('.period').on('change', function(){calcMarkup();});      
+            $('.txtLDSerCharges').on('change', function(){calcMarkup();});      
+            $('.txtRegistrationFee').on('change', function(){calcMarkup();});      
+            $('.txtWalfareFee').on('change', function(){calcMarkup();});      
+            $('.txtLDOtherCharg').on('change', function(){calcMarkup();});      
         });
         
         

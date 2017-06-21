@@ -7,3 +7,8 @@ TRUNCATE micro_other_unsetteled_loans;
 TRUNCATE micro_supplier_details;
 TRUNCATE family_relationship_details;
 TRUNCATE target_detail;
+TRUNCATE micro_exective_root;
+TRUNCATE branch;
+TRUNCATE area;
+TRUNCATE villages_name;
+TRUNCATE center_details;

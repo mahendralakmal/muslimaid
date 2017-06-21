@@ -63,7 +63,7 @@ namespace MuslimAID.MURABAHA
                 }
                 else if (txtRootName.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter Root Name.";
+                    lblMsg.Text = "Please enter MFO Name.";
                 }
 
                 else
@@ -137,7 +137,7 @@ namespace MuslimAID.MURABAHA
         protected void Reset()
         {
             txtRootName.Text = "";
-            //txtRootID.Text = "";
+            txtNIC.Text = "";
             cmbCityCode.SelectedIndex = 0;
         }
 
@@ -150,7 +150,11 @@ namespace MuslimAID.MURABAHA
             }
             else if (txtRootName.Text.Trim() == "")
             {
-                lblMsg.Text = "Please enter Root Name.";
+                lblMsg.Text = "Please enter MFO Name.";
+            }
+            else if (txtRootName.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter MFO NIC.";
             }
             else
             {
@@ -161,7 +165,7 @@ namespace MuslimAID.MURABAHA
                     DataSet dsGetCurrPassword = cls_Connection.getDataSet("select * from micro_exective_root where branch_code ='" + strBranch + "' and exe_name = '" + strRootName + "'");
                     if (dsGetCurrPassword.Tables[0].Rows.Count > 0)
                     {
-                        lblMsg.Text = "Root Name Already used...!";
+                        lblMsg.Text = "MFO Name Already used...!";
                         btnChange.Enabled = false;
                     }
                     else

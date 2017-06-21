@@ -6,20 +6,20 @@ function calcUnitCost(unitCost, count, costId){
     costId.val(parseFloat(unitCost)*parent(count));
 }
 $(function(){
-//    $("#ctl00_ContentPlaceHolder1_txtUnitCost").on('change', function(){
-//        calcUnitCost($(this).val(),$("#ctl00_ContentPlaceHolder1_txtNoOfUnits").val(),$("#ctl00_ContentPlaceHolder1_txtTotalCost"));
-//    })
-//    $("#ctl00_ContentPlaceHolder1_txtNoOfUnits").on('change', function(){
-//        calcUnitCost($("#ctl00_ContentPlaceHolder1_txtUnitCost").val(),$(this).val(),$("#ctl00_ContentPlaceHolder1_txtTotalCost"));
-//    })
+    $("#ctl00_ContentPlaceHolder1_txtUnitCost").on('change', function(){
+        calcUnitCost($(this).val(),$("#ctl00_ContentPlaceHolder1_txtNoOfUnits").val(),$("#ctl00_ContentPlaceHolder1_txtTotalCost"));
+    })
+    $("#ctl00_ContentPlaceHolder1_txtNoOfUnits").on('change', function(){
+        calcUnitCost($("#ctl00_ContentPlaceHolder1_txtUnitCost").val(),$(this).val(),$("#ctl00_ContentPlaceHolder1_txtTotalCost"));
+    })
     
     
-    $("#ContentPlaceHolder1_txtUnitCost").on('change', function(){
-        calcUnitCost($(this).val(),$("#ContentPlaceHolder1_txtNoOfUnits").val(),$("#ContentPlaceHolder1_txtTotalCost"));
-    })
-    $("#ContentPlaceHolder1_txtNoOfUnits").on('change', function(){
-        calcUnitCost($("#ContentPlaceHolder1_txtUnitCost").val(),$(this).val(),$("#ContentPlaceHolder1_txtTotalCost"));
-    })
+//    $("#ContentPlaceHolder1_txtUnitCost").on('change', function(){
+//        calcUnitCost($(this).val(),$("#ContentPlaceHolder1_txtNoOfUnits").val(),$("#ContentPlaceHolder1_txtTotalCost"));
+//    })
+//    $("#ContentPlaceHolder1_txtNoOfUnits").on('change', function(){
+//        calcUnitCost($("#ContentPlaceHolder1_txtUnitCost").val(),$(this).val(),$("#ContentPlaceHolder1_txtTotalCost"));
+//    })
     
 });
 
@@ -65,8 +65,8 @@ $(function() {
 var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
     function calcIncom() {
         $(".txtTotalIncome").val(0);
-        //$("#ctl00_ContentPlaceHolder1_hidtxtTotalIncome").val(0);
-        $("#ContentPlaceHolder1_hidtxtTotalIncome").val(0);
+        $("#ctl00_ContentPlaceHolder1_hidtxtTotalIncome").val(0);
+        //$("#ContentPlaceHolder1_hidtxtTotalIncome").val(0);
         $cashIn = $(".txtBIncome").val() === '' ? 0.00 : $(".txtBIncome").val();
         $creditIn = $(".txtCrdtIncome").val() === '' ? 0.00 : $(".txtCrdtIncome").val();
         $otherIn = $(".txtOIncome").val() === '' ? 0.00 : $(".txtOIncome").val();
@@ -74,16 +74,16 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
         totIn = parseFloat($cashIn) + parseFloat($creditIn) + parseFloat($otherIn);
         console.log(totIn);
         $(".txtTotalIncome").val(totIn);
-        //$("#ctl00_ContentPlaceHolder1_hidtxtTotalIncome").val(totIn);
-        $("#ContentPlaceHolder1_hidtxtTotalIncome").val(totIn);
+        $("#ctl00_ContentPlaceHolder1_hidtxtTotalIncome").val(totIn);
+        //$("#ContentPlaceHolder1_hidtxtTotalIncome").val(totIn);
         calcGP();
         calcPnL();
     }
     
     function calcPurchase() {
         $(".txtTotPurchase").val(0);
-        //$("#ctl00_ContentPlaceHolder1_hidtxtTotPurchase").val(0);
-        $("#ContentPlaceHolder1_hidtxtTotPurchase").val(0);
+        $("#ctl00_ContentPlaceHolder1_hidtxtTotPurchase").val(0);
+        //$("#ContentPlaceHolder1_hidtxtTotPurchase").val(0);
         
         $cashIn = $(".txtDCost").val() === '' ? 0.00 : $(".txtDCost").val();
         $creditIn = $(".txtICost").val() === '' ? 0.00 : $(".txtICost").val();
@@ -91,24 +91,24 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
         totPu = parseFloat($cashIn) + parseFloat($creditIn);
         console.log('pu: '+totPu);
         $(".txtTotPurchase").val(totPu);
-        //$("#ctl00_ContentPlaceHolder1_hidtxtTotPurchase").val(totPu);
-        $("#ContentPlaceHolder1_hidtxtTotPurchase").val(totPu);
+        $("#ctl00_ContentPlaceHolder1_hidtxtTotPurchase").val(totPu);
+        //$("#ContentPlaceHolder1_hidtxtTotPurchase").val(totPu);
         
         calcGP();
         calcPnL();
     }
     
     function calcGP(){
-//        $(".txtGrossProfit").val(0);
-//        $("#ctl00_ContentPlaceHolder1_hidGross").val(0);      
-//        gp = parseFloat($("#ctl00_ContentPlaceHolder1_hidtxtTotalIncome").val() === ''?0.00 : $("#ctl00_ContentPlaceHolder1_hidtxtTotalIncome").val()) - parseFloat($("#ctl00_ContentPlaceHolder1_hidtxtTotPurchase").val()===''?0.00:$("#ctl00_ContentPlaceHolder1_hidtxtTotPurchase").val());
-//        $("#ct100_ContentPlaceHolder1_hidGross").val(gp);
+        $(".txtGrossProfit").val(0);
+        $("#ctl00_ContentPlaceHolder1_hidGross").val(0);      
+        gp = parseFloat($("#ctl00_ContentPlaceHolder1_hidtxtTotalIncome").val() === ''?0.00 : $("#ctl00_ContentPlaceHolder1_hidtxtTotalIncome").val()) - parseFloat($("#ctl00_ContentPlaceHolder1_hidtxtTotPurchase").val()===''?0.00:$("#ctl00_ContentPlaceHolder1_hidtxtTotPurchase").val());
+        $("#ct100_ContentPlaceHolder1_hidGross").val(gp);
         
-        $("#ContentPlaceHolder1_hidGross").val(0);
-        gp = parseFloat($("#ContentPlaceHolder1_hidtxtTotalIncome").val() === ''?0.00 : $("#ContentPlaceHolder1_hidtxtTotalIncome").val()) - parseFloat($("#ContentPlaceHolder1_hidtxtTotPurchase").val()===''?0.00:$("#ContentPlaceHolder1_hidtxtTotPurchase").val());
-        console.log('gp: '+gp);
-        $(".txtGrossProfit").val(gp);
-        $("#ContentPlaceHolder1_hidGross").val(gp);
+//        $("#ContentPlaceHolder1_hidGross").val(0);
+//        gp = parseFloat($("#ContentPlaceHolder1_hidtxtTotalIncome").val() === ''?0.00 : $("#ContentPlaceHolder1_hidtxtTotalIncome").val()) - parseFloat($("#ContentPlaceHolder1_hidtxtTotPurchase").val()===''?0.00:$("#ContentPlaceHolder1_hidtxtTotPurchase").val());
+//        console.log('gp: '+gp);
+//        $(".txtGrossProfit").val(gp);
+//        $("#ContentPlaceHolder1_hidGross").val(gp);
     }
     
     function calcBEx() {
@@ -123,8 +123,8 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
 
         totEx = parseFloat($Rent) + parseFloat($wet) + parseFloat($wages) + parseFloat($fla) + parseFloat($trans) + parseFloat($repir);
         $(".txtTExpenses").val(totEx);
-//        $("#ctl00_ContentPlaceHolder1_hidtxtTExpenses").val(totEx);
-        $("#ContentPlaceHolder1_hidtxtTExpenses").val(totEx);
+        $("#ctl00_ContentPlaceHolder1_hidtxtTExpenses").val(totEx);
+//        $("#ContentPlaceHolder1_hidtxtTExpenses").val(totEx);
         calcPnL();
     }
     
@@ -132,8 +132,8 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
         $(".txtPAndL").val(0);
         $pnl = $(".txtGrossProfit").val() - $(".txtTExpenses").val();
         $(".txtPAndL").val($pnl);
-//        $("#ct100_ContentPlaceHolder1_hidtxtPAndL").val($pnl);
-        $("#ContentPlaceHolder1_hidtxtPAndL").val($pnl);
+        $("#ct100_ContentPlaceHolder1_hidtxtPAndL").val($pnl);
+//        $("#ContentPlaceHolder1_hidtxtPAndL").val($pnl);
     }
     
 /* ~~ Murabaha Family Details Page ~~*/
@@ -158,8 +158,8 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
         $salWa = $(".txtSalWa").val() === '' ? 0.00 : $(".txtSalWa").val();
         $rentInB = $(".txtRentB").val() === '' ? 0.00 : $(".txtRentB").val();
         $rentInO = $(".txtRentO").val() === '' ? 0.00 : $(".txtRentO").val();
-       // $netIn = $("#ctl00_ContentPlaceHolder1_hidNetIn").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_hidNetIn").val();
-        $netIn = $("#ContentPlaceHolder1_hidNetIn").val() === '' ? 0.00 : $("#ContentPlaceHolder1_hidNetIn").val();
+        $netIn = $("#ctl00_ContentPlaceHolder1_hidNetIn").val() === '' ? 0.00 : $("#ctl00_ContentPlaceHolder1_hidNetIn").val();
+//        $netIn = $("#ContentPlaceHolder1_hidNetIn").val() === '' ? 0.00 : $("#ContentPlaceHolder1_hidNetIn").val();
         $InO = $(".txtInO").val() === '' ? 0.00 : $(".txtInO").val();
 
         calcTotalAnulaIncome($salWa,$rentInB,$rentInO,$netIn, $InO);

@@ -323,11 +323,11 @@ namespace MuslimAID
         {
             if (txtUserName.Text.Trim() == "")
             {
-                lblMsg.Text = "Please enter your NIC."; return false;
+                lblMsg.Text = "Please enter NIC."; return false;
             }
             else if (txtPassword.Text.Trim() == "")
             {
-                lblMsg.Text = "Please enter your Password."; return false;
+                lblMsg.Text = "Please enter Password."; return false;
             }
             else if (txtPassword.Text.Trim() != txtConfirmPass.Text.Trim())
             {
@@ -335,15 +335,15 @@ namespace MuslimAID
             }
             else if (txtConfirmPass.Text.Trim() == "")
             {
-                lblMsg.Text = "Please Re Enter your Password"; return false;
+                lblMsg.Text = "Please Re Enter Password"; return false;
             }
             else if (txtFirstName.Text.Trim() == "")
             {
-                lblMsg.Text = "Please enter your First name"; return false;
+                lblMsg.Text = "Please enter First name"; return false;
             }
             else if (txtLastName.Text.Trim() == "")
             {
-                lblMsg.Text = "Please enter your Last name"; return false;
+                lblMsg.Text = "Please enter Last name"; return false;
             }
             else if (txtAddress.Text.Trim() == "")
             {
@@ -364,7 +364,7 @@ namespace MuslimAID
             }
             else if (txtDesignation.Text.Trim() == "")
             {
-                lblMsg.Text = "Please enter your Designation"; return false;
+                lblMsg.Text = "Please enter Designation"; return false;
             }
             else if (cmbUserType.SelectedIndex == 0)
             {

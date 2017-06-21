@@ -284,13 +284,12 @@ namespace MuslimAID.MURABAHA
                     txtMDAAIP.Text = dsGetDetail.Tables[0].Rows[0]["mdaaip"].ToString();
                     //txtRAPSA.Text = dsGetDetail.Tables[0].Rows[0]["rapsa"].ToString();
 
-                    DataSet dsFacility = cls_Connection.getDataSet("SELECT loan_amount, period from micro_loan_details WHERE contra_code = '" + strCC + "';");
+                    DataSet dsFacility = cls_Connection.getDataSet("SELECT loan_amount, period from micro_loan_details WHERE contra_code = '" + strCCode + "';");
                     txtRAPSA.Text = dsFacility.Tables[0].Rows[0]["loan_amount"].ToString();
                     cmbTmePeriod.SelectedValue = dsFacility.Tables[0].Rows[0]["period"].ToString();
 
                     btnSubmit.Enabled = false;
                     btnUpdate.Enabled = true;
-
                 }
                 else
                 {

@@ -42,7 +42,6 @@ namespace MuslimAID.MURABHA
                         }
 
                         cmbCityCode.Text = strBranch;
-                        cmbCityCode.Enabled = false;
                     }
                 }
                 else
