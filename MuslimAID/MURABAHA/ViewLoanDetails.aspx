@@ -64,8 +64,10 @@
                 <td valign="top"></td>
                 <td valign="top"></td>
                 <td>
-                    <asp:Button ID="btnApproved" TabIndex="2" runat="server" Text="Approved" 
-                        onclick="btnApproved_Click" />&nbsp;
+                    <asp:Button ID="btnApproved" TabIndex="2" runat="server" Text="Approved" onclick="btnApproved_Click" />&nbsp;
+                    <asp:Button ID="btnVerify" TabIndex="2" runat="server" Text="Verify" 
+                        onclick="btnVerify_Click"/>&nbsp;
+                        
                     <asp:Label ID="lblCAMsg" runat="server"></asp:Label>
                 </td>
             </tr>

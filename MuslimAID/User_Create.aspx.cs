@@ -28,6 +28,13 @@ namespace MuslimAID
             if (Session["LoggedIn"].ToString() == "True")
             {
                 string strloginID = Session["NIC"].ToString();
+                //DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
+                //cmbBranch.Items.Add("");
+                //for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                //{
+                //    cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                //    cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                //}
 
                 DataSet dsUserTy = cls_Connection.getDataSet("SELECT user_type FROM users WHERE nic = '" + strloginID + "';");
                 if (dsUserTy.Tables[0].Rows.Count > 0)
@@ -51,6 +58,7 @@ namespace MuslimAID
                         fuPhoto.Enabled = true;
                         txtPassword.Enabled = true;
                         txtConfirmPass.Enabled = true;
+                        //cmbBranch.Enabled = true;
                     }
                     else if (strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" || strType == "BFA" || strType == "MFO") 
                     {
@@ -84,6 +92,7 @@ namespace MuslimAID
                         txtDateOfBirth.Enabled = false;
                         cmbTitle.Enabled = false;
                         cmbUserType.Enabled = false;
+                        //cmbBranch.Enabled = false;
                     }
                     else
                     {

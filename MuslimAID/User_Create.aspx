@@ -13,12 +13,17 @@
                 button: ".next()"
             });
         });
-    </script>
-    
-    <script type="text/javascript">
+        
+        
         $(function() {
             $('#datetimepicker').datetimepicker({ format: 'DD/MM/YYYY' });
         });
+        
+//        $(document).ready(function () {
+//            $(".UserType").on("change", function(){
+//                alert($(".UserType").val());
+//            });
+//        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -104,7 +109,7 @@
         <div class="form-group row">
             <div class="col-md-5">User Type <span style="color:Red;">*</span></div>
             <div class="col-md-7">
-                <asp:DropDownList ID="cmbUserType" runat="server" CssClass="form-control">
+                <asp:DropDownList ID="cmbUserType" runat="server" CssClass="form-control UserType">
                     <asp:ListItem Value="">Select user type</asp:ListItem>
                     <asp:ListItem Value="ADM">Admin</asp:ListItem>
                     <asp:ListItem Value="BOD">BOD</asp:ListItem>
@@ -126,6 +131,12 @@
                 <asp:HiddenField ID="hf1" runat="server" />
             </div>
         </div>
+        <%--<div class="form-group row">
+            <div class="col-md-5">Branch <span style="color:Red;">*</span></div>
+            <div class="col-md-7">
+                <asp:DropDownList ID="cmbBranch" runat="server" CssClass="form-control cmbBranch"></asp:DropDownList>
+            </div>
+        </div>--%>
         
         <div classs="form-group">
             <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary" Text="Create" onclick="btnSubmit_Click" />

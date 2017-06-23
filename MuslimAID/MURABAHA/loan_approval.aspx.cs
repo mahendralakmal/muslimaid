@@ -83,16 +83,16 @@ namespace MuslimAID.MURABAHA
                         strBQ.Append("' AND villages_code = '" + cmbVillage.SelectedValue.ToString() + "'");
                     if (cmdSocietyNo.SelectedIndex > 0)
                         strBQ.Append(" AND society_id = '" + cmdSocietyNo.SelectedValue.ToString() + "'");
-                    if (strType == "BMG")
-                        strBQ.Append(" AND loan_amount BETWEEN 0 AND 30000");
-                    if (strType == "RMG")
-                        strBQ.Append(" AND loan_amount BETWEEN 0 AND 50000");
-                    if (strType == "OMG")
-                        strBQ.Append(" AND loan_amount BETWEEN 0 AND 75000");
-                    if (strType == "CMG")
-                        strBQ.Append(" AND loan_amount BETWEEN 0 AND 100000");
-                    if (strType == "BOD" || strType == "ADM")
-                        strBQ.Append(" AND loan_amount > 0");
+                    //if (strType == "BMG")
+                    //    strBQ.Append(" AND loan_amount BETWEEN 0 AND 30000");
+                    //if (strType == "RMG")
+                    //    strBQ.Append(" AND loan_amount BETWEEN 0 AND 50000");
+                    //if (strType == "OMG")
+                    //    strBQ.Append(" AND loan_amount BETWEEN 0 AND 75000");
+                    //if (strType == "CMG")
+                    //    strBQ.Append(" AND loan_amount BETWEEN 0 AND 100000");
+                    //if (strType == "BOD" || strType == "ADM")
+                    //    strBQ.Append(" AND loan_amount > 0");
                     strBQ.Append(";");
                     DataSet dsLD = new DataSet();
                     dsLD = cls_Connection.getDataSet(strBQ.ToString());
