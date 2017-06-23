@@ -192,9 +192,9 @@ namespace MuslimAID.MURABAHA
                 StringBuilder strBlder = new StringBuilder();
                 strBlder.Append("UPDATE micro_loan_details SET");
                 if (strUserType == "BMG")
-                    strBlder.Append(" brnch_manager_remark = '" + strDescri + "', brnch_manager_nic ='" + strloginID + "', brnch_manager_verify_on ='" + strDate + "', brnch_manager_verify_ip ='" + Request.UserHostAddress);
+                    strBlder.Append(" brnch_manager_remark = '" + strDescri + "', reg_approval_nic ='" + strloginID + "', reg_approval_on ='" + strDate + "', reg_approval_ip ='" + Request.UserHostAddress);
                 else if (strUserType == "RMG")
-                    strBlder.Append(" regional_manager_remark = '" + strDescri + "', regional_manager_nic ='" + strloginID + "', regional_manager_verify_on ='" + strDate + "', regional_manager_verify_ip ='" + Request.UserHostAddress);
+                    strBlder.Append(" reg_approval_des = '" + strDescri + "', regional_manager_nic ='" + strloginID + "', regional_manager_verify_on ='" + strDate + "', regional_manager_verify_ip ='" + Request.UserHostAddress);
                 else if (strUserType == "OMG")
                     strBlder.Append(" operations_manager_remark = '" + strDescri + "', operations_manager_nic ='" + strloginID + "', operations_manager_verify_on ='" + strDate + "', operations_manager_verify_ip ='" + Request.UserHostAddress);
                 else  if (strUserType == "CMG")
