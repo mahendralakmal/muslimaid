@@ -162,7 +162,7 @@ namespace MuslimAID.MURABAHA
                 {
                     string strRootName = txtRootName.Text.Trim();
                     string strBranch = cmbCityCode.SelectedItem.Value;
-                    DataSet dsGetCurrPassword = cls_Connection.getDataSet("select * from micro_exective_root where branch_code ='" + strBranch + "' and exe_name = '" + strRootName + "'");
+                    DataSet dsGetCurrPassword = cls_Connection.getDataSet("SELECT * FROM micro_exective_root WHERE branch_code ='" + strBranch + "' AND exe_name = '" + strRootName + "'");
                     if (dsGetCurrPassword.Tables[0].Rows.Count > 0)
                     {
                         lblMsg.Text = "MFO Name Already used...!";

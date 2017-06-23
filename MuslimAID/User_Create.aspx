@@ -19,17 +19,23 @@
             $('#datetimepicker').datetimepicker({ format: 'DD/MM/YYYY' });
         });
         
-//        $(document).ready(function () {
-//            $(".UserType").on("change", function(){
-//                alert($(".UserType").val());
-//            });
-//        });
+        $(document).ready(function () {
+            $(".cmbBranch").attr("disabled", true);
+            $(".UserType").on("change", function(){
+                //alert($(".UserType").val());
+                if($(".UserType").val()=="MFO" || $(".UserType").val()=="BFA" || $(".UserType").val()=="BMG"){
+                    $(".cmbBranch").attr("disabled", false); 
+                }else{
+                    $(".cmbBranch").attr("disabled", true); 
+                    }
+            });
+        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
     <div class="PageTitle"><h4>User Create</h4></div>
-    <div class="col-md-6 form-container">
+    <div class="col-md-5 form-container">
         <div class="form-group row">
             <div class="col-md-5">User Name (NIC)<span style="color:Red;">*</span></div>
             <div class="col-md-7">
@@ -109,7 +115,9 @@
         <div class="form-group row">
             <div class="col-md-5">User Type <span style="color:Red;">*</span></div>
             <div class="col-md-7">
-                <asp:DropDownList ID="cmbUserType" runat="server" CssClass="form-control UserType">
+                <asp:DropDownList ID="cmbUserType" runat="server" 
+                    CssClass="form-control UserType" 
+                    onselectedindexchanged="cmbUserType_SelectedIndexChanged">
                     <asp:ListItem Value="">Select user type</asp:ListItem>
                     <asp:ListItem Value="ADM">Admin</asp:ListItem>
                     <asp:ListItem Value="BOD">BOD</asp:ListItem>
@@ -131,12 +139,12 @@
                 <asp:HiddenField ID="hf1" runat="server" />
             </div>
         </div>
-        <%--<div class="form-group row">
+        <div class="form-group row">
             <div class="col-md-5">Branch <span style="color:Red;">*</span></div>
             <div class="col-md-7">
                 <asp:DropDownList ID="cmbBranch" runat="server" CssClass="form-control cmbBranch"></asp:DropDownList>
             </div>
-        </div>--%>
+        </div>
         
         <div classs="form-group">
             <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary" Text="Create" onclick="btnSubmit_Click" />
@@ -145,6 +153,11 @@
             <asp:Button ID="btnDactivate" runat="server" Text="Deactivate" 
                 CssClass="btn btn-danger" Enabled="false" onclick="btnDactivate_Click"/>
             <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="form-container">
+            <asp:Label ID="userTBL" runat="server" Text=""></asp:Label>
         </div>
     </div>
 </div>

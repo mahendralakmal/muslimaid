@@ -8,6 +8,16 @@ Bootstrap Admin Template
 /** Base Body Styles **/
 body{ background: url(../../Images/body-bg.png); color:#838383; font: 13px/1.7em 'Open Sans';}
 
+.tblHead
+{
+	background-color:#008e0c !important;
+	color:#ffffff;
+	border:1px solid #000000;
+}
+.tblBody
+{
+	border:1px solid silver;
+}
 
 .account-container {
 	margin-top: 60px;
@@ -18,7 +28,7 @@ body{ background: url(../../Images/body-bg.png); color:#838383; font: 13px/1.7em
 	border-radius: 5px;
 	box-shadow:  0px 0px 2px #dadada, inset 0px -3px 0px #e6e6e6;
 }
-
+D:\projects\MuslimAid\MuslimAID\dist\css\signin.css
 .content {
 	padding: 16px 28px 23px;
 } 

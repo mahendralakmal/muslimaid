@@ -27,14 +27,16 @@ namespace MuslimAID
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
+                GetUserDetails(); 
                 string strloginID = Session["NIC"].ToString();
-                //DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
-                //cmbBranch.Items.Add("");
-                //for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
-                //{
-                //    cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                //    cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                //}
+                DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
+                cmbBranch.Items.Clear();
+                cmbBranch.Items.Add("");
+                for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                {
+                    cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                    cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                }
 
                 DataSet dsUserTy = cls_Connection.getDataSet("SELECT user_type FROM users WHERE nic = '" + strloginID + "';");
                 if (dsUserTy.Tables[0].Rows.Count > 0)
@@ -58,7 +60,7 @@ namespace MuslimAID
                         fuPhoto.Enabled = true;
                         txtPassword.Enabled = true;
                         txtConfirmPass.Enabled = true;
-                        //cmbBranch.Enabled = true;
+                        //cmbBranch.Enabled = false;
                     }
                     else if (strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" || strType == "BFA" || strType == "MFO") 
                     {
@@ -111,6 +113,60 @@ namespace MuslimAID
             }
         }
 
+        private void GetUserDetails()
+        {
+            DataSet dsUsers = cls_Connection.getDataSet("SELECT * FROM users");
+            // WHERE idusers != 1
+
+            if(dsUsers.Tables[0].Rows.Count > 0){
+                StringBuilder strUsers = new StringBuilder();
+                strUsers.Append("<table class='table'>");
+                strUsers.Append("<tr>");
+                strUsers.Append("<td class='tblHead'>ID</td>");
+                strUsers.Append("<td class='tblHead'>User Id</td>");
+                strUsers.Append("<td class='tblHead'>First Name</td>");
+                strUsers.Append("<td class='tblHead'>Last Name</td>");
+                strUsers.Append("<td class='tblHead'>User Type</td>");
+                strUsers.Append("</tr>");
+
+                for (int i = 0; i < dsUsers.Tables[0].Rows.Count; i++)
+                {
+                    strUsers.Append("<tr>");
+                    strUsers.Append("<td class='tblBody'>" + dsUsers.Tables[0].Rows[i]["idusers"].ToString() + "</td>");
+                    strUsers.Append("<td class='tblBody'>" + dsUsers.Tables[0].Rows[i]["nic"].ToString() + "</td>");
+                    strUsers.Append("<td class='tblBody'>" + dsUsers.Tables[0].Rows[i]["first_name"].ToString() + "</td>");
+                    strUsers.Append("<td class='tblBody'>" + dsUsers.Tables[0].Rows[i]["last_name"].ToString() + "</td>");
+                    strUsers.Append("<td class='tblBody'>");
+                    if (dsUsers.Tables[0].Rows[i]["user_type"].ToString() == "MFO")
+                        strUsers.Append("Micro Finance Officer");
+                    else if (dsUsers.Tables[0].Rows[i]["user_type"].ToString() == "BFA")
+                        strUsers.Append("Branch Finance & Admin Officer");
+                    else if (dsUsers.Tables[0].Rows[i]["user_type"].ToString() == "BMG")
+                        strUsers.Append("Branch Manager");
+                    else if (dsUsers.Tables[0].Rows[i]["user_type"].ToString() == "RFA")
+                        strUsers.Append("Regional Finance & Admin Officer");
+                    else if (dsUsers.Tables[0].Rows[i]["user_type"].ToString() == "RMG")
+                        strUsers.Append("Regional Manager");
+                    else if (dsUsers.Tables[0].Rows[i]["user_type"].ToString() == "FAO")
+                        strUsers.Append("Finance & Admin Officer");
+                    else if (dsUsers.Tables[0].Rows[i]["user_type"].ToString() == "OMG")
+                        strUsers.Append("Oparations Manager");
+                    else if (dsUsers.Tables[0].Rows[i]["user_type"].ToString() == "CMG")
+                        strUsers.Append("Chief Manager");
+                    else if (dsUsers.Tables[0].Rows[i]["user_type"].ToString() == "BOD")
+                        strUsers.Append("BOD");
+                    else if (dsUsers.Tables[0].Rows[i]["user_type"].ToString() == "ADM")
+                        strUsers.Append("Admin");
+                    else { }
+                    strUsers.Append("</td>");
+                    strUsers.Append("</tr>");
+                }
+
+                strUsers.Append("</table>");
+                userTBL.Text = strUsers.ToString();
+            }
+        }
+
         protected void Reset()
         {
             txtUserName.Text = "";
@@ -124,6 +180,7 @@ namespace MuslimAID
             img_path.Text = "";
             cmbTitle.SelectedIndex = 0;
             cmbUserType.SelectedIndex = 0;
+            cmbBranch.SelectedIndex = 0;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -131,7 +188,7 @@ namespace MuslimAID
             
             if(validatefrm("S"))
             {
-                MySqlCommand cmdInsertQRY = new MySqlCommand("insert into users(nic,user_password,first_name,last_name,user_type,designation,deleted,current_status,created_on,last_accessed_on,last_accessed_ip,created_user_nic,photo_path,user_address,date_of_birth,user_title) values(@NIC,@PASS,@FNAME,@LNAME,@UTYPE,@DESIG,@DEL,@CSTAT,@CREATEON,@LACCESS,@LASTIP,@CREATEDUNIC,@photo_path,@user_address,@date_of_birth,@user_title)");
+                MySqlCommand cmdInsertQRY = new MySqlCommand("insert into users(nic,user_password,first_name,last_name,user_type,designation,deleted,current_status,created_on,last_accessed_on,last_accessed_ip,created_user_nic,photo_path,user_address,date_of_birth,user_title, branch_code, company_code) values(@NIC,@PASS,@FNAME,@LNAME,@UTYPE,@DESIG,@DEL,@CSTAT,@CREATEON,@LACCESS,@LASTIP,@CREATEDUNIC,@photo_path,@user_address,@date_of_birth,@user_title,@branch_code, @company_code)");
 
                 string strDel, strCStat, strPassw;
                 strDel = "N";
@@ -190,6 +247,8 @@ namespace MuslimAID
                 cmdInsertQRY.Parameters.Add("@user_address", MySqlDbType.VarChar, 255);
                 cmdInsertQRY.Parameters.Add("@date_of_birth", MySqlDbType.VarChar, 45);
                 cmdInsertQRY.Parameters.Add("@user_title", MySqlDbType.VarChar, 10);
+                cmdInsertQRY.Parameters.Add("@branch_code", MySqlDbType.VarChar, 4);
+                cmdInsertQRY.Parameters.Add("@company_code", MySqlDbType.VarChar, 4);
                 #endregion
 
                 #region Declare Parameters
@@ -209,6 +268,8 @@ namespace MuslimAID
                 cmdInsertQRY.Parameters["@user_address"].Value = strAddress;
                 cmdInsertQRY.Parameters["@date_of_birth"].Value = strDateOfBirth;
                 cmdInsertQRY.Parameters["@user_title"].Value = strTital;
+                cmdInsertQRY.Parameters["@branch_code"].Value = cmbBranch.SelectedValue.ToString();
+                cmdInsertQRY.Parameters["@company_code"].Value = "MAID";
                 #endregion
 
                 try
@@ -217,6 +278,9 @@ namespace MuslimAID
                     i = objDBTask.insertEditData(cmdInsertQRY);
                     if (i == 1)
                     {
+                        if(cmbUserType.SelectedValue.ToString() == "MFO")
+                            create_mfo();
+
                         Reset();
                         lblMsg.Text = "User created Success";
                     }
@@ -230,6 +294,41 @@ namespace MuslimAID
                     er_log.createErrorLog(ex.Message, ex.Source, "User Create");
                 }
             }
+        }
+
+        private bool create_mfo()
+        {
+            cls_Connection objDBCon = new cls_Connection();
+            DataSet dsGetCurrPassword = cls_Connection.getDataSet("select (IFNULL(MAX(exe_id),0) + 1) AS MAX from micro_exective_root where branch_code ='" + cmbBranch.SelectedValue.ToString() + "'");
+
+            MySqlCommand cmdInsertQRY = new MySqlCommand("INSERT INTO micro_exective_root(exe_id,exe_name,exe_nic, branch_code,create_user_id,create_ip,create_date_time)VALUES(@exe_id,@exe_name, @exe_nic, @branch_code,@create_user_id,@create_ip,@create_date_time);");
+
+            #region assignment
+            //string rootName = (txtFirstName.Text.Trim() != "") ? txtFirstName.Text.Trim() : "" + txtLastName.Text.Trim();
+            #endregion
+            #region Assign Parameters
+            cmdInsertQRY.Parameters.Add("@exe_id", MySqlDbType.VarChar, 2);
+            cmdInsertQRY.Parameters.Add("@exe_name", MySqlDbType.VarChar, 200);
+            cmdInsertQRY.Parameters.Add("@exe_nic", MySqlDbType.VarChar, 12);
+            cmdInsertQRY.Parameters.Add("@branch_code", MySqlDbType.VarChar, 10);
+            cmdInsertQRY.Parameters.Add("@create_user_id", MySqlDbType.VarChar, 10);
+            cmdInsertQRY.Parameters.Add("@create_ip", MySqlDbType.VarChar, 45);
+            cmdInsertQRY.Parameters.Add("@create_date_time", MySqlDbType.VarChar, 20);
+            #endregion
+
+            #region DEclare Parametes
+            cmdInsertQRY.Parameters["@exe_id"].Value = dsGetCurrPassword.Tables[0].Rows[0][0].ToString();
+            cmdInsertQRY.Parameters["@exe_name"].Value = txtFirstName.Text.Trim() + " " + txtLastName.Text.Trim();
+            cmdInsertQRY.Parameters["@exe_nic"].Value = txtUserName.Text.Trim();
+            cmdInsertQRY.Parameters["@branch_code"].Value = cmbBranch.SelectedValue.ToString();
+            cmdInsertQRY.Parameters["@create_user_id"].Value = Session["NIC"].ToString();
+            cmdInsertQRY.Parameters["@create_ip"].Value = Request.UserHostAddress;
+            cmdInsertQRY.Parameters["@create_date_time"].Value = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            #endregion
+            if (objDBCon.insertEditData(cmdInsertQRY) > 0)
+                return true;
+            else
+                return false;
         }
 
         public static string EncodePasswordToBase64(string password)
@@ -267,10 +366,12 @@ namespace MuslimAID
                 btnSubmit.Enabled = false;
                 btnUpdate.Enabled = true;
                 btnDactivate.Enabled = true;
+                txtPassword.Focus();
             }
             else
             {
                 btnSubmit.Enabled = true;
+                txtPassword.Focus();
             }
         }
 
@@ -350,9 +451,17 @@ namespace MuslimAID
             {
                 lblMsg.Text = "Please enter First name"; return false;
             }
+            else if (txtFirstName.Text.Length < 3)
+            {
+                lblMsg.Text = "First name must be more than 3 characters"; return false;
+            }
             else if (txtLastName.Text.Trim() == "")
             {
                 lblMsg.Text = "Please enter Last name"; return false;
+            }
+            else if (txtLastName.Text.Length < 3)
+            {
+                lblMsg.Text = "Last name must be more than 3 characters"; return false;
             }
             else if (txtAddress.Text.Trim() == "")
             {
@@ -368,7 +477,8 @@ namespace MuslimAID
                 {
                     lblMsg.Text = "Please Add User Photo.";
                     return false;
-                } else
+                }
+                else
                     return true;
             }
             else if (txtDesignation.Text.Trim() == "")
@@ -392,6 +502,16 @@ namespace MuslimAID
                 cls_Connection.setData("UPDATE users SET deleted='D' WHERE nic='" + txtUserName.Text.Trim() + "';");
             }
             catch (Exception x) { cls_ErrorLog.createSErrorLog(x.Message, x.Source, "deactivate"); }
+        }
+
+        protected void cmbUserType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbUserType.SelectedValue == "MFO" || cmbUserType.SelectedValue == "BFA" || cmbUserType.SelectedValue == "BMG")
+            {
+                cmbBranch.Enabled = true;
+                txtDesignation.Focus();
+            } else
+                txtDesignation.Focus();
         }
     }
 }
