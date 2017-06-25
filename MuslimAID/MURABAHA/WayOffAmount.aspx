@@ -5,14 +5,14 @@
 <div class="container">
     <div class="PageTitle"><h4>Write Off</h4></div>
     <div class="form-container row col-lg-10 col-md-10 ">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="form-group">
-                <div class="col-md-5">
+                <div class="col-md-3">
                     Facility Code
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-7">
                     <asp:TextBox ID="txtCC" CssClass="form-control
-                    " runat="server" MaxLength="15"></asp:TextBox>
+                    " runat="server" MaxLength="30"></asp:TextBox>
                 </div>
                 <div class="col-md-2">
                     <asp:Button ID="btnSerch" CssClass="btn btn-primary" runat="server" Text="Serch" 

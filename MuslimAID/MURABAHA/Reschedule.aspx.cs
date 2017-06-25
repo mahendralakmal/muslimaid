@@ -25,7 +25,8 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
+                string strType = Session["UserType"].ToString();
+                if (strType == "BMG" || strType == "RMG" || strType == "OMG" || strType == "CMG" || strType == "BOD" || strType == "ADM")
                 {
                     if (!this.IsPostBack)
                     {
@@ -71,15 +72,15 @@ namespace MuslimAID.MURABAHA
                 hstrSelectQuery.Value = "";
                 if (txtCC.Text.Trim() != "")
                 {
-                    hstrSelectQuery.Value = "SELECT l.contra_code, b.initial_name, l.loan_amount, l.interest_amount, l.period, l.chequ_deta_on, l.current_loan_amount, l.due_installment, l.over_payment, l.arres_amou, l.def TotalDefault  FROM micro_loan_details l INNER JOIN micro_basic_detail b ON l.contra_code = b.contract_code WHERE l.contra_code = '" + txtCC.Text.Trim() + "' and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'P' ;";
+                    hstrSelectQuery.Value = "SELECT contract_code, full_name, loan_amount, interest_amount, period, chequ_deta_on, current_loan_amount, due_installment, over_payment, arres_amou, def AS TotalDefault FROM micro_full_details WHERE contract_code = '" + txtCC.Text.Trim() + "' and loan_approved = 'Y' and chequ_no != '' and loan_sta = 'P';";
 
                     string strQRY = hstrSelectQuery.Value;
                     DataSet dsGetTrans = cls_Connection.getDataSet(strQRY);
                     Clear();
                     if (dsGetTrans.Tables[0].Rows.Count > 0)
                     {
-                        lblConCode.Text = dsGetTrans.Tables[0].Rows[0]["contra_code"].ToString();
-                        lblName.Text = dsGetTrans.Tables[0].Rows[0]["initial_name"].ToString();
+                        lblConCode.Text = dsGetTrans.Tables[0].Rows[0]["contract_code"].ToString();
+                        lblName.Text = dsGetTrans.Tables[0].Rows[0]["full_name"].ToString();
                         lblLoanAmou.Text = dsGetTrans.Tables[0].Rows[0]["loan_amount"].ToString();
                         lblIAmount.Text = dsGetTrans.Tables[0].Rows[0]["interest_amount"].ToString();
                         lblPeriod.Text = dsGetTrans.Tables[0].Rows[0]["period"].ToString();
@@ -90,9 +91,9 @@ namespace MuslimAID.MURABAHA
                         lblTotalArreas.Text = dsGetTrans.Tables[0].Rows[0]["arres_amou"].ToString();
                         lblTotalDefault.Text = dsGetTrans.Tables[0].Rows[0]["TotalDefault"].ToString();
 
-                        lblLoanStock.Text = LoanStock(dsGetTrans.Tables[0].Rows[0]["contra_code"].ToString(), Convert.ToDecimal(dsGetTrans.Tables[0].Rows[0]["loan_amount"])).ToString();
-                        lblFutureCapital.Text = FutureCapital(dsGetTrans.Tables[0].Rows[0]["contra_code"].ToString(), Convert.ToDecimal(dsGetTrans.Tables[0].Rows[0]["loan_amount"])).ToString();
-                        lblFutureInterest.Text = FutureInterest(dsGetTrans.Tables[0].Rows[0]["contra_code"].ToString(), Convert.ToDecimal(dsGetTrans.Tables[0].Rows[0]["interest_amount"])).ToString();
+                        lblLoanStock.Text = LoanStock(dsGetTrans.Tables[0].Rows[0]["contract_code"].ToString(), Convert.ToDecimal(dsGetTrans.Tables[0].Rows[0]["loan_amount"])).ToString();
+                        lblFutureCapital.Text = FutureCapital(dsGetTrans.Tables[0].Rows[0]["contract_code"].ToString(), Convert.ToDecimal(dsGetTrans.Tables[0].Rows[0]["loan_amount"])).ToString();
+                        lblFutureInterest.Text = FutureInterest(dsGetTrans.Tables[0].Rows[0]["contract_code  "].ToString(), Convert.ToDecimal(dsGetTrans.Tables[0].Rows[0]["interest_amount"])).ToString();
 
                         txtRSLoanAmount.Text = lblTotCurrentBalance.Text = dsGetTrans.Tables[0].Rows[0]["current_loan_amount"].ToString();
                         btnSubmit.Enabled = true;
