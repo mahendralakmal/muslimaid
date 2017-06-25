@@ -22,7 +22,8 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (Session["UserType"].ToString() == "Manager" || Session["UserType"].ToString() == "Top Management" || Session["UserType"].ToString() == "Admin")
+                string strType = Session["UserType"].ToString();
+                if (strType == "BMG" || strType == "RMG" || strType == "OMG" || strType == "CMG" || strType == "BOD" || strType == "ADM")
                 {
                     grvRebaAppr.AllowPaging = true;
                     grvRebaAppr.PageSize = 30;

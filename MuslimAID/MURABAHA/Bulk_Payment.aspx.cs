@@ -172,7 +172,8 @@ namespace MuslimAID.MURABAHA
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             //IRRPayment();
-            IRRPaymentNew();
+            //IRRPaymentNew();
+            EqualPayment();
         }
 
         public static string NumberToText(int number, bool useAnd, bool useArab)
@@ -896,7 +897,7 @@ namespace MuslimAID.MURABAHA
                 int id = grows.RowIndex;                
                 if (txtPayment.Text.Trim() != "")
                 {
-                    if (Convert.ToInt32(txtPayment.Text.Trim()) != 0)
+                    if (Convert.ToDecimal(txtPayment.Text.Trim()) != 0)
                     {
                         string strPayment = txtPayment.Text.Trim();
                         string strAmount = txtPayment.Text.Trim();

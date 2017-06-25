@@ -92,6 +92,13 @@
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\Approved_rebate.aspx.cs">
+      <DependentUpon>Approved_rebate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Approved_rebate.aspx.designer.cs">
+      <DependentUpon>Approved_rebate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MURABAHA\BranchAdd.aspx.cs">
       <DependentUpon>BranchAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1202,6 +1209,7 @@
     <Content Include="Login.Master" />
     <Content Include="Logout.aspx" />
     <Content Include="MURABAHA\agreement.aspx" />
+    <Content Include="MURABAHA\Approved_rebate.aspx" />
     <Content Include="MURABAHA\arrears_report.aspx" />
     <Content Include="MURABAHA\BranchAdd.aspx" />
     <Content Include="MURABAHA\Bulk_Payment.aspx" />

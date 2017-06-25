@@ -23,7 +23,8 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer" || Session["UserType"] != "Cashier")
+                string strType = Session["UserType"].ToString();
+                if (strType == "BMG" || strType == "RMG" || strType == "OMG" || strType == "CMG" || strType == "BOD" || strType == "ADM")
                 {
                     if (!this.IsPostBack)
                     {
@@ -75,7 +76,9 @@ namespace MuslimAID.MURABAHA
                 {
                     string strCC = txtCC.Text.Trim();
 
-                    DataSet dsGetDeta = cls_Connection.getDataSet("select c.nic,l.loan_amount,l.current_loan_amount,l.interest_rate,l.interest_amount,l.period,l.monthly_instollment,l.chequ_deta_on,l.arres_amou,c.initial_name last_name,loan_sta from micro_loan_details l, micro_basic_detail c where l.contra_code = c.contract_code and l.contra_code = '" + strCC + "' and l.loan_approved = 'Y' and l.chequ_no != '' ;");
+                    //DataSet dsGetDeta = cls_Connection.getDataSet("select c.nic,l.loan_amount,l.current_loan_amount,l.interest_rate,l.interest_amount,l.period,l.monthly_instollment,l.chequ_deta_on,l.arres_amou,c.initial_name last_name,loan_sta from micro_loan_details l, micro_basic_detail c where l.contra_code = c.contract_code and l.contra_code = '" + strCC + "' and l.loan_approved = 'Y' and l.chequ_no != '' ;");
+
+                    DataSet dsGetDeta = cls_Connection.getDataSet("SELECT * FROM micro_full_details WHERE loan_approved = 'Y' AND chequ_no != '' AND contract_code = '" + strCC + "';");
                     
                     if (dsGetDeta.Tables[0].Rows.Count != 0)
                     {
@@ -105,7 +108,7 @@ namespace MuslimAID.MURABAHA
                             lblMIns.Text = dsGetDeta.Tables[0].Rows[0]["monthly_instollment"].ToString();
                             string strLDate = dsGetDeta.Tables[0].Rows[0]["chequ_deta_on"].ToString();
                             lblLoDate.Text = strLDate;
-                            lblName.Text = dsGetDeta.Tables[0].Rows[0]["last_name"].ToString();
+                            lblName.Text = dsGetDeta.Tables[0].Rows[0]["full_name"].ToString();
                             decimal decToInte = Convert.ToDecimal(strIAmount);
 
                             DateTime dtLoanDate = Convert.ToDateTime(strLDate);

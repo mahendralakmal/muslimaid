@@ -40,11 +40,11 @@ namespace MuslimAID.MURABHA
                         if (strCC != null)
                         {
                             txtCC.Text = strCC;
-                            DataSet dsLD = cls_Connection.getDataSet("SELECT loan_amount,period FROM micro_loan_details WHERE contra_code = '" + strCC + "';");
+                            DataSet dsLD = cls_Connection.getDataSet("SELECT loan_amount, fr_period FROM micro_full_details WHERE contract_code = '" + strCC + "';");
                             if (dsLD.Tables[0].Rows.Count > 0)
                             {
                                 txtLDLAmount.Text = dsLD.Tables[0].Rows[0]["loan_amount"].ToString();
-                                cmbPeriod.SelectedValue = dsLD.Tables[0].Rows[0]["period"].ToString();
+                                cmbPeriod.SelectedValue = dsLD.Tables[0].Rows[0]["fr_period"].ToString();
                             }
 
                             DataSet dsSD = cls_Connection.getDataSet("SELECT invoice_value FROM micro_supplier_details WHERE contract_code = '" + strCC + "';");

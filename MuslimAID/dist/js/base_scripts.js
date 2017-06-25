@@ -102,6 +102,7 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
         $(".txtGrossProfit").val(0);
         $("#ctl00_ContentPlaceHolder1_hidGross").val(0);      
         gp = parseFloat($("#ctl00_ContentPlaceHolder1_hidtxtTotalIncome").val() === ''?0.00 : $("#ctl00_ContentPlaceHolder1_hidtxtTotalIncome").val()) - parseFloat($("#ctl00_ContentPlaceHolder1_hidtxtTotPurchase").val()===''?0.00:$("#ctl00_ContentPlaceHolder1_hidtxtTotPurchase").val());
+        $(".txtGrossProfit").val(gp);
         $("#ct100_ContentPlaceHolder1_hidGross").val(gp);
         
 //        $("#ContentPlaceHolder1_hidGross").val(0);
@@ -207,10 +208,10 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
     };
     
     function calcMarkup(){
-        var FA = $(".loanAmount").val(); //Facility Amount
-        var IV = $(".invoiceVal").val(); //Invoice Value
-        var IR = $(".interest").val(); //Interest rate
-        var P = $(".period").val(); //Period
+        var FA = ($(".loanAmount").val()=="")?0.00:$(".loanAmount").val(); //Facility Amount
+        var IV = ($(".invoiceVal").val()=="")?0.00:$(".invoiceVal").val(); //Invoice Value
+        var IR = ($(".interest").val()=="")?0.00:$(".interest").val(); //Interest rate
+        var P = ($(".period").val()=="")?0.00:$(".period").val(); //Period
         if(IV > FA)
             $(".downpayment").val(IV - FA); //Down payment
         else 
@@ -223,11 +224,11 @@ var totIn = 0.00; var totPu = 0.00; var totEx = 0.00; var gp = 0.00;
         $('.interestAmount').val((MM).toFixed(2));
         $('.capitalPortion').val((MC).toFixed(2));
         $('.monthInstall').val((MC+MM).toFixed(2));
-        var A = parseFloat($('.txtLDSerCharges').val());
-        var B = parseFloat($('.txtWalfareFee').val());
-        var C = parseFloat($('.txtRegistrationFee').val());
-        var D = parseFloat($('.txtLDOtherCharg').val());
-        var E = parseFloat($('.downpayment').val());
+        var A = parseFloat(($('.txtLDSerCharges').val()== "")? 0.00:$('.txtLDSerCharges').val());
+        var B = parseFloat(($('.txtWalfareFee').val()=="")?0.00:$('.txtWalfareFee').val());
+        var C = parseFloat(($('.txtRegistrationFee').val()=="")?0.00:$('.txtRegistrationFee').val());
+        var D = parseFloat(($('.txtLDOtherCharg').val()=="")?0.00:$('.txtLDOtherCharg').val());
+        var E = parseFloat(($('.downpayment').val()=="")?0.00:$('.downpayment').val());
         $('.RTotal').val((A+B+C+D+E+((MC+MM)*P)).toFixed(2));
     }
 

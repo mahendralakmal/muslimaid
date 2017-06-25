@@ -53,6 +53,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="../muslimaid.aspx">Home</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="icon-user"></i>
@@ -133,7 +134,6 @@
                             </b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="BranchAdd.aspx">Add Branch </a></li>
-                                <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
                                 <li><a href="add_area.aspx">Add Area</a></li>
                                 <li><a href="add_village.aspx">Add Village</a></li>
                                 <li><a href="center_create.aspx">Create Center</a></li>
@@ -173,7 +173,6 @@
                             <ul class="dropdown-menu">
                                 <li><a href="loan_approval.aspx">Loan Approval</a></li>
                                 <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
-                                <%--<li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>--%>
                                 <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
                                 <li><a href="Debit_Note.aspx">Debit Run</a></li>
                                 <li><a href="SettlementRebate.aspx">Settlement &amp; Rebate</a></li>
@@ -209,7 +208,6 @@
                             </b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="BranchAdd.aspx">Add Branch </a></li>
-                                <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
                                 <li><a href="add_area.aspx">Add Area</a></li>
                                 <li><a href="add_village.aspx">Add Village</a></li>
                                 <li><a href="center_create.aspx">Create Center</a></li>
@@ -247,15 +245,8 @@
                             <i class="icon-check"></i><span>&nbsp;&nbsp;Approval&nbsp;&nbsp;</span>
                         </a>
                             <ul class="dropdown-menu">
-                                <%--<li><a href="loan_approval.aspx">Loan Approval</a></li>
-                                <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>--%>
                                 <li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>
                                 <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
-                                <%--<li><a href="Debit_Note.aspx">Debit Run</a></li>
-                                <li><a href="SettlementRebate.aspx">Settlement &amp; Rebate</a></li>
-                                <li><a href="Rebate_Approval.aspx">Rebate Approval </a></li>
-                                <li><a href="WayOffAmount.aspx">Write Off</a></li>
-                                <li><a href="Reschedule.aspx">Loan Re-Schedule</a></li>--%>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -279,21 +270,6 @@
                                 <li><a href="Loan_Detail_Report.aspx">Loan Detail</a></li>
                             </ul>
                         </li>
-                        <%--<li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-print"></i><span>&nbsp;&nbsp;Settings&nbsp;&nbsp;</span> <b class="caret">
-                            </b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="BranchAdd.aspx">Add Branch </a></li>
-                                <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
-                                <li><a href="add_area.aspx">Add Area</a></li>
-                                <li><a href="add_village.aspx">Add Village</a></li>
-                                <li><a href="center_create.aspx">Create Center</a></li>
-                                <li><a href="Change_CRO.aspx">Change MFO</a></li>
-                                <li><a href="AddNatureOfBusiness.aspx">Add Nature of Business</a></li>
-                                <li><a href="AddOccupation.aspx">Add Occupation</a></li>
-                            </ul>
-                        </li>--%>
                     </ul>
                 </div>
             </div>
@@ -324,27 +300,10 @@
                         </a>
                             <ul class="dropdown-menu">
                                 <li><a href="loan_approval.aspx">Loan Approval</a></li>
-                                <%--<li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
-                                <li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>--%>
                                 <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
-                                <%--<li><a href="Debit_Note.aspx">Debit Run</a></li>
-                                <li><a href="SettlementRebate.aspx">Settlement &amp; Rebate</a></li>
-                                <li><a href="Rebate_Approval.aspx">Rebate Approval </a></li>
-                                <li><a href="WayOffAmount.aspx">Write Off</a></li>--%>
                                 <li><a href="Reschedule.aspx">Loan Re-Schedule</a></li>
                             </ul>
                         </li>
-                        <%--<li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-download-alt"></i><span>Installment</span>
-                        </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="Bulk_Payment.aspx">Installment</a></li>
-                                <li><a href="Recipt_Cancel.aspx">Receipt Cancel</a></li>
-                                <li><a href="Voucher_Cancel.aspx">Voucher Cancel</a></li>
-                                <li><a href="Chequ_Cancel.aspx">Cheque Cancel</a></li>
-                                <li><a href="RemoveChequeBookHistry.aspx">Remove Cheque</a></li>
-                            </ul>
-                        </li>--%>
                         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-print"></i><span>&nbsp;&nbsp;Reports&nbsp;&nbsp;</span> <b class="caret">
                             </b></a>
@@ -355,21 +314,6 @@
                                 <li><a href="Loan_Detail_Report.aspx">Loan Detail</a></li>
                             </ul>
                         </li>
-                        <%--<li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-print"></i><span>&nbsp;&nbsp;Settings&nbsp;&nbsp;</span> <b class="caret">
-                            </b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="BranchAdd.aspx">Add Branch </a></li>
-                                <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
-                                <li><a href="add_area.aspx">Add Area</a></li>
-                                <li><a href="add_village.aspx">Add Village</a></li>
-                                <li><a href="center_create.aspx">Create Center</a></li>
-                                <li><a href="Change_CRO.aspx">Change MFO</a></li>
-                                <li><a href="AddNatureOfBusiness.aspx">Add Nature of Business</a></li>
-                                <li><a href="AddOccupation.aspx">Add Occupation</a></li>
-                            </ul>
-                        </li>--%>
                     </ul>
                 </div>
             </div>
@@ -399,15 +343,8 @@
                             <i class="icon-check"></i><span>&nbsp;&nbsp;Approval&nbsp;&nbsp;</span>
                         </a>
                             <ul class="dropdown-menu">
-                                <%--<li><a href="loan_approval.aspx">Loan Approval</a></li>
-                                <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>--%>
                                 <li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>
                                 <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
-                                <%--<li><a href="Debit_Note.aspx">Debit Run</a></li>
-                                <li><a href="SettlementRebate.aspx">Settlement &amp; Rebate</a></li>
-                                <li><a href="Rebate_Approval.aspx">Rebate Approval </a></li>
-                                <li><a href="WayOffAmount.aspx">Write Off</a></li>
-                                <li><a href="Reschedule.aspx">Loan Re-Schedule</a></li>--%>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -431,21 +368,6 @@
                                 <li><a href="Loan_Detail_Report.aspx">Loan Detail</a></li>
                             </ul>
                         </li>
-                        <%--<li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-print"></i><span>&nbsp;&nbsp;Settings&nbsp;&nbsp;</span> <b class="caret">
-                            </b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="BranchAdd.aspx">Add Branch </a></li>
-                                <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
-                                <li><a href="add_area.aspx">Add Area</a></li>
-                                <li><a href="add_village.aspx">Add Village</a></li>
-                                <li><a href="center_create.aspx">Create Center</a></li>
-                                <li><a href="Change_CRO.aspx">Change MFO</a></li>
-                                <li><a href="AddNatureOfBusiness.aspx">Add Nature of Business</a></li>
-                                <li><a href="AddOccupation.aspx">Add Occupation</a></li>
-                            </ul>
-                        </li>--%>
                     </ul>
                 </div>
             </div>
@@ -476,27 +398,9 @@
                         </a>
                             <ul class="dropdown-menu">
                                 <li><a href="loan_approval.aspx">Loan Approval</a></li>
-                                <!--<li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
-                                <li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>-->
                                 <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
-                                <!--<li><a href="Debit_Note.aspx">Debit Run</a></li>
-                                <li><a href="SettlementRebate.aspx">Settlement &amp; Rebate</a></li>
-                                <li><a href="Rebate_Approval.aspx">Rebate Approval </a></li>
-                                <li><a href="WayOffAmount.aspx">Write Off</a></li>
-                                <li><a href="Reschedule.aspx">Loan Re-Schedule</a></li>-->
                             </ul>
                         </li>
-                        <%--<li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-download-alt"></i><span>Installment</span>
-                        </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="Bulk_Payment.aspx">Installment</a></li>
-                                <li><a href="Recipt_Cancel.aspx">Receipt Cancel</a></li>
-                                <li><a href="Voucher_Cancel.aspx">Voucher Cancel</a></li>
-                                <li><a href="Chequ_Cancel.aspx">Cheque Cancel</a></li>
-                                <li><a href="RemoveChequeBookHistry.aspx">Remove Cheque</a></li>
-                            </ul>
-                        </li>--%>
                         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-print"></i><span>&nbsp;&nbsp;Reports&nbsp;&nbsp;</span> <b class="caret">
                             </b></a>
@@ -507,21 +411,6 @@
                                 <li><a href="Loan_Detail_Report.aspx">Loan Detail</a></li>
                             </ul>
                         </li>
-                        <%--<li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-print"></i><span>&nbsp;&nbsp;Settings&nbsp;&nbsp;</span> <b class="caret">
-                            </b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="BranchAdd.aspx">Add Branch </a></li>
-                                <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
-                                <li><a href="add_area.aspx">Add Area</a></li>
-                                <li><a href="add_village.aspx">Add Village</a></li>
-                                <li><a href="center_create.aspx">Create Center</a></li>
-                                <li><a href="Change_CRO.aspx">Change MFO</a></li>
-                                <li><a href="AddNatureOfBusiness.aspx">Add Nature of Business</a></li>
-                                <li><a href="AddOccupation.aspx">Add Occupation</a></li>
-                            </ul>
-                        </li>--%>
                     </ul>
                 </div>
             </div>
@@ -551,15 +440,9 @@
                             <i class="icon-check"></i><span>&nbsp;&nbsp;Approval&nbsp;&nbsp;</span>
                         </a>
                             <ul class="dropdown-menu">
-                                <!--<li><a href="loan_approval.aspx">Loan Approval</a></li>-->
                                 <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
                                 <li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>
                                 <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
-                                <!--<li><a href="Debit_Note.aspx">Debit Run</a></li>
-                                <li><a href="SettlementRebate.aspx">Settlement &amp; Rebate</a></li>
-                                <li><a href="Rebate_Approval.aspx">Rebate Approval </a></li>
-                                <li><a href="WayOffAmount.aspx">Write Off</a></li>
-                                <li><a href="Reschedule.aspx">Loan Re-Schedule</a></li>-->
                             </ul>
                         </li>
                         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -583,21 +466,6 @@
                                 <li><a href="Loan_Detail_Report.aspx">Loan Detail</a></li>
                             </ul>
                         </li>
-                        <!--<li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-print"></i><span>&nbsp;&nbsp;Settings&nbsp;&nbsp;</span> <b class="caret">
-                            </b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="BranchAdd.aspx">Add Branch </a></li>
-                                <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
-                                <li><a href="add_area.aspx">Add Area</a></li>
-                                <li><a href="add_village.aspx">Add Village</a></li>
-                                <li><a href="center_create.aspx">Create Center</a></li>
-                                <li><a href="Change_CRO.aspx">Change MFO</a></li>
-                                <li><a href="AddNatureOfBusiness.aspx">Add Nature of Business</a></li>
-                                <li><a href="AddOccupation.aspx">Add Occupation</a></li>
-                            </ul>
-                        </li>-->
                     </ul>
                 </div>
             </div>
@@ -620,35 +488,16 @@
                                 <li><a href="family_appraisal.aspx">Family Appraisal</a></li>
                                 <li><a href="supplier.aspx">Supplier Details</a></li>
                                 <li><a href="loan_details.aspx">Facility Detail</a></li>
-                               <%--<li><a href="ChequeBookRegistry.aspx">Cheque Book Registry </a></li>--%>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-check"></i><span>&nbsp;&nbsp;Approval&nbsp;&nbsp;</span>
                         </a>
                             <ul class="dropdown-menu">
-                                <%--<li><a href="loan_approval.aspx">Loan Approval</a></li>--%>
                                 <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
-                                <%--<li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>--%>
                                 <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
-                                <%--<li><a href="Debit_Note.aspx">Debit Run</a></li>
-                                <li><a href="SettlementRebate.aspx">Settlement &amp; Rebate</a></li>
-                                <li><a href="Rebate_Approval.aspx">Rebate Approval </a></li>
-                                <li><a href="WayOffAmount.aspx">Write Off</a></li>
-                                <li><a href="Reschedule.aspx">Loan Re-Schedule</a></li>--%>
                             </ul>
                         </li>
-                        <%--<li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-download-alt"></i><span>Installment</span>
-                        </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="Bulk_Payment.aspx">Installment</a></li>
-                                <li><a href="Recipt_Cancel.aspx">Receipt Cancel</a></li>
-                                <li><a href="Voucher_Cancel.aspx">Voucher Cancel</a></li>
-                                <li><a href="Chequ_Cancel.aspx">Cheque Cancel</a></li>
-                                <li><a href="RemoveChequeBookHistry.aspx">Remove Cheque</a></li>
-                            </ul>
-                        </li>--%>
                         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-print"></i><span>&nbsp;&nbsp;Reports&nbsp;&nbsp;</span> <b class="caret">
                             </b></a>
@@ -659,21 +508,6 @@
                                 <li><a href="Loan_Detail_Report.aspx">Loan Detail</a></li>
                             </ul>
                         </li>
-                        <%--<li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-print"></i><span>&nbsp;&nbsp;Settings&nbsp;&nbsp;</span> <b class="caret">
-                            </b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="BranchAdd.aspx">Add Branch </a></li>
-                                <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
-                                <li><a href="add_area.aspx">Add Area</a></li>
-                                <li><a href="add_village.aspx">Add Village</a></li>
-                                <li><a href="center_create.aspx">Create Center</a></li>
-                                <li><a href="Change_CRO.aspx">Change MFO</a></li>
-                                <li><a href="AddNatureOfBusiness.aspx">Add Nature of Business</a></li>
-                                <li><a href="AddOccupation.aspx">Add Occupation</a></li>
-                            </ul>
-                        </li>--%>
                     </ul>
                 </div>
             </div>
