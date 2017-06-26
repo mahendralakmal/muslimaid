@@ -605,6 +605,7 @@ namespace MuslimAID.MURABHA
             {
                 string strLastTID = dsGetLastValue.Tables[0].Rows[0]["team_id"].ToString();
                 string strLastCID = dsGetLastValue.Tables[0].Rows[0]["client_id"].ToString();
+
                 if (strLastTID != "" && strLastCID != "")
                 {
                     int intLastTID = Convert.ToInt32(strLastTID);
@@ -617,14 +618,25 @@ namespace MuslimAID.MURABHA
                         strCACodeNew = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strLastTID + "/2";
                         hidCACode.Value = strCACodeNew;
                         strPromiserID = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strLastTID + "/1";
+                        strPromiserID2 = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strLastTID + "/3";
                     }
                     else if (intLastCID == 2)
+                    {
+                        strTeamNo = strLastTID;
+                        strClientID = "3";
+                        strCACodeNew = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strTeamNo + "/3";
+                        hidCACode.Value = strCACodeNew;
+                        strPromiserID = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strTeamNo + "/2";
+                        strPromiserID2 = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strTeamNo + "/1s";
+                    }
+                    else if (intLastCID == 3)
                     {
                         strTeamNo = Convert.ToString(intLastTID + 1);
                         strClientID = "1";
                         strCACodeNew = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strTeamNo + "/1";
                         hidCACode.Value = strCACodeNew;
                         strPromiserID = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strTeamNo + "/2";
+                        strPromiserID2 = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strTeamNo + "/3";
                     }
                 }
                 else
@@ -632,6 +644,7 @@ namespace MuslimAID.MURABHA
                     strCACodeNew = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/1/1";
                     hidCACode.Value = strCACodeNew;
                     strPromiserID = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/1/2";
+                    strPromiserID2 = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/1/3";
                     strTeamNo = "1";
                     strClientID = "1";
                 }
@@ -641,6 +654,7 @@ namespace MuslimAID.MURABHA
                 strCACodeNew = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/1/1";
                 hidCACode.Value = strCACodeNew;
                 strPromiserID = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/1/2";
+                strPromiserID2 = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/1/3";
                 strTeamNo = "1";
                 strClientID = "1";
             }
@@ -1583,12 +1597,16 @@ namespace MuslimAID.MURABHA
         protected void txtNIC_TextChanged(object sender, EventArgs e)
         {
             string strType = Session["UserType"].ToString();
-            if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG" || 
+            if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG" ||
                             strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" ||
                             strType == "BFA")
-                IsExist();
+            {
+                IsExist(); txtNicIssuDay.Focus();
+            }
             else
-                ccsetup();
+            {
+                ccsetup(); txtNicIssuDay.Focus();
+            }
         }
 
         protected void cmbBranch_SelectedIndexChanged(object sender, EventArgs e)
@@ -1680,6 +1698,7 @@ namespace MuslimAID.MURABHA
             cmbRelation1.SelectedIndex = 1;
             txtDOB1.Text = txtDOB.Text.Trim();
             txtOcc1.Text = cmbOccupation.SelectedItem.Text.Trim();
+            txtInsDate.Focus();
         }
 
         protected void cmbOccupa_SelectedIndexChanged(object sender, EventArgs e)
@@ -1689,6 +1708,7 @@ namespace MuslimAID.MURABHA
             cmbRelation2.SelectedValue = cmbRelation.SelectedValue;
             txtDOB2.Text = txtSoDOB.Text.Trim();
             txtOcc2.Text = cmbOccupa.SelectedItem.Text.Trim();
+            cmbBNature.Focus();
         }
     }
 }

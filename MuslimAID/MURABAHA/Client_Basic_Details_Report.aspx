@@ -145,7 +145,7 @@
                                         <%#Container.DataItemIndex+1%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="Center" ItemStyle-VerticalAlign="Top" HeaderText="Center" HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
+                                <asp:BoundField DataField="Center" ItemStyle-VerticalAlign="Top" HeaderText="Center" HeaderStyle-Width="50px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                                 <asp:BoundField DataField="nic" ItemStyle-VerticalAlign="Top" HeaderText="Customer Code" HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                                 <asp:TemplateField HeaderText="Facility No" ItemStyle-VerticalAlign="Top" HeaderStyle-Width="90px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">
                                     <ItemTemplate>

@@ -99,6 +99,13 @@
     <Compile Include="MURABAHA\Approved_rebate.aspx.designer.cs">
       <DependentUpon>Approved_rebate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\Basic_Details_Report.aspx.cs">
+      <DependentUpon>Basic_Details_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Basic_Details_Report.aspx.designer.cs">
+      <DependentUpon>Basic_Details_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MURABAHA\BranchAdd.aspx.cs">
       <DependentUpon>BranchAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -182,6 +189,13 @@
     </Compile>
     <Compile Include="MURABAHA\Full_Details.aspx.designer.cs">
       <DependentUpon>Full_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MURABAHA\Guarantor_Details_Report.aspx.cs">
+      <DependentUpon>Guarantor_Details_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Guarantor_Details_Report.aspx.designer.cs">
+      <DependentUpon>Guarantor_Details_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="MURABAHA\Installment_Report.aspx.cs">
       <DependentUpon>Installment_Report.aspx</DependentUpon>
@@ -1211,6 +1225,7 @@
     <Content Include="MURABAHA\agreement.aspx" />
     <Content Include="MURABAHA\Approved_rebate.aspx" />
     <Content Include="MURABAHA\arrears_report.aspx" />
+    <Content Include="MURABAHA\Basic_Details_Report.aspx" />
     <Content Include="MURABAHA\BranchAdd.aspx" />
     <Content Include="MURABAHA\Bulk_Payment.aspx" />
     <Content Include="MURABAHA\Center_details_Report.aspx" />
@@ -1227,6 +1242,7 @@
     <Content Include="MURABAHA\Edit_Guarantor.aspx" />
     <Content Include="MURABAHA\family_details.aspx" />
     <Content Include="MURABAHA\Full_Details.aspx" />
+    <Content Include="MURABAHA\Guarantor_Details_Report.aspx" />
     <Content Include="MURABAHA\Installment_Report.aspx" />
     <Content Include="MURABAHA\Loan_Cancel.aspx" />
     <Content Include="MURABAHA\loan_details.aspx" />
@@ -1348,6 +1364,7 @@
     <Folder Include="css\pages\" />
     <Folder Include="MURABAHA\client_photo\" />
     <Folder Include="MURABAHA\client_product\" />
+    <Folder Include="MURABAHA\Reports\" />
     <Folder Include="SALAM\client_photo\" />
     <Folder Include="SALAM\client_product\" />
     <Folder Include="User_Photos\" />

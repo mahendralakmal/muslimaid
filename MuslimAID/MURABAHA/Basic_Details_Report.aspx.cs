@@ -16,12 +16,13 @@ using System.Drawing;
 
 namespace MuslimAID.MURABHA
 {
-    public partial class Client_Basic_Details_Report : System.Web.UI.Page
+    public partial class Basic_Details_Report : System.Web.UI.Page
     {
+        cls_CommonFunctions objCommonTask = new cls_CommonFunctions();
         cls_Connection objDBTask = new cls_Connection();
 
         protected void Page_Load(object sender, EventArgs e)
-        {           
+        {
             if (Session["LoggedIn"].ToString() == "True")
             {
                 if (!this.IsPostBack)
@@ -62,7 +63,7 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
-                hstrSelectQuery.Value = "SELECT * FROM micro_full_details WHERE idmicro_basic_detail > 0";
+                hstrSelectQuery.Value = "SELECT center_name , team_id, ca_code , contract_code, full_name,p_address,conta_no, spouse_name, exe_name FROM micro_full_details WHERE idmicro_basic_detail > 0";
                 if (cmbCityCode.SelectedIndex != 0 || cmbRoot.SelectedIndex != 0 || cmbCenter.SelectedIndex != 0 || txtDateFrom.Text.Trim() != "" || cmbCenterDay.SelectedIndex != 0)
                 {
                     if (cmbCityCode.SelectedIndex != 0 && cmbCityCode.SelectedIndex > 0)
@@ -105,43 +106,62 @@ namespace MuslimAID.MURABHA
             }
             catch (Exception ex)
             {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Basic Details Report");
             }
         }
 
         protected void loadDataToRepeater(string strQRY)
         {
-            //COUNT ALL RECORDS 
+            //int iCurrentPage = Convert.ToInt32(strCurrentPage);
+            //COUNT ALL RECORDS
             DataSet dsAllData = cls_Connection.getDataSet(strQRY);
+            //iAllRows = dsAllData.Tables[0].Rows.Count;
+
+            //GET RELEVANT DATA
+            //MySqlDataAdapter daData = new MySqlDataAdapter(strQRY, objDBTask.establishConnection());
+            //DataSet dsSelectData = new DataSet();
+            //daData.Fill(dsSelectData);
+            //
             MySqlCommand cmd = new MySqlCommand(strQRY, cls_Connection.DBConnect());
             cmd.CommandType = CommandType.Text;
             cmd.CommandTimeout = 0;
             DataSet ds = objDBTask.selectData(cmd);
             DataTable dt = new DataTable();
 
-            DataColumn pCenter = new DataColumn("Center", Type.GetType("System.String"));
-            DataColumn pnic = new DataColumn("nic", Type.GetType("System.String"));
-            DataColumn pcontra_code = new DataColumn("contra_code", Type.GetType("System.String"));
+            DataColumn pCenter = new DataColumn("center_name", Type.GetType("System.String"));
+            DataColumn pteam_id = new DataColumn("team_id", Type.GetType("System.String"));
+            DataColumn pnic = new DataColumn("ca_code", Type.GetType("System.String"));
+            DataColumn pcontra_code = new DataColumn("contract_code", Type.GetType("System.String"));
             DataColumn pfull_name = new DataColumn("full_name", Type.GetType("System.String"));
             DataColumn pp_address = new DataColumn("p_address", Type.GetType("System.String"));
-            DataColumn pmobile_no = new DataColumn("mobile_no", Type.GetType("System.String"));
+            DataColumn conta_no = new DataColumn("conta_no", Type.GetType("System.String"));
+            DataColumn pspouse_name = new DataColumn("spouse_name", Type.GetType("System.String"));
+            DataColumn pexe_name = new DataColumn("exe_name", Type.GetType("System.String"));
+            
             dt.Columns.Add(pCenter);
+            dt.Columns.Add(pteam_id);
             dt.Columns.Add(pcontra_code);
             dt.Columns.Add(pnic);
             dt.Columns.Add(pfull_name);
             dt.Columns.Add(pp_address);
-            dt.Columns.Add(pmobile_no);
+            dt.Columns.Add(conta_no);
+            dt.Columns.Add(pspouse_name);
+            dt.Columns.Add(pexe_name);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
                     DataRow dr = dt.NewRow();
-                    dr["Center"] = ds.Tables[0].Rows[i]["center_name"].ToString();
-                    dr["nic"] = ds.Tables[0].Rows[i]["nic"].ToString();
-                    dr["contra_code"] = ds.Tables[0].Rows[i]["contract_code"].ToString();
+                    dr["center_name"] = ds.Tables[0].Rows[i]["center_name"].ToString();
+                    dr["team_id"] = ds.Tables[0].Rows[i]["team_id"].ToString();
+                    dr["ca_code"] = ds.Tables[0].Rows[i]["ca_code"].ToString();
+                    dr["contract_code"] = ds.Tables[0].Rows[i]["contract_code"].ToString();
                     dr["full_name"] = ds.Tables[0].Rows[i]["full_name"].ToString();
                     dr["p_address"] = ds.Tables[0].Rows[i]["p_address"].ToString();
-                    dr["mobile_no"] = (ds.Tables[0].Rows[i]["mobile_no"].ToString() !="") ? ds.Tables[0].Rows[i]["land_no"].ToString() + "/" + ds.Tables[0].Rows[i]["mobile_no"].ToString() : ds.Tables[0].Rows[i]["land_no"].ToString();
+                    dr["conta_no"] = ds.Tables[0].Rows[i]["conta_no"].ToString();
+                    dr["spouse_name"] = SpouseName(ds.Tables[0].Rows[i]["contract_code"].ToString());
+                    dr["exe_name"] = ds.Tables[0].Rows[i]["exe_name"].ToString();
                     dt.Rows.Add(dr);
                 }
 
@@ -154,6 +174,32 @@ namespace MuslimAID.MURABHA
             }
         }
 
+        private string SpouseName(string ContractCode)
+        {
+            try
+            {
+                string SpouseName = "";
+                string strQRY = "select spouse_name from micro_family_details where contract_code = '" + ContractCode + "'";
+                MySqlCommand cmd = new MySqlCommand(strQRY, cls_Connection.DBConnect());
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandTimeout = 0;
+                DataSet ds = objDBTask.selectData(cmd);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    SpouseName = ds.Tables[0].Rows[0]["spouse_name"].ToString();
+                    return SpouseName;
+                }
+                else
+                {
+                    return SpouseName;
+                }
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
         //Export Excel----------------------------------
         protected void exportExcel()
         {
@@ -161,7 +207,7 @@ namespace MuslimAID.MURABHA
             {
                 Response.Clear();
                 Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename=Client_Basic_Details_Report.xls");
+                Response.AddHeader("content-disposition", "attachment;filename=Client_Details_Report.xls");
                 Response.Charset = "";
                 Response.ContentType = "application/vnd.ms-excel";
                 using (StringWriter sw = new StringWriter())
@@ -290,7 +336,7 @@ namespace MuslimAID.MURABHA
                 btnSerch.Enabled = false;
             }
 
-            
+
 
             #region comment
             //try
@@ -425,6 +471,5 @@ namespace MuslimAID.MURABHA
                 return;
             }
         }
-
     }
 }

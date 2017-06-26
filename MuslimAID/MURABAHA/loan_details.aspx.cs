@@ -113,7 +113,7 @@ namespace MuslimAID.MURABHA
                     int i = objDBCon.insertEditData(cmdInsert);
                     if (i > 0)
                     {
-                        Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCAC + "");
+                        Response.Redirect("client_basic_details.aspx");
                     }
                 }
                 catch (Exception ex)
@@ -166,6 +166,7 @@ namespace MuslimAID.MURABHA
                 {
                     clean();
                     lblMsg.Text = "Successfull";
+                    Response.Redirect("client_basic_details.aspx");
                 }
             }
             catch (Exception ex)

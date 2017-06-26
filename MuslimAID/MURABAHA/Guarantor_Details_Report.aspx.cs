@@ -16,12 +16,15 @@ using System.Drawing;
 
 namespace MuslimAID.MURABHA
 {
-    public partial class Client_Basic_Details_Report : System.Web.UI.Page
+    public partial class Guarantor_Details_Report : System.Web.UI.Page
     {
+        cls_CommonFunctions objCommonTask = new cls_CommonFunctions();
         cls_Connection objDBTask = new cls_Connection();
 
+        string Promisers1ContractCode = "", Promisers1Name = "", mobile_no;
+
         protected void Page_Load(object sender, EventArgs e)
-        {           
+        {
             if (Session["LoggedIn"].ToString() == "True")
             {
                 if (!this.IsPostBack)
@@ -45,7 +48,7 @@ namespace MuslimAID.MURABHA
             }
             else
             {
-                Response.Redirect("../Login.aspx");
+                Response.Redirect("../Default.aspx");
             }
         }
 
@@ -62,7 +65,7 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
-                hstrSelectQuery.Value = "SELECT * FROM micro_full_details WHERE idmicro_basic_detail > 0";
+                hstrSelectQuery.Value = "SELECT c.center_name AS Center,b.team_id,b.ca_code nic, l.contra_code ,b.initial_name full_name,b.mobile_no, b.promisers_id, '' promisers1_contra_code,'' promisers1_full_name, '' mobile_no1, b.promiser_id_2, '' promisers2_contra_code,'' promisers2_full_name, '' mobile_no2 FROM center_details c, micro_loan_details l, micro_basic_detail b, micro_exective_root e WHERE b.contract_code= l.contra_code AND b.city_code = c.city_code AND b.root_id = e.exe_id AND b.society_id = c.idcenter_details AND e.branch_code = b.city_code and b.team_id != '' ";
                 if (cmbCityCode.SelectedIndex != 0 || cmbRoot.SelectedIndex != 0 || cmbCenter.SelectedIndex != 0 || txtDateFrom.Text.Trim() != "" || cmbCenterDay.SelectedIndex != 0)
                 {
                     if (cmbCityCode.SelectedIndex != 0 && cmbCityCode.SelectedIndex > 0)
@@ -103,14 +106,14 @@ namespace MuslimAID.MURABHA
                     loadDataToRepeater(hstrSelectQuery.Value);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
 
         protected void loadDataToRepeater(string strQRY)
         {
-            //COUNT ALL RECORDS 
+            //COUNT ALL RECORDS
             DataSet dsAllData = cls_Connection.getDataSet(strQRY);
             MySqlCommand cmd = new MySqlCommand(strQRY, cls_Connection.DBConnect());
             cmd.CommandType = CommandType.Text;
@@ -119,32 +122,59 @@ namespace MuslimAID.MURABHA
             DataTable dt = new DataTable();
 
             DataColumn pCenter = new DataColumn("Center", Type.GetType("System.String"));
+            DataColumn pteam_id = new DataColumn("team_id", Type.GetType("System.String"));
             DataColumn pnic = new DataColumn("nic", Type.GetType("System.String"));
             DataColumn pcontra_code = new DataColumn("contra_code", Type.GetType("System.String"));
             DataColumn pfull_name = new DataColumn("full_name", Type.GetType("System.String"));
-            DataColumn pp_address = new DataColumn("p_address", Type.GetType("System.String"));
             DataColumn pmobile_no = new DataColumn("mobile_no", Type.GetType("System.String"));
+            DataColumn ppromisers_id = new DataColumn("promisers_id", Type.GetType("System.String"));
+            DataColumn ppromisers1_contra_code = new DataColumn("promisers1_contra_code", Type.GetType("System.String"));
+            DataColumn promisers1_full_name = new DataColumn("promisers1_full_name", Type.GetType("System.String"));
+            DataColumn pmobile_no1 = new DataColumn("mobile_no1", Type.GetType("System.String"));
+            DataColumn ppromiser_id_2 = new DataColumn("promiser_id_2", Type.GetType("System.String"));
+            DataColumn ppromisers2_contra_code = new DataColumn("promisers2_contra_code", Type.GetType("System.String"));
+            DataColumn ppromisers2_full_name = new DataColumn("promisers2_full_name", Type.GetType("System.String"));
+            DataColumn pmobile_no2 = new DataColumn("mobile_no2", Type.GetType("System.String"));
+
             dt.Columns.Add(pCenter);
+            dt.Columns.Add(pteam_id);
             dt.Columns.Add(pcontra_code);
             dt.Columns.Add(pnic);
             dt.Columns.Add(pfull_name);
-            dt.Columns.Add(pp_address);
             dt.Columns.Add(pmobile_no);
+            dt.Columns.Add(ppromisers_id);
+            dt.Columns.Add(ppromisers1_contra_code);
+            dt.Columns.Add(promisers1_full_name);
+            dt.Columns.Add(pmobile_no1);
+            dt.Columns.Add(ppromiser_id_2);
+            dt.Columns.Add(ppromisers2_contra_code);
+            dt.Columns.Add(ppromisers2_full_name);
+            dt.Columns.Add(pmobile_no2);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
                     DataRow dr = dt.NewRow();
-                    dr["Center"] = ds.Tables[0].Rows[i]["center_name"].ToString();
+                    dr["Center"] = ds.Tables[0].Rows[i]["Center"].ToString();
+                    dr["team_id"] = ds.Tables[0].Rows[i]["team_id"].ToString();
                     dr["nic"] = ds.Tables[0].Rows[i]["nic"].ToString();
-                    dr["contra_code"] = ds.Tables[0].Rows[i]["contract_code"].ToString();
+                    dr["contra_code"] = ds.Tables[0].Rows[i]["contra_code"].ToString();
                     dr["full_name"] = ds.Tables[0].Rows[i]["full_name"].ToString();
-                    dr["p_address"] = ds.Tables[0].Rows[i]["p_address"].ToString();
-                    dr["mobile_no"] = (ds.Tables[0].Rows[i]["mobile_no"].ToString() !="") ? ds.Tables[0].Rows[i]["land_no"].ToString() + "/" + ds.Tables[0].Rows[i]["mobile_no"].ToString() : ds.Tables[0].Rows[i]["land_no"].ToString();
+                    dr["mobile_no"] = ds.Tables[0].Rows[i]["mobile_no"].ToString();
+                    dr["promisers_id"] = ds.Tables[0].Rows[i]["promisers_id"].ToString();
+                    Promisers(ds.Tables[0].Rows[i]["promisers_id"].ToString());
+                    dr["promisers1_contra_code"] = Promisers1ContractCode;
+                    dr["promisers1_full_name"] = Promisers1Name;
+                    dr["mobile_no1"] = mobile_no;
+                    Promisers(ds.Tables[0].Rows[i]["promiser_id_2"].ToString());
+                    dr["promiser_id_2"] = ds.Tables[0].Rows[i]["promiser_id_2"].ToString();
+                    dr["promisers2_contra_code"] = Promisers1ContractCode;
+                    dr["promisers2_full_name"] = Promisers1Name;
+                    dr["mobile_no2"] = mobile_no;
                     dt.Rows.Add(dr);
                 }
-
+                
                 grvCliDeta.DataSource = dt;
                 grvCliDeta.DataBind();
             }
@@ -154,68 +184,25 @@ namespace MuslimAID.MURABHA
             }
         }
 
-        //Export Excel----------------------------------
-        protected void exportExcel()
+        private void Promisers(string ca_code)
         {
             try
             {
-                Response.Clear();
-                Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment;filename=Client_Basic_Details_Report.xls");
-                Response.Charset = "";
-                Response.ContentType = "application/vnd.ms-excel";
-                using (StringWriter sw = new StringWriter())
+                string strQRY = "select contract_code, full_name,mobile_no from micro_basic_detail where ca_code = '" + ca_code + "'";
+                MySqlCommand cmd = new MySqlCommand(strQRY, cls_Connection.DBConnect());
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandTimeout = 0;
+                DataSet ds = objDBTask.selectData(cmd);
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    HtmlTextWriter hw = new HtmlTextWriter(sw);
-
-                    //To Export all pages
-
-                    grvCliDeta.HeaderRow.BackColor = Color.White;
-                    foreach (TableCell cell in grvCliDeta.HeaderRow.Cells)
-                    {
-                        cell.BackColor = grvCliDeta.HeaderStyle.BackColor;
-                    }
-                    foreach (GridViewRow row in grvCliDeta.Rows)
-                    {
-                        row.BackColor = Color.White;
-                        foreach (TableCell cell in row.Cells)
-                        {
-                            if (row.RowIndex % 2 == 0)
-                            {
-                                cell.BackColor = grvCliDeta.AlternatingRowStyle.BackColor;
-                            }
-                            else
-                            {
-                                cell.BackColor = grvCliDeta.RowStyle.BackColor;
-                            }
-                            cell.CssClass = "textmode";
-                        }
-                    }
-
-                    grvCliDeta.RenderControl(hw);
-
-                    //style to format numbers to string
-                    string style = @"<style> .textmode { mso-number-format:\@; } </style>";
-                    Response.Write(style);
-                    Response.Output.Write(sw.ToString());
-                    Response.Flush();
-                    Response.End();
+                    Promisers1ContractCode = ds.Tables[0].Rows[0]["contract_code"].ToString();
+                    Promisers1Name = ds.Tables[0].Rows[0]["full_name"].ToString();
+                    mobile_no = ds.Tables[0].Rows[0]["mobile_no"].ToString();
                 }
             }
             catch (Exception)
             {
             }
-        }
-
-        protected void View_Click(object sender, EventArgs e)
-        {
-            exportExcel();
-        }
-
-        public override void VerifyRenderingInServerForm(Control control)
-        {
-            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
-               server control at run time. */
         }
 
         protected void cmbCityCode_SelectedIndexChanged(object sender, EventArgs e)
@@ -289,45 +276,6 @@ namespace MuslimAID.MURABHA
                 lblMsg.Text = "Please select branch";
                 btnSerch.Enabled = false;
             }
-
-            
-
-            #region comment
-            //try
-            //{
-            //    if (cmbRoot.Items.Count > 0)
-            //    {
-            //        cmbRoot.Items.Clear();
-            //    }
-
-            //    if (cmbCenter.Items.Count > 0)
-            //    {
-            //        cmbCenter.Items.Clear();
-            //    }
-            //    DataSet dsCro;
-            //    MySqlCommand cmdCro = new MySqlCommand("SELECT exe_id, exe_name FROM micro_exective_root WHERE branch_code = '" + cmbCityCode.SelectedValue.ToString() + "';");
-            //    dsCro = objDBTask.selectData(cmdCro);
-            //    cmbRoot.Items.Add("Select CRO");
-            //    for (int i = 0; i < dsCro.Tables[0].Rows.Count; i++)
-            //    {
-            //        cmbRoot.Items.Add(dsCro.Tables[0].Rows[i][1].ToString());
-            //        cmbRoot.Items[i + 1].Value = dsCro.Tables[0].Rows[i][0].ToString();
-            //    }
-
-            //    DataSet dsCenter;
-            //    MySqlCommand cmdCenter = new MySqlCommand("SELECT idcenter_details,concat(center_name, '-',villages) FROM center_details WHERE city_code = '" + cmbCityCode.SelectedValue.ToString() + "'");
-            //    dsCenter = objDBTask.selectData(cmdCenter);
-            //    cmbCenter.Items.Add("Select Center");
-            //    for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
-            //    {
-            //        cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i][1].ToString());
-            //        cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i][0].ToString();
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //}
-            #endregion
         }
 
         protected void cmbArea_SelectedIndexChanged(object sender, EventArgs e)
@@ -426,5 +374,68 @@ namespace MuslimAID.MURABHA
             }
         }
 
+        protected void View_Click(object sender, EventArgs e)
+        {
+            exportExcel();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
+
+        //Export Excel----------------------------------
+        protected void exportExcel()
+        {
+            try
+            {
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=Guarantor_Details.xls");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                using (StringWriter sw = new StringWriter())
+                {
+                    HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+                    //To Export all pages
+
+                    grvCliDeta.HeaderRow.BackColor = Color.White;
+                    foreach (TableCell cell in grvCliDeta.HeaderRow.Cells)
+                    {
+                        cell.BackColor = grvCliDeta.HeaderStyle.BackColor;
+                    }
+                    foreach (GridViewRow row in grvCliDeta.Rows)
+                    {
+                        row.BackColor = Color.White;
+                        foreach (TableCell cell in row.Cells)
+                        {
+                            if (row.RowIndex % 2 == 0)
+                            {
+                                cell.BackColor = grvCliDeta.AlternatingRowStyle.BackColor;
+                            }
+                            else
+                            {
+                                cell.BackColor = grvCliDeta.RowStyle.BackColor;
+                            }
+                            cell.CssClass = "textmode";
+                        }
+                    }
+
+                    grvCliDeta.RenderControl(hw);
+
+                    //style to format numbers to string
+                    string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                    Response.Write(style);
+                    Response.Output.Write(sw.ToString());
+                    Response.Flush();
+                    Response.End();
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
     }
 }

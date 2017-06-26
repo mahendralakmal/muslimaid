@@ -23,15 +23,6 @@ namespace MuslimAID.MURABAHA
         {
             try
             {
-                cmbTmePeriod.Items.Clear();
-                cmbTmePeriod.Items.Add("Select Period");
-                cmbTmePeriod.Items[0].Value = 0.ToString();
-                for (int i = 0; i < 24; i++)
-                {
-                    cmbTmePeriod.Items.Add(i + 1 + " Month");
-                    cmbTmePeriod.Items[i + 1].Value = (i + 1).ToString();
-                }
-
                 if (!IsPostBack)
                 {
                     if (Session["LoggedIn"].ToString() == "True")
@@ -45,6 +36,16 @@ namespace MuslimAID.MURABAHA
                             {
                                 txtCC.Text = strCC;
                                 txtCC.Enabled = false;
+
+
+                                cmbTmePeriod.Items.Clear();
+                                cmbTmePeriod.Items.Add("Select Period");
+                                cmbTmePeriod.Items[0].Value = 0.ToString();
+                                for (int i = 0; i < 24; i++)
+                                {
+                                    cmbTmePeriod.Items.Add(i + 1 + " Month");
+                                    cmbTmePeriod.Items[i + 1].Value = (i + 1).ToString();
+                                }
 
                                 
                                 //Assign Net profit from Business detals form to Net Income from Business 
@@ -143,7 +144,7 @@ namespace MuslimAID.MURABAHA
                     cmdInsert.Parameters["@net_annual_family_in"].Value = (txtNetAnualFIn.Text.Trim() != "") ? Convert.ToDecimal(txtNetAnualFIn.Text.Trim()) : 00;
                     cmdInsert.Parameters["@amount_opex"].Value = (txtAmountOPEx.Text.Trim() != "") ? Convert.ToDecimal(txtAmountOPEx.Text.Trim()) : 00;
                     cmdInsert.Parameters["@amount_fex"].Value = (txtAmountFEx.Text.Trim() != "") ? Convert.ToDecimal(txtAmountFEx.Text.Trim()) : 00;
-                    cmdInsert.Parameters["@fr_period"].Value = (cmbTmePeriod.SelectedValue != "") ? Convert.ToDecimal(cmbTmePeriod.SelectedValue.ToString()) : 00;
+                    cmdInsert.Parameters["@fr_period"].Value = (Int32.Parse(cmbTmePeriod.SelectedValue.ToString()) > 0) ? Convert.ToDecimal(cmbTmePeriod.SelectedValue.ToString()) : 00;
                     cmdInsert.Parameters["@mad"].Value = (txtMAD.Text.Trim() != "") ? Convert.ToDecimal(txtMAD.Text.Trim()) : 00;
                     cmdInsert.Parameters["@mdaaip"].Value = (txtMDAAIP.Text.Trim() != "") ? Convert.ToDecimal(txtMDAAIP.Text.Trim()) : 00;
                     cmdInsert.Parameters["@rapsa"].Value = (txtRAPSA.Text.Trim() != "") ? Convert.ToDecimal(txtRAPSA.Text.Trim()) : 00;
