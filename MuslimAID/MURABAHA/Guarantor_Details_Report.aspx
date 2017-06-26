@@ -168,7 +168,7 @@
                             <asp:BoundField DataField="full_name" ItemStyle-VerticalAlign="Top" HeaderText="Name"
                                 HeaderStyle-Width="120px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
-                            <asp:BoundField DataField="mobile_no" ItemStyle-VerticalAlign="Top" HeaderText="Mobile No"
+                            <asp:BoundField DataField="mobile_no" ItemStyle-VerticalAlign="Top" HeaderText="Contact No"
                                 HeaderStyle-Width="120px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="promisers_id" ItemStyle-VerticalAlign="Top" HeaderText="Promiser 1"
@@ -181,7 +181,7 @@
                             <asp:BoundField DataField="promisers1_full_name" ItemStyle-VerticalAlign="Top" HeaderText="Promiser Name"
                                 HeaderStyle-Width="180px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
-                            <asp:BoundField DataField="mobile_no1" ItemStyle-VerticalAlign="Top" HeaderText="Mobile No"
+                            <asp:BoundField DataField="mobile_no1" ItemStyle-VerticalAlign="Top" HeaderText="Contact No"
                                 HeaderStyle-Width="180px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="promiser_id_2" ItemStyle-VerticalAlign="Top" HeaderText="Promiser 2"
@@ -194,7 +194,7 @@
                             <asp:BoundField DataField="promisers2_full_name" ItemStyle-VerticalAlign="Top" HeaderText="Promiser Name"
                                 HeaderStyle-Width="180px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
-                            <asp:BoundField DataField="mobile_no2" ItemStyle-VerticalAlign="Top" HeaderText="Mobile No"
+                            <asp:BoundField DataField="mobile_no2" ItemStyle-VerticalAlign="Top" HeaderText="Contact No"
                                 HeaderStyle-Width="180px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                         </Columns>

@@ -65,7 +65,7 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
-                hstrSelectQuery.Value = "SELECT c.center_name AS Center,b.team_id,b.ca_code nic, l.contra_code ,b.initial_name full_name,b.mobile_no, b.promisers_id, '' promisers1_contra_code,'' promisers1_full_name, '' mobile_no1, b.promiser_id_2, '' promisers2_contra_code,'' promisers2_full_name, '' mobile_no2 FROM center_details c, micro_loan_details l, micro_basic_detail b, micro_exective_root e WHERE b.contract_code= l.contra_code AND b.city_code = c.city_code AND b.root_id = e.exe_id AND b.society_id = c.idcenter_details AND e.branch_code = b.city_code and b.team_id != '' ";
+                hstrSelectQuery.Value = "SELECT c.center_name AS Center,b.team_id,b.ca_code nic, l.contra_code ,b.full_name,b.land_no, b.promisers_id, '' promisers1_contra_code,'' promisers1_full_name, '' land_no1, b.promiser_id_2, '' promisers2_contra_code,'' promisers2_full_name, '' land_no2 FROM center_details c, micro_loan_details l, micro_basic_detail b, micro_exective_root e WHERE b.contract_code= l.contra_code AND b.city_code = c.city_code AND b.root_id = e.exe_id AND b.society_id = c.idcenter_details AND e.branch_code = b.city_code and b.team_id != '' ";
                 if (cmbCityCode.SelectedIndex != 0 || cmbRoot.SelectedIndex != 0 || cmbCenter.SelectedIndex != 0 || txtDateFrom.Text.Trim() != "" || cmbCenterDay.SelectedIndex != 0)
                 {
                     if (cmbCityCode.SelectedIndex != 0 && cmbCityCode.SelectedIndex > 0)
@@ -106,8 +106,9 @@ namespace MuslimAID.MURABHA
                     loadDataToRepeater(hstrSelectQuery.Value);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                cls_ErrorLog.createSErrorLog(e.Message, e.Source, "Guaranter details");
             }
         }
 
@@ -161,7 +162,7 @@ namespace MuslimAID.MURABHA
                     dr["nic"] = ds.Tables[0].Rows[i]["nic"].ToString();
                     dr["contra_code"] = ds.Tables[0].Rows[i]["contra_code"].ToString();
                     dr["full_name"] = ds.Tables[0].Rows[i]["full_name"].ToString();
-                    dr["mobile_no"] = ds.Tables[0].Rows[i]["mobile_no"].ToString();
+                    dr["mobile_no"] = ds.Tables[0].Rows[i]["land_no"].ToString();
                     dr["promisers_id"] = ds.Tables[0].Rows[i]["promisers_id"].ToString();
                     Promisers(ds.Tables[0].Rows[i]["promisers_id"].ToString());
                     dr["promisers1_contra_code"] = Promisers1ContractCode;
@@ -188,7 +189,7 @@ namespace MuslimAID.MURABHA
         {
             try
             {
-                string strQRY = "select contract_code, full_name,mobile_no from micro_basic_detail where ca_code = '" + ca_code + "'";
+                string strQRY = "select contract_code, full_name,land_no from micro_basic_detail where ca_code = '" + ca_code + "'";
                 MySqlCommand cmd = new MySqlCommand(strQRY, cls_Connection.DBConnect());
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandTimeout = 0;
@@ -197,7 +198,7 @@ namespace MuslimAID.MURABHA
                 {
                     Promisers1ContractCode = ds.Tables[0].Rows[0]["contract_code"].ToString();
                     Promisers1Name = ds.Tables[0].Rows[0]["full_name"].ToString();
-                    mobile_no = ds.Tables[0].Rows[0]["mobile_no"].ToString();
+                    mobile_no = ds.Tables[0].Rows[0]["land_no"].ToString();
                 }
             }
             catch (Exception)

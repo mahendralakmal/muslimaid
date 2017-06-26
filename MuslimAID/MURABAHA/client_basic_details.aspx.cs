@@ -476,47 +476,47 @@ namespace MuslimAID.MURABHA
                 lblMsg.Text = "";
                 if (txtNIC.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter NIC No.";
+                    lblMsg.Text = "Please enter NIC No."; return;
                 }
                 else if (txtNicIssuDay.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter the NIC issued date.";
+                    lblMsg.Text = "Please enter the NIC issued date."; return;
                 }
                 else if (cmbBranch.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select city code.";
+                    lblMsg.Text = "Please select city code."; return;
                 }
                 else if (cmbArea.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select village name.";
+                    lblMsg.Text = "Please select village name."; return;
                 }
                 else if (cmbVillage.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select society Name.";
+                    lblMsg.Text = "Please select society Name."; return;
                 }
                 else if (txtSoNumber.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter Society Number.";
+                    lblMsg.Text = "Please enter Society Number."; return;
                 }
                 else if (txtGSWard.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter GS Ward.";
+                    lblMsg.Text = "Please enter GS Ward."; return;
                 }
                 else if (txtFullName.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter Full Name.";
+                    lblMsg.Text = "Please enter Full Name."; return;
                 }
                 else if (txtAddress.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter Address.";
+                    lblMsg.Text = "Please enter Address."; return;
                 }
                 else if (txtInsDate.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter inspection date.";
+                    lblMsg.Text = "Please enter inspection date."; return;
                 }
                 else if (cmbOccupation.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please enter Occupation / Income Source.";
+                    lblMsg.Text = "Please enter Occupation / Income Source."; return;
                 }
                 else
                 {
@@ -980,24 +980,24 @@ namespace MuslimAID.MURABHA
                 StringBuilder strRelat = new StringBuilder();
                 string strQry2 = "INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ";
                 if (txtName1.Text.Trim() != "")
-                    strRelat.Append("('" + strCCode + "','" + txtName1.Text.Trim() + "','" + cmbRelation1.SelectedItem.Text + "','" + txtNIC1.Text.Trim() + "','" + txtDOB1.Text.Trim() + "','" + txtOcc1.Text.Trim() + "','" + txtInCome1.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("('" + strCCode + "','" + txtName1.Text.Trim() + "','" + cmbRelation1.SelectedItem.Text + "','" + txtNIC1.Text.Trim() + "','" + DateTime.Parse(txtDOB1.Text.Trim()) + "','" + txtOcc1.Text.Trim() + "','" + txtInCome1.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
 
                 if (txtName2.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName2.Text.Trim() + "','" + cmbRelation2.SelectedItem.Text + "','" + txtNIC2.Text.Trim() + "','" + txtDOB2.Text.Trim() + "','" + txtOcc2.Text.Trim() + "','" + txtInCome2.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName2.Text.Trim() + "','" + cmbRelation2.SelectedItem.Text + "','" + txtNIC2.Text.Trim() + "','" + DateTime.Parse(txtDOB2.Text.Trim()) + "','" + txtOcc2.Text.Trim() + "','" + txtInCome2.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName3.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName3.Text.Trim() + "','" + cmbRelation3.SelectedItem.Text + "','" + txtNIC3.Text.Trim() + "','" + txtDOB3.Text.Trim() + "','" + txtOcc3.Text.Trim() + "','" + txtInCome3.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName3.Text.Trim() + "','" + cmbRelation3.SelectedItem.Text + "','" + txtNIC3.Text.Trim() + "','" + DateTime.Parse(txtDOB3.Text.Trim()) + "','" + txtOcc3.Text.Trim() + "','" + txtInCome3.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName4.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName4.Text.Trim() + "','" + cmbRelation4.SelectedItem.Text + "','" + txtNIC4.Text.Trim() + "','" + txtDOB4.Text.Trim() + "','" + txtOcc4.Text.Trim() + "','" + txtInCome4.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName4.Text.Trim() + "','" + cmbRelation4.SelectedItem.Text + "','" + txtNIC4.Text.Trim() + "','" + DateTime.Parse(txtDOB4.Text.Trim()) + "','" + txtOcc4.Text.Trim() + "','" + txtInCome4.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName5.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName5.Text.Trim() + "','" + cmbRelation5.SelectedItem.Text + "','" + txtNIC5.Text.Trim() + "','" + txtDOB5.Text.Trim() + "','" + txtOcc5.Text.Trim() + "','" + txtInCome5.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName5.Text.Trim() + "','" + cmbRelation5.SelectedItem.Text + "','" + txtNIC5.Text.Trim() + "','" + DateTime.Parse(txtDOB5.Text.Trim()) + "','" + txtOcc5.Text.Trim() + "','" + txtInCome5.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName6.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName6.Text.Trim() + "','" + cmbRelation6.SelectedItem.Text + "','" + txtNIC6.Text.Trim() + "','" + txtDOB6.Text.Trim() + "','" + txtOcc6.Text.Trim() + "','" + txtInCome6.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName6.Text.Trim() + "','" + cmbRelation6.SelectedItem.Text + "','" + txtNIC6.Text.Trim() + "','" + DateTime.Parse(txtDOB6.Text.Trim()) + "','" + txtOcc6.Text.Trim() + "','" + txtInCome6.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName7.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName7.Text.Trim() + "','" + cmbRelation7.SelectedItem.Text + "','" + txtNIC7.Text.Trim() + "','" + txtDOB7.Text.Trim() + "','" + txtOcc7.Text.Trim() + "','" + txtInCome7.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName7.Text.Trim() + "','" + cmbRelation7.SelectedItem.Text + "','" + txtNIC7.Text.Trim() + "','" + DateTime.Parse(txtDOB7.Text.Trim()) + "','" + txtOcc7.Text.Trim() + "','" + txtInCome7.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName8.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName8.Text.Trim() + "','" + cmbRelation8.SelectedItem.Text + "','" + txtNIC8.Text.Trim() + "','" + txtDOB8.Text.Trim() + "','" + txtOcc8.Text.Trim() + "','" + txtInCome8.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName8.Text.Trim() + "','" + cmbRelation8.SelectedItem.Text + "','" + txtNIC8.Text.Trim() + "','" + DateTime.Parse(txtDOB8.Text.Trim()) + "','" + txtOcc8.Text.Trim() + "','" + txtInCome8.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName9.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName9.Text.Trim() + "','" + cmbRelation9.SelectedItem.Text + "','" + txtNIC9.Text.Trim() + "','" + txtDOB9.Text.Trim() + "','" + txtOcc9.Text.Trim() + "','" + txtInCome9.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName9.Text.Trim() + "','" + cmbRelation9.SelectedItem.Text + "','" + txtNIC9.Text.Trim() + "','" + DateTime.Parse(txtDOB9.Text.Trim()) + "','" + txtOcc9.Text.Trim() + "','" + txtInCome9.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
 
 
                 string strQry3 = "')";
@@ -1025,59 +1025,55 @@ namespace MuslimAID.MURABHA
             try
             {
                 lblMsg.Text = "";
+                #region validation
                 if (txtNIC.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter NIC No.";
+                    lblMsg.Text = "Please enter NIC No."; return;
+                }
+                else if (txtNicIssuDay.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please enter the NIC issued date."; return;
                 }
                 else if (cmbBranch.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select city code.";
+                    lblMsg.Text = "Please select city code."; return;
                 }
                 else if (cmbArea.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select village name.";
+                    lblMsg.Text = "Please select village name."; return;
+                }
+                else if (cmbVillage.SelectedIndex == 0)
+                {
+                    lblMsg.Text = "Please select society Name."; return;
                 }
                 else if (txtSoNumber.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter Society Number.";
+                    lblMsg.Text = "Please enter Society Number."; return;
                 }
-                //else if (txtGroupID.Text.Trim() == "")
-                //{
-                //    lblMsg.Text = "Please enter Group ID";
-                //}
                 else if (txtGSWard.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter GS Ward.";
+                    lblMsg.Text = "Please enter GS Ward."; return;
                 }
                 else if (txtFullName.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter Full Name.";
+                    lblMsg.Text = "Please enter Full Name."; return;
                 }
-                //else if (txtInwName.Text.Trim() == "")
-                //{
-                //    lblMsg.Text = "Please enter Initial Name.";
-                //}
-                //else if (txtTNo.Text.Trim() == "")
-                //{
-                //    lblMsg.Text = "Please enter Phone Number.";
-                //}
-                //else if (txtMobileNo.Text.Trim() == "")
-                //{
-                //    lblMsg.Text = "Please enter Mobile Number.";
-                //}
                 else if (txtAddress.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter Address.";
+                    lblMsg.Text = "Please enter Address."; return;
                 }
+                else if (txtInsDate.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please enter inspection date."; return;
+                }
+                else if (cmbOccupation.SelectedIndex == 0)
+                {
+                    lblMsg.Text = "Please enter Occupation / Income Source."; return;
+                }
+                #endregion
                 else
                 {
                     string strloginID = Session["NIC"].ToString();
-
-                    //Create Facility Code
-                    //ccsetup();
-
-                    //Create Capital Applicant Code
-                    //CACodeNew();
 
                     #region Get Values
                     string strIp = Request.UserHostAddress;
@@ -1091,18 +1087,11 @@ namespace MuslimAID.MURABHA
                     strVillage = cmbArea.SelectedItem.Value;
                     strSoName = cmbVillage.SelectedItem.Value;
                     strSoNumber = txtSoNumber.Text.Trim();
-                    //strProvince = cmbProvince.SelectedItem.Value;
                     strGSWard = txtGSWard.Text.Trim();
                     strFullName = txtFullName.Text.Trim();
-                    //strGName = txtGivenName.Text.Trim();
-                    //strIniName = txtInwName.Text.Trim();
-                    //strOName = txtOtherName.Text.Trim();
                     strMaStatus = cmbMS.SelectedItem.Value;
                     strRootID = hidRoot.Value.Trim().ToString();
-                    //strRootID = cmbRoot.SelectedItem.Value;                    
-                    //strEducation = cmbEducation.SelectedItem.Value;
                     strTNumber = txtTele.Text.Trim();
-                    //strMobNo = txtMobileNo.Text.Trim();
                     strAddress = txtAddress.Text.Trim();
                     strInspDate = txtInsDate.Text.Trim();
                     strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -1117,15 +1106,76 @@ namespace MuslimAID.MURABHA
                     strOccupation = cmbOccupation.SelectedValue.ToString();
                     #endregion
 
-                    //MySqlCommand cmdInsert = new MySqlCommand("UPDATE micro_basic_detail SET nic = '" + strNIC + "',city_code = '" + strCityCode + "',society_id = '" + strSoNumber + "',province = '" + strProvince + "',gs_ward = '" + strGSWard + "',full_name = '" + strFullName + "',initial_name = '" + strIniName + "',other_name='" + strOName + "',marital_status='" + strMaStatus + "',education='" + strEducation + "',land_no='" + strTNumber + "',mobile_no='" + strMobNo + "',p_address='" + strAddress + "',client_id='" + strClientID + "',inspection_date='" + strInspDate + "',village='" + strVillage + "',root_id='" + strRootID + "',nic_issue_date='"+strNICIssuedDate+"',dob='"+strDOB+"',gender='"+strGender+"',r_address='"+strRAddress+"',income_source='"+strOccupation+"' WHERE idmicro_basic_detail = '" + hf3.Value + "';");
-
                     MySqlCommand cmdInsert = new MySqlCommand("UPDATE micro_basic_detail SET nic = '" + strNIC + "',city_code = '" + strCityCode + "',society_id = '" + strSoNumber + "',gs_ward = '" + strGSWard + "',full_name = '" + strFullName + "',marital_status='" + strMaStatus + "',land_no='" + strTNumber + "',p_address='" + strAddress + "',client_id='" + strClientID + "',inspection_date='" + strInspDate + "',village='" + strVillage + "',root_id='" + strRootID + "',nic_issue_date='" + strNICIssuedDate + "',dob='" + strDOB + "',gender='" + strGender + "',r_address='" + strRAddress + "',income_source='" + strOccupation + "' WHERE idmicro_basic_detail = '" + hf3.Value + "';");
+                    string strFDGender = (rdoSoMale.Checked)?"0":"1";
+                    MySqlCommand cmdFD = new MySqlCommand("UPDATE micro_family_details SET spouse_nic='" + txtSoNIC.Text.Trim() + "',spouse_nic_issued_date='" + txtSoNicIssuedDate.Text.Trim() + "',spouse_name='" + txtSoName.Text.Trim() + "',occupation='" + cmbOccupa.SelectedValue.ToString() + "',spouse_dob='" + txtSoDOB.Text.Trim() + "',spouse_gender='" + strFDGender + "',spouse_contact_no='" + txtSoContactNo.Text.Trim() + "',spouse_relationship_with_applicant='" + cmbRelation.SelectedValue.ToString() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'");
+
+                    MySqlCommand cmdBD = new MySqlCommand("UPDATE micro_business_details SET business_name='" + txtBusiness.Text.Trim() + "',busi_duration='" + cmbPeriod.SelectedValue.ToString() + "',busi_address='" + txtBisAddress.Text.Trim() + "',busi_nature='" + cmbBNature.SelectedValue.ToString() + "',key_person='" + cmbKeyPerson.SelectedValue.ToString() + "',no_of_ppl='" + txtNoOfPpl.Text.Trim() + "',br_no='"+txtBRNo.Text.Trim()+"',contact_no_ofc='"+txtBContact.Text.Trim()+"' WHERE contract_code='" + txtCC.Text.Trim() + "'");
+
+                    string strUSLoans = (rdoYes.Checked)?"1":"0";
+                    MySqlCommand cmdFR = new MySqlCommand("UPDATE micro_loan_details SET loan_amount='" + txtLDLAmount.Text.Trim() + "', period='" + cmbTmePeriod.SelectedValue.ToString() + "', reason_to_apply='" + txtResonToApply.Text.Trim() + "', any_unsettled_loans='" + strUSLoans + "' WHERE contra_code='" + txtCC.Text.Trim() + "'");
+
+                    #region OTHER FACILITY
+                    MySqlCommand cmdOF1, cmdOF2, cmdOF3;
+                    if (txtNameOrg1.Text.Trim() != "")
+                    {
+                        cmdOF1 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg1.Text.Trim() + "',purpos='" + txtPurpos1.Text.Trim() + "',facility_amount='" + txtFAmount1.Text.Trim() + "',outstanding='" + txtOutstandBal1.Text.Trim() + "',monthly_installment='" + txtMonthInstal1.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal1.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF1);
+                    }
+                    else if (txtNameOrg2.Text.Trim() != "")
+                    {
+                        cmdOF2 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg2.Text.Trim() + "',purpos='" + txtPurpos2.Text.Trim() + "',facility_amount='" + txtFAmount2.Text.Trim() + "',outstanding='" + txtOutstandBal2.Text.Trim() + "',monthly_installment='" + txtMonthInstal2.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal2.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF2);
+                    }
+                    else if (txtNameOrg3.Text.Trim() != "")
+                    {
+                        cmdOF3 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg3.Text.Trim() + "',purpos='" + txtPurpos3.Text.Trim() + "',facility_amount='" + txtFAmount3.Text.Trim() + "',outstanding='" + txtOutstandBal3.Text.Trim() + "',monthly_installment='" + txtMonthInstal3.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal3.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF3);
+                    }
+                    #endregion
+                    #region OTHER FAMILY DETSILS
+                    MySqlCommand cmdFRD1, cmdFRD2, cmdFRD3, cmdFRD4, cmdFRD5, cmdFRD6, cmdFRD7, cmdFRD8, cmdFRD9;
+                    if (txtName1.Text.Trim() != "")
+                    {
+                        cmdFRD1 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName1.Text.Trim() + "', relationship='" + cmbRelation1.SelectedItem.Text + "', nic='" + txtNIC1.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB1.Text.Trim()) + "', occupation='" + txtOcc1.Text.Trim() + "', income='" + txtInCome1.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD1);
+                    }
+                    else if (txtName2.Text.Trim() != "")
+                    {
+                        cmdFRD2 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName2.Text.Trim() + "', relationship='" + cmbRelation2.SelectedItem.Text + "', nic='" + txtNIC2.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB2.Text.Trim()) + "', occupation='" + txtOcc2.Text.Trim() + "', income='" + txtInCome2.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD2);
+                    }
+                    else if (txtName3.Text.Trim() != "")
+                    {
+                        cmdFRD3 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName3.Text.Trim() + "', relationship='" + cmbRelation3.SelectedItem.Text + "', nic='" + txtNIC3.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB3.Text.Trim()) + "', occupation='" + txtOcc3.Text.Trim() + "', income='" + txtInCome3.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD3);
+                    }
+                    else if (txtName4.Text.Trim() != "")
+                    {
+                        cmdFRD4 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName4.Text.Trim() + "', relationship='" + cmbRelation4.SelectedItem.Text + "', nic='" + txtNIC4.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB4.Text.Trim()) + "', occupation='" + txtOcc4.Text.Trim() + "', income='" + txtInCome4.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD4);
+                    }
+                    else if (txtName5.Text.Trim() != "")
+                    {
+                        cmdFRD5 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName5.Text.Trim() + "', relationship='" + cmbRelation5.SelectedItem.Text + "', nic='" + txtNIC5.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB5.Text.Trim()) + "', occupation='" + txtOcc5.Text.Trim() + "', income='" + txtInCome5.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD5);
+                    }
+                    else if (txtName6.Text.Trim() != "")
+                    {
+                        cmdFRD6 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName6.Text.Trim() + "', relationship='" + cmbRelation6.SelectedItem.Text + "', nic='" + txtNIC6.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB6.Text.Trim()) + "', occupation='" + txtOcc6.Text.Trim() + "', income='" + txtInCome6.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD6);
+                    }
+                    else if (txtName7.Text.Trim() != "")
+                    {
+                        cmdFRD7 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName7.Text.Trim() + "', relationship='" + cmbRelation7.SelectedItem.Text + "', nic='" + txtNIC7.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB7.Text.Trim()) + "', occupation='" + txtOcc7.Text.Trim() + "', income='" + txtInCome7.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD7);
+                    }
+                    else if (txtName8.Text.Trim() != "")
+                    {
+                        cmdFRD8 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName8.Text.Trim() + "', relationship='" + cmbRelation8.SelectedItem.Text + "', nic='" + txtNIC8.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB8.Text.Trim()) + "', occupation='" + txtOcc8.Text.Trim() + "', income='" + txtInCome8.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD8);
+                    }
+                    else if (txtName9.Text.Trim() != "")
+                    {
+                        cmdFRD9 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName9.Text.Trim() + "', relationship='" + cmbRelation9.SelectedItem.Text + "', nic='" + txtNIC9.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB9.Text.Trim()) + "', occupation='" + txtOcc9.Text.Trim() + "', income='" + txtInCome9.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD9);
+                    }
+                    #endregion
 
                     try
                     {
-                        int i = objDBCon.insertEditData(cmdInsert);
-                        if (i == 1)
+                        //int i = objDBCon.insertEditData(cmdInsert);
+                        if (objDBCon.insertEditData(cmdInsert) >0 && objDBCon.insertEditData(cmdFD)>0 && objDBCon.insertEditData(cmdBD)>0 && objDBCon.insertEditData(cmdFR)>0)
                         {
+
                             //Response.Redirect("Family_Details.aspx?CC=" + strCC + "&CA=" + strCACode + "");
                             lblMsg.Text = "Update Successfull..";
                         }
@@ -1244,7 +1294,19 @@ namespace MuslimAID.MURABHA
 
                             getSocity();
                             txtSoNumber.Text = dsGetExsiNIC.Tables[0].Rows[0]["society_id"].ToString();
-                            
+
+                            DataSet dsGetRootID = cls_Connection.getDataSet("SELECT * FROM micro_exective_root WHERER branch_code = '" + dsGetExsiNIC.Tables[0].Rows[0]["contract_code"].ToString() + "';");
+                            if (cmbRoot.Items.Count > 0)
+                                cmbRoot.Items.Clear();
+                            cmbRoot.Items.Add("");
+
+                            for (int i = 0; i < dsGetRootID.Tables[0].Rows.Count; i++)
+                            {
+                                cmbRoot.Items.Add("[" + dsGetRootID.Tables[0].Rows[i]["exe_id"] + "] - " + dsGetRootID.Tables[0].Rows[i]["exe_name"].ToString());
+                                cmbRoot.Items[i + 1].Value = dsGetRootID.Tables[0].Rows[i]["exe_id"].ToString();
+                            }
+
+                            cmbRoot.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
                             txtGSWard.Text = dsGetExsiNIC.Tables[0].Rows[0]["gs_ward"].ToString();
                             txtFullName.Text = dsGetExsiNIC.Tables[0].Rows[0]["full_name"].ToString();
                             rdoMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
@@ -1309,6 +1371,20 @@ namespace MuslimAID.MURABHA
                             getSocity();
                             cmbCenter.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["society_id"].ToString();
                             txtSoNumber.Text = dsGetExsiNIC.Tables[0].Rows[0]["society_id"].ToString();
+
+                            DataSet dsGetRootID = cls_Connection.getDataSet("SELECT * FROM micro_exective_root WHERE branch_code = '" + dsGetExsiNIC.Tables[0].Rows[0]["city_code"].ToString() + "';");
+                            if (cmbRoot.Items.Count > 0)
+                                cmbRoot.Items.Clear();
+                            cmbRoot.Items.Add("");
+
+                            for (int i = 0; i < dsGetRootID.Tables[0].Rows.Count; i++)
+                            {
+                                cmbRoot.Items.Add("[" + dsGetRootID.Tables[0].Rows[i]["exe_id"] + "] - " + dsGetRootID.Tables[0].Rows[i]["exe_name"].ToString());
+                                cmbRoot.Items[i + 1].Value = dsGetRootID.Tables[0].Rows[i]["exe_id"].ToString();
+                            }
+
+                            cmbRoot.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
+
                             txtCC.Text = dsGetExsiNIC.Tables[0].Rows[0]["contract_code"].ToString();
                             txtCC.ReadOnly = true;
 
@@ -1424,7 +1500,7 @@ namespace MuslimAID.MURABHA
                             }
                             #endregion
                             #region Other Family Details
-                            DataSet dsOFD = cls_Connection.getDataSet("SELECT * FROM family_relationship_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
+                            DataSet dsOFD = cls_Connection.getDataSet("SELECT * FROM family_relationship_details WHERE contract_code = '" + txtCC.Text.Trim() + "'");
                             if (dsOFD.Tables[0].Rows.Count > 0)
                             {
                                 for (int i = 0; i < dsOFD.Tables[0].Rows.Count; i++)
@@ -1434,7 +1510,7 @@ namespace MuslimAID.MURABHA
                                         txtName1.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation1.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC1.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB1.Text = dsOFD.Tables[0].Rows[i]["dob"].ToString();
+                                        txtDOB1.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
                                         txtOcc1.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome1.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1443,7 +1519,7 @@ namespace MuslimAID.MURABHA
                                         txtName2.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation2.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC2.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB2.Text = dsOFD.Tables[0].Rows[i]["dob"].ToString();
+                                        txtDOB2.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
                                         txtOcc2.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome2.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1452,7 +1528,7 @@ namespace MuslimAID.MURABHA
                                         txtName3.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation3.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC3.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB3.Text = dsOFD.Tables[0].Rows[i]["dob"].ToString();
+                                        txtDOB3.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
                                         txtOcc3.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome3.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1461,7 +1537,7 @@ namespace MuslimAID.MURABHA
                                         txtName4.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation4.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC4.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB4.Text = dsOFD.Tables[0].Rows[i]["dob"].ToString();
+                                        txtDOB4.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
                                         txtOcc4.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome4.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1470,7 +1546,7 @@ namespace MuslimAID.MURABHA
                                         txtName5.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation5.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC5.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB5.Text = dsOFD.Tables[0].Rows[i]["dob"].ToString();
+                                        txtDOB5.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
                                         txtOcc5.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome5.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1479,7 +1555,7 @@ namespace MuslimAID.MURABHA
                                         txtName6.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation6.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC6.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB6.Text = dsOFD.Tables[0].Rows[i]["dob"].ToString();
+                                        txtDOB6.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
                                         txtOcc6.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome6.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1488,7 +1564,7 @@ namespace MuslimAID.MURABHA
                                         txtName7.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation7.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC7.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB7.Text = dsOFD.Tables[0].Rows[i]["dob"].ToString();
+                                        txtDOB7.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
                                         txtOcc7.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome7.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1497,7 +1573,7 @@ namespace MuslimAID.MURABHA
                                         txtName8.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation8.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC8.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB8.Text = dsOFD.Tables[0].Rows[i]["dob"].ToString();
+                                        txtDOB8.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
                                         txtOcc8.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome8.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1506,7 +1582,7 @@ namespace MuslimAID.MURABHA
                                         txtName9.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation9.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC9.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB9.Text = dsOFD.Tables[0].Rows[i]["dob"].ToString();
+                                        txtDOB9.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
                                         txtOcc9.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome9.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
