@@ -1117,56 +1117,191 @@ namespace MuslimAID.MURABHA
 
                     #region OTHER FACILITY
                     MySqlCommand cmdOF1, cmdOF2, cmdOF3;
-                    if (txtNameOrg1.Text.Trim() != "")
+                    DataSet dsFR = cls_Connection.getDataSet("SELECT any_unsettled_loans FROM micro_loan_details WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                    if (dsFR.Tables[0].Rows[0]["any_unsettled_loans"].ToString() == "1")
                     {
-                        cmdOF1 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg1.Text.Trim() + "',purpos='" + txtPurpos1.Text.Trim() + "',facility_amount='" + txtFAmount1.Text.Trim() + "',outstanding='" + txtOutstandBal1.Text.Trim() + "',monthly_installment='" + txtMonthInstal1.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal1.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF1);
-                    }
-                    else if (txtNameOrg2.Text.Trim() != "")
-                    {
-                        cmdOF2 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg2.Text.Trim() + "',purpos='" + txtPurpos2.Text.Trim() + "',facility_amount='" + txtFAmount2.Text.Trim() + "',outstanding='" + txtOutstandBal2.Text.Trim() + "',monthly_installment='" + txtMonthInstal2.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal2.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF2);
-                    }
-                    else if (txtNameOrg3.Text.Trim() != "")
-                    {
-                        cmdOF3 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg3.Text.Trim() + "',purpos='" + txtPurpos3.Text.Trim() + "',facility_amount='" + txtFAmount3.Text.Trim() + "',outstanding='" + txtOutstandBal3.Text.Trim() + "',monthly_installment='" + txtMonthInstal3.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal3.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF3);
+                        DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                        if (dsUnSLons.Tables[0].Rows.Count > 0)
+                        {
+                            int a=0;
+                            for (int i = 0; i < dsUnSLons.Tables[0].Rows.Count; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    if (txtNameOrg1.Text.Trim() != "")
+                                    {
+                                        cmdOF1 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg1.Text.Trim() + "',purpos='" + txtPurpos1.Text.Trim() + "',facility_amount='" + txtFAmount1.Text.Trim() + "',outstanding='" + txtOutstandBal1.Text.Trim() + "',monthly_installment='" + txtMonthInstal1.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal1.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF1);
+                                    }
+                                }
+                                if (i == 1)
+                                {
+                                    if (txtNameOrg2.Text.Trim() != "")
+                                    {
+                                        cmdOF2 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg2.Text.Trim() + "',purpos='" + txtPurpos2.Text.Trim() + "',facility_amount='" + txtFAmount2.Text.Trim() + "',outstanding='" + txtOutstandBal2.Text.Trim() + "',monthly_installment='" + txtMonthInstal2.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal2.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF2);
+                                    }
+                                }
+                                if (i == 2)
+                                {
+                                    if (txtNameOrg3.Text.Trim() != "")
+                                    {
+                                        cmdOF3 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg3.Text.Trim() + "',purpos='" + txtPurpos3.Text.Trim() + "',facility_amount='" + txtFAmount3.Text.Trim() + "',outstanding='" + txtOutstandBal3.Text.Trim() + "',monthly_installment='" + txtMonthInstal3.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal3.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF3);
+                                    }
+                                }
+                                a += 1;
+                            }
+                            if (a == 1)
+                            {
+                                if (txtNameOrg2.Text.Trim() != "") {
+                                    cmdOF2 = new MySqlCommand("INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF2);
+                                }
+                            }
+                            else if (a == 2)
+                            {
+                                if (txtNameOrg3.Text.Trim() != "") {
+                                    cmdOF3 = new MySqlCommand("INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF3);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (txtNameOrg1.Text.Trim() != "") { 
+                                cmdOF1 = new MySqlCommand("INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg1.Text.Trim() + "','" + txtPurpos1.Text.Trim() + "'," + txtFAmount1.Text.Trim() + "," + txtOutstandBal1.Text.Trim() + "," + txtMonthInstal1.Text.Trim() + "," + txtRemainInstal1.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF1); 
+                            }
+                            if (txtNameOrg2.Text.Trim() != "") { 
+                                cmdOF2 = new MySqlCommand("INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF2); 
+                            }
+                            if (txtNameOrg3.Text.Trim() != "") { 
+                                cmdOF3 = new MySqlCommand("INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF3); 
+                            }
+                        }
                     }
                     #endregion
+
                     #region OTHER FAMILY DETSILS
                     MySqlCommand cmdFRD1, cmdFRD2, cmdFRD3, cmdFRD4, cmdFRD5, cmdFRD6, cmdFRD7, cmdFRD8, cmdFRD9;
-                    if (txtName1.Text.Trim() != "")
+
+                    DataSet dsUnSLonsUp = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                    if (dsUnSLonsUp.Tables[0].Rows.Count > 0)
                     {
-                        cmdFRD1 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName1.Text.Trim() + "', relationship='" + cmbRelation1.SelectedItem.Text + "', nic='" + txtNIC1.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB1.Text.Trim()) + "', occupation='" + txtOcc1.Text.Trim() + "', income='" + txtInCome1.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD1);
+                        int a = 0;
+                        for (int i = 0; i < dsUnSLonsUp.Tables[0].Rows.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                if (txtName1.Text.Trim() != "")
+                                {
+                                    cmdFRD1 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName1.Text.Trim() + "', relationship='" + cmbRelation1.SelectedItem.Text + "', nic='" + txtNIC1.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB1.Text.Trim()) + "', occupation='" + txtOcc1.Text.Trim() + "', income='" + txtInCome1.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD1);
+                                }
+                            }
+                            if (i == 1)
+                            {
+                                if (txtName2.Text.Trim() != "")
+                                {
+                                    cmdFRD2 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName2.Text.Trim() + "', relationship='" + cmbRelation2.SelectedItem.Text + "', nic='" + txtNIC2.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB2.Text.Trim()) + "', occupation='" + txtOcc2.Text.Trim() + "', income='" + txtInCome2.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD2);
+                                }
+                            }
+                            if (i == 2)
+                            {
+                                if (txtName3.Text.Trim() != "")
+                                {
+                                    cmdFRD3 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName3.Text.Trim() + "', relationship='" + cmbRelation3.SelectedItem.Text + "', nic='" + txtNIC3.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB3.Text.Trim()) + "', occupation='" + txtOcc3.Text.Trim() + "', income='" + txtInCome3.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD3);
+                                }
+                            }
+                            if (i == 3)
+                            {
+                                if (txtName4.Text.Trim() != "")
+                                {
+                                    cmdFRD4 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName4.Text.Trim() + "', relationship='" + cmbRelation4.SelectedItem.Text + "', nic='" + txtNIC4.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB4.Text.Trim()) + "', occupation='" + txtOcc4.Text.Trim() + "', income='" + txtInCome4.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD4);
+                                }
+                            }
+                            if (i == 4)
+                            {
+                                if (txtName5.Text.Trim() != "")
+                                {
+                                    cmdFRD5 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName5.Text.Trim() + "', relationship='" + cmbRelation5.SelectedItem.Text + "', nic='" + txtNIC5.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB5.Text.Trim()) + "', occupation='" + txtOcc5.Text.Trim() + "', income='" + txtInCome5.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD5);
+                                }
+                            }
+                            if (i == 5)
+                            {
+                                if (txtName6.Text.Trim() != "")
+                                {
+                                    cmdFRD6 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName6.Text.Trim() + "', relationship='" + cmbRelation6.SelectedItem.Text + "', nic='" + txtNIC6.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB6.Text.Trim()) + "', occupation='" + txtOcc6.Text.Trim() + "', income='" + txtInCome6.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD6);
+                                }
+                            }
+                            if (i == 6)
+                            {
+                                if (txtName7.Text.Trim() != "")
+                                {
+                                    cmdFRD7 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName7.Text.Trim() + "', relationship='" + cmbRelation7.SelectedItem.Text + "', nic='" + txtNIC7.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB7.Text.Trim()) + "', occupation='" + txtOcc7.Text.Trim() + "', income='" + txtInCome7.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD7);
+                                }
+                            }
+                            if (i == 7)
+                            {
+                                if (txtName8.Text.Trim() != "")
+                                {
+                                    cmdFRD8 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName8.Text.Trim() + "', relationship='" + cmbRelation8.SelectedItem.Text + "', nic='" + txtNIC8.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB8.Text.Trim()) + "', occupation='" + txtOcc8.Text.Trim() + "', income='" + txtInCome8.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD8);
+                                }
+                            }
+                            if (i == 8)
+                            {
+                                if (txtName9.Text.Trim() != "")
+                                {
+                                    cmdFRD9 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName9.Text.Trim() + "', relationship='" + cmbRelation9.SelectedItem.Text + "', nic='" + txtNIC9.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB9.Text.Trim()) + "', occupation='" + txtOcc9.Text.Trim() + "', income='" + txtInCome9.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD9);
+                                }
+                            }
+                            a += 1;
+                        }
+                        if (a == 1)
+                        {
+                            cmdFRD2 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName2.Text.Trim() + "','" + cmbRelation2.SelectedItem.Text + "','" + txtNIC2.Text.Trim() + "','" + DateTime.Parse(txtDOB2.Text.Trim()) + "','" + txtOcc2.Text.Trim() + "','" + txtInCome2.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD2);
+                        }
+                        if (a == 2)
+                        {
+                            cmdFRD3 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName3.Text.Trim() + "','" + cmbRelation3.SelectedItem.Text + "','" + txtNIC3.Text.Trim() + "','" + DateTime.Parse(txtDOB3.Text.Trim()) + "','" + txtOcc3.Text.Trim() + "','" + txtInCome3.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD3);
+                        }
+                        if (a == 3)
+                        {
+                            cmdFRD4 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName4.Text.Trim() + "','" + cmbRelation4.SelectedItem.Text + "','" + txtNIC4.Text.Trim() + "','" + DateTime.Parse(txtDOB4.Text.Trim()) + "','" + txtOcc4.Text.Trim() + "','" + txtInCome4.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD4);
+                        }
+                        if (a == 4)
+                        {
+                            cmdFRD5 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName5.Text.Trim() + "','" + cmbRelation5.SelectedItem.Text + "','" + txtNIC5.Text.Trim() + "','" + DateTime.Parse(txtDOB5.Text.Trim()) + "','" + txtOcc5.Text.Trim() + "','" + txtInCome5.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD5);
+                        }
+                        if (a == 5)
+                        {
+                            cmdFRD6 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName6.Text.Trim() + "','" + cmbRelation6.SelectedItem.Text + "','" + txtNIC6.Text.Trim() + "','" + DateTime.Parse(txtDOB6.Text.Trim()) + "','" + txtOcc6.Text.Trim() + "','" + txtInCome6.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD6);
+                        }
+                        if (a == 6)
+                        {
+                            cmdFRD7 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName7.Text.Trim() + "','" + cmbRelation7.SelectedItem.Text + "','" + txtNIC7.Text.Trim() + "','" + DateTime.Parse(txtDOB7.Text.Trim()) + "','" + txtOcc7.Text.Trim() + "','" + txtInCome7.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD7);
+                        }
+                        if (a == 7)
+                        {
+                            cmdFRD8 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName8.Text.Trim() + "','" + cmbRelation8.SelectedItem.Text + "','" + txtNIC8.Text.Trim() + "','" + DateTime.Parse(txtDOB8.Text.Trim()) + "','" + txtOcc8.Text.Trim() + "','" + txtInCome8.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD8);
+                        }
+                        if (a == 8)
+                        {
+                            cmdFRD9 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName9.Text.Trim() + "','" + cmbRelation9.SelectedItem.Text + "','" + txtNIC9.Text.Trim() + "','" + DateTime.Parse(txtDOB9.Text.Trim()) + "','" + txtOcc9.Text.Trim() + "','" + txtInCome9.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD9);
+                        }
                     }
-                    else if (txtName2.Text.Trim() != "")
-                    {
-                        cmdFRD2 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName2.Text.Trim() + "', relationship='" + cmbRelation2.SelectedItem.Text + "', nic='" + txtNIC2.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB2.Text.Trim()) + "', occupation='" + txtOcc2.Text.Trim() + "', income='" + txtInCome2.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD2);
-                    }
-                    else if (txtName3.Text.Trim() != "")
-                    {
-                        cmdFRD3 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName3.Text.Trim() + "', relationship='" + cmbRelation3.SelectedItem.Text + "', nic='" + txtNIC3.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB3.Text.Trim()) + "', occupation='" + txtOcc3.Text.Trim() + "', income='" + txtInCome3.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD3);
-                    }
-                    else if (txtName4.Text.Trim() != "")
-                    {
-                        cmdFRD4 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName4.Text.Trim() + "', relationship='" + cmbRelation4.SelectedItem.Text + "', nic='" + txtNIC4.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB4.Text.Trim()) + "', occupation='" + txtOcc4.Text.Trim() + "', income='" + txtInCome4.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD4);
-                    }
-                    else if (txtName5.Text.Trim() != "")
-                    {
-                        cmdFRD5 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName5.Text.Trim() + "', relationship='" + cmbRelation5.SelectedItem.Text + "', nic='" + txtNIC5.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB5.Text.Trim()) + "', occupation='" + txtOcc5.Text.Trim() + "', income='" + txtInCome5.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD5);
-                    }
-                    else if (txtName6.Text.Trim() != "")
-                    {
-                        cmdFRD6 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName6.Text.Trim() + "', relationship='" + cmbRelation6.SelectedItem.Text + "', nic='" + txtNIC6.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB6.Text.Trim()) + "', occupation='" + txtOcc6.Text.Trim() + "', income='" + txtInCome6.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD6);
-                    }
-                    else if (txtName7.Text.Trim() != "")
-                    {
-                        cmdFRD7 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName7.Text.Trim() + "', relationship='" + cmbRelation7.SelectedItem.Text + "', nic='" + txtNIC7.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB7.Text.Trim()) + "', occupation='" + txtOcc7.Text.Trim() + "', income='" + txtInCome7.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD7);
-                    }
-                    else if (txtName8.Text.Trim() != "")
-                    {
-                        cmdFRD8 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName8.Text.Trim() + "', relationship='" + cmbRelation8.SelectedItem.Text + "', nic='" + txtNIC8.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB8.Text.Trim()) + "', occupation='" + txtOcc8.Text.Trim() + "', income='" + txtInCome8.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD8);
-                    }
-                    else if (txtName9.Text.Trim() != "")
-                    {
-                        cmdFRD9 = new MySqlCommand("UPDATE family_relationship_details name='" + txtName9.Text.Trim() + "', relationship='" + cmbRelation9.SelectedItem.Text + "', nic='" + txtNIC9.Text.Trim() + "', dob='" + DateTime.Parse(txtDOB9.Text.Trim()) + "', occupation='" + txtOcc9.Text.Trim() + "', income='" + txtInCome9.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdFRD9);
+                    else {
+                        cmdFRD1 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName1.Text.Trim() + "','" + cmbRelation1.SelectedItem.Text + "','" + txtNIC1.Text.Trim() + "','" + DateTime.Parse(txtDOB1.Text.Trim()) + "','" + txtOcc1.Text.Trim() + "','" + txtInCome1.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD1);
+
+                        cmdFRD2 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName2.Text.Trim() + "','" + cmbRelation2.SelectedItem.Text + "','" + txtNIC2.Text.Trim() + "','" + DateTime.Parse(txtDOB2.Text.Trim()) + "','" + txtOcc2.Text.Trim() + "','" + txtInCome2.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD2);
+
+                        cmdFRD3 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName3.Text.Trim() + "','" + cmbRelation3.SelectedItem.Text + "','" + txtNIC3.Text.Trim() + "','" + DateTime.Parse(txtDOB3.Text.Trim()) + "','" + txtOcc3.Text.Trim() + "','" + txtInCome3.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD3);
+
+                        cmdFRD4 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName4.Text.Trim() + "','" + cmbRelation4.SelectedItem.Text + "','" + txtNIC4.Text.Trim() + "','" + DateTime.Parse(txtDOB4.Text.Trim()) + "','" + txtOcc4.Text.Trim() + "','" + txtInCome4.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD4);
+
+                        cmdFRD5 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName5.Text.Trim() + "','" + cmbRelation5.SelectedItem.Text + "','" + txtNIC5.Text.Trim() + "','" + DateTime.Parse(txtDOB5.Text.Trim()) + "','" + txtOcc5.Text.Trim() + "','" + txtInCome5.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD5);
+
+                        cmdFRD6 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName6.Text.Trim() + "','" + cmbRelation6.SelectedItem.Text + "','" + txtNIC6.Text.Trim() + "','" + DateTime.Parse(txtDOB6.Text.Trim()) + "','" + txtOcc6.Text.Trim() + "','" + txtInCome6.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD6);
+
+                        cmdFRD7 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName7.Text.Trim() + "','" + cmbRelation7.SelectedItem.Text + "','" + txtNIC7.Text.Trim() + "','" + DateTime.Parse(txtDOB7.Text.Trim()) + "','" + txtOcc7.Text.Trim() + "','" + txtInCome7.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD7);
+
+                        cmdFRD8 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName8.Text.Trim() + "','" + cmbRelation8.SelectedItem.Text + "','" + txtNIC8.Text.Trim() + "','" + DateTime.Parse(txtDOB8.Text.Trim()) + "','" + txtOcc8.Text.Trim() + "','" + txtInCome8.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD8);
+
+                        cmdFRD9 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName9.Text.Trim() + "','" + cmbRelation9.SelectedItem.Text + "','" + txtNIC9.Text.Trim() + "','" + DateTime.Parse(txtDOB9.Text.Trim()) + "','" + txtOcc9.Text.Trim() + "','" + txtInCome9.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD9);
                     }
                     #endregion
 
@@ -1348,9 +1483,9 @@ namespace MuslimAID.MURABHA
                             DataSet dsUserTy = cls_Connection.getDataSet("select user_type,module_name,company_code from users where nic = '" + strloginID + "';");
                             if (dsUserTy.Tables[0].Rows.Count > 0)
                             {
-                                if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Top Management" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "Admin")
+                                if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "ADM" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "BOD" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "CMG" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "OMG")
                                 {
-                                    btnSubmit.Enabled = true;
+                                    btnSubmit.Enabled = false;
                                     btnUpdate.Enabled = true;
                                 }
                             }
@@ -1462,8 +1597,6 @@ namespace MuslimAID.MURABHA
                                     DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
                                     if (dsUnSLons.Tables[0].Rows.Count > 0)
                                     {
-                                        //rdoOFDy.Checked = true;
-
                                         for (int i = 0; i < dsUnSLons.Tables[0].Rows.Count; i++)
                                         {
                                             if (i == 0)
@@ -1613,6 +1746,7 @@ namespace MuslimAID.MURABHA
                             btnSubmit.Enabled = false;
                             btnSubmit.Visible = false;
                             btnUpdate.Visible = true;
+                            btnUpdate.Enabled = true;
                             string strloginID = Session["NIC"].ToString();
                             DataSet dsUserTy = cls_Connection.getDataSet("select user_type,module_name,company_code from users where nic = '" + strloginID + "';");
                             if (dsUserTy.Tables[0].Rows.Count > 0)
