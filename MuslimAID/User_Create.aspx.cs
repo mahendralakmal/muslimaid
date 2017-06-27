@@ -379,7 +379,7 @@ namespace MuslimAID
 
                 StringBuilder q = new StringBuilder();
 
-                q.Append("UPDATE users SET user_password='" + passwd + "', user_title='" + cmbTitle.SelectedValue.ToString() + "', first_name='" + txtFirstName.Text.Trim() + "', last_name='" + txtLastName.Text.Trim() + "', user_address='" + txtAddress.Text.Trim() + "',date_of_birth='" + txtDateOfBirth.Text.Trim() + "', user_type='" + cmbUserType.SelectedValue.ToString() + "', designation='" + txtDesignation.Text.Trim() + "', branch_code='" + cmbBranch.SelectedIndex.ToString() + "', EPFNo='" + txtEPF_No.Text.Trim() + "', Mobile_No='" + txtMobile.Text.Trim() + "', Tele_No='" + txtTele.Text.Trim() + "'");
+                q.Append("UPDATE users SET user_password='" + passwd + "', user_title='" + cmbTitle.SelectedValue.ToString() + "', first_name='" + txtFirstName.Text.Trim() + "', last_name='" + txtLastName.Text.Trim() + "', user_address='" + txtAddress.Text.Trim() + "',date_of_birth='" + txtDateOfBirth.Text.Trim() + "', user_type='" + cmbUserType.SelectedValue.ToString() + "', designation='" + txtDesignation.Text.Trim() + "', branch_code='" + cmbBranch.SelectedValue.ToString() + "', EPFNo='" + txtEPF_No.Text.Trim() + "', Mobile_No='" + txtMobile.Text.Trim() + "', Tele_No='" + txtTele.Text.Trim() + "'");
 
                 if (fpath != "")
                 {
@@ -394,7 +394,6 @@ namespace MuslimAID
                     if (objDBTask.insertEditData(cmdQ) == 1)
                     {
                         update_mfo();
-                        Reset();
                         lblMsg.Text = "User updated success";
                     }
                     else
@@ -469,6 +468,22 @@ namespace MuslimAID
             {
                 lblMsg.Text = "Please select user type"; return false;
             }
+            else if (cmbBranch.SelectedIndex == 0)
+            {
+                lblMsg.Text = "Please select branch."; cmbBranch.Focus(); return false;
+            }
+            else if (txtEPF_No.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter users epf no."; txtEPF_No.Focus(); return false;
+            }
+            else if (txtMobile.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter users mobile no."; txtMobile.Focus(); return false;
+            }
+            else if (txtTele.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter users telephone no."; txtTele.Focus(); return false;
+            }
             else
             {
                 return true;
@@ -537,9 +552,13 @@ namespace MuslimAID
 
             MySqlCommand cmdUPQ = new MySqlCommand(strUPQ);
             if (objDBCon.insertEditData(cmdUPQ) > 0)
+            {
+                Reset();
                 return true;
+            }
             else
                 return false;
         }
+
     }
 }
