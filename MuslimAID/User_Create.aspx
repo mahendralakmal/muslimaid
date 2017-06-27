@@ -19,17 +19,17 @@
             $('#datetimepicker').datetimepicker({ format: 'DD/MM/YYYY' });
         });
         
-        $(document).ready(function () {
-            $(".cmbBranch").attr("disabled", true);
-            $(".UserType").on("change", function(){
-                //alert($(".UserType").val());
-                if($(".UserType").val()=="MFO" || $(".UserType").val()=="BFA" || $(".UserType").val()=="BMG"){
-                    $(".cmbBranch").attr("disabled", false); 
-                }else{
-                    $(".cmbBranch").attr("disabled", true); 
-                    }
-            });
-        });
+//        $(document).ready(function () {
+//            $(".cmbBranch").attr("disabled", true);
+//            $(".UserType").on("change", function(){
+//                //alert($(".UserType").val());
+//                if($(".UserType").val()=="MFO" || $(".UserType").val()=="BFA" || $(".UserType").val()=="BMG"){
+//                    $(".cmbBranch").attr("disabled", false); 
+//                }else{
+//                    $(".cmbBranch").attr("disabled", true); 
+//                    }
+//            });
+//        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -116,8 +116,7 @@
             <div class="col-md-5">User Type <span style="color:Red;">*</span></div>
             <div class="col-md-7">
                 <asp:DropDownList ID="cmbUserType" runat="server" 
-                    CssClass="form-control UserType" 
-                    onselectedindexchanged="cmbUserType_SelectedIndexChanged">
+                    CssClass="form-control UserType">
                     <asp:ListItem Value="">Select user type</asp:ListItem>
                     <asp:ListItem Value="ADM">Admin</asp:ListItem>
                     <asp:ListItem Value="BOD">BOD</asp:ListItem>
@@ -143,6 +142,24 @@
             <div class="col-md-5">Branch <span style="color:Red;">*</span></div>
             <div class="col-md-7">
                 <asp:DropDownList ID="cmbBranch" runat="server" CssClass="form-control cmbBranch"></asp:DropDownList>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-5">EPF No <span style="color:Red;">*</span></div>
+            <div class="col-md-7">
+                <asp:TextBox ID="txtEPF_No" CssClass="form-control" MaxLength="45" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-5">Mobile No <span style="color:Red;">*</span></div>
+            <div class="col-md-7">
+                <asp:TextBox ID="txtMobile" CssClass="form-control" MaxLength="45" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-5">Telephone No <span style="color:Red;">*</span></div>
+            <div class="col-md-7">
+                <asp:TextBox ID="txtTele" CssClass="form-control" MaxLength="45" runat="server"></asp:TextBox>
             </div>
         </div>
         

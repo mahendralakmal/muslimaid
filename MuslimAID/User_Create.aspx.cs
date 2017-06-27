@@ -60,6 +60,9 @@ namespace MuslimAID
                         fuPhoto.Enabled = true;
                         txtPassword.Enabled = true;
                         txtConfirmPass.Enabled = true;
+                        txtEPF_No.Enabled = true;
+                        txtMobile.Enabled = true;
+                        txtTele.Enabled = true;
                         //cmbBranch.Enabled = false;
                     }
                     else if (strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" || strType == "BFA" || strType == "MFO") 
@@ -94,6 +97,9 @@ namespace MuslimAID
                         txtDateOfBirth.Enabled = false;
                         cmbTitle.Enabled = false;
                         cmbUserType.Enabled = false;
+                        txtEPF_No.Enabled = false;
+                        txtMobile.Enabled = false;
+                        txtTele.Enabled = false;
                         //cmbBranch.Enabled = false;
                     }
                     else
@@ -188,7 +194,7 @@ namespace MuslimAID
             
             if(validatefrm("S"))
             {
-                MySqlCommand cmdInsertQRY = new MySqlCommand("insert into users(nic,user_password,first_name,last_name,user_type,designation,deleted,current_status,created_on,last_accessed_on,last_accessed_ip,created_user_nic,photo_path,user_address,date_of_birth,user_title, branch_code, company_code) values(@NIC,@PASS,@FNAME,@LNAME,@UTYPE,@DESIG,@DEL,@CSTAT,@CREATEON,@LACCESS,@LASTIP,@CREATEDUNIC,@photo_path,@user_address,@date_of_birth,@user_title,@branch_code, @company_code)");
+                MySqlCommand cmdInsertQRY = new MySqlCommand("insert into users(nic,user_password,first_name,last_name,user_type,designation,deleted,current_status,created_on,last_accessed_on,last_accessed_ip,created_user_nic,photo_path,user_address,date_of_birth,user_title, branch_code, company_code, EPFNo, Mobile_No, Tele_No) values(@NIC,@PASS,@FNAME,@LNAME,@UTYPE,@DESIG,@DEL,@CSTAT,@CREATEON,@LACCESS,@LASTIP,@CREATEDUNIC,@photo_path,@user_address,@date_of_birth,@user_title,@branch_code, @company_code, @EPFNo, @Mobile_No, @Tele_No)");
 
                 string strDel, strCStat, strPassw;
                 strDel = "N";
@@ -270,6 +276,9 @@ namespace MuslimAID
                 cmdInsertQRY.Parameters["@user_title"].Value = strTital;
                 cmdInsertQRY.Parameters["@branch_code"].Value = cmbBranch.SelectedValue.ToString();
                 cmdInsertQRY.Parameters["@company_code"].Value = "MAID";
+                cmdInsertQRY.Parameters["@EPFNo"].Value = txtEPF_No.Text.Trim();
+                cmdInsertQRY.Parameters["@Mobile_No"].Value = txtMobile.Text.Trim();
+                cmdInsertQRY.Parameters["@Tele_No"].Value = txtTele.Text.Trim();
                 #endregion
 
                 try
@@ -294,41 +303,6 @@ namespace MuslimAID
                     er_log.createErrorLog(ex.Message, ex.Source, "User Create");
                 }
             }
-        }
-
-        private bool create_mfo()
-        {
-            cls_Connection objDBCon = new cls_Connection();
-            DataSet dsGetCurrPassword = cls_Connection.getDataSet("select (IFNULL(MAX(exe_id),0) + 1) AS MAX from micro_exective_root where branch_code ='" + cmbBranch.SelectedValue.ToString() + "'");
-
-            MySqlCommand cmdInsertQRY = new MySqlCommand("INSERT INTO micro_exective_root(exe_id,exe_name,exe_nic, branch_code,create_user_id,create_ip,create_date_time)VALUES(@exe_id,@exe_name, @exe_nic, @branch_code,@create_user_id,@create_ip,@create_date_time);");
-
-            #region assignment
-            //string rootName = (txtFirstName.Text.Trim() != "") ? txtFirstName.Text.Trim() : "" + txtLastName.Text.Trim();
-            #endregion
-            #region Assign Parameters
-            cmdInsertQRY.Parameters.Add("@exe_id", MySqlDbType.VarChar, 2);
-            cmdInsertQRY.Parameters.Add("@exe_name", MySqlDbType.VarChar, 200);
-            cmdInsertQRY.Parameters.Add("@exe_nic", MySqlDbType.VarChar, 12);
-            cmdInsertQRY.Parameters.Add("@branch_code", MySqlDbType.VarChar, 10);
-            cmdInsertQRY.Parameters.Add("@create_user_id", MySqlDbType.VarChar, 10);
-            cmdInsertQRY.Parameters.Add("@create_ip", MySqlDbType.VarChar, 45);
-            cmdInsertQRY.Parameters.Add("@create_date_time", MySqlDbType.VarChar, 20);
-            #endregion
-
-            #region DEclare Parametes
-            cmdInsertQRY.Parameters["@exe_id"].Value = dsGetCurrPassword.Tables[0].Rows[0][0].ToString();
-            cmdInsertQRY.Parameters["@exe_name"].Value = txtFirstName.Text.Trim() + " " + txtLastName.Text.Trim();
-            cmdInsertQRY.Parameters["@exe_nic"].Value = txtUserName.Text.Trim();
-            cmdInsertQRY.Parameters["@branch_code"].Value = cmbBranch.SelectedValue.ToString();
-            cmdInsertQRY.Parameters["@create_user_id"].Value = Session["NIC"].ToString();
-            cmdInsertQRY.Parameters["@create_ip"].Value = Request.UserHostAddress;
-            cmdInsertQRY.Parameters["@create_date_time"].Value = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            #endregion
-            if (objDBCon.insertEditData(cmdInsertQRY) > 0)
-                return true;
-            else
-                return false;
         }
 
         public static string EncodePasswordToBase64(string password)
@@ -362,6 +336,11 @@ namespace MuslimAID
                 txtLastName.Text = dtNIC.Tables[0].Rows[0]["last_name"].ToString();
                 img_path.Text = dtNIC.Tables[0].Rows[0]["photo_path"].ToString();
                 hid_img_path.Value = dtNIC.Tables[0].Rows[0]["photo_path"].ToString();
+                cmbUserType.SelectedValue = dtNIC.Tables[0].Rows[0]["user_type"].ToString();
+                cmbBranch.SelectedValue = dtNIC.Tables[0].Rows[0]["branch_code"].ToString();
+                txtEPF_No.Text = dtNIC.Tables[0].Rows[0]["EPFNo"].ToString();
+                txtMobile.Text = dtNIC.Tables[0].Rows[0]["Mobile_No"].ToString();
+                txtTele.Text = dtNIC.Tables[0].Rows[0]["Tele_No"].ToString();
                 lblMsg.Text = "User NIC Already used...!";
                 btnSubmit.Enabled = false;
                 btnUpdate.Enabled = true;
@@ -400,7 +379,7 @@ namespace MuslimAID
 
                 StringBuilder q = new StringBuilder();
 
-                q.Append("UPDATE users SET user_password='" + passwd + "', user_title='" + cmbTitle.SelectedValue.ToString() + "', first_name='" + txtFirstName.Text.Trim() + "', last_name='" + txtLastName.Text.Trim() + "', user_address='" + txtAddress.Text.Trim() + "',date_of_birth='" + txtDateOfBirth.Text.Trim() + "', user_type='" + cmbUserType.SelectedValue.ToString() + "', designation='"+ txtDesignation.Text.Trim()+"'");
+                q.Append("UPDATE users SET user_password='" + passwd + "', user_title='" + cmbTitle.SelectedValue.ToString() + "', first_name='" + txtFirstName.Text.Trim() + "', last_name='" + txtLastName.Text.Trim() + "', user_address='" + txtAddress.Text.Trim() + "',date_of_birth='" + txtDateOfBirth.Text.Trim() + "', user_type='" + cmbUserType.SelectedValue.ToString() + "', designation='" + txtDesignation.Text.Trim() + "', branch_code='" + cmbBranch.SelectedIndex.ToString() + "', EPFNo='" + txtEPF_No.Text.Trim() + "', Mobile_No='" + txtMobile.Text.Trim() + "', Tele_No='" + txtTele.Text.Trim() + "'");
 
                 if (fpath != "")
                 {
@@ -414,6 +393,7 @@ namespace MuslimAID
                     MySqlCommand cmdQ = new MySqlCommand(q.ToString());
                     if (objDBTask.insertEditData(cmdQ) == 1)
                     {
+                        update_mfo();
                         Reset();
                         lblMsg.Text = "User updated success";
                     }
@@ -504,14 +484,62 @@ namespace MuslimAID
             catch (Exception x) { cls_ErrorLog.createSErrorLog(x.Message, x.Source, "deactivate"); }
         }
 
-        protected void cmbUserType_SelectedIndexChanged(object sender, EventArgs e)
+        private bool create_mfo()
         {
-            if (cmbUserType.SelectedValue == "MFO" || cmbUserType.SelectedValue == "BFA" || cmbUserType.SelectedValue == "BMG")
-            {
-                cmbBranch.Enabled = true;
-                txtDesignation.Focus();
-            } else
-                txtDesignation.Focus();
+            cls_Connection objDBCon = new cls_Connection();
+            DataSet dsGetCurrPassword = cls_Connection.getDataSet("select (IFNULL(MAX(exe_id),0) + 1) AS MAX from micro_exective_root where branch_code ='" + cmbBranch.SelectedValue.ToString() + "'");
+
+            MySqlCommand cmdInsertQRY = new MySqlCommand("INSERT INTO micro_exective_root(exe_id,exe_name,exe_nic, branch_code,create_user_id,create_ip,create_date_time,EPFNo,Mobile_No,Land_No,Address,Designation)VALUES(@exe_id,@exe_name, @exe_nic, @branch_code,@create_user_id,@create_ip,@create_date_time,@EPFNo,@Mobile_No,@Land_No,@Address,@Designation);");
+
+            #region assignment
+            //string rootName = (txtFirstName.Text.Trim() != "") ? txtFirstName.Text.Trim() : "" + txtLastName.Text.Trim();
+            #endregion
+            #region Assign Parameters
+            cmdInsertQRY.Parameters.Add("@exe_id", MySqlDbType.VarChar, 2);
+            cmdInsertQRY.Parameters.Add("@exe_name", MySqlDbType.VarChar, 200);
+            cmdInsertQRY.Parameters.Add("@exe_nic", MySqlDbType.VarChar, 12);
+            cmdInsertQRY.Parameters.Add("@branch_code", MySqlDbType.VarChar, 10);
+            cmdInsertQRY.Parameters.Add("@create_user_id", MySqlDbType.VarChar, 10);
+            cmdInsertQRY.Parameters.Add("@create_ip", MySqlDbType.VarChar, 45);
+            cmdInsertQRY.Parameters.Add("@create_date_time", MySqlDbType.VarChar, 20);
+            cmdInsertQRY.Parameters.Add("@EPFNo", MySqlDbType.VarChar, 20);
+            cmdInsertQRY.Parameters.Add("@Mobile_No", MySqlDbType.VarChar, 20);
+            cmdInsertQRY.Parameters.Add("@Land_No", MySqlDbType.VarChar, 20);
+            cmdInsertQRY.Parameters.Add("@Address", MySqlDbType.VarChar, 20);
+            cmdInsertQRY.Parameters.Add("@Designation", MySqlDbType.VarChar, 20);
+            #endregion
+
+            #region DEclare Parametes
+            cmdInsertQRY.Parameters["@exe_id"].Value = dsGetCurrPassword.Tables[0].Rows[0][0].ToString();
+            cmdInsertQRY.Parameters["@exe_name"].Value = txtFirstName.Text.Trim() + " " + txtLastName.Text.Trim();
+            cmdInsertQRY.Parameters["@exe_nic"].Value = txtUserName.Text.Trim();
+            cmdInsertQRY.Parameters["@branch_code"].Value = cmbBranch.SelectedValue.ToString();
+            cmdInsertQRY.Parameters["@create_user_id"].Value = Session["NIC"].ToString();
+            cmdInsertQRY.Parameters["@create_ip"].Value = Request.UserHostAddress;
+            cmdInsertQRY.Parameters["@create_date_time"].Value = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            cmdInsertQRY.Parameters["@EPFNo"].Value = txtEPF_No.Text.Trim();
+            cmdInsertQRY.Parameters["@Mobile_No"].Value = txtMobile.Text.Trim();
+            cmdInsertQRY.Parameters["@Land_No"].Value = txtTele.Text.Trim();
+            cmdInsertQRY.Parameters["@Address"].Value = txtAddress.Text.Trim();
+            cmdInsertQRY.Parameters["@Designation"].Value = txtDesignation.Text.Trim();
+            #endregion
+
+            if (objDBCon.insertEditData(cmdInsertQRY) > 0)
+                return true;
+            else
+                return false;
+        }
+
+        private bool update_mfo()
+        {
+            cls_Connection objDBCon = new cls_Connection();
+            string strUPQ = "UPDATE micro_exective_root SET exe_name='" + txtFirstName.Text.Trim() + " " + txtLastName.Text.Trim() + "', branch_code='" + cmbBranch.SelectedValue.ToString() + "',updated_user_id='" + Session["NIC"].ToString() + "',create_ip='" + Request.UserHostAddress.ToString() + "',create_date_time='" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "',EPFNo='"+txtEPF_No.Text.Trim()+"',Mobile_No='"+txtMobile.Text.Trim()+"',Land_No='"+txtTele.Text.Trim()+"',Address='"+txtAddress.Text.Trim()+"',Designation='"+txtDesignation.Text.Trim()+"' WHERE exe_nic ='" + txtUserName.Text.Trim() + "'";
+
+            MySqlCommand cmdUPQ = new MySqlCommand(strUPQ);
+            if (objDBCon.insertEditData(cmdUPQ) > 0)
+                return true;
+            else
+                return false;
         }
     }
 }
