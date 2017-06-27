@@ -11,7 +11,7 @@
 namespace MuslimAID.MURABHA {
     
     
-    public partial class Client_Basic_Details_Report {
+    public partial class Report_Basic_Details {
         
         /// <summary>
         /// cmbCityCode control.
@@ -95,13 +95,13 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.Button btnSerch;
         
         /// <summary>
-        /// View control.
+        /// LinkButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton View;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
         
         /// <summary>
         /// pnlClientDetail control.

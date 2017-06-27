@@ -17,7 +17,7 @@ using System.IO;
 
 namespace MuslimAID.MURABHA
 {
-    public partial class Center_details_Report : System.Web.UI.Page
+    public partial class Report_Center_details : System.Web.UI.Page
     {
         cls_CommonFunctions objCommonTask = new cls_CommonFunctions();
         cls_Connection objDBTask = new cls_Connection();
@@ -62,6 +62,7 @@ namespace MuslimAID.MURABHA
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
                 hstrSelectQuery.Value = "select c.idcenter_details,c.center_name,b.b_name,c.villages,c.leader_name,c.conta_no,exe_name,case center_day when 'MO' then 'Monday' when 'TU' then 'Tuesday' when 'WE' then 'Wednsday' when 'TH' then 'Thursday' when 'FR' then 'Friday' when 'SA' then 'Saturday' when 'SU' then 'Sunday' end as center_day from center_details c, branch b,micro_exective_root e where b.b_code = c.city_code and c.city_code = e.branch_code and c.exective = e.exe_id";
+
                 if (txtCenterID.Text.Trim() != "" || cmbBranch.SelectedIndex != 0 || cmbCenterName.Text.Trim() != "" || txtDateFrom.Text.Trim() != "" || txtDateTo.Text.Trim() != "" || cmbRoot.Text.Trim() != "")
                 {
                     if (txtCenterID.Text.Trim() != "")

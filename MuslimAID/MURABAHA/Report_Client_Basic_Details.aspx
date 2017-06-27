@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="Client_Basic_Details_Report.aspx.cs" Inherits="MuslimAID.MURABHA.Client_Basic_Details_Report" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="Report_Client_Basic_Details.aspx.cs" Inherits="MuslimAID.MURABHA.Report_Client_Basic_Details" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">

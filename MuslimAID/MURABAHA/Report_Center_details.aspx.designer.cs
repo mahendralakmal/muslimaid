@@ -11,7 +11,7 @@
 namespace MuslimAID.MURABHA {
     
     
-    public partial class Center_details_Report {
+    public partial class Report_Center_details {
         
         /// <summary>
         /// txtCenterID control.

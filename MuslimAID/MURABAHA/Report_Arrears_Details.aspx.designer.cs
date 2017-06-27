@@ -11,7 +11,7 @@
 namespace MuslimAID.MURABHA {
     
     
-    public partial class Loan_Detail_Report {
+    public partial class Report_Arrears_Details {
         
         /// <summary>
         /// cmbCityCode control.
@@ -23,15 +23,6 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.DropDownList cmbCityCode;
         
         /// <summary>
-        /// cmbVillagr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbVillagr;
-        
-        /// <summary>
         /// cmbRoot control.
         /// </summary>
         /// <remarks>
@@ -39,6 +30,15 @@ namespace MuslimAID.MURABHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbRoot;
+        
+        /// <summary>
+        /// cmbVillagr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbVillagr;
         
         /// <summary>
         /// txtContraCode control.
@@ -50,24 +50,6 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.TextBox txtContraCode;
         
         /// <summary>
-        /// txtDateFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateFrom;
-        
-        /// <summary>
-        /// txtDateTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateTo;
-        
-        /// <summary>
         /// cmbStatus control.
         /// </summary>
         /// <remarks>
@@ -75,6 +57,15 @@ namespace MuslimAID.MURABHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbStatus;
+        
+        /// <summary>
+        /// cmbACount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbACount;
         
         /// <summary>
         /// btnSerch control.
@@ -95,22 +86,49 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.LinkButton View;
         
         /// <summary>
-        /// pnlLoanDeta control.
+        /// pnlARep control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlLoanDeta;
+        protected global::System.Web.UI.WebControls.Panel pnlARep;
         
         /// <summary>
-        /// grvLoanDeta control.
+        /// grvArRep control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvLoanDeta;
+        protected global::System.Web.UI.WebControls.GridView grvArRep;
+        
+        /// <summary>
+        /// pnlSummery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSummery;
+        
+        /// <summary>
+        /// lblNoArres control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNoArres;
+        
+        /// <summary>
+        /// lblArreAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblArreAmount;
         
         /// <summary>
         /// hstrSelectQuery control.
@@ -138,50 +156,5 @@ namespace MuslimAID.MURABHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMsg;
-        
-        /// <summary>
-        /// pnlSummery control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSummery;
-        
-        /// <summary>
-        /// lblNoContra control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoContra;
-        
-        /// <summary>
-        /// lblDisb control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDisb;
-        
-        /// <summary>
-        /// lblIAmount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIAmount;
-        
-        /// <summary>
-        /// lblSCharges control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSCharges;
     }
 }

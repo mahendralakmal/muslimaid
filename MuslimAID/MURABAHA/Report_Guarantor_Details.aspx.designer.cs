@@ -11,7 +11,7 @@
 namespace MuslimAID.MURABHA {
     
     
-    public partial class Guarantor_Details_Report {
+    public partial class Report_Guarantor_Details {
         
         /// <summary>
         /// cmbCityCode control.

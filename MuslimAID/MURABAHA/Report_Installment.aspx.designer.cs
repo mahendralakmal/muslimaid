@@ -11,7 +11,7 @@
 namespace MuslimAID.MURABHA {
     
     
-    public partial class Installment_Report {
+    public partial class Report_Installment {
         
         /// <summary>
         /// cmbBranch control.

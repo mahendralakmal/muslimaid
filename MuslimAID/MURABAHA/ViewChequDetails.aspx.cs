@@ -186,7 +186,8 @@ namespace MuslimAID.MURABHA
                     //Check Next Center Day
                     if (dsLDOCha.Tables[0].Rows[0]["next_center_day"].ToString() == "1")
                     {
-                        due = due.AddDays(7);
+                        due = due.AddMonths(1);
+                        //due = due.AddDays(7);
                     }
 
                     string strDue = due.ToString("yyyy-MM-dd");

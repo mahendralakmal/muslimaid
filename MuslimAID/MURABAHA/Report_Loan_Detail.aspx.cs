@@ -17,7 +17,7 @@ using Microsoft.VisualBasic;
 
 namespace MuslimAID.MURABHA
 {
-    public partial class Loan_Detail_Report : System.Web.UI.Page
+    public partial class Report_Loan_Detail : System.Web.UI.Page
     {
         cls_CommonFunctions objCommonTask = new cls_CommonFunctions();
         cls_Connection objDBTask = new cls_Connection();

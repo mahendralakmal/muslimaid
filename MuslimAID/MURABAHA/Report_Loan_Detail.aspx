@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true"
-    CodeBehind="Loan_Detail_Report.aspx.cs" Inherits="MuslimAID.MURABHA.Loan_Detail_Report"
+    CodeBehind="Report_Loan_Detail.aspx.cs" Inherits="MuslimAID.MURABHA.Report_Loan_Detail"
     Title="Loan Details Report" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

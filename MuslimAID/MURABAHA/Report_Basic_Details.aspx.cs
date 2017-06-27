@@ -16,7 +16,7 @@ using System.Drawing;
 
 namespace MuslimAID.MURABHA
 {
-    public partial class Basic_Details_Report : System.Web.UI.Page
+    public partial class Report_Basic_Details : System.Web.UI.Page
     {
         cls_CommonFunctions objCommonTask = new cls_CommonFunctions();
         cls_Connection objDBTask = new cls_Connection();
