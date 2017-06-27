@@ -138,6 +138,7 @@
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
                                 <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                                 <li><a href="Report_MFO.aspx">MFO Detals</a></li>
+                                <li><a href="Report_Insurance.aspx">Insurance Detail</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -218,6 +219,7 @@
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
                                 <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                                 <li><a href="Report_MFO.aspx">MFO Detals</a></li>
+                                <li><a href="Report_Insurance.aspx">Insurance Detail</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -292,6 +294,7 @@
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
                                 <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                                 <li><a href="Report_MFO.aspx">MFO Detals</a></li>
+                                <li><a href="Report_Insurance.aspx">Insurance Detail</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -342,6 +345,7 @@
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
                                 <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                                 <li><a href="Report_MFO.aspx">MFO Detals</a></li>
+                                <li><a href="Report_Insurance.aspx">Insurance Detail</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -402,6 +406,7 @@
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
                                 <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                                 <li><a href="Report_MFO.aspx">MFO Detals</a></li>
+                                <li><a href="Report_Insurance.aspx">Insurance Detail</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -451,6 +456,7 @@
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
                                 <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                                 <li><a href="Report_MFO.aspx">MFO Detals</a></li>
+                                <li><a href="Report_Insurance.aspx">Insurance Detail</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -512,6 +518,7 @@
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
                                 <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                                 <li><a href="Report_MFO.aspx">MFO Detals</a></li>
+                                <li><a href="Report_Insurance.aspx">Insurance Detail</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -560,6 +567,7 @@
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
                                 <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                                 <li><a href="Report_MFO.aspx">MFO Detals</a></li>
+                                <li><a href="Report_Insurance.aspx">Insurance Detail</a></li>
                             </ul>
                         </li>
                     </ul>

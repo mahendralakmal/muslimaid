@@ -52,7 +52,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <div class="PageTitle"><h4>CS - Guarantor Details Report</h4></div>
+        <div class="PageTitle"><h4>Guarantor Details Report</h4></div>
         <div class="col-md-12 form-container row">
             <div class="col-md-3 form-group">
                 <div class="col-md-4">Branch</div>
