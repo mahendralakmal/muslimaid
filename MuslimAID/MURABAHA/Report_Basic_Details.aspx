@@ -43,7 +43,11 @@
             var prtwin = window.open('', 'PrintGridViewData', 'left=100,top=100,width=1000,height=1000,tollbar=0,scrollbars=1,status=0,resizable=1');
             prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>CS Client Basic Details Report - Ventura Crystal Investments Ltd</div>");
             prtwin.document.write(prtGrid.outerHTML);
-            prtwin.document.close();
+            prtwin.document.close();&lt;asp:TextBox ID="txtDateFrom" runat="server" Width="65px" MaxLength="10"&gt;&lt;/asp:TextBox&gt;&lt;img
+                                    src="../Images/calender.png" /&gt;
+                                &nbsp;&nbsp; To &nbsp;&nbsp;
+                                &lt;asp:TextBox ID="txtDateTo" runat="server" Width="65px" MaxLength="10"&gt;&lt;/asp:TextBox&gt;&lt;img
+                                    src="../Images/calender.png" /&gt;
             prtwin.focus();
             prtwin.print();
             prtwin.close();

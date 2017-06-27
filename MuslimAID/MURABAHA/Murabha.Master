@@ -48,7 +48,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand col-md-12 row" href="/muslimaid.aspx">
+            <a class="navbar-brand col-md-12" href="/muslimaid.aspx">
                 <div class="col-md-3">
                     <img style="width:153px;" src="../Images/MAMC Logo - Final without line.png">
                 </div>
@@ -136,6 +136,7 @@
                                 <li><a href="Report_Loan_Detail.aspx">Loan Detail</a></li>
                                 <li><a href="Report_Ledger_Card.aspx">Ledger Card</a></li>
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
+                                <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -214,6 +215,7 @@
                                 <li><a href="Report_Loan_Detail.aspx">Loan Detail</a></li>
                                 <li><a href="Report_Ledger_Card.aspx">Ledger Card</a></li>
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
+                                <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -286,6 +288,7 @@
                                 <li><a href="Report_Loan_Detail.aspx">Loan Detail</a></li>
                                 <li><a href="Report_Ledger_Card.aspx">Ledger Card</a></li>
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
+                                <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -334,6 +337,7 @@
                                 <li><a href="Report_Loan_Detail.aspx">Loan Detail</a></li>
                                 <li><a href="Report_Ledger_Card.aspx">Ledger Card</a></li>
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
+                                <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -392,6 +396,7 @@
                                 <li><a href="Report_Loan_Detail.aspx">Loan Detail</a></li>
                                 <li><a href="Report_Ledger_Card.aspx">Ledger Card</a></li>
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
+                                <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -439,6 +444,7 @@
                                 <li><a href="Report_Loan_Detail.aspx">Loan Detail</a></li>
                                 <li><a href="Report_Ledger_Card.aspx">Ledger Card</a></li>
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
+                                <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -498,6 +504,7 @@
                                 <li><a href="Report_Loan_Detail.aspx">Loan Detail</a></li>
                                 <li><a href="Report_Ledger_Card.aspx">Ledger Card</a></li>
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
+                                <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -544,6 +551,7 @@
                                 <li><a href="Report_Loan_Detail.aspx">Loan Detail</a></li>
                                 <li><a href="Report_Ledger_Card.aspx">Ledger Card</a></li>
                                 <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
+                                <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
                             </ul>
                         </li>
                     </ul>

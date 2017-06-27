@@ -99,6 +99,13 @@
     <Compile Include="MURABAHA\Approved_rebate.aspx.designer.cs">
       <DependentUpon>Approved_rebate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MURABAHA\Report_Cheque_Printing.aspx.cs">
+      <DependentUpon>Report_Cheque_Printing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MURABAHA\Report_Cheque_Printing.aspx.designer.cs">
+      <DependentUpon>Report_Cheque_Printing.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MURABAHA\Report_Arrears_Details.aspx.cs">
       <DependentUpon>Report_Arrears_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1231,6 +1238,7 @@
     <Content Include="Logout.aspx" />
     <Content Include="MURABAHA\agreement.aspx" />
     <Content Include="MURABAHA\Approved_rebate.aspx" />
+    <Content Include="MURABAHA\Report_Cheque_Printing.aspx" />
     <Content Include="MURABAHA\Report_Arrears_Details.aspx" />
     <Content Include="MURABAHA\Report_Ledger_Card.aspx" />
     <Content Include="MURABAHA\Report_Basic_Details.aspx" />
