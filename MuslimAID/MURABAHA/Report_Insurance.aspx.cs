@@ -40,7 +40,7 @@ namespace MuslimAID.MURABHA
             }
             else
             {
-                Response.Redirect("../Default.aspx");
+                Response.Redirect("../Login.aspx");
             }
         }
 

@@ -141,7 +141,7 @@
         <div class="form-group row">
             <div class="col-md-5">Branch <span style="color:Red;">*</span></div>
             <div class="col-md-7">
-                <asp:DropDownList ID="cmbBranch" runat="server" CssClass="form-control cmbBranch"></asp:DropDownList>
+                <asp:DropDownList ID="cmbBranch" runat="server" CssClass="form-control"></asp:DropDownList>
             </div>
         </div>
         <div class="form-group row">

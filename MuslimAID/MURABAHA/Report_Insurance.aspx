@@ -94,14 +94,14 @@
                     <asp:GridView ID="grvCliDeta" runat="server" AutoGenerateColumns="false" Font-Size="8pt">
                         <Columns>
                             <asp:TemplateField HeaderText="S.No." ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top"
-                                HeaderStyle-BackColor="#006699">
+                                HeaderStyle-BackColor="#009905">
                                 <ItemTemplate>
                                     <%#Container.DataItemIndex+1%>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Contract Code" HeaderStyle-Width="90px" ItemStyle-HorizontalAlign="Center"
-                                HeaderStyle-BackColor="#006699" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">
+                                HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">
                                 <ItemTemplate>
                                     <a ref="#" onclick="javascript:w=window.open(&#039;Full_Details.aspx?ConCode=<%#Eval("contract_code")%>&#039;,&#039;popup&#039;,&#039;target=_blank,width=800px,height=500px,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=100&#039;);w.focus();return false;"
                                         style="text-decoration: underline;">
@@ -110,41 +110,41 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="date_time" ItemStyle-VerticalAlign="Top" HeaderText="Date"
-                                HeaderStyle-Width="190px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#006699"
+                                HeaderStyle-Width="190px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="nic" HeaderText="NIC" ItemStyle-VerticalAlign="Top" ItemStyle-HorizontalAlign="Center"
-                                HeaderStyle-Width="80px" HeaderStyle-BackColor="#006699" HeaderStyle-BorderColor="White"
+                                HeaderStyle-Width="80px" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White"
                                 HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="initial_name" ItemStyle-VerticalAlign="Top" HeaderText="Name"
-                                HeaderStyle-Width="190px" HeaderStyle-BackColor="#006699" HeaderStyle-BorderColor="White"
+                                HeaderStyle-Width="190px" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White"
                                 HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="p_address" ItemStyle-VerticalAlign="Top" HeaderText="Address"
-                                HeaderStyle-Width="290px" HeaderStyle-BackColor="#006699" HeaderStyle-BorderColor="White"
+                                HeaderStyle-Width="290px" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White"
                                 HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="dateofbirth" ItemStyle-VerticalAlign="Top" HeaderText="Date of Birth"
-                                HeaderStyle-Width="190px" HeaderStyle-BackColor="#006699" HeaderStyle-BorderColor="White"
+                                HeaderStyle-Width="190px" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White"
                                 HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="city_code" ItemStyle-VerticalAlign="Top" HeaderText="Branch"
-                                HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#006699"
+                                HeaderStyle-Width="40px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="format(l.loan_amount,2)" ItemStyle-VerticalAlign="Top"
                                 HeaderText="Loan Amount" HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center"
-                                HeaderStyle-BackColor="#006699" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White"
+                                HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White"
                                 ReadOnly="true" />
                             <asp:BoundField DataField="period" ItemStyle-VerticalAlign="Top" HeaderText="Period"
-                                HeaderStyle-Width="50px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#006699"
+                                HeaderStyle-Width="50px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="spouse_name" ItemStyle-VerticalAlign="Top" HeaderText="Spouse Name"
-                                HeaderStyle-Width="220px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#006699"
+                                HeaderStyle-Width="220px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="spouse_nic" ItemStyle-VerticalAlign="Top" HeaderText="Spouse NIC"
-                                HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#006699"
+                                HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                          <asp:BoundField DataField="Sdateofbirth" ItemStyle-VerticalAlign="Top" HeaderText="Date of Birth"
-                                HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#006699"
+                                HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
                          <asp:BoundField DataField="relationshipx" ItemStyle-VerticalAlign="Top" HeaderText="Relationship"
-                                HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#006699"
+                                HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />                                
                         </Columns>
                     </asp:GridView>

@@ -27,90 +27,93 @@ namespace MuslimAID
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                GetUserDetails(); 
-                string strloginID = Session["NIC"].ToString();
-                DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
-                cmbBranch.Items.Clear();
-                cmbBranch.Items.Add("");
-                for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
+                if (!IsPostBack)
                 {
-                    cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                    cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                }
-
-                DataSet dsUserTy = cls_Connection.getDataSet("SELECT user_type FROM users WHERE nic = '" + strloginID + "';");
-                if (dsUserTy.Tables[0].Rows.Count > 0)
-                {
-                    strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
-                    if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
+                    GetUserDetails();
+                    string strloginID = Session["NIC"].ToString();
+                    DataSet dsBranch = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
+                    cmbBranch.Items.Clear();
+                    cmbBranch.Items.Add("");
+                    for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
                     {
-                        btnSubmit.Enabled = true;
-                        btnUpdate.Enabled = false;
-                        btnDactivate.Enabled = false;
-                        btnUpdate.Visible = true;
-                        btnDactivate.Visible = true;
-                        txtUserName.Enabled = true;
-                        txtFirstName.Enabled = true;
-                        txtLastName.Enabled = true;
-                        txtAddress.Enabled = true;
-                        txtDesignation.Enabled = true;
-                        txtDateOfBirth.Enabled = true;
-                        cmbTitle.Enabled = true;
-                        cmbUserType.Enabled = true;
-                        fuPhoto.Enabled = true;
-                        txtPassword.Enabled = true;
-                        txtConfirmPass.Enabled = true;
-                        txtEPF_No.Enabled = true;
-                        txtMobile.Enabled = true;
-                        txtTele.Enabled = true;
-                        //cmbBranch.Enabled = false;
+                        cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                        cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
                     }
-                    else if (strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" || strType == "BFA" || strType == "MFO") 
+
+                    DataSet dsUserTy = cls_Connection.getDataSet("SELECT user_type FROM users WHERE nic = '" + strloginID + "';");
+                    if (dsUserTy.Tables[0].Rows.Count > 0)
                     {
-                        txtUserName.Text = Session["NIC"].ToString();
-                        DataSet dsUser = cls_Connection.getDataSet("SELECT * FROM users WHERE nic = '" + Session["NIC"].ToString() + "'");
+                        strType = dsUserTy.Tables[0].Rows[0]["user_type"].ToString();
+                        if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG")
+                        {
+                            btnSubmit.Enabled = true;
+                            btnUpdate.Enabled = false;
+                            btnDactivate.Enabled = false;
+                            btnUpdate.Visible = true;
+                            btnDactivate.Visible = true;
+                            txtUserName.Enabled = true;
+                            txtFirstName.Enabled = true;
+                            txtLastName.Enabled = true;
+                            txtAddress.Enabled = true;
+                            txtDesignation.Enabled = true;
+                            txtDateOfBirth.Enabled = true;
+                            cmbTitle.Enabled = true;
+                            cmbUserType.Enabled = true;
+                            fuPhoto.Enabled = true;
+                            txtPassword.Enabled = true;
+                            txtConfirmPass.Enabled = true;
+                            txtEPF_No.Enabled = true;
+                            txtMobile.Enabled = true;
+                            txtTele.Enabled = true;
+                            //cmbBranch.Enabled = false;
+                        }
+                        else if (strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" || strType == "BFA" || strType == "MFO")
+                        {
+                            txtUserName.Text = Session["NIC"].ToString();
+                            DataSet dsUser = cls_Connection.getDataSet("SELECT * FROM users WHERE nic = '" + Session["NIC"].ToString() + "'");
 
-                        cmbTitle.SelectedValue = dsUser.Tables[0].Rows[0]["user_title"].ToString();
-                        txtFirstName.Text = dsUser.Tables[0].Rows[0]["first_name"].ToString();
-                        txtLastName.Text = dsUser.Tables[0].Rows[0]["last_name"].ToString();
-                        txtAddress.Text = dsUser.Tables[0].Rows[0]["user_address"].ToString();
-                        txtDateOfBirth.Text = dsUser.Tables[0].Rows[0]["date_of_birth"].ToString();
-                        txtDesignation.Text = dsUser.Tables[0].Rows[0]["designation"].ToString();
-                        cmbUserType.SelectedValue = dsUser.Tables[0].Rows[0]["user_type"].ToString();
-                        img_path.Text = dsUser.Tables[0].Rows[0]["photo_path"].ToString();
-                        hid_img_path.Value = dsUser.Tables[0].Rows[0]["photo_path"].ToString();
-                        
-                        txtUserName.Enabled = false;
+                            cmbTitle.SelectedValue = dsUser.Tables[0].Rows[0]["user_title"].ToString();
+                            txtFirstName.Text = dsUser.Tables[0].Rows[0]["first_name"].ToString();
+                            txtLastName.Text = dsUser.Tables[0].Rows[0]["last_name"].ToString();
+                            txtAddress.Text = dsUser.Tables[0].Rows[0]["user_address"].ToString();
+                            txtDateOfBirth.Text = dsUser.Tables[0].Rows[0]["date_of_birth"].ToString();
+                            txtDesignation.Text = dsUser.Tables[0].Rows[0]["designation"].ToString();
+                            cmbUserType.SelectedValue = dsUser.Tables[0].Rows[0]["user_type"].ToString();
+                            img_path.Text = dsUser.Tables[0].Rows[0]["photo_path"].ToString();
+                            hid_img_path.Value = dsUser.Tables[0].Rows[0]["photo_path"].ToString();
 
-                        btnSubmit.Visible = false;
-                        btnDactivate.Visible = false;
-                        btnUpdate.Enabled = true;
-                        btnUpdate.Visible = true;
+                            txtUserName.Enabled = false;
 
-                        fuPhoto.Enabled = true;
-                        txtPassword.Enabled = true;
-                        txtConfirmPass.Enabled = true;
-                        txtFirstName.Enabled = false;
-                        txtLastName.Enabled = false;
-                        txtAddress.Enabled = false;
-                        txtDesignation.Enabled = false;
-                        txtDateOfBirth.Enabled = false;
-                        cmbTitle.Enabled = false;
-                        cmbUserType.Enabled = false;
-                        txtEPF_No.Enabled = false;
-                        txtMobile.Enabled = false;
-                        txtTele.Enabled = false;
-                        //cmbBranch.Enabled = false;
+                            btnSubmit.Visible = false;
+                            btnDactivate.Visible = false;
+                            btnUpdate.Enabled = true;
+                            btnUpdate.Visible = true;
+
+                            fuPhoto.Enabled = true;
+                            txtPassword.Enabled = true;
+                            txtConfirmPass.Enabled = true;
+                            txtFirstName.Enabled = false;
+                            txtLastName.Enabled = false;
+                            txtAddress.Enabled = false;
+                            txtDesignation.Enabled = false;
+                            txtDateOfBirth.Enabled = false;
+                            cmbTitle.Enabled = false;
+                            cmbUserType.Enabled = false;
+                            txtEPF_No.Enabled = false;
+                            txtMobile.Enabled = false;
+                            txtTele.Enabled = false;
+                            //cmbBranch.Enabled = false;
+                        }
+                        else
+                        {
+                            Response.Redirect("muslimaid.aspx");
+                        }
+
                     }
                     else
                     {
                         Response.Redirect("muslimaid.aspx");
                     }
-
-                }
-                else
-                {
-                    Response.Redirect("muslimaid.aspx");
                 }
             }
             else
@@ -234,6 +237,7 @@ namespace MuslimAID
                 string strTital = cmbTitle.SelectedItem.Value;
                 string strAddress = txtAddress.Text.Trim();
                 string strDateOfBirth = txtDateOfBirth.Text.Trim();
+                string strBranch = cmbBranch.SelectedValue.ToString();
                 #endregion
 
                 #region Assign Parameters
@@ -255,6 +259,9 @@ namespace MuslimAID
                 cmdInsertQRY.Parameters.Add("@user_title", MySqlDbType.VarChar, 10);
                 cmdInsertQRY.Parameters.Add("@branch_code", MySqlDbType.VarChar, 4);
                 cmdInsertQRY.Parameters.Add("@company_code", MySqlDbType.VarChar, 4);
+                cmdInsertQRY.Parameters.Add("@EPFNo", MySqlDbType.VarChar, 12);
+                cmdInsertQRY.Parameters.Add("@Mobile_No", MySqlDbType.VarChar, 15);
+                cmdInsertQRY.Parameters.Add("@Tele_No", MySqlDbType.VarChar, 15);
                 #endregion
 
                 #region Declare Parameters
@@ -274,7 +281,7 @@ namespace MuslimAID
                 cmdInsertQRY.Parameters["@user_address"].Value = strAddress;
                 cmdInsertQRY.Parameters["@date_of_birth"].Value = strDateOfBirth;
                 cmdInsertQRY.Parameters["@user_title"].Value = strTital;
-                cmdInsertQRY.Parameters["@branch_code"].Value = cmbBranch.SelectedValue.ToString();
+                cmdInsertQRY.Parameters["@branch_code"].Value = strBranch;
                 cmdInsertQRY.Parameters["@company_code"].Value = "MAID";
                 cmdInsertQRY.Parameters["@EPFNo"].Value = txtEPF_No.Text.Trim();
                 cmdInsertQRY.Parameters["@Mobile_No"].Value = txtMobile.Text.Trim();
@@ -288,7 +295,7 @@ namespace MuslimAID
                     if (i == 1)
                     {
                         if(cmbUserType.SelectedValue.ToString() == "MFO")
-                            create_mfo();
+                            create_mfo(strBranch);
 
                         Reset();
                         lblMsg.Text = "User created Success";
@@ -364,6 +371,7 @@ namespace MuslimAID
                 string strImageType;
                 string strNewFileName;
                 string fpath = "";
+                string strBranch = cmbBranch.SelectedValue.ToString();
 
                 strServerImagePath = Server.MapPath(".") + "\\User_Photos";
 
@@ -379,7 +387,7 @@ namespace MuslimAID
 
                 StringBuilder q = new StringBuilder();
 
-                q.Append("UPDATE users SET user_password='" + passwd + "', user_title='" + cmbTitle.SelectedValue.ToString() + "', first_name='" + txtFirstName.Text.Trim() + "', last_name='" + txtLastName.Text.Trim() + "', user_address='" + txtAddress.Text.Trim() + "',date_of_birth='" + txtDateOfBirth.Text.Trim() + "', user_type='" + cmbUserType.SelectedValue.ToString() + "', designation='" + txtDesignation.Text.Trim() + "', branch_code='" + cmbBranch.SelectedValue.ToString() + "', EPFNo='" + txtEPF_No.Text.Trim() + "', Mobile_No='" + txtMobile.Text.Trim() + "', Tele_No='" + txtTele.Text.Trim() + "'");
+                q.Append("UPDATE users SET user_password='" + passwd + "', user_title='" + cmbTitle.SelectedValue.ToString() + "', first_name='" + txtFirstName.Text.Trim() + "', last_name='" + txtLastName.Text.Trim() + "', user_address='" + txtAddress.Text.Trim() + "',date_of_birth='" + txtDateOfBirth.Text.Trim() + "', user_type='" + cmbUserType.SelectedValue.ToString() + "', designation='" + txtDesignation.Text.Trim() + "', branch_code='" + strBranch + "', EPFNo='" + txtEPF_No.Text.Trim() + "', Mobile_No='" + txtMobile.Text.Trim() + "', Tele_No='" + txtTele.Text.Trim() + "'");
 
                 if (fpath != "")
                 {
@@ -393,7 +401,7 @@ namespace MuslimAID
                     MySqlCommand cmdQ = new MySqlCommand(q.ToString());
                     if (objDBTask.insertEditData(cmdQ) == 1)
                     {
-                        update_mfo();
+                        update_mfo(strBranch);
                         lblMsg.Text = "User updated success";
                     }
                     else
@@ -468,10 +476,10 @@ namespace MuslimAID
             {
                 lblMsg.Text = "Please select user type"; return false;
             }
-            else if (cmbBranch.SelectedIndex == 0)
-            {
-                lblMsg.Text = "Please select branch."; cmbBranch.Focus(); return false;
-            }
+            //else if (cmbBranch.SelectedIndex == 0)
+            //{
+            //    lblMsg.Text = "Please select branch."; cmbBranch.Focus(); return false;
+            //}
             else if (txtEPF_No.Text.Trim() == "")
             {
                 lblMsg.Text = "Please enter users epf no."; txtEPF_No.Focus(); return false;
@@ -499,7 +507,7 @@ namespace MuslimAID
             catch (Exception x) { cls_ErrorLog.createSErrorLog(x.Message, x.Source, "deactivate"); }
         }
 
-        private bool create_mfo()
+        private bool create_mfo(string brnach)
         {
             cls_Connection objDBCon = new cls_Connection();
             DataSet dsGetCurrPassword = cls_Connection.getDataSet("select (IFNULL(MAX(exe_id),0) + 1) AS MAX from micro_exective_root where branch_code ='" + cmbBranch.SelectedValue.ToString() + "'");
@@ -545,10 +553,10 @@ namespace MuslimAID
                 return false;
         }
 
-        private bool update_mfo()
+        private bool update_mfo(string branch)
         {
             cls_Connection objDBCon = new cls_Connection();
-            string strUPQ = "UPDATE micro_exective_root SET exe_name='" + txtFirstName.Text.Trim() + " " + txtLastName.Text.Trim() + "', branch_code='" + cmbBranch.SelectedValue.ToString() + "',updated_user_id='" + Session["NIC"].ToString() + "',create_ip='" + Request.UserHostAddress.ToString() + "',create_date_time='" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "',EPFNo='"+txtEPF_No.Text.Trim()+"',Mobile_No='"+txtMobile.Text.Trim()+"',Land_No='"+txtTele.Text.Trim()+"',Address='"+txtAddress.Text.Trim()+"',Designation='"+txtDesignation.Text.Trim()+"' WHERE exe_nic ='" + txtUserName.Text.Trim() + "'";
+            string strUPQ = "UPDATE micro_exective_root SET exe_name='" + txtFirstName.Text.Trim() + " " + txtLastName.Text.Trim() + "', branch_code='" + branch + "',updated_user_id='" + Session["NIC"].ToString() + "',create_ip='" + Request.UserHostAddress.ToString() + "',create_date_time='" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "',EPFNo='" + txtEPF_No.Text.Trim() + "',Mobile_No='" + txtMobile.Text.Trim() + "',Land_No='" + txtTele.Text.Trim() + "',Address='" + txtAddress.Text.Trim() + "',Designation='" + txtDesignation.Text.Trim() + "' WHERE exe_nic ='" + txtUserName.Text.Trim() + "'";
 
             MySqlCommand cmdUPQ = new MySqlCommand(strUPQ);
             if (objDBCon.insertEditData(cmdUPQ) > 0)

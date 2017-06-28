@@ -104,7 +104,7 @@
         <div class="form-group">
             <div class="col-md-5">Facility Code</div>
             <div class="col-md-7">
-                <asp:TextBox ID="txtContraCode" CssClass="form-control" runat="server" MaxLength="15"></asp:TextBox>
+                <asp:TextBox ID="txtContraCode" CssClass="form-control" runat="server" MaxLength="30"></asp:TextBox>
             </div>
         </div>
         <div class="form-group">
