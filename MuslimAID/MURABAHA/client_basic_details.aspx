@@ -474,12 +474,14 @@
             
             <div class="col-md-12">
                 <div class="table-back form-group">
-                <%--<div class="col-md-12" title="Yes">
-                    <asp:RadioButton ID="rdoOFDy" CssClass="rdoOFDy" runat="server" GroupName="OtherFamilyDetails" 
-                        Text="Yes" AutoPostBack="True" oncheckedchanged="rdoOFDy_CheckedChanged" />&nbsp;&nbsp;&nbsp;
-                    <asp:RadioButton ID="rdoOFDn" CssClass="rdoOFDy" runat="server" Checked="true" GroupName="OtherFamilyDetails" 
-                        Text="No" AutoPostBack="True" oncheckedchanged="rdoOFDn_CheckedChanged" />
-                </div>--%>
+                <div class="col-md-6 form-group">
+                    <div class="col-md-3">Insurance No</div>
+                    <div class="col-md-6"><asp:TextBox ID="txtInsuranceCode" Enabled=false CssClass="form-control" runat="server"></asp:TextBox></div>
+                    <div class="col-md-3"><asp:Button ID="btnInsurance" Enabled=false 
+                            CssClass="btn btn-primary" runat="server" Text="Submit" 
+                            onclick="btnInsurance_Click" /></div>
+                </div>
+                <div class="col-md-6 form-group"><asp:Label ID="lblInsurance" runat="server"></asp:Label></div>
                     <table class="" width="100%" cellpadding="0" cellspacing="0" TabIndex="59">
                         <tr>
                             <th></th>

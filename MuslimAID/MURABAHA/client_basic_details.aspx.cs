@@ -1419,18 +1419,22 @@ namespace MuslimAID.MURABHA
                         }
                         else if (dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "P" && dsGetExsiLoan.Tables[0].Rows[0]["loan_approved"].ToString() == "Y" && dsGetExsiLoan.Tables[0].Rows[0]["chequ_no"].ToString() == "")
                         {
+                            #region Basic Details
                             hf3.Value = dsGetExsiNIC.Tables[0].Rows[0]["idmicro_basic_detail"].ToString();
+                            txtNicIssuDay.Text = dsGetExsiNIC.Tables[0].Rows[0]["nic_issue_date"].ToString();
                             cmbBranch.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["city_code"].ToString();
                             getArea();
-                            
-                            cmbArea.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["area"].ToString();
-                            
+
+                            cmbArea.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["area_code"].ToString();
+
                             getVillage();
+                            cmbVillage.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["village"].ToString();
 
                             getSocity();
+                            cmbCenter.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["society_id"].ToString();
                             txtSoNumber.Text = dsGetExsiNIC.Tables[0].Rows[0]["society_id"].ToString();
 
-                            DataSet dsGetRootID = cls_Connection.getDataSet("SELECT * FROM micro_exective_root WHERER branch_code = '" + dsGetExsiNIC.Tables[0].Rows[0]["contract_code"].ToString() + "';");
+                            DataSet dsGetRootID = cls_Connection.getDataSet("SELECT * FROM micro_exective_root WHERE branch_code = '" + dsGetExsiNIC.Tables[0].Rows[0]["city_code"].ToString() + "';");
                             if (cmbRoot.Items.Count > 0)
                                 cmbRoot.Items.Clear();
                             cmbRoot.Items.Add("");
@@ -1442,42 +1446,274 @@ namespace MuslimAID.MURABHA
                             }
 
                             cmbRoot.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
+
+                            txtCC.Text = dsGetExsiNIC.Tables[0].Rows[0]["contract_code"].ToString();
+                            txtCC.ReadOnly = true;
+
                             txtGSWard.Text = dsGetExsiNIC.Tables[0].Rows[0]["gs_ward"].ToString();
                             txtFullName.Text = dsGetExsiNIC.Tables[0].Rows[0]["full_name"].ToString();
                             rdoMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
-                            txtDOB.Text = dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString();
-
-                            DateTime now = DateTime.UtcNow.Date;
-                            DateTime dt = DateTime.Parse(dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString(), new CultureInfo("en-CA"));
-                            int age = now.Year - dt.Year;
-
-                            lblAge.Text = age.ToString();
                             rdoFeMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
-                            
+
                             txtTele.Text = dsGetExsiNIC.Tables[0].Rows[0]["land_no"].ToString();
                             txtAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["p_address"].ToString();
-                            txtResiAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["r_address"].ToString();
+
                             cmbOccupation.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["income_source"].ToString();
-                            try
+                            txtDOB.Text = dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString();
+
+                            //DateTime now = new DateTime();
+                            DateTime dt = DateTime.Parse(dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString(), new CultureInfo("en-CA"));
+                            lblAge.Text = (DateTime.Now.Year - dt.Year).ToString();
+
+                            cmbMS.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["marital_status"].ToString();
+                            if (dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0")
                             {
-                                cmbVillage.Text = dsGetExsiNIC.Tables[0].Rows[0]["center_name"].ToString();
+                                rdoMale.Checked = true;
                             }
-                            catch (Exception)
+                            else
                             {
+                                rdoFeMale.Checked = true;
                             }
-                            try
+                            #endregion
+                            #region Family Details
+                            DataSet dsFD = cls_Connection.getDataSet("SELECT * FROM micro_family_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
+                            if (dsFD.Tables[0].Rows.Count > 0)
                             {
-                                cmbRoot.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
-                                hidRoot.Value = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
+                                txtSoNIC.Text = dsFD.Tables[0].Rows[0]["spouse_nic"].ToString();
+                                txtSoNicIssuedDate.Text = dsFD.Tables[0].Rows[0]["spouse_nic_issued_date"].ToString();
+                                txtSoDOB.Text = dsFD.Tables[0].Rows[0]["spouse_dob"].ToString();
+                                DateTime dtSo = DateTime.Parse(dsFD.Tables[0].Rows[0]["spouse_dob"].ToString(), new CultureInfo("en-CA"));
+                                lblSoAge.Text = (DateTime.Now.Year - dtSo.Year).ToString();
+
+                                string strSGender;
+                                if (dsFD.Tables[0].Rows[0]["spouse_dob"].ToString() == "0")
+                                    rdoSoMale.Checked = true;
+                                else
+                                    rdoSoFeMale.Checked = true;
+
+                                txtSoName.Text = dsFD.Tables[0].Rows[0]["spouse_name"].ToString();
+                                txtSoContactNo.Text = dsFD.Tables[0].Rows[0]["spouse_contact_no"].ToString();
+                                cmbRelation.SelectedValue = dsFD.Tables[0].Rows[0]["spouse_relationship_with_applicant"].ToString();
+                                cmbOccupa.SelectedValue = dsFD.Tables[0].Rows[0]["occupation"].ToString();
                             }
-                            catch (Exception)
+                            #endregion
+                            #region Business Details
+                            DataSet dsBD = cls_Connection.getDataSet("SELECT * FROM micro_business_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
+                            if (dsBD.Tables[0].Rows.Count > 0)
                             {
+                                txtBusiness.Text = dsBD.Tables[0].Rows[0]["business_name"].ToString();
+                                cmbBNature.SelectedValue = dsBD.Tables[0].Rows[0]["busi_nature"].ToString();
+                                cmbPeriod.SelectedValue = dsBD.Tables[0].Rows[0]["busi_duration"].ToString();
+                                txtBisAddress.Text = dsBD.Tables[0].Rows[0]["busi_address"].ToString();
+                                cmbKeyPerson.SelectedValue = dsBD.Tables[0].Rows[0]["key_person"].ToString();
+                                txtNoOfPpl.Text = dsBD.Tables[0].Rows[0]["no_of_ppl"].ToString();
+                                txtBRNo.Text = dsBD.Tables[0].Rows[0]["br_no"].ToString();
+                                txtBContact.Text = dsBD.Tables[0].Rows[0]["contact_no_ofc"].ToString();
                             }
-                            txtInsDate.Text = dsGetExsiNIC.Tables[0].Rows[0]["inspection_date"].ToString();
+                            #endregion
+                            #region Facility Requirment
+
+                            DataSet dsFR = cls_Connection.getDataSet("SELECT * FROM micro_loan_details WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                            if (dsFR.Tables[0].Rows.Count > 0)
+                            {
+                                txtResonToApply.Text = dsFR.Tables[0].Rows[0]["reason_to_apply"].ToString();
+                                txtLDLAmount.Text = dsFR.Tables[0].Rows[0]["loan_amount"].ToString();
+                                cmbTmePeriod.SelectedValue = dsFR.Tables[0].Rows[0]["period"].ToString();
+                                if (dsFR.Tables[0].Rows[0]["any_unsettled_loans"].ToString() == "1")
+                                {
+                                    DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                                    if (dsUnSLons.Tables[0].Rows.Count > 0)
+                                    {
+                                        for (int i = 0; i < dsUnSLons.Tables[0].Rows.Count; i++)
+                                        {
+                                            if (i == 0)
+                                            {
+                                                txtNameOrg1.Text = dsUnSLons.Tables[0].Rows[i]["organization"].ToString();
+                                                txtPurpos1.Text = dsUnSLons.Tables[0].Rows[i]["purpos"].ToString();
+                                                txtFAmount1.Text = dsUnSLons.Tables[0].Rows[i]["facility_amount"].ToString();
+                                                txtOutstandBal1.Text = dsUnSLons.Tables[0].Rows[i]["outstanding"].ToString();
+                                                txtMonthInstal1.Text = dsUnSLons.Tables[0].Rows[i]["monthly_installment"].ToString();
+                                                txtRemainInstal1.Text = dsUnSLons.Tables[0].Rows[i]["remaining_number_of_installment"].ToString();
+                                            }
+                                            else if (i == 1)
+                                            {
+                                                txtNameOrg2.Text = dsUnSLons.Tables[0].Rows[i]["organization"].ToString();
+                                                txtPurpos2.Text = dsUnSLons.Tables[0].Rows[i]["purpos"].ToString();
+                                                txtFAmount2.Text = dsUnSLons.Tables[0].Rows[i]["facility_amount"].ToString();
+                                                txtOutstandBal2.Text = dsUnSLons.Tables[0].Rows[i]["outstanding"].ToString();
+                                                txtMonthInstal2.Text = dsUnSLons.Tables[0].Rows[i]["monthly_installment"].ToString();
+                                                txtRemainInstal2.Text = dsUnSLons.Tables[0].Rows[i]["remaining_number_of_installment"].ToString();
+                                            }
+                                            else if (i == 3)
+                                            {
+                                                txtNameOrg3.Text = dsUnSLons.Tables[0].Rows[i]["organization"].ToString();
+                                                txtPurpos3.Text = dsUnSLons.Tables[0].Rows[i]["purpos"].ToString();
+                                                txtFAmount3.Text = dsUnSLons.Tables[0].Rows[i]["facility_amount"].ToString();
+                                                txtOutstandBal3.Text = dsUnSLons.Tables[0].Rows[i]["outstanding"].ToString();
+                                                txtMonthInstal3.Text = dsUnSLons.Tables[0].Rows[i]["monthly_installment"].ToString();
+                                                txtRemainInstal3.Text = dsUnSLons.Tables[0].Rows[i]["remaining_number_of_installment"].ToString();
+                                            }
+                                            else { }
+                                        }
+                                    }
+                                }
+                            }
+                            #endregion
+                            #region Other Family Details
+                            txtInsuranceCode.Text = dsGetExsiNIC.Tables[0].Rows[0]["insurance_code"].ToString();
+                            DataSet dsOFD = cls_Connection.getDataSet("SELECT * FROM family_relationship_details WHERE contract_code = '" + txtCC.Text.Trim() + "'");
+                            if (dsOFD.Tables[0].Rows.Count > 0)
+                            {
+                                for (int i = 0; i < dsOFD.Tables[0].Rows.Count; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        txtName1.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
+                                        cmbRelation1.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
+                                        txtNIC1.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
+                                        txtDOB1.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtOcc1.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
+                                        txtInCome1.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
+                                    }
+                                    else if (i == 1)
+                                    {
+                                        txtName2.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
+                                        cmbRelation2.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
+                                        txtNIC2.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
+                                        txtDOB2.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtOcc2.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
+                                        txtInCome2.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
+                                    }
+                                    else if (i == 2)
+                                    {
+                                        txtName3.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
+                                        cmbRelation3.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
+                                        txtNIC3.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
+                                        txtDOB3.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtOcc3.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
+                                        txtInCome3.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
+                                    }
+                                    else if (i == 3)
+                                    {
+                                        txtName4.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
+                                        cmbRelation4.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
+                                        txtNIC4.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
+                                        txtDOB4.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtOcc4.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
+                                        txtInCome4.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
+                                    }
+                                    else if (i == 4)
+                                    {
+                                        txtName5.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
+                                        cmbRelation5.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
+                                        txtNIC5.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
+                                        txtDOB5.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtOcc5.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
+                                        txtInCome5.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
+                                    }
+                                    else if (i == 5)
+                                    {
+                                        txtName6.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
+                                        cmbRelation6.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
+                                        txtNIC6.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
+                                        txtDOB6.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtOcc6.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
+                                        txtInCome6.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
+                                    }
+                                    else if (i == 6)
+                                    {
+                                        txtName7.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
+                                        cmbRelation7.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
+                                        txtNIC7.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
+                                        txtDOB7.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtOcc7.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
+                                        txtInCome7.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
+                                    }
+                                    else if (i == 7)
+                                    {
+                                        txtName8.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
+                                        cmbRelation8.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
+                                        txtNIC8.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
+                                        txtDOB8.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtOcc8.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
+                                        txtInCome8.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
+                                    }
+                                    else if (i == 8)
+                                    {
+                                        txtName9.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
+                                        cmbRelation9.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
+                                        txtNIC9.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
+                                        txtDOB9.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtOcc9.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
+                                        txtInCome9.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
+                                    }
+                                }
+                            }
+
+                            #endregion
+
+                            #region old code
+                            //hf3.Value = dsGetExsiNIC.Tables[0].Rows[0]["idmicro_basic_detail"].ToString();
+                            //cmbBranch.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["city_code"].ToString();
+                            //getArea();
+                            
+                            //cmbArea.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["area"].ToString();
+                            
+                            //getVillage();
+
+                            //getSocity();
+                            //txtSoNumber.Text = dsGetExsiNIC.Tables[0].Rows[0]["society_id"].ToString();
+
+                            //DataSet dsGetRootID = cls_Connection.getDataSet("SELECT * FROM micro_exective_root WHERER branch_code = '" + dsGetExsiNIC.Tables[0].Rows[0]["contract_code"].ToString() + "';");
+                            //if (cmbRoot.Items.Count > 0)
+                            //    cmbRoot.Items.Clear();
+                            //cmbRoot.Items.Add("");
+
+                            //for (int i = 0; i < dsGetRootID.Tables[0].Rows.Count; i++)
+                            //{
+                            //    cmbRoot.Items.Add("[" + dsGetRootID.Tables[0].Rows[i]["exe_id"] + "] - " + dsGetRootID.Tables[0].Rows[i]["exe_name"].ToString());
+                            //    cmbRoot.Items[i + 1].Value = dsGetRootID.Tables[0].Rows[i]["exe_id"].ToString();
+                            //}
+
+                            //cmbRoot.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
+                            //txtGSWard.Text = dsGetExsiNIC.Tables[0].Rows[0]["gs_ward"].ToString();
+                            //txtFullName.Text = dsGetExsiNIC.Tables[0].Rows[0]["full_name"].ToString();
+                            //rdoMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
+                            //txtDOB.Text = dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString();
+
+                            //DateTime now = DateTime.UtcNow.Date;
+                            //DateTime dt = DateTime.Parse(dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString(), new CultureInfo("en-CA"));
+                            //int age = now.Year - dt.Year;
+
+                            //lblAge.Text = age.ToString();
+                            //rdoFeMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
+                            
+                            //txtTele.Text = dsGetExsiNIC.Tables[0].Rows[0]["land_no"].ToString();
+                            //txtAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["p_address"].ToString();
+                            //txtResiAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["r_address"].ToString();
+                            //cmbOccupation.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["income_source"].ToString();
+                            //try
+                            //{
+                            //    cmbVillage.Text = dsGetExsiNIC.Tables[0].Rows[0]["center_name"].ToString();
+                            //}
+                            //catch (Exception)
+                            //{
+                            //}
+                            //try
+                            //{
+                            //    cmbRoot.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
+                            //    hidRoot.Value = dsGetExsiNIC.Tables[0].Rows[0]["root_id"].ToString();
+                            //}
+                            //catch (Exception)
+                            //{
+                            //}
+                            //txtInsDate.Text = dsGetExsiNIC.Tables[0].Rows[0]["inspection_date"].ToString();
+
+                            #endregion
 
                             lblMsg.Text = "";
                             btnSubmit.Enabled = false;
-                            btnSubmit.Visible = false;
+                            btnSubmit.Visible = true;
                             btnUpdate.Visible = true;
                             string strloginID = Session["NIC"].ToString();
                             DataSet dsUserTy = cls_Connection.getDataSet("select user_type,module_name,company_code from users where nic = '" + strloginID + "';");
@@ -1486,7 +1722,13 @@ namespace MuslimAID.MURABHA
                                 if (dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "ADM" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "BOD" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "CMG" || dsUserTy.Tables[0].Rows[0]["user_type"].ToString() == "OMG")
                                 {
                                     btnSubmit.Enabled = false;
-                                    btnUpdate.Enabled = true;
+                                    btnUpdate.Enabled = false;
+                                    if (dsGetExsiNIC.Tables[0].Rows[0]["insured"].ToString() == "0")
+                                    {
+                                        txtInsuranceCode.Enabled = true;
+                                        txtInsuranceCode.Focus();
+                                        btnInsurance.Enabled = true;
+                                    }
                                 }
                             }
                         }
@@ -1633,6 +1875,7 @@ namespace MuslimAID.MURABHA
                             }
                             #endregion
                             #region Other Family Details
+                            txtInsuranceCode.Text = dsGetExsiNIC.Tables[0].Rows[0]["insurance_code"].ToString();
                             DataSet dsOFD = cls_Connection.getDataSet("SELECT * FROM family_relationship_details WHERE contract_code = '" + txtCC.Text.Trim() + "'");
                             if (dsOFD.Tables[0].Rows.Count > 0)
                             {
@@ -1919,6 +2162,31 @@ namespace MuslimAID.MURABHA
             txtDOB2.Text = txtSoDOB.Text.Trim();
             txtOcc2.Text = cmbOccupa.SelectedItem.Text.Trim();
             cmbBNature.Focus();
+        }
+
+        protected void btnInsurance_Click(object sender, EventArgs e)
+        {
+            if (txtInsuranceCode.Text.Trim() == "")
+                lblInsurance.Text = "Please enter Insurance Code";
+            else
+            {
+                try
+                {
+                    MySqlCommand cmdInsurance = new MySqlCommand("INSERT INTO insurance_details (contact_code,insurance_code,insured,module) VALUES (@contact_code,@insurance_code,@insured,@module)");
+
+                    cmdInsurance.Parameters.AddWithValue("@contact_code", txtCC.Text.Trim());
+                    cmdInsurance.Parameters.AddWithValue("@insurance_code", txtInsuranceCode.Text.Trim());
+                    cmdInsurance.Parameters.AddWithValue("@insured", 1);
+                    cmdInsurance.Parameters.AddWithValue("@module", "MBR");
+
+                    objDBCon.insertEditData(cmdInsurance);
+                }
+                catch (Exception ex)
+                {
+                    lblInsurance.Text = "Something went wrong...!";
+                    cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Inserting Insurance");
+                }
+            }
         }
     }
 }

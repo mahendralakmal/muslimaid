@@ -644,6 +644,33 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.TextBox txtRemainInstal3;
         
         /// <summary>
+        /// txtInsuranceCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtInsuranceCode;
+        
+        /// <summary>
+        /// btnInsurance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnInsurance;
+        
+        /// <summary>
+        /// lblInsurance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInsurance;
+        
+        /// <summary>
         /// txtName1 control.
         /// </summary>
         /// <remarks>

@@ -8,6 +8,7 @@ F.spouse_nic, F.spouse_name, F.occupation, F.no_of_fami_memb, F.education AS fam
 FA.amount_fex,FA.amount_opex,FA.clothes_ex,FA.education_ex,FA.food_ex,FA.fr_period,FA.health_n_sanitation,FA.mad,FA.mdaaip,FA.net_annual_family_in,FA.net_Income_business,FA.other_ex,FA.other_income AS fa_other_income,FA.rapsa,FA.rentIncome,FA.rent_ex,FA.rent_income_other,FA.salary_n_wages,FA.total_annual_family_ex,FA.total_annual_family_in,FA.travel_n_transport,FA.wet_ex,
 B.business_name, B.busi_duration, B.busi_address, B.busi_income, B.other_income, B.total_income, B.direct_cost, B.indirect_cost, B.other_expenses, B.total_expenses, B.profit_lost, B.family_expenses, B.net_income, B.user_ip AS business_user_ip, B.date_time AS business_date_time, B.busi_population, B.busi_nature, B.key_person, B.no_of_ppl, B.br_no, B.contact_no_ofc, B.sales_credit, B.purchase_cash, B.purchase_credit, B.rent, B.water_elec_tele, B.wages, B.fla_rent, B.travel, B.maintenance,
 L.loan_amount, L.current_loan_amount, L.service_charges, L.other_charges, L.interest_rate, ((((L.loan_amount * L.interest_rate)/100)/12)*L.period) AS interest_amount, L.period, L.monthly_instollment, L.created_on, L.created_user_nic, L.created_user_ip, L.chequ_no, L.chequ_amount, L.chequ_deta_on, L.loan_approved, L.loan_approved_user_nic, L.loan_approved_on, L.OtherDescription, L.cheq_detai_app_nic, L.due_date, L.arres_amou, L.acc_name, L.acc_branch, L.acc_number, L.bank_name, L.def, L.over_payment, L.arres_count, L.loan_sta, L.ser_char_sta, L.closing_date, L.maturity_date, L.due_installment, L.reg_approval_nic, L.reg_approval_on, L.reg_approval_des, L.reg_approval, L.bank_code, L.branch_code, L.registration_fee, L.walfare_fee, L.product_category, L.brand, L.model_no, L.selling_price, L.down_payment, L.micro_loan_detailscol, L.reason_to_apply, L.any_unsettled_loans, L.micro_loan_detailscol1, L.other_unsettled_facilities, L.next_center_day, L.micro_loan_detailscol2,
+I.insurance_code,I.insured,I.module,
 branch.b_code, branch.b_name,
 area.id, area.area_code, area.area, 
 villages_name.idvillages_name, villages_name.villages_code, villages_name.villages_name, 
@@ -23,6 +24,7 @@ LEFT OUTER JOIN area ON C.area_code = area.area_code
 LEFT OUTER JOIN villages_name ON C.village = villages_name.villages_code 
 LEFT OUTER JOIN center_details ON C.city_code = center_details.city_code AND C.society_id = center_details.idcenter_details  
 LEFT OUTER JOIN micro_exective_root ON C.root_id = micro_exective_root.exe_id AND micro_exective_root.branch_code = C.city_code 
+LEFT OUTER JOIN insurance_details I ON C.contract_code = I.contact_code
 ORDER BY C.idmicro_basic_detail DESC;
 
 SALAM FULL DETAILS REPORT
