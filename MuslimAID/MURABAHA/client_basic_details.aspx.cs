@@ -1560,7 +1560,10 @@ namespace MuslimAID.MURABHA
                             }
                             #endregion
                             #region Other Family Details
-                            txtInsuranceCode.Text = dsGetExsiNIC.Tables[0].Rows[0]["insurance_code"].ToString();
+                            DataSet dsIns = cls_Connection.getDataSet("SELECT * FROM insurance_details WHERE contact_code = '" + txtCC.Text.Trim() + "'");
+                            if(dsIns.Tables[0].Rows.Count > 0)
+                                txtInsuranceCode.Text = dsIns.Tables[0].Rows[0]["insurance_code"].ToString();
+                            
                             DataSet dsOFD = cls_Connection.getDataSet("SELECT * FROM family_relationship_details WHERE contract_code = '" + txtCC.Text.Trim() + "'");
                             if (dsOFD.Tables[0].Rows.Count > 0)
                             {
@@ -1723,11 +1726,19 @@ namespace MuslimAID.MURABHA
                                 {
                                     btnSubmit.Enabled = false;
                                     btnUpdate.Enabled = false;
-                                    if (dsGetExsiNIC.Tables[0].Rows[0]["insured"].ToString() == "0")
+                                    if (dsIns.Tables[0].Rows.Count > 0)
                                     {
+                                        if (dsIns.Tables[0].Rows[0]["insured"].ToString() == "0")
+                                        {
+                                            txtInsuranceCode.Enabled = true;
+                                            btnInsurance.Enabled = true;
+                                            txtInsuranceCode.Focus();
+                                        }
+                                    }
+                                    else {
                                         txtInsuranceCode.Enabled = true;
-                                        txtInsuranceCode.Focus();
                                         btnInsurance.Enabled = true;
+                                        txtInsuranceCode.Focus();
                                     }
                                 }
                             }
@@ -2179,12 +2190,17 @@ namespace MuslimAID.MURABHA
                     cmdInsurance.Parameters.AddWithValue("@insured", 1);
                     cmdInsurance.Parameters.AddWithValue("@module", "MBR");
 
-                    objDBCon.insertEditData(cmdInsurance);
+                    if (objDBCon.insertEditData(cmdInsurance) == 1)
+                    {
+                        lblInsurance.Text = "Insurance code addred sucessfully...!";
+                        lblInsurance.Focus();
+                    }
                 }
                 catch (Exception ex)
                 {
                     lblInsurance.Text = "Something went wrong...!";
                     cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Inserting Insurance");
+                    lblInsurance.Focus();
                 }
             }
         }

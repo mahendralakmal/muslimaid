@@ -57,27 +57,27 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
-                hstrSelectQuery.Value = "select s.contract_code,b.nic,b.initial_name,b.p_address,b.dateofbirth,s.city_code,format(l.loan_amount,2),l.period,f.spouse_name,f.spouse_nic,(DATE_FORMAT((l.chequ_deta_on),'%Y-%m-%d')) date_time,relationshipx,f.dateofbirth Sdateofbirth from micro_service_charges s,micro_basic_detail b,micro_loan_details l,micro_family_details f where b.contract_code = s.contract_code and f.contract_code = s.contract_code and f.contract_code = l.contra_code and s.payment_status = 'D'";
+                hstrSelectQuery.Value = "SELECT s.contract_code,b.nic,b.initial_name,b.p_address,b.dob,s.city_code,format(l.loan_amount,2),l.period,f.spouse_name,f.spouse_nic,(DATE_FORMAT((l.chequ_deta_on),'%Y-%m-%d')) date_time,f.spouse_relationship_with_applicant,f.spouse_dob Sdateofbirth FROM micro_service_charges s,micro_basic_detail b,micro_loan_details l,micro_family_details f WHERE b.contract_code = s.contract_code AND f.contract_code = s.contract_code AND f.contract_code = l.contra_code AND s.payment_status = 'D'";
                 if (txtContraCode.Text.Trim() != "" || txtDateFrom.Text.Trim() != "" || txtDateTo.Text.Trim() != "" || cmbCityCode.SelectedIndex != 0)
                 {
                     if (cmbCityCode.SelectedIndex != 0)
                     {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and s.city_code = '" + cmbCityCode.SelectedValue.ToString() + "'";
+                        hstrSelectQuery.Value = hstrSelectQuery.Value + " AND s.city_code = '" + cmbCityCode.SelectedValue.ToString() + "'";
                     }
                     if (txtContraCode.Text.Trim() != "")
                     {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and s.contract_code = '" + txtContraCode.Text.Trim() + "'";
+                        hstrSelectQuery.Value = hstrSelectQuery.Value + " AND s.contract_code = '" + txtContraCode.Text.Trim() + "'";
                     }
                     if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
                     {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and (DATE_FORMAT((s.date_time),'%Y-%m-%d')) between '" + txtDateFrom.Text.Trim() + "' and '" + txtDateTo.Text.Trim() + "'";
+                        hstrSelectQuery.Value = hstrSelectQuery.Value + " AND (DATE_FORMAT((s.date_time),'%Y-%m-%d')) between '" + txtDateFrom.Text.Trim() + "' AND '" + txtDateTo.Text.Trim() + "'";
                     }
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by s.idmicro_service_charges asc;";
+                    hstrSelectQuery.Value = hstrSelectQuery.Value + " ORDER BY s.idmicro_service_charges ASC;";
                     loadDataToRepeater(hstrSelectQuery.Value);
                 }
                 else
                 {
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by s.idmicro_service_charges asc;";
+                    hstrSelectQuery.Value = hstrSelectQuery.Value + " ORDER BY s.idmicro_service_charges ASC;";
                     loadDataToRepeater(hstrSelectQuery.Value);
                 }
             }
