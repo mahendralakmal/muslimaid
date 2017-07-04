@@ -65,12 +65,24 @@ $(document).ready(function(){
         
     $(".rate").on('change', function(){
         //calculatete for period
-        $(".rateForPeriod").val(($(".rate").val()/12)*($(".period").val()));
+        var RFP = ($(".rate").val()/12)*$(".period").val();
         //Calculate expected profit
-        $(".expProfit").val($(".loanamount").val()*$(".rateForPeriod").val()/100);
+        var EP = ($(".loanamount").val()*RFP)/100;
+        //Expected Units
+        var EU = (parseFloat($(".loanamount").val())+ parseFloat(EP))/$(".txtAgreedPrice").val();
+        //Expected Selling Price
+        var ESP = EU*$(".maxPriceExp").val();
+        
+        
+        $(".rateForPeriod").val(RFP);
+        $(".expProfit").val(EP);
+        $(".expUnits").val(EU);
+        $(".expSellingPrice").val(ESP);
         
         $(".rateForPeriod").prop("disabled", true);
-        $(".expProfit").prop("disabled", true);        
+        $(".expProfit").prop("disabled", true);       
+        $(".expUnits").prop("disabled", true);       
+        $(".expSellingPrice").prop("disabled", true);       
     });
     //Expected Units
     $(".expSellingPrice").on('change', function(){
