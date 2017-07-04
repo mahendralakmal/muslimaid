@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using MySql.Data.MySqlClient;
+using System.Text;
 
 namespace MuslimAID.SALAM
 {
@@ -203,7 +204,7 @@ namespace MuslimAID.SALAM
         {
             try
             {
-                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_loan_details ( ccode, cacode, loan_amount, incomesource1_1, incomesource1_2, incomesource1_3, incomesource2_1, incomesource2_2, incomesource2_3, areaofFarming, typeofv1, typeofv2, ex_years, total_harvest, harvesting_period, seasons_for_year, rain_water, irrigation_water, bothRwNRw, min_expected_price, max_expected_price, unit, re_pay_period, ex_price_per_unit, annual_rate, rate_for_period, exp_profit, exp_sale_price, exp_unit, loan_approved, loan_approved_user_nic, loan_approved_on, loan_sta,reg_approval) VALUES ( @ccode, @cacode, @loan_amount, @incomesource1_1, @incomesource1_2, @incomesource1_3, @incomesource2_1, @incomesource2_2, @incomesource2_3, @areaofFarming, @typeofv1, @typeofv2, @ex_years, @total_harvest, @harvesting_period, @seasons_for_year, @rain_water, @irrigation_water, @bothRwNRw, @min_expected_price, @max_expected_price, @unit, @re_pay_period, @ex_price_per_unit, @annual_rate, @rate_for_period, @exp_profit, @exp_sale_price, @exp_unit, @loan_approved, @loan_approved_user_nic, @loan_approved_on, @loan_sta,@reg_approval)");
+                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_loan_details (ccode, loan_amount, incomesource1_1, incomesource1_2, incomesource1_3, incomesource2_1, incomesource2_2, incomesource2_3, areaofFarming, typeofv1, typeofv2, ex_years, total_harvest, harvesting_period, seasons_for_year, rain_water, irrigation_water, bothRwNRw, min_expected_price, max_expected_price, unit, type_of_product, conditionExpected, agreedPrice1, agreedPrice2, discussed1, discussed2, client_Farmer_Association, insurance_for_farming, insurer_details, totalMonthINcome, totalMonthExpenseBusiness, totalMonthExpenseFamily, AdditionalIncome, CashBalanceMonth, re_pay_period, ex_price_per_unit, annual_rate, rate_for_period, exp_profit, exp_sale_price, exp_unit, loan_approved, loan_approved_user_nic, loan_approved_on, loan_sta, reg_approval) VALUES (@ccode, @loan_amount, @incomesource1_1, @incomesource1_2, @incomesource1_3, @incomesource2_1, @incomesource2_2, @incomesource2_3, @areaofFarming, @typeofv1, @typeofv2, @ex_years, @total_harvest, @harvesting_period, @seasons_for_year, @rain_water, @irrigation_water, @bothRwNRw, @min_expected_price, @max_expected_price, @unit, @type_of_product, @conditionExpected, @agreedPrice1, @agreedPrice2, @discussed1, @discussed2, @client_Farmer_Association, @insurance_for_farming, @insurer_details, @totalMonthINcome, @totalMonthExpenseBusiness, @totalMonthExpenseFamily, @AdditionalIncome, @CashBalanceMonth, @re_pay_period, @ex_price_per_unit, @annual_rate, @rate_for_period, @exp_profit, @exp_sale_price, @exp_unit, @loan_approved, @loan_approved_user_nic, @loan_approved_on, @loan_sta, @reg_approval)");
 
                 cmdInsert.Parameters.AddWithValue("@ccode", txtCC.Text.Trim());
                 //cmdInsert.Parameters.AddWithValue("@cacode", txtCACode.Text.Trim());
@@ -237,15 +238,33 @@ namespace MuslimAID.SALAM
                 cmdInsert.Parameters.AddWithValue("@exp_profit", (txtExpectedProfit.Text.Trim()!="")? Convert.ToDecimal(txtExpectedProfit.Text.Trim()):00);
                 cmdInsert.Parameters.AddWithValue("@exp_sale_price", (txtExpectedSellingPrice.Text.Trim()!="") ? Convert.ToDecimal(txtExpectedSellingPrice.Text.Trim()) : 00);
                 cmdInsert.Parameters.AddWithValue("@exp_unit", txtExpectedUnit.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("loan_approved","P");
-                cmdInsert.Parameters.AddWithValue("loan_approved_user_nic", Session["NIC"].ToString());
-                cmdInsert.Parameters.AddWithValue("loan_approved_on", "");
-                cmdInsert.Parameters.AddWithValue("loan_sta", "P");
-                cmdInsert.Parameters.AddWithValue("reg_approval", "Y");
+                cmdInsert.Parameters.AddWithValue("@loan_approved","P");
+                cmdInsert.Parameters.AddWithValue("@loan_approved_user_nic", Session["NIC"].ToString());
+                cmdInsert.Parameters.AddWithValue("@loan_approved_on", "");
+                cmdInsert.Parameters.AddWithValue("@loan_sta", "P");
+                cmdInsert.Parameters.AddWithValue("@reg_approval", "Y");
+
+                cmdInsert.Parameters.AddWithValue("@type_of_product", txtTypeOfProducts.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@conditionExpected", txtQualityExpected.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@agreedPrice1", txtAgreedPrice.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@agreedPrice2", txtAgreedPrice2.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@discussed1", (rdoSellingOpt1Yes.Checked) ? 1 : 0);
+                cmdInsert.Parameters.AddWithValue("@discussed2", (rdoSellingOpt2Yes.Checked) ? 1 : 0);
+                cmdInsert.Parameters.AddWithValue("@client_Farmer_Association", (rdoGeneral1Yes.Checked) ? 1 : 0);
+                cmdInsert.Parameters.AddWithValue("@insurance_for_farming", (rdoGeneral2Yes.Checked) ? 1 : 0);
+                cmdInsert.Parameters.AddWithValue("@insurer_details", txtInsurerDetails.Text.Trim());
+
+                cmdInsert.Parameters.AddWithValue("@totalMonthINcome", txtMonthlyIncome.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@totalMonthExpenseBusiness", txtMonthlyExpenceB.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@totalMonthExpenseFamily", txtMonthlyExpenceF.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@AdditionalIncome", txtAdditionalIn.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@CashBalanceMonth", txtCashBalance.Text.Trim());
 
                 try
                 {
                     int i = conn.insertEditData(cmdInsert);
+                    DetailsOfAssets();
+                    SavingsAndInsurance();
                     if (i == 1)
                     {
                         Clear();
@@ -261,6 +280,91 @@ namespace MuslimAID.SALAM
                 }
             }
             catch (Exception) { }
+        }
+
+        private bool SavingsAndInsurance()
+        { 
+        }
+        
+        private bool DetailsOfAssets()
+        {
+            string strCC = txtCC.Text.Trim();
+            StringBuilder strAssets = new StringBuilder();
+            strAssets.Append("INSERT INTO salam_details_of_assets (ccode,typeOfAsset,value,source,status,create_user_nic,user_ip,date_time) VALUES ");
+            if (cmbAssetType1.SelectedIndex > 0)
+            {
+                string source, status;
+                if (rdoOther1.Checked) source = "o";
+                else if (rdoGift1.Checked) source = "g";
+                else if (rdoIncome1.Checked) source = "i";
+                else { }
+
+                if (rdoF1.Checked) status = "F";
+                else if (rdoP1.Checked) status = "P";
+                else if (rdoI1.Checked) status = "I";
+                else { }
+                strAssets.Append("('" + strCC + "', '" + cmbAssetType1.SelectedValue.ToString() + "','" + txtValue1.Text.Trim() + "','" + source + "','" + status);
+            }
+            if (cmbAssetType2.SelectedIndex > 0)
+            {
+                string source2, status2;
+                if (rdoOther2.Checked) source = "o";
+                else if (rdoGift2.Checked) source = "g";
+                else if (rdoIncome2.Checked) source = "i";
+                else { }
+
+                if (rdoF2.Checked) status = "F";
+                else if (rdoP2.Checked) status = "P";
+                else if (rdoI2.Checked) status = "I";
+                else { }
+                strAssets.Append("),('" + strCC + "', '" + cmbAssetType2.SelectedValue.ToString() + "','" + txtValue2.Text.Trim() + "','" + source2 + "','" + status2);
+            }
+            if (cmbAssetType3.SelectedIndex > 0)
+            {
+                string source3, status3;
+                if (rdoOther3.Checked) source = "o";
+                else if (rdoGift3.Checked) source = "g";
+                else if (rdoIncome3.Checked) source = "i";
+                else { }
+
+                if (rdoF3.Checked) status = "F";
+                else if (rdoP3.Checked) status = "P";
+                else if (rdoI3.Checked) status = "I";
+                else { }
+                strAssets.Append("),('" + strCC + "', '" + cmbAssetType3.SelectedValue.ToString() + "','" + txtValue3.Text.Trim() + "','" + source3 + "','" + status3);
+            }
+            if (cmbAssetType4.SelectedIndex > 0)
+            {
+                string source4, status4;
+                if (rdoOther4.Checked) source = "o";
+                else if (rdoGift4.Checked) source = "g";
+                else if (rdoIncome4.Checked) source = "i";
+                else { }
+
+                if (rdoF4.Checked) status = "F";
+                else if (rdoP4.Checked) status = "P";
+                else if (rdoI4.Checked) status = "I";
+                else { }
+                strAssets.Append("),('" + strCC + "', '" + cmbAssetType4.SelectedValue.ToString() + "','" + txtValue4.Text.Trim() + "','" + source4 + "','" + status4);
+            }
+            if (cmbAssetType5.SelectedIndex > 0)
+            {
+                string source5, status5;
+                if (rdoOther5.Checked) source = "o";
+                else if (rdoGift5.Checked) source = "g";
+                else if (rdoIncome5.Checked) source = "i";
+                else { }
+
+                if (rdoF5.Checked) status = "F";
+                else if (rdoP5.Checked) status = "P";
+                else if (rdoI5.Checked) status = "I";
+                else { }
+                strAssets.Append("),('" + strCC + "', '" + cmbAssetType5.SelectedValue.ToString() + "','" + txtValue5.Text.Trim() + "','" + source5 + "','" + status5);
+            }
+
+            strAssets.Append(")");
+
+            return conn.insertEditData(strAssets.ToString());
         }
 
         protected void Clear()

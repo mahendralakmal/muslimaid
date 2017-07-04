@@ -488,6 +488,7 @@ $(document).ready(function(){
                                 <tr>
                                     <td>1</td>
                                     <td><asp:DropDownList runat="server" ID="cmbAssetType1" CssClass="form-control">
+                                        <asp:ListItem Value="" Text=""></asp:ListItem>
                                         <asp:ListItem Value="L" Text="Land"></asp:ListItem>
                                         <asp:ListItem Value="H" Text="House"></asp:ListItem>
                                         <asp:ListItem Value="M" Text="Machine"></asp:ListItem>
@@ -510,6 +511,7 @@ $(document).ready(function(){
                                 <tr>
                                     <td>2</td>
                                     <td><asp:DropDownList runat="server" ID="cmbAssetType2" CssClass="form-control">
+                                        <asp:ListItem Value="" Text=""></asp:ListItem>
                                         <asp:ListItem Value="L" Text="Land"></asp:ListItem>
                                         <asp:ListItem Value="H" Text="House"></asp:ListItem>
                                         <asp:ListItem Value="M" Text="Machine"></asp:ListItem>
@@ -532,7 +534,8 @@ $(document).ready(function(){
                                 <tr>
                                     <td>3</td>
                                     <td><asp:DropDownList runat="server" ID="cmbAssetType3" CssClass="form-control">
-                                    <asp:ListItem Value="L" Text="Land"></asp:ListItem>
+                                        <asp:ListItem Value="" Text=""></asp:ListItem>
+                                        <asp:ListItem Value="L" Text="Land"></asp:ListItem>
                                         <asp:ListItem Value="H" Text="House"></asp:ListItem>
                                         <asp:ListItem Value="M" Text="Machine"></asp:ListItem>
                                         <asp:ListItem Value="V" Text="Vehical"></asp:ListItem>
@@ -554,6 +557,7 @@ $(document).ready(function(){
                                 <tr>
                                     <td>4</td>
                                     <td><asp:DropDownList runat="server" ID="cmbAssetType4" CssClass="form-control">
+                                        <asp:ListItem Value="" Text=""></asp:ListItem>
                                         <asp:ListItem Value="L" Text="Land"></asp:ListItem>
                                         <asp:ListItem Value="H" Text="House"></asp:ListItem>
                                         <asp:ListItem Value="M" Text="Machine"></asp:ListItem>
@@ -576,6 +580,7 @@ $(document).ready(function(){
                                 <tr>
                                     <td>5</td>
                                     <td><asp:DropDownList runat="server" ID="cmbAssetType5" CssClass="form-control">
+                                        <asp:ListItem Value="" Text=""></asp:ListItem>
                                         <asp:ListItem Value="L" Text="Land"></asp:ListItem>
                                         <asp:ListItem Value="H" Text="House"></asp:ListItem>
                                         <asp:ListItem Value="M" Text="Machine"></asp:ListItem>
