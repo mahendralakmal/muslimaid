@@ -165,6 +165,33 @@ namespace MuslimAID.SALAM
                         }
                     }
                 }
+                else
+                {
+                    if (txtVariety1.Text != "")
+                    {
+                        txtMinimumPriceExpected.Text = txtVariety1.Text;
+                        txtMinimumPriceExpected.Enabled = false;
+                    }
+                    if (txtVariety2.Text != "")
+                    {
+                        txtMaximumPriceExpected.Text = txtVariety2.Text;
+                        txtQualityExpected.Text = txtVariety2.Text;
+                        txtExpectedPricePerUnit.Text = txtVariety2.Text;
+                        txtMaximumPriceExpected.Enabled = false;
+                        txtQualityExpected.Enabled = false;
+                        txtExpectedPricePerUnit.Enabled = false;
+                    }
+                    if (txtHarvestPeriod.Text != "")
+                    {
+                        txtPeriodRepayment.Text = txtHarvestPeriod.Text;
+                        txtPeriodRepayment.Enabled = false;
+                    }
+                    if (txtHarvestTotal.Text != "")
+                    {
+                        txtNumberOfUnits.Text = txtHarvestTotal.Text;
+                        txtNumberOfUnits.Enabled = false;
+                    }
+                }
             }
             else
             {

@@ -1394,8 +1394,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="css\pages\" />
-    <Folder Include="SALAM\client_photo\" />
-    <Folder Include="SALAM\client_product\" />
     <Folder Include="User_Photos\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

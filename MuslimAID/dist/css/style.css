@@ -4,7 +4,7 @@ Bootstrap Admin Template
 
 
 
-/*------------------------------------------------------------------
+/* hhhhh------------------------------------------------------------------
 [1. Global]
 */
 
@@ -55,7 +55,8 @@ textarea {
 	vertical-align: middle;
 }
 td,th{padding: 5px 10px;/*border: 1px solid silver;*/}
-.table-bordered th {
+
+.table-bordered th,.table-bordered thead {
 	background: #E9E9E9;
 	background:-moz-linear-gradient(top, #E9E9E9 0%, #E9E9E9 100%); /* FF3.6+ */
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E9E9E9), color-stop(100%,#E9E9E9)); /* Chrome,Safari4+ */
@@ -69,6 +70,15 @@ td,th{padding: 5px 10px;/*border: 1px solid silver;*/}
 	font-size: 10px;
 	color: #E9E9E9;
 	text-transform: uppercase;
+}
+
+thead td
+{
+	background-color:#009905;
+	text-align:center;
+	color:#000000;
+	font-weight: bold;
+	padding:10px !important;
 }
 
 .pagi-table td,th{padding:5px 0;}

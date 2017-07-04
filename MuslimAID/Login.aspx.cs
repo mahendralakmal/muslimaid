@@ -42,63 +42,56 @@ namespace MuslimAID
         {
             //try
             //{
-                lblMsgs.Text = "";
-                lblMsgs.Visible = true;
-                if (txtUsername.Text.Trim() != "" && txtPassword.Text.Trim() != "")
+            lblMsgs.Text = "";
+            lblMsgs.Visible = true;
+            if (txtUsername.Text.Trim() != "" && txtPassword.Text.Trim() != "")
+            {
+                string strNIC = txtUsername.Text.Trim();
+                DataSet dsUserSta = cls_Connection.getDataSet("select * from users where nic = '" + strNIC + "';");
+                if (dsUserSta.Tables[0].Rows.Count > 0)
                 {
-                    string strNIC = txtUsername.Text.Trim();
-                    DataSet dsUserSta = cls_Connection.getDataSet("select * from users where nic = '" + strNIC + "';");
-                    int intDeleCou = dsUserSta.Tables[0].Rows.Count;
-                    if (intDeleCou > 0)
+                    if (dsUserSta.Tables[0].Rows[0]["deleted"].ToString() == "N")
                     {
-                        if (dsUserSta.Tables[0].Rows[0]["deleted"].ToString() == "N")
+                        if (dsUserSta.Tables[0].Rows[0]["deleted"].ToString() == "MFO")
                         {
-                            //if (dsUserSta.Tables[0].Rows[0]["current_status"].ToString() == "N" || dsUserSta.Tables[0].Rows[0]["current_status"].ToString() == "D")
-                            //{
-                                Boolean bolAuthLogin = objDBTasks.loginValidation(txtUsername.Text.Trim(), txtPassword.Text.Trim());
-
-                                //try
-                                //{
-                                //    objDBTasks.insertEditData("UPDATE muslimaid.users SET current_status='L' WHERE nic='" + strNIC + "';");
-                                //}
-                                //catch (Exception e) { cls_ErrorLog.createSErrorLog(e.Message, e.Source, "login"); }
-
-                                if (bolAuthLogin == true)
-                                {
-                                    publishLogOnDetails();
-                                }
-                                else
-                                {
-                                    lblMsgs.Text = "Invalid User Name or Password......";
-                                    ClientScript.RegisterStartupScript(this.GetType(), "HideLabel", "<script type=\"text/javascript\">setTimeout(\"document.getElementById('" + lblMsgs.ClientID + "').style.display='none'\",3000)</script>");
-                                }
-                            //}
-                            //else
-                            //{
-                            //    lblMsgs.Text = "This user already loged in......";
-                            //    ClientScript.RegisterStartupScript(this.GetType(), "HideLabel", "<script type=\"text/javascript\">setTimeout(\"document.getElementById('" + lblMsgs.ClientID + "').style.display='none'\",3000)</script>");
-                            //}
+                            DataSet dsExe = cls_Connection.getDataSet("SELECT * FROM micro_exective_root LEFT JOIN center_details on center_details.exective = micro_exective_root.exe_id WHERE micro_exective_root.exe_nic = '" + txtUsername.Text.Trim() + "' AND center_details.exective = micro_exective_root.exe_id;");
+                            if (dsExe.Tables[0].Rows.Count > 0)
+                                check_signin();
+                            else
+                            {
+                                lblMsgs.Text = "You do not have assign center. PLease contact your admin...";
+                            }
                         }
                         else
-                        {
-                            lblMsgs.Text = "This user may be deleted or deactivated......";
-                            ClientScript.RegisterStartupScript(this.GetType(), "HideLabel", "<script type=\"text/javascript\">setTimeout(\"document.getElementById('" + lblMsgs.ClientID + "').style.display='none'\",3000)</script>");
-                        }
+                            check_signin();
                     }
                     else
                     {
-                        lblMsgs.Text = "Invalid User Name or Password......";
+                        lblMsgs.Text = "This user may be deleted or deactivated......";
+                        ClientScript.RegisterStartupScript(this.GetType(), "HideLabel", "<script type=\"text/javascript\">setTimeout(\"document.getElementById('" + lblMsgs.ClientID + "').style.display='none'\",3000)</script>");
                     }
                 }
                 else
                 {
-                    lblMsgs.Text = "Please enter user details.";
+                    lblMsgs.Text = "Invalid User Name or Password......";
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblMsgs.Text = "Database Conection fail...";
-            //}
+            }
+            else
+            {
+                lblMsgs.Text = "Please enter user details.";
+            }
+        }
+
+        protected void check_signin()
+        {
+            Boolean bolAuthLogin = objDBTasks.loginValidation(txtUsername.Text.Trim(), txtPassword.Text.Trim());
+            if (bolAuthLogin)
+                publishLogOnDetails();
+            else
+            {
+                lblMsgs.Text = "Invalid User Name or Password......";
+                ClientScript.RegisterStartupScript(this.GetType(), "HideLabel", "<script type=\"text/javascript\">setTimeout(\"document.getElementById('" + lblMsgs.ClientID + "').style.display='none'\",3000)</script>");
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
