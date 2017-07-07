@@ -141,20 +141,6 @@
                                 <li><a href="Report_Insurance.aspx">Insurance Detail</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-print"></i><span>&nbsp;&nbsp;Settings&nbsp;&nbsp;</span> <b class="caret">
-                            </b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="BranchAdd.aspx">Add Branch </a></li>
-                                <li><a href="add_area.aspx">Add Area</a></li>
-                                <li><a href="add_village.aspx">Add Village</a></li>
-                                <li><a href="center_create.aspx">Create Center</a></li>
-                                <li><a href="Change_CRO.aspx">Change MFO</a></li>
-                                <li><a href="AddNatureOfBusiness.aspx">Add Nature of Business</a></li>
-                                <li><a href="AddOccupation.aspx">Add Occupation</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
             </div>

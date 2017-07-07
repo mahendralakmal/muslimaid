@@ -4,6 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br />
     <div class="container">
         <div class="PageTitle">
             <h4>Weekly Payment - MF</h4>
@@ -20,7 +21,23 @@
             </div>
             <div class="form-group">
                 <div class="col-md-5">
-                    Society ID</div>
+                    Area</div>
+                <div class="col-md-7">
+                    <asp:DropDownList CssClass="form-control" ID="cmbArea" runat="server" Width="200">
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-5">
+                    Village</div>
+                <div class="col-md-7">
+                    <asp:DropDownList CssClass="form-control" ID="cmbVillage" runat="server" Width="200">
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-5">
+                    Cneter</div>
                 <div class="col-md-7">
                     <asp:DropDownList CssClass="form-control" ID="cmbSocietyID" runat="server" Width="200">
                     </asp:DropDownList>

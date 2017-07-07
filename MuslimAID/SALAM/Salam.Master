@@ -78,15 +78,10 @@
                     <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-book"></i><span>Application</span> </a>
                         <ul class="dropdown-menu">
-                            <li><a href="BranchAdd.aspx">Add City </a></li>
-                            <li><a href="add_cro.aspx">Add MFO (Micro Finance Officer)</a></li>
-                            <li><a href="Add_Village.aspx">Add Area</a></li>
-                            <li><a href="center_create.aspx">Create Center</a></li>
-                            <li><a href="Change_CRO.aspx">Change MFO</a></li>
-                            <li><a href="client_basic_details.aspx">Basic Details</a></li>
-                            <li><a href="family_details.aspx">Family Details</a></li>
+                            <li><a href="client_basic_details.aspx">Facility Application Form</a></li>
                             <li><a href="business_details.aspx">Business Details</a></li>
                             <li><a href="family_appraisal.aspx">Family Appraisal</a></li>
+                            <li><a href="family_details.aspx">Family Details</a></li>
                             <li><a href="repayment.aspx">Facility Detail</a></li>
                             <li><a href="ChequeBookRegistry.aspx">Cheque Book Registry </a></li>
                         </ul>
@@ -97,40 +92,63 @@
                         <ul class="dropdown-menu">
                             <li><a href="loan_approval.aspx">Loan Approval</a></li>
                             <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
+                            <li><a href="Chequ_Approval.aspx">Cheque Approval </a></li>
+                            <li><a href="VoucherPrint.aspx">Voucher Print </a></li>
+                            <li><a href="SettlementRebate.aspx">Settlement &amp; Rebate</a></li>
+                            <li><a href="Rebate_Approval.aspx">Rebate Approval </a></li>
+                            <li><a href="WayOffAmount.aspx">Write Off</a></li>
+                            <li><a href="Reschedule.aspx">Loan Re-Schedule</a></li>
+                            <!-- <li><a href="loan_approval.aspx">Loan Approval</a></li>
+                            <li><a href="Loan_Cancel.aspx">Loan Cancel</a></li>
                             <li><a href="Chequ_Approval.aspx">Chequ Approval</a></li>
                             <li><a href="VoucherPrint.aspx">Voucher Print</a></li>
-                            <!-- ************************************************************* -->
+                            ************************************************************* -->
                             <!-- <li><a href="#">Document</a></li> This section has to be done -->
                             <!-- ************************************************************* -->
-                            <%--<li><a href="Debit_Note.aspx">Debit Run</a></li>--%>
+                            <%--<li><a href="Debit_Note.aspx">Debit Run</a></li>
                             <li><a href="Settlment.aspx">Settlment</a></li>
                             <li><a href="Rebate_Approval.aspx">Settlment Approval</a></li>
                             <li><a href="WayOffAmount.aspx">Write Off</a></li>
-                            <li><a href="Reschedule.aspx">Loan Reshedule</a></li>
+                            <li><a href="Reschedule.aspx">Loan Reshedule</a></li>--%>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-download-alt"></i><span>Installment</span>
                     </a>
                         <ul class="dropdown-menu">
-                            <%--<li><a href="Bulk_Payment.aspx">Installment</a></li>
-                            <li><a href="Recipt_Cancel.aspx">Receipt Cancel</a></li>--%>
-                            <li><a href="Service_Charges.aspx">Service Charges</a></li>
+                            <li><a href="Recipt_Cancel.aspx">Receipt Cancel</a></li>
+                            <li><a href="Voucher_Cancel.aspx">Voucher Cancel</a></li>
                             <li><a href="Chequ_Cancel.aspx">Cheque Cancel</a></li>
+                            <li><a href="RemoveChequeBookHistry.aspx">Remove Cheque</a></li>
+                            <%--<li><a href="Bulk_Payment.aspx">Installment</a></li>
+                            <li><a href="Recipt_Cancel.aspx">Receipt Cancel</a></li>
+                            <li><a href="Service_Charges.aspx">Service Charges</a></li>
+                            <li><a href="Chequ_Cancel.aspx">Cheque Cancel</a></li>--%>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-print"></i><span>&nbsp;&nbsp;Reports&nbsp;&nbsp;</span> <b class="caret">
                         </b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Client Detail</a></li>
+                            <li><a href="Report_Client_Basic_Details.aspx">Client Basic Detail</a></li>
+                            <li><a href="Report_Basic_Details.aspx">Basic Detail</a></li>
+                            <li><a href="Report_Guarantor_Details.aspx">Guarantor Detail</a></li>
+                            <li><a href="Report_Center_details.aspx">Center Detail</a></li>
+                            <li><a href="Report_Installment.aspx">Installment Detail</a></li>
+                            <li><a href="Report_Loan_Detail.aspx">Loan Detail</a></li>
+                            <li><a href="Report_Ledger_Card.aspx">Ledger Card</a></li>
+                            <li><a href="Report_Arrears_Details.aspx">Arrears Details</a></li>
+                            <li><a href="Report_Cheque_Printing.aspx">Cheque Printing Details</a></li>
+                            <li><a href="Report_MFO.aspx">MFO Detals</a></li>
+                            <li><a href="Report_Insurance.aspx">Insurance Detail</a></li>
+                            <%--<li><a href="">Client Detail</a></li>
                             <li><a href="">Center Detail</a></li>
                             <li><a href="">Installment Detail</a></li>
-                            <li><a href="">Loan Detail</a></li>
+                            <li><a href="">Loan Detail</a></li>--%>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-book"></i><span>Settings</span> </a>
+                        <i class="icon-gear"></i><span>Settings</span> </a>
                         <ul class="dropdown-menu">
                             <li><a href="salam_income_source_1.aspx">Add Income Source Type 1 </a></li>
                             <li><a href="salam_income_source_2.aspx">Add Income Source Type 2 </a></li>

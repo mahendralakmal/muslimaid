@@ -7,24 +7,26 @@
             $(".txtFamiIn").attr("readonly","true");
             $(".txtFExpense").attr("readonly","true");
             $(".txtNetAnualFIN").attr("readonly","true");
+            
+            $('.period').on('change', function(){calcMaxAmountCanBeDisbursed();});
         });
     </script>
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
-    <div class="PageTitle"><h4>MF Application - Family Appraisal</h4></div>
+    <div class="PageTitle"><h4>Family Appraisal</h4></div>
     <div class="col-md-12 form-container">
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Facility Code <span style="color:Red;">*</span></div>
                 <div class="col-md-7"><asp:TextBox ID="txtCC" CssClass="form-control" 
-                        MaxLength="15" AutoPostBack="true" Enabled="false" runat="server" TabIndex="1" 
-                        ontextchanged="txtCC_TextChanged" ></asp:TextBox></div>
+                        MaxLength="30" AutoPostBack="true" runat="server" TabIndex="1" 
+                        ontextchanged="txtCC_TextChanged"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-12"></div>
-        <div class="col-md-12"><h4>Annual Business Income (AI)</h4><hr /></div>
+        <div class="col-md-12"><h4>Annual Family Income (AI)</h4><hr /></div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Salary & Wages <span style="color:Red;">*</span></div>
@@ -146,25 +148,28 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Amount that can be used for other purposes (monthly)</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtAmountOPEx" Enabled="true" CssClass="numbersOnly txtAmountOPEx form-control" runat="server" TabIndex="19"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtAmountOPEx" ReadOnly="true" Enabled="true" CssClass="numbersOnly txtAmountOPEx form-control" runat="server" TabIndex="19"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Maximum amount payable for the facility (monthly/ weekly)</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtAmountFEx" Enabled="true" CssClass="numbersOnly txtAmountFEx form-control" runat="server" TabIndex="20"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtAmountFEx" ReadOnly="true" Enabled="true" CssClass="numbersOnly txtAmountFEx form-control" runat="server" TabIndex="20"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Facility Repayment period (months/weeks)</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtFRPriod" Enabled="true" onchange="calcMaxAmountCanBeDisbursed()" CssClass="numbersOnly txtFRPriod form-control" runat="server" TabIndex="21"></asp:TextBox></div>
+                <div class="col-md-7">
+                <asp:DropDownList ID="cmbTmePeriod" CssClass="form-control period txtFRPriod" runat="server" TabIndex="21"></asp:DropDownList>
+                <%--<asp:TextBox ID="txtFRPriod" Enabled="true" onchange="calcMaxAmountCanBeDisbursed()" CssClass="numbersOnly txtFRPriod form-control" runat="server" TabIndex="21"></asp:TextBox>--%>
+                </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Maximum amount can be disbursed</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtMAD" Enabled="true" CssClass="numbersOnly txtMAD form-control" runat="server" TabIndex="22"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtMAD" Enabled="true" ReadOnly="true" CssClass="numbersOnly txtMAD form-control" runat="server" TabIndex="22"></asp:TextBox></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -176,7 +181,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5"><strong>Requested amount as per the facility application</strong></div>
-                <div class="col-md-7"><asp:TextBox ID="txtRAPSA" Enabled="true" CssClass="numbersOnly txtRAPSA form-control" runat="server" TabIndex="24"></asp:TextBox></div>
+                <div class="col-md-7"><asp:TextBox ID="txtRAPSA" Enabled="true" ReadOnly="true" CssClass="numbersOnly txtRAPSA form-control" runat="server" TabIndex="24"></asp:TextBox></div>
             </div>
         </div>
         
@@ -184,7 +189,7 @@
         <asp:Button ID="btnSubmit" CssClass="btn btn-primary" runat="server" 
             Text="Submit" Enabled="true" TabIndex="25" onclick="btnSubmit_Click" />
         <asp:Button ID="btnUpdate" CssClass="btn btn-primary" runat="server" 
-            Text="Update" TabIndex="26" Enabled="False" onclick="btnUpdate_Click" />
+            Text="Update" TabIndex="26" Enabled="false" onclick="btnUpdate_Click" />
         <asp:Label ID="lblMsg" runat="server"></asp:Label>
     </div>
     </div>

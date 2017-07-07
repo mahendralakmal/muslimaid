@@ -1,16 +1,15 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/SALAM/Salam.Master" AutoEventWireup="true" CodeBehind="family_details.aspx.cs" Inherits="MuslimAID.SALAM.family_details" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
-    <div class="PageTitle"><h4>MF Application - Family Details</h4></div>
+    <div class="PageTitle"><h4>Family Details</h4></div>
     <div class="col-md-12 form-container">
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-5">Facility Code <span style="color:Red;">*</span></div>
                 <div class="col-md-7">
-                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="15" 
+                    <asp:TextBox ID="txtCC" CssClass="form-control" MaxLength="30" 
                         AutoPostBack="true" runat="server" TabIndex="1" 
                         ontextchanged="txtCC_TextChanged"></asp:TextBox></div>
             </div>

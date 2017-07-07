@@ -446,13 +446,13 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.RadioButton rdoP1;
         
         /// <summary>
-        /// RdoI1 control.
+        /// rdoI1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RdoI1;
+        protected global::System.Web.UI.WebControls.RadioButton rdoI1;
         
         /// <summary>
         /// cmbAssetType2 control.
@@ -626,13 +626,13 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.RadioButton rdoOther4;
         
         /// <summary>
-        /// rdoGif4 control.
+        /// rdoGift4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdoGif4;
+        protected global::System.Web.UI.WebControls.RadioButton rdoGift4;
         
         /// <summary>
         /// rdoIncome4 control.
@@ -698,13 +698,13 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.RadioButton rdoOther5;
         
         /// <summary>
-        /// rdoGif5 control.
+        /// rdoGift5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdoGif5;
+        protected global::System.Web.UI.WebControls.RadioButton rdoGift5;
         
         /// <summary>
         /// rdoIncome5 control.
@@ -761,31 +761,31 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.RadioButton rdoSIRSNo1;
         
         /// <summary>
-        /// rdoSIRSAmmount1 control.
+        /// SIRSAmmount1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIRSAmmount1;
+        protected global::System.Web.UI.WebControls.TextBox SIRSAmmount1;
         
         /// <summary>
-        /// rdoSIRSInstitution1 control.
+        /// IRSInstitution1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIRSInstitution1;
+        protected global::System.Web.UI.WebControls.TextBox IRSInstitution1;
         
         /// <summary>
-        /// rdoSIRSRemarks1 control.
+        /// SIRSRemarks1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIRSRemarks1;
+        protected global::System.Web.UI.WebControls.TextBox SIRSRemarks1;
         
         /// <summary>
         /// rdoSIFSYes1 control.
@@ -806,31 +806,31 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.RadioButton rdoSIFSNo1;
         
         /// <summary>
-        /// rdoSIFSAmmount1 control.
+        /// SIFSAmmount1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIFSAmmount1;
+        protected global::System.Web.UI.WebControls.TextBox SIFSAmmount1;
         
         /// <summary>
-        /// rdoSIFSInstitution1 control.
+        /// SIFSInstitution1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIFSInstitution1;
+        protected global::System.Web.UI.WebControls.TextBox SIFSInstitution1;
         
         /// <summary>
-        /// rdoSIFSRemarks1 control.
+        /// SIFSRemarks1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIFSRemarks1;
+        protected global::System.Web.UI.WebControls.TextBox SIFSRemarks1;
         
         /// <summary>
         /// rdoSISeettuYes1 control.
@@ -851,31 +851,31 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.RadioButton rdoSISeettuNo1;
         
         /// <summary>
-        /// rdoSISeettuAmmount1 control.
+        /// SISeettuAmmount1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSISeettuAmmount1;
+        protected global::System.Web.UI.WebControls.TextBox SISeettuAmmount1;
         
         /// <summary>
-        /// rdoSISeettuInstitution1 control.
+        /// SISeettuInstitution1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSISeettuInstitution1;
+        protected global::System.Web.UI.WebControls.TextBox SISeettuInstitution1;
         
         /// <summary>
-        /// rdoSISeettuRemarks1 control.
+        /// SISeettuRemarks1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSISeettuRemarks1;
+        protected global::System.Web.UI.WebControls.TextBox SISeettuRemarks1;
         
         /// <summary>
         /// rdoSIILYes1 control.
@@ -896,31 +896,31 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.RadioButton rdoSIILNo1;
         
         /// <summary>
-        /// rdoSIILAmmount1 control.
+        /// SIILAmmount1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIILAmmount1;
+        protected global::System.Web.UI.WebControls.TextBox SIILAmmount1;
         
         /// <summary>
-        /// rdoSIILInstitution1 control.
+        /// SIILInstitution1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIILInstitution1;
+        protected global::System.Web.UI.WebControls.TextBox SIILInstitution1;
         
         /// <summary>
-        /// rdoSIILRemarks1 control.
+        /// SIILRemarks1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIILRemarks1;
+        protected global::System.Web.UI.WebControls.TextBox SIILRemarks1;
         
         /// <summary>
         /// rdoSIIMYes1 control.
@@ -941,31 +941,31 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.RadioButton rdoSIIMNo1;
         
         /// <summary>
-        /// rdoSIIMAmmount1 control.
+        /// SIIMAmmount1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIIMAmmount1;
+        protected global::System.Web.UI.WebControls.TextBox SIIMAmmount1;
         
         /// <summary>
-        /// rdoSIIMInstitution1 control.
+        /// SIIMInstitution1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIIMInstitution1;
+        protected global::System.Web.UI.WebControls.TextBox SIIMInstitution1;
         
         /// <summary>
-        /// rdoSIIMRemarks1 control.
+        /// SIIMRemarks1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rdoSIIMRemarks1;
+        protected global::System.Web.UI.WebControls.TextBox SIIMRemarks1;
         
         /// <summary>
         /// txtMonthlyIncome control.
@@ -1283,22 +1283,22 @@ namespace MuslimAID.SALAM {
         protected global::System.Web.UI.WebControls.RadioButton rdoNI3;
         
         /// <summary>
-        /// txtAmount4 control.
+        /// txtAmountG4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAmount4;
+        protected global::System.Web.UI.WebControls.TextBox txtAmountG4;
         
         /// <summary>
-        /// rdoM4 control.
+        /// rdoMF4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdoM4;
+        protected global::System.Web.UI.WebControls.RadioButton rdoMF4;
         
         /// <summary>
         /// rdoFC4 control.

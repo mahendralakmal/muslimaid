@@ -141,11 +141,11 @@
     <Compile Include="MURABAHA\Report_Basic_Details.aspx.designer.cs">
       <DependentUpon>Report_Basic_Details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MURABAHA\BranchAdd.aspx.cs">
+    <Compile Include="BranchAdd.aspx.cs">
       <DependentUpon>BranchAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MURABAHA\BranchAdd.aspx.designer.cs">
+    <Compile Include="BranchAdd.aspx.designer.cs">
       <DependentUpon>BranchAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="MURABAHA\Bulk_Payment.aspx.cs">
@@ -162,11 +162,11 @@
     <Compile Include="MURABAHA\Report_Center_details.aspx.designer.cs">
       <DependentUpon>Report_Center_details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MURABAHA\Change_CRO.aspx.cs">
+    <Compile Include="Change_CRO.aspx.cs">
       <DependentUpon>Change_CRO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MURABAHA\Change_CRO.aspx.designer.cs">
+    <Compile Include="Change_CRO.aspx.designer.cs">
       <DependentUpon>Change_CRO.aspx</DependentUpon>
     </Compile>
     <Compile Include="MURABAHA\ChequeBookRegistry.aspx.cs">
@@ -260,11 +260,11 @@
     <Compile Include="MURABAHA\Murabha.Master.designer.cs">
       <DependentUpon>Murabha.Master</DependentUpon>
     </Compile>
-    <Compile Include="MURABAHA\add_area.aspx.cs">
+    <Compile Include="add_area.aspx.cs">
       <DependentUpon>add_area.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MURABAHA\add_area.aspx.designer.cs">
+    <Compile Include="add_area.aspx.designer.cs">
       <DependentUpon>add_area.aspx</DependentUpon>
     </Compile>
     <Compile Include="MURABAHA\agreement.aspx.cs">
@@ -288,11 +288,11 @@
     <Compile Include="MURABAHA\business_details.aspx.designer.cs">
       <DependentUpon>business_details.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MURABAHA\center_create.aspx.cs">
+    <Compile Include="center_create.aspx.cs">
       <DependentUpon>center_create.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MURABAHA\center_create.aspx.designer.cs">
+    <Compile Include="center_create.aspx.designer.cs">
       <DependentUpon>center_create.aspx</DependentUpon>
     </Compile>
     <Compile Include="MURABAHA\family_details.aspx.cs">
@@ -372,13 +372,6 @@
     <Compile Include="MURABAHA\family_appraisal.aspx.designer.cs">
       <DependentUpon>family_appraisal.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MURABAHA\add_cro.aspx.cs">
-      <DependentUpon>add_cro.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MURABAHA\add_cro.aspx.designer.cs">
-      <DependentUpon>add_cro.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MURABAHA\loan_approval.aspx.cs">
       <DependentUpon>loan_approval.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -442,25 +435,25 @@
     <Compile Include="MURABAHA\create_sub_center.aspx.designer.cs">
       <DependentUpon>create_sub_center.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MURABAHA\AddNatureOfBusiness.aspx.cs">
+    <Compile Include="AddNatureOfBusiness.aspx.cs">
       <DependentUpon>AddNatureOfBusiness.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MURABAHA\AddNatureOfBusiness.aspx.designer.cs">
+    <Compile Include="AddNatureOfBusiness.aspx.designer.cs">
       <DependentUpon>AddNatureOfBusiness.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MURABAHA\add_village.aspx.cs">
+    <Compile Include="add_village.aspx.cs">
       <DependentUpon>add_village.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MURABAHA\add_village.aspx.designer.cs">
+    <Compile Include="add_village.aspx.designer.cs">
       <DependentUpon>add_village.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MURABAHA\AddOccupation.aspx.cs">
+    <Compile Include="AddOccupation.aspx.cs">
       <DependentUpon>AddOccupation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MURABAHA\AddOccupation.aspx.designer.cs">
+    <Compile Include="AddOccupation.aspx.designer.cs">
       <DependentUpon>AddOccupation.aspx</DependentUpon>
     </Compile>
     <Compile Include="MuslimAID.Master.cs">
@@ -484,6 +477,13 @@
     </Compile>
     <Compile Include="SALAM\BranchAdd.aspx.designer.cs">
       <DependentUpon>BranchAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SALAM\business_details.aspx.cs">
+      <DependentUpon>business_details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SALAM\business_details.aspx.designer.cs">
+      <DependentUpon>business_details.aspx</DependentUpon>
     </Compile>
     <Compile Include="SALAM\center_create.aspx.cs">
       <DependentUpon>center_create.aspx</DependentUpon>
@@ -708,7 +708,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MURABAHA\Murabha.Master" />
-    <Content Include="MURABAHA\add_area.aspx" />
+    <Content Include="add_area.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bower_components\eonasdan-bootstrap-datetimepicker\build\css\bootstrap-datetimepicker-standalone.css" />
@@ -1258,16 +1258,16 @@
     <Content Include="MURABAHA\Report_Arrears_Details.aspx" />
     <Content Include="MURABAHA\Report_Ledger_Card.aspx" />
     <Content Include="MURABAHA\Report_Basic_Details.aspx" />
-    <Content Include="MURABAHA\BranchAdd.aspx" />
+    <Content Include="BranchAdd.aspx" />
     <Content Include="MURABAHA\Bulk_Payment.aspx" />
     <Content Include="MURABAHA\Report_Center_details.aspx" />
-    <Content Include="MURABAHA\Change_CRO.aspx" />
+    <Content Include="Change_CRO.aspx" />
     <Content Include="MURABAHA\ChequeBookRegistry.aspx" />
     <Content Include="MURABAHA\Chequ_Cancel.aspx" />
     <Content Include="MURABAHA\Chequ_Print.aspx" />
     <Content Include="MURABAHA\client_basic_details.aspx" />
     <Content Include="MURABAHA\business_details.aspx" />
-    <Content Include="MURABAHA\center_create.aspx" />
+    <Content Include="center_create.aspx" />
     <Content Include="MURABAHA\Report_Client_Basic_Details.aspx" />
     <Content Include="MURABAHA\Debit_Note.aspx" />
     <Content Include="MURABAHA\Edit_Center_Detail.aspx" />
@@ -1288,7 +1288,6 @@
     <Content Include="MURABAHA\SettlementRebate.aspx" />
     <Content Include="MURABAHA\supplier.aspx" />
     <Content Include="MURABAHA\family_appraisal.aspx" />
-    <Content Include="MURABAHA\add_cro.aspx" />
     <Content Include="MURABAHA\loan_approval.aspx" />
     <Content Include="MURABAHA\Chequ_Approval.aspx" />
     <Content Include="MURABAHA\ViewChequDetails.aspx" />
@@ -1298,11 +1297,12 @@
     <Content Include="MURABAHA\WayOffAmount.aspx" />
     <Content Include="MURABAHA\FacilityApplicationForm.aspx" />
     <Content Include="MURABAHA\create_sub_center.aspx" />
-    <Content Include="MURABAHA\AddNatureOfBusiness.aspx" />
-    <Content Include="MURABAHA\add_village.aspx" />
-    <Content Include="MURABAHA\AddOccupation.aspx" />
+    <Content Include="AddNatureOfBusiness.aspx" />
+    <Content Include="add_village.aspx" />
+    <Content Include="AddOccupation.aspx" />
     <Content Include="SALAM\Add_Village.aspx" />
     <Content Include="SALAM\BranchAdd.aspx" />
+    <Content Include="SALAM\business_details.aspx" />
     <Content Include="SALAM\center_create.aspx" />
     <Content Include="SALAM\Change_CRO.aspx" />
     <Content Include="SALAM\ChequeBookRegistry.aspx" />

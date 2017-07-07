@@ -36,8 +36,7 @@ namespace MuslimAID.SALAM
                         {
                             strCC = Request.QueryString["CC"];
                             strCAC = Request.QueryString["CA"];
-                            //strCC = "CO/CS/000004";
-                            //strCAC = "CO/1/01/02";
+
 
                             if (strCC != null && strCAC != null)
                             {
@@ -51,7 +50,7 @@ namespace MuslimAID.SALAM
                         }
                         else
                         {
-                            Response.Redirect("salam.aspx");
+                            Response.Redirect("murabha.aspx");
                         }
                     }
                     else
@@ -74,48 +73,6 @@ namespace MuslimAID.SALAM
                 {
                     lblMsg.Text = "Please Enter Facility Code";
                 }
-                //else if (txtCACode.Text.Trim() == "")
-                //{
-                //    lblMsg.Text = "Please Enter CA Code";
-                //}
-                /* 
-                else if (txtSoName.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Enter Spouse Name";
-                }
-                else if (txtNIC.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Enter Spouse NIC";
-                }
-                else if (txtNicIssuedDate.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Enter Spouse NIC Issued Date";
-                }
-                else if (txtDOB.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Enter Spouse Date of Birth";
-                }
-                else if (cmbOccupa.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Choose Occupation";
-                }
-                else if (txtSIncome.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Choose Spouse Income";
-                }
-                else if (txtNoFMembers.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Enter No.Family Members";
-                }
-                else if (cmbEducation.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Choose Education";
-                }
-                else if (txtRelation.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please Enter Relationship with the Applicant";
-                }
-                 */
                 else if (txtDepen.Text.Trim() == "")
                 {
                     lblMsg.Text = "Please Enter Dependents";
@@ -133,9 +90,9 @@ namespace MuslimAID.SALAM
                     string strNICissueDate = txtNicIssuedDate.Text.Trim();
                     string strSDob = txtDOB.Text.Trim();
                     string strSGender;
-                    if(rdoMale.Checked)
+                    if (rdoMale.Checked)
                         strSGender = "0";
-                    else 
+                    else
                         strSGender = "1";
                     string strName = txtSoName.Text.Trim();
                     string strSContact = txtContact.Text.Trim();
@@ -200,14 +157,8 @@ namespace MuslimAID.SALAM
 
                     StringBuilder strRelat = new StringBuilder();
                     string strQry2 = "INSERT INTO family_relationship_details (contract_code,name, relationship, age, occupation, income,create_user_nic,user_ip,date_time) VALUES ";
-                    //string strName1, strName2, strName3, strName4, strName5, strName6, strName7, strName8, strName9, strName10;
-                    //string strRelAp1, strRelAp2, strRelAp3, strRelAp4, strRelAp5, strRelAp6, strRelAp7, strRelAp8, strRelAp9, strRelAp10;
-                    //string strAge1, strAge2, strAge3, strAge4, strAge5, strAge6, strAge7, strAge8, strAge9, strAge10;
-                    //string strOcc1, strOcc2, strOcc3, strOcc4, strOcc5, strOcc6, strOcc7, strOcc8, strOcc9, strOcc10;
-                    //string strIncom1, strIncom2, strIncom3, strIncom4, strIncom5, strIncom6, strIncom7, strIncom8, strIncom9, strIncom10;
-                    //strRelat.Append("INSERT INTO family_relationship_details (contract_code,name, relationship, age, occupation, income,create_user_nic,user_ip,date_time) VALUES ('");
                     if (txtName1.Text.Trim() != "")
-                        strRelat.Append("('" + strCCode +"','"+ txtName1.Text.Trim() + "','" + txtRelation1.Text.Trim() + "'," + txtAge1.Text.Trim() + ",'" + txtOcc1.Text.Trim() + "'," + txtInCome1.Text.Trim() + ",'"+strloginID +"','"+ strIp+"','"+ strDateTime);
+                        strRelat.Append("('" + strCCode + "','" + txtName1.Text.Trim() + "','" + txtRelation1.Text.Trim() + "'," + txtAge1.Text.Trim() + ",'" + txtOcc1.Text.Trim() + "'," + txtInCome1.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
                     if (txtName2.Text.Trim() != "")
                         strRelat.Append("'),('" + strCCode + "','" + txtName2.Text.Trim() + "','" + txtRelation2.Text.Trim() + "'," + txtAge2.Text.Trim() + ",'" + txtOcc2.Text.Trim() + "'," + txtInCome2.Text.Trim() + ",'" + strloginID + "','" + strIp + "','" + strDateTime);
                     if (txtName3.Text.Trim() != "")

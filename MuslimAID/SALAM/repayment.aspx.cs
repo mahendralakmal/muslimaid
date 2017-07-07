@@ -204,7 +204,7 @@ namespace MuslimAID.SALAM
         {
             try
             {
-                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_loan_details (ccode, loan_amount, incomesource1_1, incomesource1_2, incomesource1_3, incomesource2_1, incomesource2_2, incomesource2_3, areaofFarming, typeofv1, typeofv2, ex_years, total_harvest, harvesting_period, seasons_for_year, rain_water, irrigation_water, bothRwNRw, min_expected_price, max_expected_price, unit, type_of_product, conditionExpected, agreedPrice1, agreedPrice2, discussed1, discussed2, client_Farmer_Association, insurance_for_farming, insurer_details, totalMonthINcome, totalMonthExpenseBusiness, totalMonthExpenseFamily, AdditionalIncome, CashBalanceMonth, re_pay_period, ex_price_per_unit, annual_rate, rate_for_period, exp_profit, exp_sale_price, exp_unit, loan_approved, loan_approved_user_nic, loan_approved_on, loan_sta, reg_approval) VALUES (@ccode, @loan_amount, @incomesource1_1, @incomesource1_2, @incomesource1_3, @incomesource2_1, @incomesource2_2, @incomesource2_3, @areaofFarming, @typeofv1, @typeofv2, @ex_years, @total_harvest, @harvesting_period, @seasons_for_year, @rain_water, @irrigation_water, @bothRwNRw, @min_expected_price, @max_expected_price, @unit, @type_of_product, @conditionExpected, @agreedPrice1, @agreedPrice2, @discussed1, @discussed2, @client_Farmer_Association, @insurance_for_farming, @insurer_details, @totalMonthINcome, @totalMonthExpenseBusiness, @totalMonthExpenseFamily, @AdditionalIncome, @CashBalanceMonth, @re_pay_period, @ex_price_per_unit, @annual_rate, @rate_for_period, @exp_profit, @exp_sale_price, @exp_unit, @loan_approved, @loan_approved_user_nic, @loan_approved_on, @loan_sta, @reg_approval)");
+                MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_loan_details (ccode, loan_amount, incomesource1_1, incomesource1_2, incomesource1_3, incomesource2_1, incomesource2_2, incomesource2_3, areaofFarming, typeofv1, typeofv2, ex_years, total_harvest, harvesting_period, seasons_for_year, rain_water, irrigation_water, bothRwNRw, min_expected_price, max_expected_price, unit, type_of_product, conditionExpected, agreedPrice1, agreedPrice2, discussed1, discussed2, client_Farmer_Association, insurance_for_farming, insurer_details, totalMonthINcome, totalMonthExpenseBusiness, totalMonthExpenseFamily, AdditionalIncome, CashBalanceMonth,regular_savings, regular_savings_ammount, regular_savings_institution, regular_savings_remarks, fixed_savings, fixed_savings_amount, fixed_savings_institution, fixed_savings_remarks, seettu, seettu_amount, seettu_institution, seettu_remarks, insurance_life, insurance_life_amount, insurance_life_institution, insurance_life_remarks, insurance_medical, insurance_medical_amount, insurance_medical_institution, insurance_medical_remarks, re_pay_period, ex_price_per_unit, annual_rate, rate_for_period, exp_profit, exp_sale_price, exp_unit, loan_approved, loan_approved_user_nic, loan_approved_on, loan_sta, reg_approval) VALUES (@ccode, @loan_amount, @incomesource1_1, @incomesource1_2, @incomesource1_3, @incomesource2_1, @incomesource2_2, @incomesource2_3, @areaofFarming, @typeofv1, @typeofv2, @ex_years, @total_harvest, @harvesting_period, @seasons_for_year, @rain_water, @irrigation_water, @bothRwNRw, @min_expected_price, @max_expected_price, @unit, @type_of_product, @conditionExpected, @agreedPrice1, @agreedPrice2, @discussed1, @discussed2, @client_Farmer_Association, @insurance_for_farming, @insurer_details, @totalMonthINcome, @totalMonthExpenseBusiness, @totalMonthExpenseFamily, @AdditionalIncome, @CashBalanceMonth, @regular_savings, @regular_savings_ammount, @regular_savings_institution, @regular_savings_remarks, @fixed_savings, @fixed_savings_amount, @fixed_savings_institution, @fixed_savings_remarks, @seettu, @seettu_amount, @seettu_institution, @seettu_remarks, @insurance_life, @insurance_life_amount, @insurance_life_institution, @insurance_life_remarks, @insurance_medical, @insurance_medical_amount, @insurance_medical_institution, @insurance_medical_remarks, @re_pay_period, @ex_price_per_unit, @annual_rate, @rate_for_period, @exp_profit, @exp_sale_price, @exp_unit, @loan_approved, @loan_approved_user_nic, @loan_approved_on, @loan_sta, @reg_approval)");
 
                 cmdInsert.Parameters.AddWithValue("@ccode", txtCC.Text.Trim());
                 //cmdInsert.Parameters.AddWithValue("@cacode", txtCACode.Text.Trim());
@@ -260,11 +260,36 @@ namespace MuslimAID.SALAM
                 cmdInsert.Parameters.AddWithValue("@AdditionalIncome", txtAdditionalIn.Text.Trim());
                 cmdInsert.Parameters.AddWithValue("@CashBalanceMonth", txtCashBalance.Text.Trim());
 
+                cmdInsert.Parameters.AddWithValue("@regular_savings", (rdoSIRSYes1.Checked)?1:0);
+                cmdInsert.Parameters.AddWithValue("@regular_savings_ammount", SIFSAmmount1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@regular_savings_institution", IRSInstitution1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@regular_savings_remarks", SIRSRemarks1.Text.Trim());
+
+                cmdInsert.Parameters.AddWithValue("@fixed_savings", (rdoSIFSYes1.Checked) ? 1 : 0);
+                cmdInsert.Parameters.AddWithValue("@fixed_savings_amount", SIFSAmmount1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@fixed_savings_institution", SIFSInstitution1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@fixed_savings_remarks", SIFSRemarks1.Text.Trim());
+
+                cmdInsert.Parameters.AddWithValue("@seettu", (rdoSISeettuYes1.Checked) ? 1 : 0);
+                cmdInsert.Parameters.AddWithValue("@seettu_amount", SISeettuAmmount1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@seettu_institution", SISeettuInstitution1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@seettu_remarks", SISeettuRemarks1.Text.Trim());
+
+                cmdInsert.Parameters.AddWithValue("@insurance_life", (rdoSIILYes1.Checked) ? 1 : 0);
+                cmdInsert.Parameters.AddWithValue("@insurance_life_amount", SIILAmmount1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@insurance_life_institution", SIILInstitution1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@insurance_life_remarks", SIILRemarks1.Text.Trim());
+
+                cmdInsert.Parameters.AddWithValue("@insurance_medical", (rdoSIIMYes1.Checked) ? 1 : 0);
+                cmdInsert.Parameters.AddWithValue("@insurance_medical_amount", SIIMAmmount1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@insurance_medical_institution", SIIMInstitution1.Text.Trim());
+                cmdInsert.Parameters.AddWithValue("@insurance_medical_remarks", SIIMRemarks1.Text.Trim());
+
                 try
                 {
                     int i = conn.insertEditData(cmdInsert);
                     DetailsOfAssets();
-                    SavingsAndInsurance();
+                    LoansAndAdvance();
                     if (i == 1)
                     {
                         Clear();
@@ -282,18 +307,110 @@ namespace MuslimAID.SALAM
             catch (Exception) { }
         }
 
-        private bool SavingsAndInsurance()
-        { 
-        }
-        
-        private bool DetailsOfAssets()
+        private int LoansAndAdvance()
         {
             string strCC = txtCC.Text.Trim();
+            string users = Session["NIC"].ToString();
+            string ip = Request.UserHostAddress.ToString();
+            string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            StringBuilder strLoansNAdvance = new StringBuilder();
+            strLoansNAdvance.Append("INSERT INTO salam_loans_and_advance (ccode,amount_granted,institution,name_of_institution,reason,outstanding,type_of_facility,create_user_nic,user_ip,date_time) VALUES ");
+
+            if (txtAmountG1.Text.Trim() != "")
+            {
+                string institute = "", typeOfFa = "";
+                if (rdoMF1.Checked)
+                    institute = "MF";
+                else if (rdoFC1.Checked)
+                    institute = "FC";
+                else if (rdoBN1.Checked)
+                    institute = "BN";
+                else if (rdoOT1.Checked)
+                    institute = "OT";
+                else { }
+
+                if (rdoIS1.Checked)
+                    typeOfFa = "IS";
+                else typeOfFa = "NI";
+
+                strLoansNAdvance.Append("),('" + strCC + "'. '" + txtAmountG1.Text.Trim() + "', '" + institute + "', '" + txtNameOfInstitue1.Text.Trim() + "', '" + txtResone1.Text.Trim() + "','" + txtOutstanding1.Text.Trim() + "', '" + typeOfFa + "','" + users + "','" + ip + "','" + strDateTime);
+            }
+            if (txtAmountG2.Text.Trim() != "")
+            {
+                string institute = "", typeOfFa = "";
+                if (rdoMF2.Checked)
+                    institute = "MF";
+                else if (rdoFC2.Checked)
+                    institute = "FC";
+                else if (rdoBN2.Checked)
+                    institute = "BN";
+                else if (rdoOT2.Checked)
+                    institute = "OT";
+                else { }
+
+                if (rdoIS1.Checked)
+                    typeOfFa = "IS";
+                else typeOfFa = "NI";
+
+                strLoansNAdvance.Append("),('" + strCC + "'. '" + txtAmountG2.Text.Trim() + "', '" + institute + "', '" + txtNameOfInstitue2.Text.Trim() + "', '" + txtResone2.Text.Trim() + "','" + txtOutstanding2.Text.Trim() + "', '" + typeOfFa + "','" + users + "','" + ip + "','" + strDateTime);
+            }
+            if (txtAmountG3.Text.Trim() != "")
+            {
+                string institute = "", typeOfFa = "";
+                if (rdoMF3.Checked)
+                    institute = "MF";
+                else if (rdoFC3.Checked)
+                    institute = "FC";
+                else if (rdoBN3.Checked)
+                    institute = "BN";
+                else if (rdoOT3.Checked)
+                    institute = "OT";
+                else { }
+
+                if (rdoIS1.Checked)
+                    typeOfFa = "IS";
+                else typeOfFa = "NI";
+
+                strLoansNAdvance.Append("),('" + strCC + "'. '" + txtAmountG3.Text.Trim() + "', '" + institute + "', '" + txtNameOfInstitue3.Text.Trim() + "', '" + txtResone3.Text.Trim() + "','" + txtOutstanding3.Text.Trim() + "', '" + typeOfFa + "','" + users + "','" + ip + "','" + strDateTime);
+            }
+            if (txtAmountG4.Text.Trim() != "")
+            {
+                string institute = "", typeOfFa = "";
+                if (rdoMF4.Checked)
+                    institute = "MF";
+                else if (rdoFC4.Checked)
+                    institute = "FC";
+                else if (rdoBN4.Checked)
+                    institute = "BN";
+                else if (rdoOT4.Checked)
+                    institute = "OT";
+                else { }
+
+                if (rdoIS1.Checked)
+                    typeOfFa = "IS";
+                else typeOfFa = "NI";
+
+                strLoansNAdvance.Append("),('" + strCC + "'. '" + txtAmountG4.Text.Trim() + "', '" + institute + "', '" + txtNameOfInstitue4.Text.Trim() + "', '" + txtResone4.Text.Trim() + "','" + txtOutstanding4.Text.Trim() + "', '" + typeOfFa + "','" + users + "','" + ip + "','" + strDateTime);
+            }
+
+            strLoansNAdvance.Append(")");
+
+            return conn.insertEditData(strLoansNAdvance.ToString());
+        }
+        
+        private int DetailsOfAssets()
+        {
+            string strCC = txtCC.Text.Trim();
+
+            string user = Session["NIC"].ToString();
+            string ip = Request.UserHostAddress.ToString();
+            string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
             StringBuilder strAssets = new StringBuilder();
             strAssets.Append("INSERT INTO salam_details_of_assets (ccode,typeOfAsset,value,source,status,create_user_nic,user_ip,date_time) VALUES ");
             if (cmbAssetType1.SelectedIndex > 0)
             {
-                string source, status;
+                string source ="", status="";
                 if (rdoOther1.Checked) source = "o";
                 else if (rdoGift1.Checked) source = "g";
                 else if (rdoIncome1.Checked) source = "i";
@@ -303,63 +420,63 @@ namespace MuslimAID.SALAM
                 else if (rdoP1.Checked) status = "P";
                 else if (rdoI1.Checked) status = "I";
                 else { }
-                strAssets.Append("('" + strCC + "', '" + cmbAssetType1.SelectedValue.ToString() + "','" + txtValue1.Text.Trim() + "','" + source + "','" + status);
+                strAssets.Append("('" + strCC + "', '" + cmbAssetType1.SelectedValue.ToString() + "','" + txtValue1.Text.Trim() + "','" + source + "','" + status + "','" + user + "','" + ip + "','" + strDateTime);
             }
             if (cmbAssetType2.SelectedIndex > 0)
             {
-                string source2, status2;
-                if (rdoOther2.Checked) source = "o";
-                else if (rdoGift2.Checked) source = "g";
-                else if (rdoIncome2.Checked) source = "i";
+                string source2="", status2="";
+                if (rdoOther2.Checked) source2 = "o";
+                else if (rdoGift2.Checked) source2 = "g";
+                else if (rdoIncome2.Checked) source2 = "i";
                 else { }
 
-                if (rdoF2.Checked) status = "F";
-                else if (rdoP2.Checked) status = "P";
-                else if (rdoI2.Checked) status = "I";
+                if (rdoF2.Checked) status2 = "F";
+                else if (rdoP2.Checked) status2 = "P";
+                else if (rdoI2.Checked) status2 = "I";
                 else { }
-                strAssets.Append("),('" + strCC + "', '" + cmbAssetType2.SelectedValue.ToString() + "','" + txtValue2.Text.Trim() + "','" + source2 + "','" + status2);
+                strAssets.Append("),('" + strCC + "', '" + cmbAssetType2.SelectedValue.ToString() + "','" + txtValue2.Text.Trim() + "','" + source2 + "','" + status2 + "','" + user + "','" + ip + "','" + strDateTime);
             }
             if (cmbAssetType3.SelectedIndex > 0)
             {
-                string source3, status3;
-                if (rdoOther3.Checked) source = "o";
-                else if (rdoGift3.Checked) source = "g";
-                else if (rdoIncome3.Checked) source = "i";
+                string source3="", status3="";
+                if (rdoOther3.Checked) source3 = "o";
+                else if (rdoGift3.Checked) source3 = "g";
+                else if (rdoIncome3.Checked) source3 = "i";
                 else { }
 
-                if (rdoF3.Checked) status = "F";
-                else if (rdoP3.Checked) status = "P";
-                else if (rdoI3.Checked) status = "I";
+                if (rdoF3.Checked) status3 = "F";
+                else if (rdoP3.Checked) status3 = "P";
+                else if (rdoI3.Checked) status3 = "I";
                 else { }
-                strAssets.Append("),('" + strCC + "', '" + cmbAssetType3.SelectedValue.ToString() + "','" + txtValue3.Text.Trim() + "','" + source3 + "','" + status3);
+                strAssets.Append("),('" + strCC + "', '" + cmbAssetType3.SelectedValue.ToString() + "','" + txtValue3.Text.Trim() + "','" + source3 + "','" + status3 + "','" + user + "','" + ip + "','" + strDateTime);
             }
             if (cmbAssetType4.SelectedIndex > 0)
             {
-                string source4, status4;
-                if (rdoOther4.Checked) source = "o";
-                else if (rdoGift4.Checked) source = "g";
-                else if (rdoIncome4.Checked) source = "i";
+                string source4="", status4="";
+                if (rdoOther4.Checked) source4 = "o";
+                else if (rdoGift4.Checked) source4 = "g";
+                else if (rdoIncome4.Checked) source4 = "i";
                 else { }
 
-                if (rdoF4.Checked) status = "F";
-                else if (rdoP4.Checked) status = "P";
-                else if (rdoI4.Checked) status = "I";
+                if (rdoF4.Checked) status4 = "F";
+                else if (rdoP4.Checked) status4 = "P";
+                else if (rdoI4.Checked) status4 = "I";
                 else { }
-                strAssets.Append("),('" + strCC + "', '" + cmbAssetType4.SelectedValue.ToString() + "','" + txtValue4.Text.Trim() + "','" + source4 + "','" + status4);
+                strAssets.Append("),('" + strCC + "', '" + cmbAssetType4.SelectedValue.ToString() + "','" + txtValue4.Text.Trim() + "','" + source4 + "','" + status4 + "','" + user + "','" + ip + "','" + strDateTime);
             }
             if (cmbAssetType5.SelectedIndex > 0)
             {
-                string source5, status5;
-                if (rdoOther5.Checked) source = "o";
-                else if (rdoGift5.Checked) source = "g";
-                else if (rdoIncome5.Checked) source = "i";
+                string source5="", status5="";
+                if (rdoOther5.Checked) source5 = "o";
+                else if (rdoGift5.Checked) source5 = "g";
+                else if (rdoIncome5.Checked) source5 = "i";
                 else { }
 
-                if (rdoF5.Checked) status = "F";
-                else if (rdoP5.Checked) status = "P";
-                else if (rdoI5.Checked) status = "I";
+                if (rdoF5.Checked) status5 = "F";
+                else if (rdoP5.Checked) status5 = "P";
+                else if (rdoI5.Checked) status5 = "I";
                 else { }
-                strAssets.Append("),('" + strCC + "', '" + cmbAssetType5.SelectedValue.ToString() + "','" + txtValue5.Text.Trim() + "','" + source5 + "','" + status5);
+                strAssets.Append("),('" + strCC + "', '" + cmbAssetType5.SelectedValue.ToString() + "','" + txtValue5.Text.Trim() + "','" + source5 + "','" + status5 + "','" + user + "','" + ip + "','" + strDateTime);
             }
 
             strAssets.Append(")");

@@ -6,7 +6,8 @@
 /*~~ SALAM repament ~~*/
 $(document).ready(function(){
     function checkVariety(minPrice, maxPrice){
-        var lblDetailsInSource1 = $("#ctl00_ContentPlaceHolder1_lblDetailsInSource1");
+        var lblDetailsInSource1 = $("#ContentPlaceHolder1_lblDetailsInSource1");
+//        var lblDetailsInSource1 = $("#ctl00_ContentPlaceHolder1_lblDetailsInSource1");
         
         lblDetailsInSource1.html("");
         if(minPrice > maxPrice){
@@ -46,7 +47,8 @@ $(document).ready(function(){
     }); 
     
     $(".txtAgreedPrice").on('change', function(){
-        var lblSellingOpt = $("#ctl00_ContentPlaceHolder1_lblSellingOpt");
+        var lblSellingOpt = $("#ContentPlaceHolder1_lblSellingOpt");
+//        var lblSellingOpt = $("#ctl00_ContentPlaceHolder1_lblSellingOpt");
         if($(this).val() === ''){
             lblSellingOpt.css("color","red");
             lblSellingOpt.html("Place of selling - Option 01 Agreed Price cannot be empty.");
@@ -55,7 +57,8 @@ $(document).ready(function(){
     });
     
     $(".txtAgreedPrice2").on('change', function(){
-        var lblSellingOpt = $("#ctl00_ContentPlaceHolder1_lblSellingOpt");
+        var lblSellingOpt = $("#ContentPlaceHolder1_lblSellingOpt");
+//        var lblSellingOpt = $("#ctl00_ContentPlaceHolder1_lblSellingOpt");
         if($(this).val() === ''){
             lblSellingOpt.css("color","red");
             lblSellingOpt.html("Place of selling - Option 02 Agreed Price cannot be empty.");
@@ -64,7 +67,7 @@ $(document).ready(function(){
     }); 
         
     $(".rate").on('change', function(){
-        //calculatete for period
+        //calculate rate for period
         var RFP = ($(".rate").val()/12)*$(".period").val();
         //Calculate expected profit
         var EP = ($(".loanamount").val()*RFP)/100;
@@ -84,10 +87,7 @@ $(document).ready(function(){
         $(".expUnits").prop("disabled", true);       
         $(".expSellingPrice").prop("disabled", true);       
     });
-    //Expected Units
-    $(".expSellingPrice").on('change', function(){
-        $(".expUnits").val($(".expSellingPrice").val()/$(".expUnitPrice").val());
-    });
+    
 });
 </script>
 </asp:Content>
@@ -505,7 +505,7 @@ $(document).ready(function(){
                                     <td>
                                         <asp:RadioButton ID="rdoF1" runat="server" GroupName="statusIn1" Text="Fully Functioning"/>
                                         <asp:RadioButton ID="rdoP1" runat="server" GroupName="statusIn1" Text="Partial Functioning"/>
-                                        <asp:RadioButton ID="RdoI1" runat="server" GroupName="statusIn1" Text="Inactive" />
+                                        <asp:RadioButton ID="rdoI1" runat="server" GroupName="statusIn1" Text="Inactive" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -568,7 +568,7 @@ $(document).ready(function(){
                                     <td><asp:TextBox runat="server" ID="txtValue4" CssClass="form-control"></asp:TextBox></td>
                                     <td>
                                         <asp:RadioButton ID="rdoOther4" runat="server" GroupName="incomeSource4" Text="Other" />
-                                        <asp:RadioButton ID="rdoGif4" runat="server" GroupName="incomeSource4" Text="Gift" />
+                                        <asp:RadioButton ID="rdoGift4" runat="server" GroupName="incomeSource4" Text="Gift" />
                                         <asp:RadioButton ID="rdoIncome4" runat="server" GroupName="incomeSource4" Text="Income" />
                                     </td>
                                     <td>
@@ -591,7 +591,7 @@ $(document).ready(function(){
                                     <td><asp:TextBox runat="server" ID="txtValue5" CssClass="form-control"></asp:TextBox></td>
                                     <td>
                                         <asp:RadioButton ID="rdoOther5" runat="server" GroupName="incomeSource5" Text="Other" />
-                                        <asp:RadioButton ID="rdoGif5" runat="server" GroupName="incomeSource5" Text="Gift" />
+                                        <asp:RadioButton ID="rdoGift5" runat="server" GroupName="incomeSource5" Text="Gift" />
                                         <asp:RadioButton ID="rdoIncome5" runat="server" GroupName="incomeSource5" Text="Income" />
                                     </td>
                                     <td>
@@ -625,9 +625,9 @@ $(document).ready(function(){
                                 <asp:RadioButton GroupName="rdoSIRS" ID="rdoSIRSYes1" runat="server" text="&nbsp; Yes &nbsp;"/>
                                 <asp:RadioButton GroupName="rdoSIRS" ID="rdoSIRSNo1" runat="server" text="&nbsp; No &nbsp;" />
                             </td>
-                            <td><asp:TextBox ID="rdoSIRSAmmount1" CssClass="form-control numbersOnly" runat="server"></asp:TextBox></td>
-                            <td><asp:TextBox ID="rdoSIRSInstitution1" CssClass="form-control" runat="server"></asp:TextBox></td>
-                            <td><asp:TextBox ID="rdoSIRSRemarks1" CssClass="form-control" TextMode="MultiLine" Height="50px" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIRSAmmount1" CssClass="form-control numbersOnly" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="IRSInstitution1" CssClass="form-control" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIRSRemarks1" CssClass="form-control" TextMode="MultiLine" Height="50px" runat="server"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td>Fixed Savings</td>
@@ -635,9 +635,9 @@ $(document).ready(function(){
                                 <asp:RadioButton GroupName="rdoSIFS" ID="rdoSIFSYes1" runat="server" text="&nbsp; Yes &nbsp;"/>
                                 <asp:RadioButton GroupName="rdoSIFS" ID="rdoSIFSNo1" runat="server" text="&nbsp; No &nbsp;" />
                             </td>
-                            <td><asp:TextBox ID="rdoSIFSAmmount1" CssClass="form-control numbersOnly" runat="server"></asp:TextBox></td>
-                            <td><asp:TextBox ID="rdoSIFSInstitution1" CssClass="form-control" runat="server"></asp:TextBox></td>
-                            <td><asp:TextBox ID="rdoSIFSRemarks1" CssClass="form-control" TextMode="MultiLine" Height="50px" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIFSAmmount1" CssClass="form-control numbersOnly" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIFSInstitution1" CssClass="form-control" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIFSRemarks1" CssClass="form-control" TextMode="MultiLine" Height="50px" runat="server"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td>Seettu</td>
@@ -645,9 +645,9 @@ $(document).ready(function(){
                                 <asp:RadioButton GroupName="rdoSISeettu" ID="rdoSISeettuYes1" runat="server" text="&nbsp; Yes &nbsp;"/>
                                 <asp:RadioButton GroupName="rdoSISeettu" ID="rdoSISeettuNo1" runat="server" text="&nbsp; No &nbsp;" />
                             </td>
-                            <td><asp:TextBox ID="rdoSISeettuAmmount1" CssClass="form-control numbersOnly" runat="server"></asp:TextBox></td>
-                            <td><asp:TextBox ID="rdoSISeettuInstitution1" CssClass="form-control" runat="server"></asp:TextBox></td>
-                            <td><asp:TextBox ID="rdoSISeettuRemarks1" CssClass="form-control" TextMode="MultiLine" Height="50px" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SISeettuAmmount1" CssClass="form-control numbersOnly" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SISeettuInstitution1" CssClass="form-control" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SISeettuRemarks1" CssClass="form-control" TextMode="MultiLine" Height="50px" runat="server"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td>Insurance - Life</td>
@@ -655,9 +655,9 @@ $(document).ready(function(){
                                 <asp:RadioButton GroupName="rdoSIIL" ID="rdoSIILYes1" runat="server" text="&nbsp; Yes &nbsp;"/>
                                 <asp:RadioButton GroupName="rdoSIIL" ID="rdoSIILNo1" runat="server" text="&nbsp; No &nbsp;" />
                             </td>
-                            <td><asp:TextBox ID="rdoSIILAmmount1" CssClass="form-control numbersOnly" runat="server"></asp:TextBox></td>
-                            <td><asp:TextBox ID="rdoSIILInstitution1" CssClass="form-control" runat="server"></asp:TextBox></td>
-                            <td><asp:TextBox ID="rdoSIILRemarks1" CssClass="form-control" TextMode="MultiLine" Height="50px" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIILAmmount1" CssClass="form-control numbersOnly" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIILInstitution1" CssClass="form-control" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIILRemarks1" CssClass="form-control" TextMode="MultiLine" Height="50px" runat="server"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td>Insurance - Medical</td>
@@ -665,9 +665,9 @@ $(document).ready(function(){
                                 <asp:RadioButton GroupName="rdoSIIM" ID="rdoSIIMYes1" runat="server" text="&nbsp; Yes &nbsp;"/>
                                 <asp:RadioButton GroupName="rdoSIIM" ID="rdoSIIMNo1" runat="server" text="&nbsp; No &nbsp;" />
                             </td>
-                            <td><asp:TextBox ID="rdoSIIMAmmount1" CssClass="form-control numbersOnly" runat="server"></asp:TextBox></td>
-                            <td><asp:TextBox ID="rdoSIIMInstitution1" CssClass="form-control" runat="server"></asp:TextBox></td>
-                            <td><asp:TextBox ID="rdoSIIMRemarks1" CssClass="form-control" TextMode="MultiLine" Height="50px" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIIMAmmount1" CssClass="form-control numbersOnly" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIIMInstitution1" CssClass="form-control" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="SIIMRemarks1" CssClass="form-control" TextMode="MultiLine" Height="50px" runat="server"></asp:TextBox></td>
                         </tr>
                     </tbody>
                 </table>
@@ -765,9 +765,9 @@ $(document).ready(function(){
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td><asp:TextBox CssClass="form-control" ID="txtAmount4" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox CssClass="form-control" ID="txtAmountG4" runat="server"></asp:TextBox></td>
                             <td>
-                                <asp:RadioButton ID="rdoM4" runat="server" text="MF"/>
+                                <asp:RadioButton ID="rdoMF4" runat="server" text="MF"/>
                                 <asp:RadioButton ID="rdoFC4" runat="server" text="FC"/>
                                 <asp:RadioButton ID="rdoBN4" runat="server" text="BN"/>
                                 <asp:RadioButton ID="rdoOT4" runat="server" text="OT"/>
