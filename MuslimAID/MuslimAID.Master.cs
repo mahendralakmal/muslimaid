@@ -17,7 +17,7 @@ namespace MuslimAID
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string str = Request.Url.AbsolutePath.Substring(1);
+            lblUser.Text =  Session["User_name"].ToString();
         }
     }
 }

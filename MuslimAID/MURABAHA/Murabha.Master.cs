@@ -18,6 +18,7 @@ namespace MuslimAID.MURABHA
         protected void Page_Load(object sender, EventArgs e)
         {
             string strType = Session["UserType"].ToString();
+            lblUser.Text = Session["User_name"].ToString();
             if (strType == "ADM" || strType == "BOD" || strType == "CMG")
             {
                 pnlFullControl.Visible = true;

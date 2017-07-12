@@ -17,7 +17,7 @@ namespace MuslimAID.SALAM
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblUser.Text = Session["User_name"].ToString();
         }
     }
 }

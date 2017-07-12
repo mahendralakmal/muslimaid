@@ -244,6 +244,7 @@ namespace MuslimAID.MURABHA
 
                 txtCC.Text = hidCC.Value.Trim();
                 txtCC.ReadOnly = true;
+                upperMsg.Text = "";
             }
             catch (Exception e)
             {
@@ -1379,7 +1380,7 @@ namespace MuslimAID.MURABHA
         }
         #endregion
 
-        private void IsExist()
+        private bool IsExist()
         {
             try
             {
@@ -1389,6 +1390,7 @@ namespace MuslimAID.MURABHA
                 {
                     lblMsg.Text = "Please enter NIC Number.";
                     btnSubmit.Enabled = false;
+                    return false;
                 }
                 else
                 {
@@ -1398,7 +1400,7 @@ namespace MuslimAID.MURABHA
                         {
                             lblMsg0.Text = "Please enter valid NIC No.";
                             txtNIC.Focus();
-                            return;
+                            return false;
                         }
                     }
                     else if (txtNIC.Text.Length == 12)
@@ -1407,14 +1409,14 @@ namespace MuslimAID.MURABHA
                         {
                             lblMsg0.Text = "Please enter valid NIC No.";
                             txtNIC.Focus();
-                            return;
+                            return false;
                         }
                     }
                     else
                     {
                         lblMsg0.Text = "Please enter valid NIC No.";
                         txtNIC.Focus();
-                        return;
+                        return false;
                     }
                     lblMsg0.Text = "";
                     DataSet dsGetExsiNIC = cls_Connection.getDataSet("select * from micro_basic_detail where nic = '" + txtNIC.Text.Trim() + "';");
@@ -1425,7 +1427,7 @@ namespace MuslimAID.MURABHA
                         if (dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "S" || dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "C")
                         {
                             lblMsg.Text = "Please complete the loan application form, unless you cannot be modify basic details...";
-                            return;
+                            return false;
                         }
                         else if (dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "P" && dsGetExsiLoan.Tables[0].Rows[0]["loan_approved"].ToString() == "Y" && dsGetExsiLoan.Tables[0].Rows[0]["chequ_no"].ToString() == "")
                         {
@@ -2032,6 +2034,7 @@ namespace MuslimAID.MURABHA
                                 btnUpdate.Visible = false;
                             }
                         }
+                        return false;
                     }
                     else
                     {
@@ -2050,11 +2053,13 @@ namespace MuslimAID.MURABHA
                             btnSubmit.Visible = true;
                             btnUpdate.Visible = false;
                         }
+                        return true;
                     }
                 }
             }  
             catch (Exception e)
             {
+                return false;
             }
         }
 
@@ -2075,11 +2080,16 @@ namespace MuslimAID.MURABHA
                             strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" ||
                             strType == "BFA")
             {
-                IsExist(); txtNicIssuDay.Focus();
+                if (IsExist())
+                {
+                    ccsetup();
+                }
+                txtNicIssuDay.Focus();
             }
             else
             {
-                ccsetup(); txtNicIssuDay.Focus();
+                ccsetup(); 
+                txtNicIssuDay.Focus();
             }
         }
 

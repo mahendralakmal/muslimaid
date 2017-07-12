@@ -50,6 +50,7 @@ namespace MuslimAID
                 DataSet dsUserSta = cls_Connection.getDataSet("select * from users where nic = '" + strNIC + "';");
                 if (dsUserSta.Tables[0].Rows.Count > 0)
                 {
+                    Session["User_name"] = dsUserSta.Tables[0].Rows[0]["first_name"].ToString() + " " + dsUserSta.Tables[0].Rows[0]["first_name"].ToString();
                     if (dsUserSta.Tables[0].Rows[0]["deleted"].ToString() == "N")
                     {
                         if (dsUserSta.Tables[0].Rows[0]["deleted"].ToString() == "MFO")
