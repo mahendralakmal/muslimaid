@@ -61,7 +61,7 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
-                hstrSelectQuery.Value = "select c.idcenter_details,c.center_name,b.b_name,c.villages,c.leader_name,c.conta_no,exe_name,case center_day when 'MO' then 'Monday' when 'TU' then 'Tuesday' when 'WE' then 'Wednsday' when 'TH' then 'Thursday' when 'FR' then 'Friday' when 'SA' then 'Saturday' when 'SU' then 'Sunday' end as center_day from center_details c, branch b,micro_exective_root e where b.b_code = c.city_code and c.city_code = e.branch_code and c.exective = e.exe_id";
+                hstrSelectQuery.Value = "SELECT c.idcenter_details,c.center_name,b.b_name, a.area,v.villages_name AS villages,c.leader_name,c.conta_no,exe_name,case center_day when 'MO' then 'Monday' when 'TU' then 'Tuesday' when 'WE' then 'Wednsday' when 'TH' then 'Thursday' when 'FR' then 'Friday' when 'SA' then 'Saturday' when 'SU' then 'Sunday' end as center_day FROM center_details c, branch b,micro_exective_root e, villages_name v, area a WHERE b.b_code = c.city_code AND c.city_code = e.branch_code AND c.exective = e.exe_id AND v.villages_code = c.villages AND a.area_code = c.area_code";
 
                 if (txtCenterID.Text.Trim() != "" || cmbBranch.SelectedIndex != 0 || cmbCenterName.Text.Trim() != "" || txtDateFrom.Text.Trim() != "" || txtDateTo.Text.Trim() != "" || cmbRoot.Text.Trim() != "")
                 {
@@ -91,12 +91,12 @@ namespace MuslimAID.MURABHA
                         hstrSelectQuery.Value = hstrSelectQuery.Value + " and center_day = '" + cmbCenterDay.Text.Trim() + "'";
                     }
 
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by c.idcenter_details asc;";
+                    hstrSelectQuery.Value = hstrSelectQuery.Value + " ORDER BY exe_name asc;";
                     loadDataToRepeater(hstrSelectQuery.Value);
                 }
                 else
                 {
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by c.idcenter_details asc;";
+                hstrSelectQuery.Value = hstrSelectQuery.Value + " ORDER BY exe_name asc;";
                     loadDataToRepeater(hstrSelectQuery.Value);
                 }
             }

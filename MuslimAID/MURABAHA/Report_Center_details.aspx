@@ -145,6 +145,11 @@
                                 <asp:BoundField DataField="b_name" ItemStyle-VerticalAlign="Top" HeaderText="City Name"
                                     HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905"
                                     HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
+                                    
+                                <asp:BoundField DataField="area" ItemStyle-VerticalAlign="Top" HeaderText="Area"
+                                    HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905"
+                                    HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
+                                    
                                 <asp:BoundField DataField="villages" HeaderText="Village" ItemStyle-VerticalAlign="Top"
                                     ItemStyle-HorizontalAlign="Left" HeaderStyle-Width="180px" HeaderStyle-BackColor="#009905"
                                     HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
