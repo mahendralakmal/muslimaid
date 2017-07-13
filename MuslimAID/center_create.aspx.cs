@@ -101,7 +101,7 @@ namespace MuslimAID
 
                     string strMaxID = "1";
                     int intMaxID = 1;
-                    DataSet dsGetMaxID = cls_Connection.getDataSet("select max(idcenter_details) from center_details where city_code = '" + strCityCode + "';");
+                    DataSet dsGetMaxID = cls_Connection.getDataSet("select max(idcenter_details) from center_details where city_code = '" + strCityCode + "' AND area_code = '"+ strArea +"' AND villages = '"+ strVillage +"';");
                     if (dsGetMaxID.Tables[0].Rows[0][0].ToString() != "")
                     {
                         string strGetMaxID = dsGetMaxID.Tables[0].Rows[0][0].ToString();
@@ -387,7 +387,7 @@ namespace MuslimAID
             //Center Code
             string strMaxID = "1";
             int intMaxID = 1;
-            DataSet dsGetMaxID = cls_Connection.getDataSet("select max(idcenter_details) from center_details where city_code = '" + cmbBranch.SelectedValue.ToString() + "';");
+            DataSet dsGetMaxID = cls_Connection.getDataSet("SELECT max(idcenter_details) FROM center_details WHERE city_code = '" + cmbBranch.SelectedValue.ToString() + "' AND area_code = '" + cmbArea.SelectedValue.ToString()+ "' AND villages = '"+ cmbVillages.SelectedValue.ToString()+"';");
             if (dsGetMaxID.Tables[0].Rows[0][0].ToString() != "")
             {
                 string strGetMaxID = dsGetMaxID.Tables[0].Rows[0][0].ToString();

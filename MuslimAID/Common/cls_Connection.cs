@@ -24,8 +24,8 @@ namespace MuslimAID
             try
             {
                 MySqlConnection con = new MySqlConnection();
-                con.ConnectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
-                //con.ConnectionString = ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString;
+                //con.ConnectionString = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+                con.ConnectionString = ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString;
                 return con;
             }
             catch (MySqlException mye)
