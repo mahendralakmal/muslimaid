@@ -46,37 +46,11 @@ namespace MuslimAID.MURABHA
                                 cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
                                 cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
                             }
-
-                            DataSet dsNture = cls_Connection.getDataSet("SELECT * FROM micro_nature_of_business;");
-                            cmbBNature.Items.Add("");
-                            for (int i = 0; i < dsNture.Tables[0].Rows.Count; i++)
-                            {
-                                cmbBNature.Items.Add(dsNture.Tables[0].Rows[i]["natureOfBusiness"].ToString());
-                                cmbBNature.Items[i + 1].Value = dsNture.Tables[0].Rows[i]["id"].ToString();
-                            }
-
-                            DataSet Occupation = cls_Connection.getDataSet("SELECT * FROM micro_occupation ORDER BY id");
-                            cmbOccupation.Items.Add("Select Occupation/ Income Source");
-                            cmbOccupa.Items.Add("Select Occupation/ Income Source");
-                            for (int i = 0; i < Occupation.Tables[0].Rows.Count; i++)
-                            {
-                                cmbOccupation.Items.Add(Occupation.Tables[0].Rows[i]["occupation"].ToString());
-                                cmbOccupation.Items[i + 1].Value = Occupation.Tables[0].Rows[i]["id"].ToString();
-                                cmbOccupa.Items.Add(Occupation.Tables[0].Rows[i]["occupation"].ToString());
-                                cmbOccupa.Items[i + 1].Value = Occupation.Tables[0].Rows[i]["id"].ToString();
-                            }
-
+                            initiate_Nature_Occ_Period();
                             cmbArea.Enabled = false;
                             cmbRoot.Enabled = false;
                             cmbVillage.Enabled = false;
                             cmbCenter.Enabled = false;
-
-                            cmbTmePeriod.Items.Add("Select Period");
-                            for (int i = 0; i < 24; i++)
-                            {
-                                cmbTmePeriod.Items.Add(i + 1 + " Month");
-                                cmbTmePeriod.Items[i + 1].Value = (i + 1).ToString();
-                            }
                             #region
                             txtNameOrg1.Enabled = false;
                             txtNameOrg2.Enabled = false;
@@ -105,6 +79,7 @@ namespace MuslimAID.MURABHA
 
                             if (dsExe.Tables[0].Rows.Count > 0)
                             {
+                                initiate_Nature_Occ_Period();
                                 pnlForm.Visible = true;
                                 DataSet dsBrnh = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
                                 cmbBranch.Items.Add("Select Branch");
@@ -193,6 +168,35 @@ namespace MuslimAID.MURABHA
             catch (Exception ex)
             {
                 cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "client bsic details");
+            }
+        }
+
+        protected void initiate_Nature_Occ_Period()
+        {
+            DataSet dsNture = cls_Connection.getDataSet("SELECT * FROM micro_nature_of_business;");
+            cmbBNature.Items.Add("");
+            for (int i = 0; i < dsNture.Tables[0].Rows.Count; i++)
+            {
+                cmbBNature.Items.Add(dsNture.Tables[0].Rows[i]["natureOfBusiness"].ToString());
+                cmbBNature.Items[i + 1].Value = dsNture.Tables[0].Rows[i]["id"].ToString();
+            }
+
+            DataSet Occupation = cls_Connection.getDataSet("SELECT * FROM micro_occupation ORDER BY id");
+            cmbOccupation.Items.Add("Select Occupation/ Income Source");
+            cmbOccupa.Items.Add("Select Occupation/ Income Source");
+            for (int i = 0; i < Occupation.Tables[0].Rows.Count; i++)
+            {
+                cmbOccupation.Items.Add(Occupation.Tables[0].Rows[i]["occupation"].ToString());
+                cmbOccupation.Items[i + 1].Value = Occupation.Tables[0].Rows[i]["id"].ToString();
+                cmbOccupa.Items.Add(Occupation.Tables[0].Rows[i]["occupation"].ToString());
+                cmbOccupa.Items[i + 1].Value = Occupation.Tables[0].Rows[i]["id"].ToString();
+            }
+
+            cmbTmePeriod.Items.Add("Select Period");
+            for (int i = 0; i < 24; i++)
+            {
+                cmbTmePeriod.Items.Add(i + 1 + " Month");
+                cmbTmePeriod.Items[i + 1].Value = (i + 1).ToString();
             }
         }
 
