@@ -70,8 +70,8 @@ namespace MuslimAID.MURABAHA
                     lblMsg.Text = "Plese enter the supplier name";
                 else if (txtContactPerson.Text.Trim() == "")
                     lblMsg.Text = "Plese enter the contact person";
-                else if (txtNIC.Text.Trim() == "")
-                    lblMsg.Text = "Plese enter the NIC";
+                //else if (txtNIC.Text.Trim() == "")
+                //    lblMsg.Text = "Plese enter the NIC";
                 else if (txtBisAddress.Text == "")
                     lblMsg.Text = "Plese enter the business address";
                 //else if (rdoIndividual.Checked && txtNameOnChecque.Text == "")
@@ -183,8 +183,8 @@ namespace MuslimAID.MURABAHA
                     lblMsg.Text = "Plese enter the supplier name";
                 else if (txtContactPerson.Text.Trim() == "")
                     lblMsg.Text = "Plese enter the contact person";
-                else if (txtNIC.Text.Trim() == "")
-                    lblMsg.Text = "Plese enter the NIC";
+                //else if (txtNIC.Text.Trim() == "")
+                //    lblMsg.Text = "Plese enter the NIC";
                 else if (txtBisAddress.Text == "")
                     lblMsg.Text = "Plese enter the business address";
             //    else if (rdoIndividual.Checked && txtNameOnChecque.Text == "")

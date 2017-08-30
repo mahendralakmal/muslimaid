@@ -100,7 +100,7 @@
              
             <div class="col-md-6"> 
                 <div class="form-group">
-                    <div class="col-md-5">Telephone<span style="color:Red;"> *</span></div>
+                    <div class="col-md-5">Telephone</div>
                     <div class="col-md-7">
                     <asp:TextBox ID="txtTelephone" MaxLength="10" CssClass="numbersOnly form-control" 
                             runat="server" TabIndex="9"></asp:TextBox>
@@ -110,7 +110,7 @@
              
             <div class="col-md-6"> 
                 <div class="form-group">
-                    <div class="col-md-5">Mobile<span style="color:Red;"> *</span></div>
+                    <div class="col-md-5">Mobile</div>
                     <div class="col-md-7">
                     <asp:TextBox ID="txtMobile" MaxLength="10" CssClass="numbersOnly form-control" 
                             runat="server" TabIndex="10"></asp:TextBox>
@@ -120,7 +120,7 @@
              
             <div class="col-md-6"> 
                 <div class="form-group">
-                    <div class="col-md-5">Invoice Value<span style="color:Red;"> *</span></div>
+                    <div class="col-md-5">Invoice Value</div>
                     <div class="col-md-7">
                     <asp:TextBox ID="txtInvoiceValue" MaxLength="10" CssClass="numbersOnly form-control" 
                             runat="server" TabIndex="11"></asp:TextBox>

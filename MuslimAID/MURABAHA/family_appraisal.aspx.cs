@@ -23,6 +23,15 @@ namespace MuslimAID.MURABAHA
         {
             try
             {
+                cmbTmePeriod.Items.Clear();
+                cmbTmePeriod.Items.Add("Select Period");
+                cmbTmePeriod.Items[0].Value = 0.ToString();
+                for (int i = 0; i < 24; i++)
+                {
+                    cmbTmePeriod.Items.Add(i + 1 + " Month");
+                    cmbTmePeriod.Items[i + 1].Value = (i + 1).ToString();
+                }
+
                 if (!IsPostBack)
                 {
                     if (Session["LoggedIn"].ToString() == "True")
@@ -36,17 +45,6 @@ namespace MuslimAID.MURABAHA
                             {
                                 txtCC.Text = strCC;
                                 txtCC.Enabled = false;
-
-
-                                cmbTmePeriod.Items.Clear();
-                                cmbTmePeriod.Items.Add("Select Period");
-                                cmbTmePeriod.Items[0].Value = 0.ToString();
-                                for (int i = 0; i < 24; i++)
-                                {
-                                    cmbTmePeriod.Items.Add(i + 1 + " Month");
-                                    cmbTmePeriod.Items[i + 1].Value = (i + 1).ToString();
-                                }
-
                                 
                                 //Assign Net profit from Business detals form to Net Income from Business 
                                 DataSet ds = cls_Connection.getDataSet("SELECT profit_lost FROM micro_business_details WHERE contract_code ='" + strCC + "';");

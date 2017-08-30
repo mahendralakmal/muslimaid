@@ -66,147 +66,6 @@ namespace MuslimAID.MURABHA
         {
             Update();
         }
-        //protected void btnSubmit_Click(object sender, EventArgs e)
-        //{
-        //    lblMsg.Text = "";
-        //    if (txtCC.Text.Trim() == "")
-        //    {
-        //        lblMsg.Text = "Please Enter Facility Code";
-        //    }
-        //    //else if (cmbPeriod.Text.Trim() == "")
-        //    //{
-        //    //    lblMsg.Text = "Please Choose Period";
-        //    //}
-        //    //else if (cmbBPopulation.Text.Trim() == "")
-        //    //{
-        //    //    lblMsg.Text = "Please Choose Business Population";
-        //    //}
-        //    else if (txtBIncome.Text.Trim() == "")
-        //    {
-        //        lblMsg.Text = "Please Enter Business Income";
-        //    }
-        //    //else if (txtOIncome.Text.Trim() == "")
-        //    //{
-        //    //    lblMsg.Text = "Please Enter Other Income";
-        //    //}
-        //    //else if (txtTotalIncome.Text.Trim() == "")
-        //    //{
-        //    //    lblMsg.Text = "Please Enter Total Income";
-        //    //}
-        //    else if (txtDCost.Text.Trim() == "")
-        //    {
-        //        lblMsg.Text = "Please Enter Direct Cost";
-        //    }
-        //    else if (txtICost.Text.Trim() == "")
-        //    {
-        //        lblMsg.Text = "Please Enter InDirect Cost";
-        //    }
-        //    //else if (txtOExpenses.Text.Trim() == "")
-        //    //{
-        //    //    lblMsg.Text = "Please Enter Other Expenses";
-        //    //}
-        //    else if (txtPAndL.Text.Trim() == "")
-        //    {
-        //        lblMsg.Text = "Please Enter Business P & L";
-        //    }
-        //    //else if (txtFExpenses.Text.Trim() == "")
-        //    //{
-        //    //    lblMsg.Text = "Please Enter Family Expenses";
-        //    //}
-        //    else
-        //    {
-        //        MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_business_details(contract_code,busi_income,sales_credit,other_income,total_income,purchase_cash,purchase_credit,grossProfit,rent,water_elec_tele,wages,fla_rent,travel,maintenance,total_expenses,profit_lost,create_user_nic,user_ip,date_time)VALUES(@contract_code,@busi_income,@sales_credit,other_income,@total_income,@purchase_cash,@direct_cost,@grossProfit,@rent,@water_elec_tele,@wages,@fla_rent,@travel,@maintenance,@total_expenses,@profit_lost,@create_user_nic,@user_ip,@date_time)");
-
-        //        #region GetValues
-        //        string strIp = Request.UserHostAddress;
-        //        string strloginID = Session["NIC"].ToString();
-        //        string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        //        string strCC = txtCC.Text.Trim();
-        //        //string strBN = txtBuss.Text.Trim();
-        //        //string strDur = cmbPeriod.SelectedValue;
-        //        //string strBAdd = txtBisAddress.Text.Trim();
-        //        //string strBPopu = cmbBPopulation.SelectedValue;
-        //        //string strBNature = txtBNature.Text.Trim();
-        //        //string strKPerson = cmbKeyPerson.SelectedValue;
-        //        //string strNoOfPpl = txtNoOfPpl.Text.Trim();
-        //        //string strBrNo = txtBRNo.Text.Trim();
-        //        //string strOfcContactNo = txtOffContact.Text.Trim();
-
-        //        string strBIn = txtBIncome.Text.Trim();
-        //        string strCIn = txtCrdtIncome.Text.Trim();
-        //        string strOIn = txtOIncome.Text.Trim();
-        //        string strTotalIn = txtTotalIncome.Text.Trim();
-
-        //        string strDcost = txtDCost.Text.Trim();
-        //        string strICost = txtICost.Text.Trim();
-        //        string strToEx = txtTotPurchase.Text.Trim();
-
-        //        string strGrossP = txtGrossProfit.Text.Trim();
-
-        //        string strRent = txtRent.Text.Trim();
-        //        string strWet = txtWET.Text.Trim();
-        //        string strWages = txtWages.Text.Trim();
-        //        string strFla = txtFLA.Text.Trim();
-        //        string strTravelTrans = txtTravelTrans.Text.Trim();
-        //        string strRepairMain = txtRepairMain.Text.Trim();
-
-        //        string strTotalEx = txtTExpenses.Text.Trim();
-        //        string strBPL = txtPAndL.Text.Trim();
-        //        #endregion
-
-        //        #region GetValues
-        //        cmdInsert.Parameters.AddWithValue("@contract_code", strCC);
-        //        //cmdInsert.Parameters.AddWithValue("@business_name", strBN);
-        //        //cmdInsert.Parameters.AddWithValue("@busi_duration", strDur);
-        //        //cmdInsert.Parameters.AddWithValue("@busi_address", strBAdd);
-        //        //cmdInsert.Parameters.AddWithValue("@busi_population", strBPopu);
-        //        //cmdInsert.Parameters.AddWithValue("@busi_nature", strBNature);
-        //        //cmdInsert.Parameters.AddWithValue("@key_person", strKPerson);
-        //        //cmdInsert.Parameters.AddWithValue("@no_of_ppl", (strNoOfPpl!="")?Convert.ToInt32(strNoOfPpl):00);
-        //        //cmdInsert.Parameters.AddWithValue("@br_no", strBrNo);
-        //        //cmdInsert.Parameters.AddWithValue("@contact_no_ofc", strOfcContactNo);
-        //        cmdInsert.Parameters.AddWithValue("@busi_income", (strBIn != "") ? Convert.ToDecimal(strBIn) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@sales_credit", (strCIn != "") ? Convert.ToDecimal(strCIn) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@other_income", (strOIn != "") ? Convert.ToDecimal(strOIn) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@total_income", (strTotalIn != "") ? Convert.ToDecimal(strTotalIn) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@purchase_cash", (strDcost != "") ? Convert.ToDecimal(strDcost) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@purchase_credit", (strICost != "") ? Convert.ToDecimal(strICost) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@direct_cost", (strToEx != "") ? Convert.ToDecimal(strToEx) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@grossProfit", (strGrossP != "") ? Convert.ToDecimal(strGrossP) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@rent", (strRent != "") ? Convert.ToDecimal(strRent) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@water_elec_tele", (strWet != "") ? Convert.ToDecimal(strWet) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@wages", (strWages != "") ? Convert.ToDecimal(strWages) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@fla_rent", (strFla != "") ? Convert.ToDecimal(strFla) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@travel", (strTravelTrans != "") ? Convert.ToDecimal(strTravelTrans) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@maintenance", (strRepairMain != "") ? Convert.ToDecimal(strRepairMain) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@total_expenses", (strTotalEx != "") ? Convert.ToDecimal(strTotalEx) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@profit_lost", (strBPL != "") ? Convert.ToDecimal(strBPL) : 00);
-        //        cmdInsert.Parameters.AddWithValue("@create_user_nic", strloginID);
-        //        cmdInsert.Parameters.AddWithValue("@user_ip", strIp);
-        //        cmdInsert.Parameters.AddWithValue("@date_time", strDateTime);
-        //        #endregion
-
-        //        try
-        //        {
-        //            int i = objDBCon.insertEditData(cmdInsert);
-        //            if (i == 1)
-        //            {
-        //                //lblMsg.Text = "Success";
-        //                Response.Redirect("family_appraisal.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCAC);
-        //                //Response.Redirect("supplier.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + txtCACode.Text.Trim());
-        //                //Response.Redirect("loan_details.aspx?CC=" + strCC + "&CA=" + strCA + "");
-        //            }
-        //            else
-        //            {
-        //                lblMsg.Text = "Error Occured!";
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-
-        //        }
-        //    }
-        //}
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -227,10 +86,10 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "Please Enter Business Income";
             }
-            else if (txtOIncome.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please Enter Other Income";
-            }
+            //else if (txtOIncome.Text.Trim() == "")
+            //{
+            //    lblMsg.Text = "Please Enter Other Income";
+            //}
             else if (txtTotalIncome.Text.Trim() == "")
             {
                 lblMsg.Text = "Please Enter Total Income";
@@ -243,10 +102,10 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "Please Enter InDirect Cost";
             }
-            else if (txtTExpenses.Text.Trim() == "")
-            {
-                lblMsg.Text = "Please Enter Other Expenses";
-            }
+            //else if (txtTExpenses.Text.Trim() == "")
+            //{
+            //    lblMsg.Text = "Please Enter Other Expenses";
+            //}
             else if (txtPAndL.Text.Trim() == "")
             {
                 lblMsg.Text = "Please Enter Business P & L";

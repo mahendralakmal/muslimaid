@@ -29,6 +29,21 @@ namespace MuslimAID.MURABHA
         {
             try
             {
+                DateTime now = DateTime.UtcNow.Date;
+                DateTime dt, dtSo;
+                if (txtDOB.Text.Trim() != "")
+                {
+                    dt = DateTime.Parse(txtDOB.Text.Trim(), new CultureInfo("en-CA"));
+                    int age = now.Year - dt.Year;
+                    lblAge.Text = age.ToString();
+                }
+                if (txtSoDOB.Text.Trim() != "")
+                {
+                    dtSo = DateTime.Parse(txtSoDOB.Text.Trim(), new CultureInfo("en-CA"));
+                    int ageSo = now.Year - dtSo.Year;
+                    lblSoAge.Text = ageSo.ToString();
+                }
+
                 if (!IsPostBack)
                 {
                     if (Session["LoggedIn"].ToString() == "True")
@@ -109,28 +124,7 @@ namespace MuslimAID.MURABHA
                                     cmbArea.Items.Add(dsArea.Tables[0].Rows[i]["area"].ToString());
                                     cmbArea.Items[i + 1].Value = dsArea.Tables[0].Rows[i]["area_code"].ToString();
                                     }
-                                cmbArea.SelectedValue = dsExe.Tables[0].Rows[0]["area_code"].ToString();
-                                //set Villages
-
-                                DataSet dsVillage = cls_Connection.getDataSet("SELECT DISTINCT villages_name.villages_code, villages_name.villages_name FROM center_details LEFT OUTER JOIN villages_name ON villages_name.villages_code = center_details.villages WHERE exective = '" + dsExe.Tables[0].Rows[0]["exe_id"].ToString() + "'  AND villages_name.city_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' ORDER BY villages_name;");
-
-                                cmbVillage.Items.Add("Select Village");
-                                for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
-                                {
-                                    cmbVillage.Items.Add(dsVillage.Tables[0].Rows[i]["villages_name"].ToString());
-                                    cmbVillage.Items[i + 1].Value = dsVillage.Tables[0].Rows[i]["villages_code"].ToString();
-                                }
-                                cmbVillage.SelectedValue = dsExe.Tables[0].Rows[0]["villages"].ToString();
-                                //set Center
-                                DataSet dsCenter = cls_Connection.getDataSet("SELECT DISTINCT idcenter_details, center_name FROM center_details LEFT OUTER JOIN villages_name ON villages_name.villages_code = center_details.villages WHERE exective = '" + dsExe.Tables[0].Rows[0]["exe_id"].ToString() + "'  AND villages_name.city_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' AND villages_name.area_code = '" + cmbArea.SelectedValue.ToString() + "' AND villages_name.villages_code = '" + cmbVillage.SelectedValue.ToString() + "' ORDER BY center_name;"); 
-                                cmbCenter.Items.Add("Select Center");
-                                for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
-                                    {
-                                    cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"].ToString());
-                                    cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
-                                    }
-                                cmbCenter.SelectedValue = dsExe.Tables[0].Rows[0]["idcenter_details"].ToString();
-                                txtSoNumber.Text = dsExe.Tables[0].Rows[0]["idcenter_details"].ToString();
+                                
                             }
                             else
                             {
@@ -147,23 +141,6 @@ namespace MuslimAID.MURABHA
                     else
                     {
                         Response.Redirect("../Login.aspx");
-                    }
-                }
-                else
-                {
-                    DateTime now = DateTime.UtcNow.Date;
-                    DateTime dt, dtSo;
-                    if (txtDOB.Text.Trim() != "")
-                    {
-                        dt = DateTime.Parse(txtDOB.Text.Trim(), new CultureInfo("en-CA"));
-                        int age = now.Year - dt.Year;
-                        lblAge.Text = age.ToString();
-                    }
-                    if (txtSoDOB.Text.Trim() != "")
-                    {
-                        dtSo = DateTime.Parse(txtSoDOB.Text.Trim(), new CultureInfo("en-CA"));
-                        int ageSo = now.Year - dtSo.Year;
-                        lblSoAge.Text = ageSo.ToString();
                     }
                 }
             }
@@ -382,10 +359,9 @@ namespace MuslimAID.MURABHA
                 {
                 if (Session["UserType"].ToString() != "MFO")
                     {
-                    if (cmbVillage.Items.Count > 0)
-                        {
-                        cmbVillage.Items.Clear();
-                        }
+                    cmbVillage.Items.Clear();
+                    cmbCenter.Items.Clear();
+                    txtSoNumber.Text = "";
 
                     DataSet dsSocietyName = cls_Connection.getDataSet("SELECT villages_code,villages_name FROM villages_name WHERE city_code = '" + cmbBranch.SelectedItem.Value + "' AND area_code ='" + cmbArea.SelectedItem.Value + "';");
                     if (dsSocietyName.Tables[0].Rows.Count > 0)
@@ -406,16 +382,24 @@ namespace MuslimAID.MURABHA
                     }
                 else
                     {
+
+                    cmbVillage.Items.Clear();
+                    cmbCenter.Items.Clear();
+                    txtSoNumber.Text = "";
+
                     DataSet dsExe = cls_Connection.getDataSet("SELECT * FROM micro_exective_root LEFT JOIN branch ON branch.b_code = micro_exective_root.branch_code LEFT JOIN center_details on branch.b_code = center_details.city_code WHERE micro_exective_root.exe_nic = '" + Session["NIC"].ToString() + "' AND center_details.exective = micro_exective_root.exe_id;");
                     if (dsExe.Tables[0].Rows.Count > 0)
                         {
                         DataSet dsVillage = cls_Connection.getDataSet("SELECT DISTINCT villages_name.villages_code, villages_name.villages_name FROM center_details LEFT OUTER JOIN villages_name ON villages_name.villages_code = center_details.villages WHERE exective = '" + dsExe.Tables[0].Rows[0]["exe_id"].ToString() + "'  AND villages_name.city_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' AND villages_name.area_code ='" + cmbArea.SelectedItem.Value + "' ORDER BY villages_name;");
                         cmbVillage.Items.Clear();
-                        cmbVillage.Items.Add("Select Village");
-                        for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
+                        if (dsVillage.Tables[0].Rows.Count > 0)
                             {
-                            cmbVillage.Items.Add(dsVillage.Tables[0].Rows[i]["villages_name"].ToString());
-                            cmbVillage.Items[i + 1].Value = dsVillage.Tables[0].Rows[i]["villages_code"].ToString();
+                            cmbVillage.Items.Add("Select Village");
+                            for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
+                                {
+                                cmbVillage.Items.Add(dsVillage.Tables[0].Rows[i]["villages_name"].ToString());
+                                cmbVillage.Items[i + 1].Value = dsVillage.Tables[0].Rows[i]["villages_code"].ToString();
+                                }
                             }
                         }
                     }
@@ -534,18 +518,21 @@ namespace MuslimAID.MURABHA
                         cmbCenter.Items.Clear();
                         if (dsCenter.Tables[0].Rows.Count > 0)
                             {
-                            cmbCenter.Items.Add("Select Center");
-
-                            for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
+                            if (dsCenter.Tables[0].Rows.Count > 0)
                                 {
-                                cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"].ToString());
-                                cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
+                                cmbCenter.Items.Add("Select Center");
+
+                                for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
+                                    {
+                                    cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"].ToString());
+                                    cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
+                                    }
+                                cmbCenter.Enabled = true;
                                 }
-                            cmbCenter.Enabled = true;
-                            }
-                        else
-                            {
-                            lblMsg.Text = "There is no available centers...";
+                            else
+                                {
+                                lblMsg.Text = "There is no available centers...";
+                                }
                             }
                         }
                     }
@@ -620,9 +607,10 @@ namespace MuslimAID.MURABHA
                     bool bolFamily = saveFamilyDetails();
                     bool bolBusiness = saveBUsinessDetails();
                     bool bolFRequirment = saveFacilityRequirment();
-                    bool bolCOFacility = checkOtherFacility();
+                    //bool bolCOFacility = checkOtherFacility();
                     bool bolOtherFamily = otherFamilyDetails();
-                    if (bolBasic && bolFamily && bolBusiness && bolFRequirment && bolCOFacility && bolOtherFamily) {
+                    if (bolBasic && bolFamily && bolBusiness && bolFRequirment && bolOtherFamily) {
+                    //if (bolOtherFamily) {
                         lblMsg.Text = "Successfully Added";
                         Response.Redirect("business_details.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCACodeNew);
                     }
@@ -1039,21 +1027,22 @@ namespace MuslimAID.MURABHA
             try
             {
                 string strOtherFacility = "";
-                strOtherFacility = "INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ";
                 if (txtNameOrg1.Text.Trim() != "")
                 {
-                    strOtherFacility += "('" + txtCC.Text.Trim() + "','" + txtNameOrg1.Text.Trim() + "','" + txtPurpos1.Text.Trim() + "'," + txtFAmount1.Text.Trim() + "," + txtOutstandBal1.Text.Trim() + "," + txtMonthInstal1.Text.Trim() + "," + txtRemainInstal1.Text.Trim() + ")";
-                }
-                if (txtNameOrg2.Text.Trim() != "")
-                {
-                    strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")";
-                }
-                if (txtNameOrg3.Text.Trim() != "")
-                {
-                    strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")";
-                }
+                    strOtherFacility = "INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ";
 
-                cls_Connection.setData(strOtherFacility.ToString());
+                    strOtherFacility += "('" + txtCC.Text.Trim() + "','" + txtNameOrg1.Text.Trim() + "','" + txtPurpos1.Text.Trim() + "'," + txtFAmount1.Text.Trim() + "," + txtOutstandBal1.Text.Trim() + "," + txtMonthInstal1.Text.Trim() + "," + txtRemainInstal1.Text.Trim() + ")";
+
+                    if (txtNameOrg2.Text.Trim() != "")
+                    {
+                        strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")";
+                    }
+                    if (txtNameOrg3.Text.Trim() != "")
+                    {
+                        strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")";
+                    }
+                    cls_Connection.setData(strOtherFacility.ToString());
+                }
                 return true;
             }
             catch (Exception ex)
@@ -1068,30 +1057,31 @@ namespace MuslimAID.MURABHA
             try
             {
                 string strCCode = hidCC.Value.Trim();
+                string dob1, dob2, dob3, dob4, dob5, dob6, dob7, dob8, dob9 = "";
                 string strIp = Request.UserHostAddress;
                 string strloginID = Session["NIC"].ToString();
                 string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 StringBuilder strRelat = new StringBuilder();
                 string strQry2 = "INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ";
-                if (txtName1.Text.Trim() != "")
-                    strRelat.Append("('" + strCCode + "','" + txtName1.Text.Trim() + "','" + cmbRelation1.SelectedItem.Text + "','" + txtNIC1.Text.Trim() + "','" + DateTime.Parse(txtDOB1.Text.Trim()) + "','" + txtOcc1.Text.Trim() + "','" + txtInCome1.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
-
+                if (txtName1.Text.Trim() != ""){
+                    strRelat.Append("('" + strCCode + "','" + txtName1.Text.Trim() + "','" + cmbRelation1.SelectedItem.Text + "','" + txtNIC1.Text.Trim() + "','" + txtDOB1.Text.Trim() + "','" + txtOcc1.Text.Trim() + "','" + txtInCome1.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                }
                 if (txtName2.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName2.Text.Trim() + "','" + cmbRelation2.SelectedItem.Text + "','" + txtNIC2.Text.Trim() + "','" + DateTime.Parse(txtDOB2.Text.Trim()) + "','" + txtOcc2.Text.Trim() + "','" + txtInCome2.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName2.Text.Trim() + "','" + cmbRelation2.SelectedItem.Text + "','" + txtNIC2.Text.Trim() + "','" + txtDOB2.Text.Trim() + "','" + txtOcc2.Text.Trim() + "','" + txtInCome2.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName3.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName3.Text.Trim() + "','" + cmbRelation3.SelectedItem.Text + "','" + txtNIC3.Text.Trim() + "','" + DateTime.Parse(txtDOB3.Text.Trim()) + "','" + txtOcc3.Text.Trim() + "','" + txtInCome3.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName3.Text.Trim() + "','" + cmbRelation3.SelectedItem.Text + "','" + txtNIC3.Text.Trim() + "','" + txtDOB3.Text.Trim() + "','" + txtOcc3.Text.Trim() + "','" + txtInCome3.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName4.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName4.Text.Trim() + "','" + cmbRelation4.SelectedItem.Text + "','" + txtNIC4.Text.Trim() + "','" + DateTime.Parse(txtDOB4.Text.Trim()) + "','" + txtOcc4.Text.Trim() + "','" + txtInCome4.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName4.Text.Trim() + "','" + cmbRelation4.SelectedItem.Text + "','" + txtNIC4.Text.Trim() + "','" + txtDOB4.Text.Trim() + "','" + txtOcc4.Text.Trim() + "','" + txtInCome4.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName5.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName5.Text.Trim() + "','" + cmbRelation5.SelectedItem.Text + "','" + txtNIC5.Text.Trim() + "','" + DateTime.Parse(txtDOB5.Text.Trim()) + "','" + txtOcc5.Text.Trim() + "','" + txtInCome5.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName5.Text.Trim() + "','" + cmbRelation5.SelectedItem.Text + "','" + txtNIC5.Text.Trim() + "','" + txtDOB5.Text.Trim() + "','" + txtOcc5.Text.Trim() + "','" + txtInCome5.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName6.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName6.Text.Trim() + "','" + cmbRelation6.SelectedItem.Text + "','" + txtNIC6.Text.Trim() + "','" + DateTime.Parse(txtDOB6.Text.Trim()) + "','" + txtOcc6.Text.Trim() + "','" + txtInCome6.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName6.Text.Trim() + "','" + cmbRelation6.SelectedItem.Text + "','" + txtNIC6.Text.Trim() + "','" + txtDOB6.Text.Trim() + "','" + txtOcc6.Text.Trim() + "','" + txtInCome6.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName7.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName7.Text.Trim() + "','" + cmbRelation7.SelectedItem.Text + "','" + txtNIC7.Text.Trim() + "','" + DateTime.Parse(txtDOB7.Text.Trim()) + "','" + txtOcc7.Text.Trim() + "','" + txtInCome7.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName7.Text.Trim() + "','" + cmbRelation7.SelectedItem.Text + "','" + txtNIC7.Text.Trim() + "','" + txtDOB7.Text.Trim() + "','" + txtOcc7.Text.Trim() + "','" + txtInCome7.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName8.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName8.Text.Trim() + "','" + cmbRelation8.SelectedItem.Text + "','" + txtNIC8.Text.Trim() + "','" + DateTime.Parse(txtDOB8.Text.Trim()) + "','" + txtOcc8.Text.Trim() + "','" + txtInCome8.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName8.Text.Trim() + "','" + cmbRelation8.SelectedItem.Text + "','" + txtNIC8.Text.Trim() + "','" + txtDOB8.Text.Trim() + "','" + txtOcc8.Text.Trim() + "','" + txtInCome8.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName9.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName9.Text.Trim() + "','" + cmbRelation9.SelectedItem.Text + "','" + txtNIC9.Text.Trim() + "','" + DateTime.Parse(txtDOB9.Text.Trim()) + "','" + txtOcc9.Text.Trim() + "','" + txtInCome9.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName9.Text.Trim() + "','" + cmbRelation9.SelectedItem.Text + "','" + txtNIC9.Text.Trim() + "','" + txtDOB9.Text.Trim() + "','" + txtOcc9.Text.Trim() + "','" + txtInCome9.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
 
 
                 string strQry3 = "')";
@@ -2171,7 +2161,10 @@ namespace MuslimAID.MURABHA
             }
             else
             {
-                ccsetup(); 
+                if (IsExist())
+                {
+                    ccsetup();
+                }
                 txtNicIssuDay.Focus();
             }
         }

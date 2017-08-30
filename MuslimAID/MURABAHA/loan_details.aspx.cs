@@ -40,12 +40,18 @@ namespace MuslimAID.MURABHA
                         if (strCC != null)
                         {
                             txtCC.Text = strCC;
+                            txtLDIntRate.Text = "0";
+                            txtLDMInterest.Text = "0";
                             DataSet dsLD = cls_Connection.getDataSet("SELECT loan_amount, fr_period FROM micro_full_details WHERE contract_code = '" + strCC + "';");
                             if (dsLD.Tables[0].Rows.Count > 0)
                             {
                                 txtLDLAmount.Text = dsLD.Tables[0].Rows[0]["loan_amount"].ToString();
                                 cmbPeriod.SelectedValue = dsLD.Tables[0].Rows[0]["fr_period"].ToString();
+
+                                TextBox1.Text = (Math.Round(Convert.ToDouble(dsLD.Tables[0].Rows[0]["loan_amount"].ToString()) / Convert.ToDouble(dsLD.Tables[0].Rows[0]["fr_period"].ToString()),2)).ToString();
                             }
+
+
 
                             DataSet dsSD = cls_Connection.getDataSet("SELECT invoice_value FROM micro_supplier_details WHERE contract_code = '" + strCC + "';");
                             if (dsSD.Tables[0].Rows.Count > 0)
@@ -75,6 +81,14 @@ namespace MuslimAID.MURABHA
             catch (Exception ex)
             {
                 cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
+            }
+        }
+
+        protected void validate()
+        {
+            if (txtLDIntRate.Text.Trim() == "") {
+                lblMsg.Text = "Please enter Markup Rate";
+                return;
             }
         }
 
@@ -146,6 +160,8 @@ namespace MuslimAID.MURABHA
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            validate();
+
             decimal decLA = (txtLDLAmount.Text.Trim() != "") ? Convert.ToDecimal(txtLDLAmount.Text.Trim()) : 00;
             string strSP = txtSellPrice.Text.Trim();
             string strDP = txtDownPay.Text.Trim();

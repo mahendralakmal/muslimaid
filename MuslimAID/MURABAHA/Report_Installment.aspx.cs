@@ -32,11 +32,11 @@ namespace MuslimAID.MURABHA
                         DataSet dsBranch;
                         MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
                         dsBranch = objDBTask.selectData(cmdBranch);
-                        cmbBranch.Items.Add("");
+                        cmbCityCode.Items.Add("");
                         for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
                         {
-                            cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                            cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
+                            cmbCityCode.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                            cmbCityCode.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
                         }
                     }
                     catch (Exception)
@@ -58,11 +58,11 @@ namespace MuslimAID.MURABHA
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
                 hstrSelectQuery.Value = @"select p.idpais_history,e.exe_name,b.team_id,cs.center_name society_id,1 NoCustomer,p.contra_code,b.ca_code nic,b.initial_name,l.loan_amount,FORMAT(p.paied_amount,2) paied_amount,(DATE_FORMAT((p.date_time),'%Y-%m-%d')) date_time,remark from micro_basic_detail b inner join micro_pais_history p on p.contra_code = b.contract_code inner join micro_exective_root e on b.root_id = e.exe_id and b.city_code = e.branch_code inner join micro_loan_details l on l.contra_code = b.contract_code inner join center_details cs on b.society_id = cs.idcenter_details and b.city_code = cs.city_code where p.tra_description = 'WI' and p.pay_status = 'D' ";
-                if (txtContraCode.Text.Trim() != "" || txtDateFrom.Text.Trim() != "" || txtDateTo.Text.Trim() != "" || cmbRoot.SelectedIndex != 0 || cmbBranch.SelectedIndex != 0)
+                if (txtContraCode.Text.Trim() != "" || txtDateFrom.Text.Trim() != "" || txtDateTo.Text.Trim() != "" || cmbRoot.SelectedIndex != 0 || cmbCityCode.SelectedIndex != 0)
                 {
-                    if (cmbBranch.SelectedIndex != 0)
+                    if (cmbCityCode.SelectedIndex != 0)
                     {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and b.city_code = '" + cmbBranch.SelectedValue.ToString() + "'";
+                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and b.city_code = '" + cmbCityCode.SelectedValue.ToString() + "'";
                         if (cmbRoot.SelectedIndex != 0)
                         {
                             hstrSelectQuery.Value = hstrSelectQuery.Value + " and e.exe_id = '" + cmbRoot.SelectedValue.ToString() + "'";
@@ -129,11 +129,11 @@ namespace MuslimAID.MURABHA
                     string strSummery;
                     hstrSelectQuery1.Value = "";
                     hstrSelectQuery1.Value = "select count(p.contra_code),sum(p.paied_amount) from micro_pais_history p,micro_basic_detail c where p.tra_description = 'WI' and p.pay_status = 'D' and p.contra_code = c.contract_code";
-                    if (txtContraCode.Text.Trim() != "" || txtDateFrom.Text.Trim() != "" || txtDateTo.Text.Trim() != "" || cmbRoot.SelectedIndex != 0 || cmbBranch.SelectedIndex != 0)
+                    if (txtContraCode.Text.Trim() != "" || txtDateFrom.Text.Trim() != "" || txtDateTo.Text.Trim() != "" || cmbRoot.SelectedIndex != 0 || cmbCityCode.SelectedIndex != 0)
                     {
-                        if (cmbBranch.SelectedIndex != 0)
+                        if (cmbCityCode.SelectedIndex != 0)
                         {
-                            hstrSelectQuery1.Value = hstrSelectQuery1.Value + " and c.city_code = '" + cmbBranch.SelectedValue.ToString() + "'";
+                            hstrSelectQuery1.Value = hstrSelectQuery1.Value + " and c.city_code = '" + cmbCityCode.SelectedValue.ToString() + "'";
                             if (cmbCenter.SelectedIndex != 0)
                             {
                                 hstrSelectQuery1.Value = hstrSelectQuery1.Value + " and society_id = '" + cmbCenter.SelectedValue.ToString() + "'";
@@ -249,39 +249,204 @@ namespace MuslimAID.MURABHA
 
         protected void cmbCityCode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            lblMsg.Text = "";
+            if (cmbCityCode.SelectedIndex != 0)
             {
-                if (cmbRoot.Items.Count > 0)
+                if (cmbArea.Items.Count > 0)
                 {
-                    cmbRoot.Items.Clear();
-                }
-                if (cmbCenter.Items.Count > 0)
-                {
-                    cmbCenter.Items.Clear();
+                    cmbArea.Items.Clear();
                 }
 
-                DataSet dsCro;
-                MySqlCommand cmdCro = new MySqlCommand("SELECT exe_id, exe_name FROM micro_exective_root WHERE branch_code = '" + cmbBranch.SelectedValue.ToString() + "';");
-                dsCro = objDBTask.selectData(cmdCro);
-                cmbRoot.Items.Add("Select CRO");
-                for (int i = 0; i < dsCro.Tables[0].Rows.Count; i++)
+                if (cmbVillage.Items.Count > 0)
                 {
-                    cmbRoot.Items.Add(dsCro.Tables[0].Rows[i][1].ToString());
-                    cmbRoot.Items[i + 1].Value = dsCro.Tables[0].Rows[i][0].ToString();
+                    cmbVillage.Items.Clear();
                 }
 
-                DataSet dsCenter;
-                MySqlCommand cmdCenter = new MySqlCommand("SELECT idcenter_details,concat(center_name, '-',villages) FROM center_details WHERE city_code = '" + cmbBranch.SelectedValue.ToString() + "'");
-                dsCenter = objDBTask.selectData(cmdCenter);
-                cmbCenter.Items.Add("Select Center");
-                for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
+                try
                 {
-                    cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i][1].ToString());
-                    cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i][0].ToString();
+                    DataSet dsVillage = cls_Connection.getDataSet("select * from area where branch_code = '" + cmbCityCode.SelectedItem.Value + "' ORDER BY area");
+                    if (dsVillage.Tables[0].Rows.Count > 0)
+                    {
+                        cmbArea.Items.Add("Select Area");
+                        btnSerch.Enabled = true;
+
+                        for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
+                        {
+                            cmbArea.Items.Add(dsVillage.Tables[0].Rows[i][1].ToString());
+                            cmbArea.Items[i + 1].Value = dsVillage.Tables[0].Rows[i][2].ToString();
+                        }
+                        cmbArea.Enabled = true;
+                    }
+                    else
+                    {
+                        lblMsg.Text = "No record found...! Please chose other city code.";
+                        btnSerch.Enabled = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Client basic details report load Areas according to selected branch");
+                    return;
+                }
+
+                try
+                {
+                    string strBranch = cmbCityCode.SelectedItem.Value;
+
+                    DataSet dsGetRootID = cls_Connection.getDataSet("select exe_id,exe_name from micro_exective_root where branch_code = '" + strBranch + "';");
+                    if (cmbRoot.Items.Count > 0)
+                    {
+                        cmbRoot.Items.Clear();
+                    }
+                    cmbRoot.Items.Add("");
+
+                    for (int i = 0; i < dsGetRootID.Tables[0].Rows.Count; i++)
+                    {
+                        cmbRoot.Items.Add("[" + dsGetRootID.Tables[0].Rows[i]["exe_id"] + "] - " + dsGetRootID.Tables[0].Rows[i]["exe_name"].ToString());
+                        cmbRoot.Items[i + 1].Value = dsGetRootID.Tables[0].Rows[i]["exe_id"].ToString();
+                    }
+                    //cmbRoot.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Client basic details report load MFO according to selected branch");
+                    return;
                 }
             }
-            catch (Exception)
+            else
             {
+                lblMsg.Text = "Please select branch";
+                btnSerch.Enabled = false;
+            }
+            //try
+            //{
+            //    if (cmbRoot.Items.Count > 0)
+            //    {
+            //        cmbRoot.Items.Clear();
+            //    }
+            //    if (cmbCenter.Items.Count > 0)
+            //    {
+            //        cmbCenter.Items.Clear();
+            //    }
+
+            //    DataSet dsCro;
+            //    MySqlCommand cmdCro = new MySqlCommand("SELECT exe_id, exe_name FROM micro_exective_root WHERE branch_code = '" + cmbCityCode.SelectedValue.ToString() + "';");
+            //    dsCro = objDBTask.selectData(cmdCro);
+            //    cmbRoot.Items.Add("Select CRO");
+            //    for (int i = 0; i < dsCro.Tables[0].Rows.Count; i++)
+            //    {
+            //        cmbRoot.Items.Add(dsCro.Tables[0].Rows[i][1].ToString());
+            //        cmbRoot.Items[i + 1].Value = dsCro.Tables[0].Rows[i][0].ToString();
+            //    }
+
+            //    DataSet dsCenter;
+            //    MySqlCommand cmdCenter = new MySqlCommand("SELECT idcenter_details,concat(center_name, '-',villages) FROM center_details WHERE city_code = '" + cmbCityCode.SelectedValue.ToString() + "'");
+            //    dsCenter = objDBTask.selectData(cmdCenter);
+            //    cmbCenter.Items.Add("Select Center");
+            //    for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
+            //    {
+            //        cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i][1].ToString());
+            //        cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i][0].ToString();
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //}
+        }
+
+        protected void cmbArea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lblMsg.Text = "";
+                if (cmbCityCode.SelectedIndex == 0)
+                {
+                    lblMsg.Text = "Please chose city code.";
+                    btnSerch.Enabled = false;
+                }
+                else if (cmbArea.SelectedIndex < 0)
+                {
+                    lblMsg.Text = "Please chose village name.";
+                    btnSerch.Enabled = false;
+                }
+                else
+                {
+                    if (cmbVillage.Items.Count > 0)
+                    {
+                        cmbVillage.Items.Clear();
+                    }
+
+                    DataSet dsSocietyName = cls_Connection.getDataSet("SELECT villages_code,villages_name FROM villages_name WHERE city_code = '" + cmbCityCode.SelectedItem.Value + "' AND area_code ='" + cmbArea.SelectedItem.Value + "';");
+                    if (dsSocietyName.Tables[0].Rows.Count > 0)
+                    {
+                        cmbVillage.Items.Add("Select Village");
+                        for (int i = 0; i < dsSocietyName.Tables[0].Rows.Count; i++)
+                        {
+                            cmbVillage.Items.Add(dsSocietyName.Tables[0].Rows[i]["villages_name"].ToString());
+                            cmbVillage.Items[i + 1].Value = dsSocietyName.Tables[0].Rows[i]["villages_code"].ToString();
+                        }
+                        cmbVillage.Enabled = true;
+                    }
+                    else
+                    {
+                        lblMsg.Text = "No record found...! Please chose other village name.";
+                        btnSerch.Enabled = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Client basic details report load villages according to selected area");
+                return;
+            }
+        }
+
+        protected void cmbVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lblMsg.Text = "";
+                if (cmbVillage.SelectedIndex != 0 && cmbCityCode.SelectedIndex != 0 && cmbArea.SelectedIndex != 0)
+                {
+                    DataSet dsGetSocietyID = cls_Connection.getDataSet("select exective from center_details where city_code = '" + cmbCityCode.SelectedItem.Value + "' and area_code = '" + cmbArea.SelectedItem.Value + "' and villages = '" + cmbVillage.SelectedItem.Value + "';");
+                    if (dsGetSocietyID.Tables[0].Rows.Count > 0)
+                    {
+                        //txtSoNumber.Text = cmbSocietyName.SelectedItem.Value.ToString();
+
+                        DataSet dsSCenter = cls_Connection.getDataSet("SELECT idcenter_details, center_name, center_day FROM center_details WHERE city_code = '" + cmbCityCode.SelectedItem.Value + "' AND area_code = '" + cmbArea.SelectedItem.Value + "' AND villages = '" + cmbVillage.SelectedItem.Value + "';");
+                        cmbCenter.Items.Clear();
+                        if (dsSCenter.Tables[0].Rows.Count > 0)
+                        {
+                            cmbCenter.Items.Add("Select Center");
+
+                            for (int i = 0; i < dsSCenter.Tables[0].Rows.Count; i++)
+                            {
+                                cmbCenter.Items.Add(dsSCenter.Tables[0].Rows[i]["center_name"].ToString());
+                                cmbCenter.Items[i + 1].Value = dsSCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
+                            }
+                        }
+                        cmbCenter.Enabled = true;
+                        //Edit 2014.09.18 CACode
+                        //CACodeNew();
+                        cmbRoot.SelectedValue = dsGetSocietyID.Tables[0].Rows[0]["exective"].ToString();
+                        btnSerch.Enabled = true;
+                    }
+                    else
+                    {
+                        lblMsg.Text = "Invalid City Code or Society Name.";
+                        btnSerch.Enabled = false;
+                    }
+                }
+                else
+                {
+                    lblMsg.Text = "Please select city code or Society Name.";
+                    btnSerch.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Client basic details report load");
+                return;
             }
         }
     }

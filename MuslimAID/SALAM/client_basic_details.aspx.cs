@@ -23,7 +23,7 @@ namespace MuslimAID.SALAM
         cls_CommonFunctions objCommonTask = new cls_CommonFunctions();
         cls_Connection objDBCon = new cls_Connection();
         DataSet dtCCode;
-        string strTeamNo, strClientID, strPromiserID, strPromiserID2, strCACodeNew = "", strSoNumber="";
+        string strTeamNo, strClientID, strPromiserID, strPromiserID2, strCACodeNew = "", strSoNumber = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,7 +34,7 @@ namespace MuslimAID.SALAM
                     if (Session["LoggedIn"].ToString() == "True")
                     {
                         string strType = Session["UserType"].ToString();
-                        if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG" || 
+                        if (strType == "ADM" || strType == "BOD" || strType == "CMG" || strType == "OMG" ||
                             strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" ||
                             strType == "BFA")
                         {
@@ -46,37 +46,11 @@ namespace MuslimAID.SALAM
                                 cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
                                 cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
                             }
-
-                            DataSet dsNture = cls_Connection.getDataSet("SELECT * FROM micro_nature_of_business;");
-                            cmbBNature.Items.Add("");
-                            for (int i = 0; i < dsNture.Tables[0].Rows.Count; i++)
-                            {
-                                cmbBNature.Items.Add(dsNture.Tables[0].Rows[i]["natureOfBusiness"].ToString());
-                                cmbBNature.Items[i + 1].Value = dsNture.Tables[0].Rows[i]["id"].ToString();
-                            }
-
-                            DataSet Occupation = cls_Connection.getDataSet("SELECT * FROM micro_occupation ORDER BY id");
-                            cmbOccupation.Items.Add("Select Occupation/ Income Source");
-                            cmbOccupa.Items.Add("Select Occupation/ Income Source");
-                            for (int i = 0; i < Occupation.Tables[0].Rows.Count; i++)
-                            {
-                                cmbOccupation.Items.Add(Occupation.Tables[0].Rows[i]["occupation"].ToString());
-                                cmbOccupation.Items[i + 1].Value = Occupation.Tables[0].Rows[i]["id"].ToString();
-                                cmbOccupa.Items.Add(Occupation.Tables[0].Rows[i]["occupation"].ToString());
-                                cmbOccupa.Items[i + 1].Value = Occupation.Tables[0].Rows[i]["id"].ToString();
-                            }
-
+                            initiate_Nature_Occ_Period();
                             cmbArea.Enabled = false;
                             cmbRoot.Enabled = false;
                             cmbVillage.Enabled = false;
                             cmbCenter.Enabled = false;
-
-                            cmbTmePeriod.Items.Add("Select Period");
-                            for (int i = 0; i < 24; i++)
-                            {
-                                cmbTmePeriod.Items.Add(i + 1 + " Month");
-                                cmbTmePeriod.Items[i + 1].Value = (i + 1).ToString();
-                            }
                             #region
                             txtNameOrg1.Enabled = false;
                             txtNameOrg2.Enabled = false;
@@ -105,7 +79,9 @@ namespace MuslimAID.SALAM
 
                             if (dsExe.Tables[0].Rows.Count > 0)
                             {
+                                initiate_Nature_Occ_Period();
                                 pnlForm.Visible = true;
+                                //set branch
                                 DataSet dsBrnh = cls_Connection.getDataSet("SELECT * FROM branch ORDER BY 2");
                                 cmbBranch.Items.Add("Select Branch");
                                 for (int i = 0; i < dsBrnh.Tables[0].Rows.Count; i++)
@@ -115,36 +91,7 @@ namespace MuslimAID.SALAM
                                 }
                                 cmbBranch.SelectedValue = dsExe.Tables[0].Rows[0]["branch_code"].ToString();
                                 cmbBranch.Enabled = false;
-
-                                DataSet dsArea = cls_Connection.getDataSet("SELECT * FROM area WHERE branch_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' ORDER BY area");
-                                cmbArea.Items.Add("Select Area");
-                                for (int i = 0; i < dsArea.Tables[0].Rows.Count; i++)
-                                {
-                                    cmbArea.Items.Add(dsArea.Tables[0].Rows[i][1].ToString());
-                                    cmbArea.Items[i + 1].Value = dsArea.Tables[0].Rows[i][2].ToString();
-                                }
-                                cmbArea.SelectedValue = dsExe.Tables[0].Rows[0]["area_code"].ToString();
-
-                                DataSet dsVillage = cls_Connection.getDataSet("SELECT * FROM villages_name WHERE city_code='" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' AND area_code = '" + dsExe.Tables[0].Rows[0]["area_code"].ToString() + "';");
-
-                                cmbVillage.Items.Add("Select Village");
-                                for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
-                                {
-                                    cmbVillage.Items.Add(dsVillage.Tables[0].Rows[i]["villages_name"].ToString());
-                                    cmbVillage.Items[i + 1].Value = dsVillage.Tables[0].Rows[i]["villages_code"].ToString();
-                                }
-                                cmbVillage.SelectedValue = dsExe.Tables[0].Rows[0]["villages"].ToString();
-
-                                DataSet dsCenter = cls_Connection.getDataSet("SELECT * FROM center_details WHERE city_code='" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' AND area_code = '" + dsExe.Tables[0].Rows[0]["area_code"].ToString() + "' AND villages='" + dsExe.Tables[0].Rows[0]["villages"].ToString() + "';");
-                                cmbCenter.Items.Add("Select Center");
-                                for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
-                                {
-                                    cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"].ToString());
-                                    cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
-                                }
-                                cmbCenter.SelectedValue = dsExe.Tables[0].Rows[0]["idcenter_details"].ToString();
-                                txtSoNumber.Text = dsExe.Tables[0].Rows[0]["idcenter_details"].ToString();
-
+                                //set mfo
                                 DataSet dsMFO = cls_Connection.getDataSet("SELECT * FROM micro_exective_root WHERE branch_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "'");
                                 cmbRoot.Items.Add("Select MFO");
                                 for (int i = 0; i < dsMFO.Tables[0].Rows.Count; i++)
@@ -154,6 +101,32 @@ namespace MuslimAID.SALAM
                                 }
                                 cmbRoot.SelectedValue = dsExe.Tables[0].Rows[0]["exe_id"].ToString();
                                 cmbRoot.Enabled = false;
+                                //set Area
+                                DataSet dsArea = cls_Connection.getDataSet("SELECT DISTINCT area.area_code, area.area FROM center_details LEFT OUTER JOIN area on area.area_code = center_details.area_code WHERE exective = '" + dsExe.Tables[0].Rows[0]["exe_id"].ToString() + "'  AND city_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' ORDER BY area");
+                                cmbArea.Items.Add("Select Area");
+                                for (int i = 0; i < dsArea.Tables[0].Rows.Count; i++)
+                                {
+                                    cmbArea.Items.Add(dsArea.Tables[0].Rows[i]["area"].ToString());
+                                    cmbArea.Items[i + 1].Value = dsArea.Tables[0].Rows[i]["area_code"].ToString();
+                                }
+                                ////set Villages
+
+                                //DataSet dsVillage = cls_Connection.getDataSet("SELECT DISTINCT villages_name.villages_code, villages_name.villages_name FROM center_details LEFT OUTER JOIN villages_name ON villages_name.villages_code = center_details.villages WHERE exective = '" + dsExe.Tables[0].Rows[0]["exe_id"].ToString() + "'  AND villages_name.city_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' ORDER BY villages_name;");
+
+                                //cmbVillage.Items.Add("Select Village");
+                                //for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
+                                //{
+                                //    cmbVillage.Items.Add(dsVillage.Tables[0].Rows[i]["villages_name"].ToString());
+                                //    cmbVillage.Items[i + 1].Value = dsVillage.Tables[0].Rows[i]["villages_code"].ToString();
+                                //}
+                                ////set Center
+                                //DataSet dsCenter = cls_Connection.getDataSet("SELECT DISTINCT idcenter_details, center_name FROM center_details LEFT OUTER JOIN villages_name ON villages_name.villages_code = center_details.villages WHERE exective = '" + dsExe.Tables[0].Rows[0]["exe_id"].ToString() + "'  AND villages_name.city_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' AND villages_name.area_code = '" + cmbArea.SelectedValue.ToString() + "' AND villages_name.villages_code = '" + cmbVillage.SelectedValue.ToString() + "' ORDER BY center_name;"); 
+                                //cmbCenter.Items.Add("Select Center");
+                                //for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
+                                //    {
+                                //    cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"].ToString());
+                                //    cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
+                                //    }
                             }
                             else
                             {
@@ -196,6 +169,35 @@ namespace MuslimAID.SALAM
             }
         }
 
+        protected void initiate_Nature_Occ_Period()
+        {
+            DataSet dsNture = cls_Connection.getDataSet("SELECT * FROM micro_nature_of_business;");
+            cmbBNature.Items.Add("");
+            for (int i = 0; i < dsNture.Tables[0].Rows.Count; i++)
+            {
+                cmbBNature.Items.Add(dsNture.Tables[0].Rows[i]["natureOfBusiness"].ToString());
+                cmbBNature.Items[i + 1].Value = dsNture.Tables[0].Rows[i]["id"].ToString();
+            }
+
+            DataSet Occupation = cls_Connection.getDataSet("SELECT * FROM micro_occupation ORDER BY id");
+            cmbOccupation.Items.Add("Select Occupation/ Income Source");
+            cmbOccupa.Items.Add("Select Occupation/ Income Source");
+            for (int i = 0; i < Occupation.Tables[0].Rows.Count; i++)
+            {
+                cmbOccupation.Items.Add(Occupation.Tables[0].Rows[i]["occupation"].ToString());
+                cmbOccupation.Items[i + 1].Value = Occupation.Tables[0].Rows[i]["id"].ToString();
+                cmbOccupa.Items.Add(Occupation.Tables[0].Rows[i]["occupation"].ToString());
+                cmbOccupa.Items[i + 1].Value = Occupation.Tables[0].Rows[i]["id"].ToString();
+            }
+
+            cmbTmePeriod.Items.Add("Select Period");
+            for (int i = 0; i < 24; i++)
+            {
+                cmbTmePeriod.Items.Add(i + 1 + " Month");
+                cmbTmePeriod.Items[i + 1].Value = (i + 1).ToString();
+            }
+        }
+
         protected void CC_Create(int intVal)
         {
             try
@@ -226,9 +228,9 @@ namespace MuslimAID.SALAM
 
                 //city code/ Area code/ Village code / Center code / product code / year and product code
                 //000      / 000      / 000          / 00          / 000          /20170000
-                strconCode = strcitycode + "/" + ac + "/" + vc + "/" + cc + "/MBR/" + strVal; 
+                strconCode = strcitycode + "/" + ac + "/" + vc + "/" + cc + "/MBR/" + strVal;
                 hidCC.Value = strconCode;
-                DataSet dtCount = cls_Connection.getDataSet("select count(b.nic) + 1 AS Count from micro_basic_detail b inner join micro_loan_details l on b.contract_code = l.contra_code where nic = '" + txtNIC.Text.Trim() + "' and l.loan_approved = 'Y' and l.loan_sta != 'C' and chequ_no != null;");
+                DataSet dtCount = cls_Connection.getDataSet("select count(b.nic) + 1 AS Count from salam_basic_detail b inner join salam_loan_details l on b.contract_code = l.contra_code where nic = '" + txtNIC.Text.Trim() + "' and l.loan_approved = 'Y' and l.loan_sta != 'C' and chequ_no != null;");
                 if (dtCount.Tables[0].Rows[0][0].ToString() != "")
                 {
                     if (dtCount.Tables[0].Rows[0][0].ToString().Length == 2)
@@ -244,6 +246,7 @@ namespace MuslimAID.SALAM
 
                 txtCC.Text = hidCC.Value.Trim();
                 txtCC.ReadOnly = true;
+                upperMsg.Text = "";
             }
             catch (Exception e)
             {
@@ -262,7 +265,7 @@ namespace MuslimAID.SALAM
                     string strcitycode = cmbBranch.SelectedValue.ToString();
                     string strconCode;
 
-                    dtCCode = cls_Connection.getDataSet("select max(idmicro_basic_detail) from micro_basic_detail");
+                    dtCCode = cls_Connection.getDataSet("select max(idmicro_basic_detail) from salam_basic_detail");
 
                     int intVal = (dtCCode.Tables[0].Rows[0][0].ToString() != "") ? Convert.ToInt32(dtCCode.Tables[0].Rows[0][0].ToString()) + 1 : 1;
 
@@ -297,23 +300,26 @@ namespace MuslimAID.SALAM
 
                 try
                 {
-                    DataSet dsVillage = cls_Connection.getDataSet("select * from area where branch_code = '" + cmbBranch.SelectedItem.Value + "' ORDER BY area");
-                    if (dsVillage.Tables[0].Rows.Count > 0)
+                    if (Session["UserType"].ToString() != "MFO")
                     {
-                        cmbArea.Items.Add("Select Area");
-                        btnSubmit.Enabled = true;
-
-                        for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
+                        DataSet dsVillage = cls_Connection.getDataSet("select * from area where branch_code = '" + cmbBranch.SelectedItem.Value + "' ORDER BY area");
+                        if (dsVillage.Tables[0].Rows.Count > 0)
                         {
-                            cmbArea.Items.Add(dsVillage.Tables[0].Rows[i][1].ToString());
-                            cmbArea.Items[i+1].Value = dsVillage.Tables[0].Rows[i][2].ToString();
+                            cmbArea.Items.Add("Select Area");
+                            btnSubmit.Enabled = true;
+
+                            for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
+                            {
+                                cmbArea.Items.Add(dsVillage.Tables[0].Rows[i][1].ToString());
+                                cmbArea.Items[i + 1].Value = dsVillage.Tables[0].Rows[i][2].ToString();
+                            }
+                            cmbArea.Enabled = true;
                         }
-                        cmbArea.Enabled = true;
-                    }
-                    else
-                    {
-                        lblMsg.Text = "No record found...! Please chose other city code.";
-                        btnSubmit.Enabled = false;
+                        else
+                        {
+                            lblMsg.Text = "No record found...! Please chose other city code.";
+                            btnSubmit.Enabled = false;
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -370,26 +376,51 @@ namespace MuslimAID.SALAM
                 }
                 else
                 {
-                    if (cmbVillage.Items.Count > 0)
+                    if (Session["UserType"].ToString() != "MFO")
                     {
                         cmbVillage.Items.Clear();
-                    }
+                        cmbCenter.Items.Clear();
+                        txtSoNumber.Text = "";
 
-                    DataSet dsSocietyName = cls_Connection.getDataSet("SELECT villages_code,villages_name FROM villages_name WHERE city_code = '" + cmbBranch.SelectedItem.Value + "' AND area_code ='" + cmbArea.SelectedItem.Value + "';");
-                    if (dsSocietyName.Tables[0].Rows.Count > 0)
-                    {
-                        cmbVillage.Items.Add("Select Village");
-                        for (int i = 0; i < dsSocietyName.Tables[0].Rows.Count; i++)
+                        DataSet dsSocietyName = cls_Connection.getDataSet("SELECT villages_code,villages_name FROM villages_name WHERE city_code = '" + cmbBranch.SelectedItem.Value + "' AND area_code ='" + cmbArea.SelectedItem.Value + "';");
+                        if (dsSocietyName.Tables[0].Rows.Count > 0)
                         {
-                            cmbVillage.Items.Add(dsSocietyName.Tables[0].Rows[i]["villages_name"].ToString());
-                            cmbVillage.Items[i + 1].Value = dsSocietyName.Tables[0].Rows[i]["villages_code"].ToString();
+                            cmbVillage.Items.Add("Select Village");
+                            for (int i = 0; i < dsSocietyName.Tables[0].Rows.Count; i++)
+                            {
+                                cmbVillage.Items.Add(dsSocietyName.Tables[0].Rows[i]["villages_name"].ToString());
+                                cmbVillage.Items[i + 1].Value = dsSocietyName.Tables[0].Rows[i]["villages_code"].ToString();
+                            }
+                            cmbVillage.Enabled = true;
                         }
-                        cmbVillage.Enabled = true;
+                        else
+                        {
+                            lblMsg.Text = "No record found...! Please chose other village name.";
+                            btnSubmit.Enabled = false;
+                        }
                     }
                     else
                     {
-                        lblMsg.Text = "No record found...! Please chose other village name.";
-                        btnSubmit.Enabled = false;
+
+                        cmbVillage.Items.Clear();
+                        cmbCenter.Items.Clear();
+                        txtSoNumber.Text = "";
+
+                        DataSet dsExe = cls_Connection.getDataSet("SELECT * FROM micro_exective_root LEFT JOIN branch ON branch.b_code = micro_exective_root.branch_code LEFT JOIN center_details on branch.b_code = center_details.city_code WHERE micro_exective_root.exe_nic = '" + Session["NIC"].ToString() + "' AND center_details.exective = micro_exective_root.exe_id;");
+                        if (dsExe.Tables[0].Rows.Count > 0)
+                        {
+                            DataSet dsVillage = cls_Connection.getDataSet("SELECT DISTINCT villages_name.villages_code, villages_name.villages_name FROM center_details LEFT OUTER JOIN villages_name ON villages_name.villages_code = center_details.villages WHERE exective = '" + dsExe.Tables[0].Rows[0]["exe_id"].ToString() + "'  AND villages_name.city_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' AND villages_name.area_code ='" + cmbArea.SelectedItem.Value + "' ORDER BY villages_name;");
+                            cmbVillage.Items.Clear();
+                            if (dsVillage.Tables[0].Rows.Count > 0)
+                            {
+                                cmbVillage.Items.Add("Select Village");
+                                for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
+                                {
+                                    cmbVillage.Items.Add(dsVillage.Tables[0].Rows[i]["villages_name"].ToString());
+                                    cmbVillage.Items[i + 1].Value = dsVillage.Tables[0].Rows[i]["villages_code"].ToString();
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -400,35 +431,7 @@ namespace MuslimAID.SALAM
             }
         }
 
-        private void getSocity() {
-            try {
-                txtSoNumber.Text = "";
-                lblMsg.Text = "";
-                if (cmbVillage.SelectedIndex != 0 && cmbBranch.SelectedIndex != 0 && cmbArea.SelectedIndex != 0)
-                {
-                    DataSet dsSCenter = cls_Connection.getDataSet("SELECT idcenter_details, center_name, center_day FROM center_details WHERE city_code = '" + cmbBranch.SelectedItem.Value + "' AND area_code = '" + cmbArea.SelectedItem.Value + "' AND villages = '" + cmbVillage.SelectedItem.Value + "';");
-                    cmbCenter.Items.Clear();
-                    if (dsSCenter.Tables[0].Rows.Count > 0)
-                    {
-                        cmbCenter.Items.Add("Select Center");
-
-                        for (int i = 0; i < dsSCenter.Tables[0].Rows.Count; i++)
-                        {
-                            cmbCenter.Items.Add(dsSCenter.Tables[0].Rows[i]["center_name"].ToString());
-                            cmbCenter.Items[i + 1].Value = dsSCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
-                        }
-                        cmbCenter.Enabled = true;
-                    }
-                    else {
-                        lblMsg.Text = "There is no available centers...";
-                    }
-                    
-                }
-            }
-            catch (Exception ex) { 
-            }
-        }
-        private void socity()
+        private void getSocity()
         {
             try
             {
@@ -436,11 +439,8 @@ namespace MuslimAID.SALAM
                 lblMsg.Text = "";
                 if (cmbVillage.SelectedIndex != 0 && cmbBranch.SelectedIndex != 0 && cmbArea.SelectedIndex != 0)
                 {
-                    DataSet dsGetSocietyID = cls_Connection.getDataSet("select exective from center_details where city_code = '" + cmbBranch.SelectedItem.Value + "' and area_code = '" + cmbArea.SelectedItem.Value + "' and villages = '" + cmbVillage.SelectedItem.Value + "';");
-                    if (dsGetSocietyID.Tables[0].Rows.Count > 0)
+                    if (Session["UserType"].ToString() != "MFO")
                     {
-                        //txtSoNumber.Text = cmbSocietyName.SelectedItem.Value.ToString();
-
                         DataSet dsSCenter = cls_Connection.getDataSet("SELECT idcenter_details, center_name, center_day FROM center_details WHERE city_code = '" + cmbBranch.SelectedItem.Value + "' AND area_code = '" + cmbArea.SelectedItem.Value + "' AND villages = '" + cmbVillage.SelectedItem.Value + "';");
                         cmbCenter.Items.Clear();
                         if (dsSCenter.Tables[0].Rows.Count > 0)
@@ -452,18 +452,111 @@ namespace MuslimAID.SALAM
                                 cmbCenter.Items.Add(dsSCenter.Tables[0].Rows[i]["center_name"].ToString());
                                 cmbCenter.Items[i + 1].Value = dsSCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
                             }
+                            cmbCenter.Enabled = true;
                         }
-                        cmbCenter.Enabled = true;
-                        //Edit 2014.09.18 CACode
-                        //CACodeNew();
-                        cmbRoot.SelectedValue = dsGetSocietyID.Tables[0].Rows[0]["exective"].ToString();
-                        hidRoot.Value = dsGetSocietyID.Tables[0].Rows[0]["exective"].ToString();
-                        btnSubmit.Enabled = true;
+                        else
+                        {
+                            lblMsg.Text = "There is no available centers...";
+                        }
                     }
                     else
                     {
-                        lblMsg.Text = "Invalid City Code or Society Name.";
-                        btnSubmit.Enabled = false;
+                        DataSet dsExe = cls_Connection.getDataSet("SELECT * FROM micro_exective_root LEFT JOIN branch ON branch.b_code = micro_exective_root.branch_code LEFT JOIN center_details on branch.b_code = center_details.city_code WHERE micro_exective_root.exe_nic = '" + Session["NIC"].ToString() + "' AND center_details.exective = micro_exective_root.exe_id;");
+                        if (dsExe.Tables[0].Rows.Count > 0)
+                        {
+                            DataSet dsCenter = cls_Connection.getDataSet("SELECT DISTINCT idcenter_details, center_name FROM center_details LEFT OUTER JOIN villages_name ON villages_name.villages_code = center_details.villages WHERE exective = '" + dsExe.Tables[0].Rows[0]["exe_id"].ToString() + "'  AND villages_name.city_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' AND villages_name.area_code = '" + cmbArea.SelectedValue.ToString() + "' AND villages_name.villages_code = '" + cmbVillage.SelectedValue.ToString() + "' ORDER BY center_name;");
+
+                            cmbCenter.Items.Clear();
+                            if (dsCenter.Tables[0].Rows.Count > 0)
+                            {
+                                cmbCenter.Items.Add("Select Center");
+
+                                for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
+                                {
+                                    cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"].ToString());
+                                    cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
+                                }
+                                cmbCenter.Enabled = true;
+                            }
+                            else
+                            {
+                                lblMsg.Text = "There is no available centers...";
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        private void socity()
+        {
+            try
+            {
+                txtSoNumber.Text = "";
+                lblMsg.Text = "";
+                if (cmbVillage.SelectedIndex != 0 && cmbBranch.SelectedIndex != 0 && cmbArea.SelectedIndex != 0)
+                {
+                    if (Session["UserType"].ToString() != "MFO")
+                    {
+                        DataSet dsGetSocietyID = cls_Connection.getDataSet("select exective from center_details where city_code = '" + cmbBranch.SelectedItem.Value + "' and area_code = '" + cmbArea.SelectedItem.Value + "' and villages = '" + cmbVillage.SelectedItem.Value + "';");
+                        if (dsGetSocietyID.Tables[0].Rows.Count > 0)
+                        {
+                            //txtSoNumber.Text = cmbSocietyName.SelectedItem.Value.ToString();
+
+                            DataSet dsSCenter = cls_Connection.getDataSet("SELECT idcenter_details, center_name, center_day FROM center_details WHERE city_code = '" + cmbBranch.SelectedItem.Value + "' AND area_code = '" + cmbArea.SelectedItem.Value + "' AND villages = '" + cmbVillage.SelectedItem.Value + "';");
+                            cmbCenter.Items.Clear();
+                            if (dsSCenter.Tables[0].Rows.Count > 0)
+                            {
+                                cmbCenter.Items.Add("Select Center");
+
+                                for (int i = 0; i < dsSCenter.Tables[0].Rows.Count; i++)
+                                {
+                                    cmbCenter.Items.Add(dsSCenter.Tables[0].Rows[i]["center_name"].ToString());
+                                    cmbCenter.Items[i + 1].Value = dsSCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
+                                }
+                            }
+                            cmbCenter.Enabled = true;
+                            //Edit 2014.09.18 CACode
+                            //CACodeNew();
+                            cmbRoot.SelectedValue = dsGetSocietyID.Tables[0].Rows[0]["exective"].ToString();
+                            hidRoot.Value = dsGetSocietyID.Tables[0].Rows[0]["exective"].ToString();
+                            btnSubmit.Enabled = true;
+                        }
+                        else
+                        {
+                            lblMsg.Text = "Invalid City Code or Society Name.";
+                            btnSubmit.Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        DataSet dsExe = cls_Connection.getDataSet("SELECT * FROM micro_exective_root LEFT JOIN branch ON branch.b_code = micro_exective_root.branch_code LEFT JOIN center_details on branch.b_code = center_details.city_code WHERE micro_exective_root.exe_nic = '" + Session["NIC"].ToString() + "' AND center_details.exective = micro_exective_root.exe_id;");
+                        if (dsExe.Tables[0].Rows.Count > 0)
+                        {
+                            DataSet dsCenter = cls_Connection.getDataSet("SELECT DISTINCT idcenter_details, center_name FROM center_details LEFT OUTER JOIN villages_name ON villages_name.villages_code = center_details.villages WHERE exective = '" + dsExe.Tables[0].Rows[0]["exe_id"].ToString() + "'  AND villages_name.city_code = '" + dsExe.Tables[0].Rows[0]["branch_code"].ToString() + "' AND villages_name.area_code = '" + cmbArea.SelectedValue.ToString() + "' AND villages_name.villages_code = '" + cmbVillage.SelectedValue.ToString() + "' ORDER BY center_name;");
+
+                            cmbCenter.Items.Clear();
+                            if (dsCenter.Tables[0].Rows.Count > 0)
+                            {
+                                if (dsCenter.Tables[0].Rows.Count > 0)
+                                {
+                                    cmbCenter.Items.Add("Select Center");
+
+                                    for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
+                                    {
+                                        cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"].ToString());
+                                        cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
+                                    }
+                                    cmbCenter.Enabled = true;
+                                }
+                                else
+                                {
+                                    lblMsg.Text = "There is no available centers...";
+                                }
+                            }
+                        }
                     }
                 }
                 else
@@ -536,9 +629,11 @@ namespace MuslimAID.SALAM
                     bool bolFamily = saveFamilyDetails();
                     bool bolBusiness = saveBUsinessDetails();
                     bool bolFRequirment = saveFacilityRequirment();
-                    bool bolCOFacility = checkOtherFacility();
+                    //bool bolCOFacility = checkOtherFacility();
                     bool bolOtherFamily = otherFamilyDetails();
-                    if (bolBasic && bolFamily && bolBusiness && bolFRequirment && bolCOFacility && bolOtherFamily) {
+                    if (bolBasic && bolFamily && bolBusiness && bolFRequirment && bolOtherFamily)
+                    {
+                        //if (bolOtherFamily) {
                         lblMsg.Text = "Successfully Added";
                         Response.Redirect("business_details.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCACodeNew);
                     }
@@ -551,17 +646,18 @@ namespace MuslimAID.SALAM
             }
         }
 
-        protected bool saveBasicDetails() {
+        protected bool saveBasicDetails()
+        {
             string strloginID = Session["NIC"].ToString();
 
-            MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_basic_detail(contract_code,ca_code,nic,city_code,society_id,gs_ward,full_name,marital_status,land_no,p_address,client_id,inspection_date,create_user_id,user_ip,date_time,village,root_id,nic_issue_date,dob,gender,r_address,income_source,team_id,promisers_id,promiser_id_2,area_code)VALUES(@contract_code,@ca_code,@nic,@city_code,@society_id,@gs_ward,@full_name,@marital_status,@land_no,@p_address,@client_id,@inspection_date,@create_user_id,@user_ip,@date_time,@village,@root_id,@nic_issue_date,@dob,@gender,@r_address,@income_source,@team_id,@promisers_id,@promiser_id_2,@area_code)");
+            MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_basic_detail(contract_code,ca_code,nic,city_code,society_id,gs_ward,full_name,marital_status,land_no,p_address,client_id,inspection_date,create_user_id,user_ip,date_time,village,root_id,nic_issue_date,dob,gender,r_address,income_source,team_id,promisers_id,promiser_id_2,area_code)VALUES(@contract_code,@ca_code,@nic,@city_code,@society_id,@gs_ward,@full_name,@marital_status,@land_no,@p_address,@client_id,@inspection_date,@create_user_id,@user_ip,@date_time,@village,@root_id,@nic_issue_date,@dob,@gender,@r_address,@income_source,@team_id,@promisers_id,@promiser_id_2,@area_code)");
 
             #region Get Values
             string strIp = Request.UserHostAddress;
             string strCC = hidCC.Value;
 
             int intVal;
-            DataSet dtCCodeID = cls_Connection.getDataSet("select max(idmicro_basic_detail) from micro_basic_detail");
+            DataSet dtCCodeID = cls_Connection.getDataSet("select max(idmicro_basic_detail) from salam_basic_detail");
             if (dtCCodeID.Tables[0].Rows[0][0].ToString() != "")
             {
                 string strVal = dtCCodeID.Tables[0].Rows[0][0].ToString();
@@ -610,7 +706,7 @@ namespace MuslimAID.SALAM
             #endregion
 
             #region Promisory
-            DataSet dsGetLastValue = cls_Connection.getDataSet("SELECT team_id,client_id FROM micro_basic_detail WHERE city_code = '" + strCityCode + "'  AND area_code = '" + strArea + "'  AND village = '" + strVillage + "' AND society_id = '" + strSoNumber + "' ORDER BY idmicro_basic_detail DESC LIMIT 1;");
+            DataSet dsGetLastValue = cls_Connection.getDataSet("SELECT team_id,client_id FROM salam_basic_detail WHERE city_code = '" + strCityCode + "'  AND area_code = '" + strArea + "'  AND village = '" + strVillage + "' AND society_id = '" + strSoNumber + "' ORDER BY idmicro_basic_detail DESC LIMIT 1;");
             if (dsGetLastValue.Tables[0].Rows.Count > 0)
             {
                 string strLastTID = dsGetLastValue.Tables[0].Rows[0]["team_id"].ToString();
@@ -759,7 +855,7 @@ namespace MuslimAID.SALAM
         }
         protected bool saveFamilyDetails()
         {
-            MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_family_details(contract_code,spouse_nic,spouse_nic_issued_date,spouse_name,occupation,spouse_dob,spouse_gender,spouse_contact_no,spouse_relationship_with_applicant,create_user_nic,user_ip,date_time) VALUES(@contract_code,@spouse_nic,@spouse_nic_issued_date,@spouse_name,@occupation,@spouse_dob,@spouse_gender,@spouse_contact_no,@spouse_relationship_with_applicant,@create_user_nic,@user_ip,@date_time);");
+            MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_family_details(contract_code,spouse_nic,spouse_nic_issued_date,spouse_name,occupation,spouse_dob,spouse_gender,spouse_contact_no,spouse_relationship_with_applicant,create_user_nic,user_ip,date_time) VALUES(@contract_code,@spouse_nic,@spouse_nic_issued_date,@spouse_name,@occupation,@spouse_dob,@spouse_gender,@spouse_contact_no,@spouse_relationship_with_applicant,@create_user_nic,@user_ip,@date_time);");
 
             #region Values
             string strIp = Request.UserHostAddress;
@@ -831,7 +927,7 @@ namespace MuslimAID.SALAM
         }
         protected bool saveBUsinessDetails()
         {
-            MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_business_details(contract_code,business_name,busi_duration,busi_address,busi_nature,key_person,no_of_ppl,br_no,contact_no_ofc,create_user_nic,user_ip,date_time)VALUES(@contract_code, @business_name, @busi_duration, @busi_address, @busi_nature, @key_person, @no_of_ppl, @br_no, @contact_no_ofc, @create_user_nic, @user_ip, @date_time)");
+            MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO salam_business_details(contract_code,business_name,busi_duration,busi_address,busi_nature,key_person,no_of_ppl,br_no,contact_no_ofc,create_user_nic,user_ip,date_time)VALUES(@contract_code, @business_name, @busi_duration, @busi_address, @busi_nature, @key_person, @no_of_ppl, @br_no, @contact_no_ofc, @create_user_nic, @user_ip, @date_time)");
 
             #region GetValues
             string strIp = Request.UserHostAddress;
@@ -885,91 +981,92 @@ namespace MuslimAID.SALAM
         }
         protected bool saveFacilityRequirment()
         {
-            string q = "INSERT INTO micro_loan_details(contra_code, loan_amount, period, reason_to_apply, any_unsettled_loans) VALUES (@contra_code, @loan_amount, @period, @reason_to_apply, @any_unsettled_loans)";
+            string q = "INSERT INTO salam_loan_details(contra_code, loan_amount, period, reason_to_apply, any_unsettled_loans) VALUES (@contra_code, @loan_amount, @period, @reason_to_apply, @any_unsettled_loans)";
 
 
-                if (txtLDLAmount.Text.Trim() == "")
-                    lblMsg.Text = "Please enter Facility Amount/ Value";
-                else if (txtNameOrg1.Text.Trim() != "")
+            if (txtLDLAmount.Text.Trim() == "")
+                lblMsg.Text = "Please enter Facility Amount/ Value";
+            else if (txtNameOrg1.Text.Trim() != "")
+            {
+                if (txtPurpos1.Text.Trim() == "") lblMsg.Text = "Please fill the field purpose 1";
+                if (txtFAmount1.Text.Trim() == "") lblMsg.Text = "Please fill the field facility amount 1";
+                if (txtOutstandBal1.Text.Trim() == "") lblMsg.Text = "Please fill the field outstanding balance 1";
+                if (txtMonthInstal1.Text.Trim() == "") lblMsg.Text = "Please fill the field monthly installment 1";
+                if (txtRemainInstal1.Text.Trim() == "") lblMsg.Text = "Please fill the field remaining no of installment 1";
+
+                else if (txtNameOrg2.Text.Trim() != "")
                 {
-                    if (txtPurpos1.Text.Trim() == "") lblMsg.Text = "Please fill the field purpose 1";
-                    if (txtFAmount1.Text.Trim() == "") lblMsg.Text = "Please fill the field facility amount 1";
-                    if (txtOutstandBal1.Text.Trim() == "") lblMsg.Text = "Please fill the field outstanding balance 1";
-                    if (txtMonthInstal1.Text.Trim() == "") lblMsg.Text = "Please fill the field monthly installment 1";
-                    if (txtRemainInstal1.Text.Trim() == "") lblMsg.Text = "Please fill the field remaining no of installment 1";
-
-                    else if (txtNameOrg2.Text.Trim() != "")
-                    {
-                        if (txtPurpos2.Text.Trim() == "") lblMsg.Text = "Please fill the field purpose 2";
-                        if (txtFAmount2.Text.Trim() == "") lblMsg.Text = "Please fill the field facility amount 2";
-                        if (txtOutstandBal2.Text.Trim() == "") lblMsg.Text = "Please fill the field outstanding balance 2";
-                        if (txtMonthInstal2.Text.Trim() == "") lblMsg.Text = "Please fill the field monthly installment 2";
-                        if (txtRemainInstal2.Text.Trim() == "") lblMsg.Text = "Please fill the field remaining no of installment 1";
-                    }
-
-                    else if (txtNameOrg3.Text.Trim() != "")
-                    {
-                        if (txtPurpos3.Text.Trim() == "") lblMsg.Text = "Please fill the field purpose 3";
-                        if (txtFAmount3.Text.Trim() == "") lblMsg.Text = "Please fill the field facility amount 3";
-                        if (txtOutstandBal3.Text.Trim() == "") lblMsg.Text = "Please fill the field outstanding balance 3";
-                        if (txtMonthInstal3.Text.Trim() == "") lblMsg.Text = "Please fill the field monthly installment 3";
-                        if (txtRemainInstal3.Text.Trim() == "") lblMsg.Text = "Please fill the field remaining no of installment 3";
-                    }
+                    if (txtPurpos2.Text.Trim() == "") lblMsg.Text = "Please fill the field purpose 2";
+                    if (txtFAmount2.Text.Trim() == "") lblMsg.Text = "Please fill the field facility amount 2";
+                    if (txtOutstandBal2.Text.Trim() == "") lblMsg.Text = "Please fill the field outstanding balance 2";
+                    if (txtMonthInstal2.Text.Trim() == "") lblMsg.Text = "Please fill the field monthly installment 2";
+                    if (txtRemainInstal2.Text.Trim() == "") lblMsg.Text = "Please fill the field remaining no of installment 1";
                 }
 
-                MySqlCommand cmdInsert = new MySqlCommand(q);
-                #region Parameter Declarations
-                cmdInsert.Parameters.AddWithValue("@contra_code", txtCC.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("@loan_amount", Convert.ToDecimal((txtLDLAmount.Text.Trim() != "") ? txtLDLAmount.Text.Trim() : "0.00"));
-                cmdInsert.Parameters.AddWithValue("@period", cmbTmePeriod.SelectedValue.ToString());
-                cmdInsert.Parameters.AddWithValue("@reason_to_apply", txtResonToApply.Text.Trim());
-                if (rdoYes.Checked)
+                else if (txtNameOrg3.Text.Trim() != "")
                 {
-                    cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 1);
+                    if (txtPurpos3.Text.Trim() == "") lblMsg.Text = "Please fill the field purpose 3";
+                    if (txtFAmount3.Text.Trim() == "") lblMsg.Text = "Please fill the field facility amount 3";
+                    if (txtOutstandBal3.Text.Trim() == "") lblMsg.Text = "Please fill the field outstanding balance 3";
+                    if (txtMonthInstal3.Text.Trim() == "") lblMsg.Text = "Please fill the field monthly installment 3";
+                    if (txtRemainInstal3.Text.Trim() == "") lblMsg.Text = "Please fill the field remaining no of installment 3";
                 }
-                else
+            }
+
+            MySqlCommand cmdInsert = new MySqlCommand(q);
+            #region Parameter Declarations
+            cmdInsert.Parameters.AddWithValue("@contra_code", txtCC.Text.Trim());
+            cmdInsert.Parameters.AddWithValue("@loan_amount", Convert.ToDecimal((txtLDLAmount.Text.Trim() != "") ? txtLDLAmount.Text.Trim() : "0.00"));
+            cmdInsert.Parameters.AddWithValue("@period", cmbTmePeriod.SelectedValue.ToString());
+            cmdInsert.Parameters.AddWithValue("@reason_to_apply", txtResonToApply.Text.Trim());
+            if (rdoYes.Checked)
+            {
+                cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 1);
+            }
+            else
+            {
+                cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 0);
+            }
+            #endregion
+            try
+            {
+                int i = objDBCon.insertEditData(cmdInsert);
+                if (i > 0)
                 {
-                    cmdInsert.Parameters.AddWithValue("@any_unsettled_loans", 0);
+                    if (checkOtherFacility())
+                        return true;
+                    else
+                        return false;
                 }
-                #endregion
-                try
-                {
-                    int i = objDBCon.insertEditData(cmdInsert);
-                    if (i > 0)
-                    {
-                        if (checkOtherFacility())
-                            return true;
-                        else
-                            return false;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
-                    return false;
-                }
+            }
+            catch (Exception ex)
+            {
+                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
                 return false;
+            }
+            return false;
         }
         protected bool checkOtherFacility()
         {
             try
             {
                 string strOtherFacility = "";
-                strOtherFacility = "INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ";
                 if (txtNameOrg1.Text.Trim() != "")
                 {
-                    strOtherFacility += "('" + txtCC.Text.Trim() + "','" + txtNameOrg1.Text.Trim() + "','" + txtPurpos1.Text.Trim() + "'," + txtFAmount1.Text.Trim() + "," + txtOutstandBal1.Text.Trim() + "," + txtMonthInstal1.Text.Trim() + "," + txtRemainInstal1.Text.Trim() + ")";
-                }
-                if (txtNameOrg2.Text.Trim() != "")
-                {
-                    strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")";
-                }
-                if (txtNameOrg3.Text.Trim() != "")
-                {
-                    strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")";
-                }
+                    strOtherFacility = "INSERT INTO `salam_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ";
 
-                cls_Connection.setData(strOtherFacility.ToString());
+                    strOtherFacility += "('" + txtCC.Text.Trim() + "','" + txtNameOrg1.Text.Trim() + "','" + txtPurpos1.Text.Trim() + "'," + txtFAmount1.Text.Trim() + "," + txtOutstandBal1.Text.Trim() + "," + txtMonthInstal1.Text.Trim() + "," + txtRemainInstal1.Text.Trim() + ")";
+
+                    if (txtNameOrg2.Text.Trim() != "")
+                    {
+                        strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")";
+                    }
+                    if (txtNameOrg3.Text.Trim() != "")
+                    {
+                        strOtherFacility += ",('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")";
+                    }
+                    cls_Connection.setData(strOtherFacility.ToString());
+                }
                 return true;
             }
             catch (Exception ex)
@@ -979,35 +1076,37 @@ namespace MuslimAID.SALAM
             }
             //int i = cls_Connection.setData(strOtherFacility.ToString());
         }
-        protected bool otherFamilyDetails() 
+        protected bool otherFamilyDetails()
         {
             try
             {
                 string strCCode = hidCC.Value.Trim();
+                string dob1, dob2, dob3, dob4, dob5, dob6, dob7, dob8, dob9 = "";
                 string strIp = Request.UserHostAddress;
                 string strloginID = Session["NIC"].ToString();
                 string strDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 StringBuilder strRelat = new StringBuilder();
                 string strQry2 = "INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ";
                 if (txtName1.Text.Trim() != "")
-                    strRelat.Append("('" + strCCode + "','" + txtName1.Text.Trim() + "','" + cmbRelation1.SelectedItem.Text + "','" + txtNIC1.Text.Trim() + "','" + DateTime.Parse(txtDOB1.Text.Trim()) + "','" + txtOcc1.Text.Trim() + "','" + txtInCome1.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
-
+                {
+                    strRelat.Append("('" + strCCode + "','" + txtName1.Text.Trim() + "','" + cmbRelation1.SelectedItem.Text + "','" + txtNIC1.Text.Trim() + "','" + txtDOB1.Text.Trim() + "','" + txtOcc1.Text.Trim() + "','" + txtInCome1.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                }
                 if (txtName2.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName2.Text.Trim() + "','" + cmbRelation2.SelectedItem.Text + "','" + txtNIC2.Text.Trim() + "','" + DateTime.Parse(txtDOB2.Text.Trim()) + "','" + txtOcc2.Text.Trim() + "','" + txtInCome2.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName2.Text.Trim() + "','" + cmbRelation2.SelectedItem.Text + "','" + txtNIC2.Text.Trim() + "','" + txtDOB2.Text.Trim() + "','" + txtOcc2.Text.Trim() + "','" + txtInCome2.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName3.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName3.Text.Trim() + "','" + cmbRelation3.SelectedItem.Text + "','" + txtNIC3.Text.Trim() + "','" + DateTime.Parse(txtDOB3.Text.Trim()) + "','" + txtOcc3.Text.Trim() + "','" + txtInCome3.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName3.Text.Trim() + "','" + cmbRelation3.SelectedItem.Text + "','" + txtNIC3.Text.Trim() + "','" + txtDOB3.Text.Trim() + "','" + txtOcc3.Text.Trim() + "','" + txtInCome3.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName4.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName4.Text.Trim() + "','" + cmbRelation4.SelectedItem.Text + "','" + txtNIC4.Text.Trim() + "','" + DateTime.Parse(txtDOB4.Text.Trim()) + "','" + txtOcc4.Text.Trim() + "','" + txtInCome4.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName4.Text.Trim() + "','" + cmbRelation4.SelectedItem.Text + "','" + txtNIC4.Text.Trim() + "','" + txtDOB4.Text.Trim() + "','" + txtOcc4.Text.Trim() + "','" + txtInCome4.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName5.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName5.Text.Trim() + "','" + cmbRelation5.SelectedItem.Text + "','" + txtNIC5.Text.Trim() + "','" + DateTime.Parse(txtDOB5.Text.Trim()) + "','" + txtOcc5.Text.Trim() + "','" + txtInCome5.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName5.Text.Trim() + "','" + cmbRelation5.SelectedItem.Text + "','" + txtNIC5.Text.Trim() + "','" + txtDOB5.Text.Trim() + "','" + txtOcc5.Text.Trim() + "','" + txtInCome5.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName6.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName6.Text.Trim() + "','" + cmbRelation6.SelectedItem.Text + "','" + txtNIC6.Text.Trim() + "','" + DateTime.Parse(txtDOB6.Text.Trim()) + "','" + txtOcc6.Text.Trim() + "','" + txtInCome6.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName6.Text.Trim() + "','" + cmbRelation6.SelectedItem.Text + "','" + txtNIC6.Text.Trim() + "','" + txtDOB6.Text.Trim() + "','" + txtOcc6.Text.Trim() + "','" + txtInCome6.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName7.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName7.Text.Trim() + "','" + cmbRelation7.SelectedItem.Text + "','" + txtNIC7.Text.Trim() + "','" + DateTime.Parse(txtDOB7.Text.Trim()) + "','" + txtOcc7.Text.Trim() + "','" + txtInCome7.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName7.Text.Trim() + "','" + cmbRelation7.SelectedItem.Text + "','" + txtNIC7.Text.Trim() + "','" + txtDOB7.Text.Trim() + "','" + txtOcc7.Text.Trim() + "','" + txtInCome7.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName8.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName8.Text.Trim() + "','" + cmbRelation8.SelectedItem.Text + "','" + txtNIC8.Text.Trim() + "','" + DateTime.Parse(txtDOB8.Text.Trim()) + "','" + txtOcc8.Text.Trim() + "','" + txtInCome8.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName8.Text.Trim() + "','" + cmbRelation8.SelectedItem.Text + "','" + txtNIC8.Text.Trim() + "','" + txtDOB8.Text.Trim() + "','" + txtOcc8.Text.Trim() + "','" + txtInCome8.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
                 if (txtName9.Text.Trim() != "")
-                    strRelat.Append("'),('" + strCCode + "','" + txtName9.Text.Trim() + "','" + cmbRelation9.SelectedItem.Text + "','" + txtNIC9.Text.Trim() + "','" + DateTime.Parse(txtDOB9.Text.Trim()) + "','" + txtOcc9.Text.Trim() + "','" + txtInCome9.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
+                    strRelat.Append("'),('" + strCCode + "','" + txtName9.Text.Trim() + "','" + cmbRelation9.SelectedItem.Text + "','" + txtNIC9.Text.Trim() + "','" + txtDOB9.Text.Trim() + "','" + txtOcc9.Text.Trim() + "','" + txtInCome9.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime);
 
 
                 string strQry3 = "')";
@@ -1116,72 +1215,77 @@ namespace MuslimAID.SALAM
                     strOccupation = cmbOccupation.SelectedValue.ToString();
                     #endregion
 
-                    MySqlCommand cmdInsert = new MySqlCommand("UPDATE micro_basic_detail SET nic = '" + strNIC + "',city_code = '" + strCityCode + "',society_id = '" + strSoNumber + "',gs_ward = '" + strGSWard + "',full_name = '" + strFullName + "',marital_status='" + strMaStatus + "',land_no='" + strTNumber + "',p_address='" + strAddress + "',client_id='" + strClientID + "',inspection_date='" + strInspDate + "',village='" + strVillage + "',root_id='" + strRootID + "',nic_issue_date='" + strNICIssuedDate + "',dob='" + strDOB + "',gender='" + strGender + "',r_address='" + strRAddress + "',income_source='" + strOccupation + "' WHERE idmicro_basic_detail = '" + hf3.Value + "';");
-                    string strFDGender = (rdoSoMale.Checked)?"0":"1";
-                    MySqlCommand cmdFD = new MySqlCommand("UPDATE micro_family_details SET spouse_nic='" + txtSoNIC.Text.Trim() + "',spouse_nic_issued_date='" + txtSoNicIssuedDate.Text.Trim() + "',spouse_name='" + txtSoName.Text.Trim() + "',occupation='" + cmbOccupa.SelectedValue.ToString() + "',spouse_dob='" + txtSoDOB.Text.Trim() + "',spouse_gender='" + strFDGender + "',spouse_contact_no='" + txtSoContactNo.Text.Trim() + "',spouse_relationship_with_applicant='" + cmbRelation.SelectedValue.ToString() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'");
+                    MySqlCommand cmdInsert = new MySqlCommand("UPDATE salam_basic_detail SET nic = '" + strNIC + "',city_code = '" + strCityCode + "',society_id = '" + strSoNumber + "',gs_ward = '" + strGSWard + "',full_name = '" + strFullName + "',marital_status='" + strMaStatus + "',land_no='" + strTNumber + "',p_address='" + strAddress + "',client_id='" + strClientID + "',inspection_date='" + strInspDate + "',village='" + strVillage + "',root_id='" + strRootID + "',nic_issue_date='" + strNICIssuedDate + "',dob='" + strDOB + "',gender='" + strGender + "',r_address='" + strRAddress + "',income_source='" + strOccupation + "' WHERE idmicro_basic_detail = '" + hf3.Value + "';");
+                    string strFDGender = (rdoSoMale.Checked) ? "0" : "1";
+                    MySqlCommand cmdFD = new MySqlCommand("UPDATE salam_family_details SET spouse_nic='" + txtSoNIC.Text.Trim() + "',spouse_nic_issued_date='" + txtSoNicIssuedDate.Text.Trim() + "',spouse_name='" + txtSoName.Text.Trim() + "',occupation='" + cmbOccupa.SelectedValue.ToString() + "',spouse_dob='" + txtSoDOB.Text.Trim() + "',spouse_gender='" + strFDGender + "',spouse_contact_no='" + txtSoContactNo.Text.Trim() + "',spouse_relationship_with_applicant='" + cmbRelation.SelectedValue.ToString() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'");
 
-                    MySqlCommand cmdBD = new MySqlCommand("UPDATE micro_business_details SET business_name='" + txtBusiness.Text.Trim() + "',busi_duration='" + cmbPeriod.SelectedValue.ToString() + "',busi_address='" + txtBisAddress.Text.Trim() + "',busi_nature='" + cmbBNature.SelectedValue.ToString() + "',key_person='" + cmbKeyPerson.SelectedValue.ToString() + "',no_of_ppl='" + txtNoOfPpl.Text.Trim() + "',br_no='"+txtBRNo.Text.Trim()+"',contact_no_ofc='"+txtBContact.Text.Trim()+"' WHERE contract_code='" + txtCC.Text.Trim() + "'");
+                    MySqlCommand cmdBD = new MySqlCommand("UPDATE salam_business_details SET business_name='" + txtBusiness.Text.Trim() + "',busi_duration='" + cmbPeriod.SelectedValue.ToString() + "',busi_address='" + txtBisAddress.Text.Trim() + "',busi_nature='" + cmbBNature.SelectedValue.ToString() + "',key_person='" + cmbKeyPerson.SelectedValue.ToString() + "',no_of_ppl='" + txtNoOfPpl.Text.Trim() + "',br_no='" + txtBRNo.Text.Trim() + "',contact_no_ofc='" + txtBContact.Text.Trim() + "' WHERE contract_code='" + txtCC.Text.Trim() + "'");
 
-                    string strUSLoans = (rdoYes.Checked)?"1":"0";
-                    MySqlCommand cmdFR = new MySqlCommand("UPDATE micro_loan_details SET loan_amount='" + txtLDLAmount.Text.Trim() + "', period='" + cmbTmePeriod.SelectedValue.ToString() + "', reason_to_apply='" + txtResonToApply.Text.Trim() + "', any_unsettled_loans='" + strUSLoans + "' WHERE contra_code='" + txtCC.Text.Trim() + "'");
+                    string strUSLoans = (rdoYes.Checked) ? "1" : "0";
+                    MySqlCommand cmdFR = new MySqlCommand("UPDATE salam_loan_details SET loan_amount='" + txtLDLAmount.Text.Trim() + "', period='" + cmbTmePeriod.SelectedValue.ToString() + "', reason_to_apply='" + txtResonToApply.Text.Trim() + "', any_unsettled_loans='" + strUSLoans + "' WHERE contra_code='" + txtCC.Text.Trim() + "'");
 
                     #region OTHER FACILITY
                     MySqlCommand cmdOF1, cmdOF2, cmdOF3;
-                    DataSet dsFR = cls_Connection.getDataSet("SELECT any_unsettled_loans FROM micro_loan_details WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                    DataSet dsFR = cls_Connection.getDataSet("SELECT any_unsettled_loans FROM salam_loan_details WHERE contra_code = '" + txtCC.Text.Trim() + "';");
                     if (dsFR.Tables[0].Rows[0]["any_unsettled_loans"].ToString() == "1")
                     {
-                        DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                        DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM salam_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
                         if (dsUnSLons.Tables[0].Rows.Count > 0)
                         {
-                            int a=0;
+                            int a = 0;
                             for (int i = 0; i < dsUnSLons.Tables[0].Rows.Count; i++)
                             {
                                 if (i == 0)
                                 {
                                     if (txtNameOrg1.Text.Trim() != "")
                                     {
-                                        cmdOF1 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg1.Text.Trim() + "',purpos='" + txtPurpos1.Text.Trim() + "',facility_amount='" + txtFAmount1.Text.Trim() + "',outstanding='" + txtOutstandBal1.Text.Trim() + "',monthly_installment='" + txtMonthInstal1.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal1.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF1);
+                                        cmdOF1 = new MySqlCommand("UPDATE salam_other_unsetteled_loans SET organization='" + txtNameOrg1.Text.Trim() + "',purpos='" + txtPurpos1.Text.Trim() + "',facility_amount='" + txtFAmount1.Text.Trim() + "',outstanding='" + txtOutstandBal1.Text.Trim() + "',monthly_installment='" + txtMonthInstal1.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal1.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF1);
                                     }
                                 }
                                 if (i == 1)
                                 {
                                     if (txtNameOrg2.Text.Trim() != "")
                                     {
-                                        cmdOF2 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg2.Text.Trim() + "',purpos='" + txtPurpos2.Text.Trim() + "',facility_amount='" + txtFAmount2.Text.Trim() + "',outstanding='" + txtOutstandBal2.Text.Trim() + "',monthly_installment='" + txtMonthInstal2.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal2.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF2);
+                                        cmdOF2 = new MySqlCommand("UPDATE salam_other_unsetteled_loans SET organization='" + txtNameOrg2.Text.Trim() + "',purpos='" + txtPurpos2.Text.Trim() + "',facility_amount='" + txtFAmount2.Text.Trim() + "',outstanding='" + txtOutstandBal2.Text.Trim() + "',monthly_installment='" + txtMonthInstal2.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal2.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF2);
                                     }
                                 }
                                 if (i == 2)
                                 {
                                     if (txtNameOrg3.Text.Trim() != "")
                                     {
-                                        cmdOF3 = new MySqlCommand("UPDATE micro_other_unsetteled_loans SET organization='" + txtNameOrg3.Text.Trim() + "',purpos='" + txtPurpos3.Text.Trim() + "',facility_amount='" + txtFAmount3.Text.Trim() + "',outstanding='" + txtOutstandBal3.Text.Trim() + "',monthly_installment='" + txtMonthInstal3.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal3.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF3);
+                                        cmdOF3 = new MySqlCommand("UPDATE salam_other_unsetteled_loans SET organization='" + txtNameOrg3.Text.Trim() + "',purpos='" + txtPurpos3.Text.Trim() + "',facility_amount='" + txtFAmount3.Text.Trim() + "',outstanding='" + txtOutstandBal3.Text.Trim() + "',monthly_installment='" + txtMonthInstal3.Text.Trim() + "',remaining_number_of_installment='" + txtRemainInstal3.Text.Trim() + "' WHERE contra_code='" + txtCC.Text.Trim() + "'"); objDBCon.insertEditData(cmdOF3);
                                     }
                                 }
                                 a += 1;
                             }
                             if (a == 1)
                             {
-                                if (txtNameOrg2.Text.Trim() != "") {
-                                    cmdOF2 = new MySqlCommand("INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF2);
+                                if (txtNameOrg2.Text.Trim() != "")
+                                {
+                                    cmdOF2 = new MySqlCommand("INSERT INTO `salam_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF2);
                                 }
                             }
                             else if (a == 2)
                             {
-                                if (txtNameOrg3.Text.Trim() != "") {
-                                    cmdOF3 = new MySqlCommand("INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF3);
+                                if (txtNameOrg3.Text.Trim() != "")
+                                {
+                                    cmdOF3 = new MySqlCommand("INSERT INTO `salam_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF3);
                                 }
                             }
                         }
                         else
                         {
-                            if (txtNameOrg1.Text.Trim() != "") { 
-                                cmdOF1 = new MySqlCommand("INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg1.Text.Trim() + "','" + txtPurpos1.Text.Trim() + "'," + txtFAmount1.Text.Trim() + "," + txtOutstandBal1.Text.Trim() + "," + txtMonthInstal1.Text.Trim() + "," + txtRemainInstal1.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF1); 
+                            if (txtNameOrg1.Text.Trim() != "")
+                            {
+                                cmdOF1 = new MySqlCommand("INSERT INTO `salam_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg1.Text.Trim() + "','" + txtPurpos1.Text.Trim() + "'," + txtFAmount1.Text.Trim() + "," + txtOutstandBal1.Text.Trim() + "," + txtMonthInstal1.Text.Trim() + "," + txtRemainInstal1.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF1);
                             }
-                            if (txtNameOrg2.Text.Trim() != "") { 
-                                cmdOF2 = new MySqlCommand("INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF2); 
+                            if (txtNameOrg2.Text.Trim() != "")
+                            {
+                                cmdOF2 = new MySqlCommand("INSERT INTO `salam_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg2.Text.Trim() + "','" + txtPurpos2.Text.Trim() + "'," + txtFAmount2.Text.Trim() + "," + txtOutstandBal2.Text.Trim() + "," + txtMonthInstal2.Text.Trim() + "," + txtRemainInstal2.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF2);
                             }
-                            if (txtNameOrg3.Text.Trim() != "") { 
-                                cmdOF3 = new MySqlCommand("INSERT INTO `micro_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF3); 
+                            if (txtNameOrg3.Text.Trim() != "")
+                            {
+                                cmdOF3 = new MySqlCommand("INSERT INTO `salam_other_unsetteled_loans`(contra_code,organization,purpos,facility_amount,outstanding,monthly_installment,remaining_number_of_installment) VALUES ('" + txtCC.Text.Trim() + "','" + txtNameOrg3.Text.Trim() + "','" + txtPurpos3.Text.Trim() + "'," + txtFAmount3.Text.Trim() + "," + txtOutstandBal3.Text.Trim() + "," + txtMonthInstal3.Text.Trim() + "," + txtRemainInstal3.Text.Trim() + ")"); objDBCon.insertEditData(cmdOF3);
                             }
                         }
                     }
@@ -1190,7 +1294,7 @@ namespace MuslimAID.SALAM
                     #region OTHER FAMILY DETSILS
                     MySqlCommand cmdFRD1, cmdFRD2, cmdFRD3, cmdFRD4, cmdFRD5, cmdFRD6, cmdFRD7, cmdFRD8, cmdFRD9;
 
-                    DataSet dsUnSLonsUp = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                    DataSet dsUnSLonsUp = cls_Connection.getDataSet("SELECT * FROM salam_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
                     if (dsUnSLonsUp.Tables[0].Rows.Count > 0)
                     {
                         int a = 0;
@@ -1294,7 +1398,8 @@ namespace MuslimAID.SALAM
                             cmdFRD9 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName9.Text.Trim() + "','" + cmbRelation9.SelectedItem.Text + "','" + txtNIC9.Text.Trim() + "','" + DateTime.Parse(txtDOB9.Text.Trim()) + "','" + txtOcc9.Text.Trim() + "','" + txtInCome9.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD9);
                         }
                     }
-                    else {
+                    else
+                    {
                         cmdFRD1 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName1.Text.Trim() + "','" + cmbRelation1.SelectedItem.Text + "','" + txtNIC1.Text.Trim() + "','" + DateTime.Parse(txtDOB1.Text.Trim()) + "','" + txtOcc1.Text.Trim() + "','" + txtInCome1.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD1);
 
                         cmdFRD2 = new MySqlCommand("INSERT INTO family_relationship_details (contract_code,name, relationship, nic, dob, occupation, income,create_user_nic,user_ip,date_time) VALUES ('" + txtCC.Text.Trim() + "','" + txtName2.Text.Trim() + "','" + cmbRelation2.SelectedItem.Text + "','" + txtNIC2.Text.Trim() + "','" + DateTime.Parse(txtDOB2.Text.Trim()) + "','" + txtOcc2.Text.Trim() + "','" + txtInCome2.Text.Trim() + "','" + strloginID + "','" + strIp + "','" + strDateTime + "')"); objDBCon.insertEditData(cmdFRD2);
@@ -1318,7 +1423,7 @@ namespace MuslimAID.SALAM
                     try
                     {
                         //int i = objDBCon.insertEditData(cmdInsert);
-                        if (objDBCon.insertEditData(cmdInsert) >0 && objDBCon.insertEditData(cmdFD)>0 && objDBCon.insertEditData(cmdBD)>0 && objDBCon.insertEditData(cmdFR)>0)
+                        if (objDBCon.insertEditData(cmdInsert) > 0 && objDBCon.insertEditData(cmdFD) > 0 && objDBCon.insertEditData(cmdBD) > 0 && objDBCon.insertEditData(cmdFR) > 0)
                         {
 
                             //Response.Redirect("Family_Details.aspx?CC=" + strCC + "&CA=" + strCACode + "");
@@ -1379,7 +1484,7 @@ namespace MuslimAID.SALAM
         }
         #endregion
 
-        private void IsExist()
+        private bool IsExist()
         {
             try
             {
@@ -1389,6 +1494,7 @@ namespace MuslimAID.SALAM
                 {
                     lblMsg.Text = "Please enter NIC Number.";
                     btnSubmit.Enabled = false;
+                    return false;
                 }
                 else
                 {
@@ -1398,7 +1504,7 @@ namespace MuslimAID.SALAM
                         {
                             lblMsg0.Text = "Please enter valid NIC No.";
                             txtNIC.Focus();
-                            return;
+                            return false;
                         }
                     }
                     else if (txtNIC.Text.Length == 12)
@@ -1407,25 +1513,25 @@ namespace MuslimAID.SALAM
                         {
                             lblMsg0.Text = "Please enter valid NIC No.";
                             txtNIC.Focus();
-                            return;
+                            return false;
                         }
                     }
                     else
                     {
                         lblMsg0.Text = "Please enter valid NIC No.";
                         txtNIC.Focus();
-                        return;
+                        return false;
                     }
                     lblMsg0.Text = "";
-                    DataSet dsGetExsiNIC = cls_Connection.getDataSet("select * from micro_basic_detail where nic = '" + txtNIC.Text.Trim() + "';");
+                    DataSet dsGetExsiNIC = cls_Connection.getDataSet("select * from salam_basic_detail where nic = '" + txtNIC.Text.Trim() + "';");
                     if (dsGetExsiNIC.Tables[0].Rows.Count > 0)
                     {
-                        DataSet dsGetExsiLoan = cls_Connection.getDataSet("select * from micro_loan_details where contra_code = '" + dsGetExsiNIC.Tables[0].Rows[0]["contract_code"].ToString() + "';");
+                        DataSet dsGetExsiLoan = cls_Connection.getDataSet("select * from salam_loan_details where contra_code = '" + dsGetExsiNIC.Tables[0].Rows[0]["contract_code"].ToString() + "';");
 
                         if (dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "S" || dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "C")
                         {
                             lblMsg.Text = "Please complete the loan application form, unless you cannot be modify basic details...";
-                            return;
+                            return false;
                         }
                         else if (dsGetExsiLoan.Tables[0].Rows[0]["loan_sta"].ToString() == "P" && dsGetExsiLoan.Tables[0].Rows[0]["loan_approved"].ToString() == "Y" && dsGetExsiLoan.Tables[0].Rows[0]["chequ_no"].ToString() == "")
                         {
@@ -1486,7 +1592,7 @@ namespace MuslimAID.SALAM
                             }
                             #endregion
                             #region Family Details
-                            DataSet dsFD = cls_Connection.getDataSet("SELECT * FROM micro_family_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
+                            DataSet dsFD = cls_Connection.getDataSet("SELECT * FROM salam_family_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
                             if (dsFD.Tables[0].Rows.Count > 0)
                             {
                                 txtSoNIC.Text = dsFD.Tables[0].Rows[0]["spouse_nic"].ToString();
@@ -1508,7 +1614,7 @@ namespace MuslimAID.SALAM
                             }
                             #endregion
                             #region Business Details
-                            DataSet dsBD = cls_Connection.getDataSet("SELECT * FROM micro_business_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
+                            DataSet dsBD = cls_Connection.getDataSet("SELECT * FROM salam_business_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
                             if (dsBD.Tables[0].Rows.Count > 0)
                             {
                                 txtBusiness.Text = dsBD.Tables[0].Rows[0]["business_name"].ToString();
@@ -1523,7 +1629,7 @@ namespace MuslimAID.SALAM
                             #endregion
                             #region Facility Requirment
 
-                            DataSet dsFR = cls_Connection.getDataSet("SELECT * FROM micro_loan_details WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                            DataSet dsFR = cls_Connection.getDataSet("SELECT * FROM salam_loan_details WHERE contra_code = '" + txtCC.Text.Trim() + "';");
                             if (dsFR.Tables[0].Rows.Count > 0)
                             {
                                 txtResonToApply.Text = dsFR.Tables[0].Rows[0]["reason_to_apply"].ToString();
@@ -1531,7 +1637,7 @@ namespace MuslimAID.SALAM
                                 cmbTmePeriod.SelectedValue = dsFR.Tables[0].Rows[0]["period"].ToString();
                                 if (dsFR.Tables[0].Rows[0]["any_unsettled_loans"].ToString() == "1")
                                 {
-                                    DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                                    DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM salam_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
                                     if (dsUnSLons.Tables[0].Rows.Count > 0)
                                     {
                                         for (int i = 0; i < dsUnSLons.Tables[0].Rows.Count; i++)
@@ -1571,9 +1677,9 @@ namespace MuslimAID.SALAM
                             #endregion
                             #region Other Family Details
                             DataSet dsIns = cls_Connection.getDataSet("SELECT * FROM insurance_details WHERE contact_code = '" + txtCC.Text.Trim() + "'");
-                            if(dsIns.Tables[0].Rows.Count > 0)
+                            if (dsIns.Tables[0].Rows.Count > 0)
                                 txtInsuranceCode.Text = dsIns.Tables[0].Rows[0]["insurance_code"].ToString();
-                            
+
                             DataSet dsOFD = cls_Connection.getDataSet("SELECT * FROM family_relationship_details WHERE contract_code = '" + txtCC.Text.Trim() + "'");
                             if (dsOFD.Tables[0].Rows.Count > 0)
                             {
@@ -1669,9 +1775,9 @@ namespace MuslimAID.SALAM
                             //hf3.Value = dsGetExsiNIC.Tables[0].Rows[0]["idmicro_basic_detail"].ToString();
                             //cmbBranch.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["city_code"].ToString();
                             //getArea();
-                            
+
                             //cmbArea.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["area"].ToString();
-                            
+
                             //getVillage();
 
                             //getSocity();
@@ -1700,7 +1806,7 @@ namespace MuslimAID.SALAM
 
                             //lblAge.Text = age.ToString();
                             //rdoFeMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
-                            
+
                             //txtTele.Text = dsGetExsiNIC.Tables[0].Rows[0]["land_no"].ToString();
                             //txtAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["p_address"].ToString();
                             //txtResiAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["r_address"].ToString();
@@ -1745,7 +1851,8 @@ namespace MuslimAID.SALAM
                                             txtInsuranceCode.Focus();
                                         }
                                     }
-                                    else {
+                                    else
+                                    {
                                         txtInsuranceCode.Enabled = true;
                                         btnInsurance.Enabled = true;
                                         txtInsuranceCode.Focus();
@@ -1760,9 +1867,9 @@ namespace MuslimAID.SALAM
                             txtNicIssuDay.Text = dsGetExsiNIC.Tables[0].Rows[0]["nic_issue_date"].ToString();
                             cmbBranch.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["city_code"].ToString();
                             getArea();
-                            
+
                             cmbArea.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["area_code"].ToString();
-                            
+
                             getVillage();
                             cmbVillage.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["village"].ToString();
 
@@ -1790,7 +1897,7 @@ namespace MuslimAID.SALAM
                             txtFullName.Text = dsGetExsiNIC.Tables[0].Rows[0]["full_name"].ToString();
                             rdoMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
                             rdoFeMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
-                            
+
                             txtTele.Text = dsGetExsiNIC.Tables[0].Rows[0]["land_no"].ToString();
                             txtAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["p_address"].ToString();
 
@@ -1812,7 +1919,7 @@ namespace MuslimAID.SALAM
                             }
                             #endregion
                             #region Family Details
-                            DataSet dsFD = cls_Connection.getDataSet("SELECT * FROM micro_family_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
+                            DataSet dsFD = cls_Connection.getDataSet("SELECT * FROM salam_family_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
                             if (dsFD.Tables[0].Rows.Count > 0)
                             {
                                 txtSoNIC.Text = dsFD.Tables[0].Rows[0]["spouse_nic"].ToString();
@@ -1820,7 +1927,7 @@ namespace MuslimAID.SALAM
                                 txtSoDOB.Text = dsFD.Tables[0].Rows[0]["spouse_dob"].ToString();
                                 DateTime dtSo = DateTime.Parse(dsFD.Tables[0].Rows[0]["spouse_dob"].ToString(), new CultureInfo("en-CA"));
                                 lblSoAge.Text = (DateTime.Now.Year - dtSo.Year).ToString();
-                                
+
                                 string strSGender;
                                 if (dsFD.Tables[0].Rows[0]["spouse_dob"].ToString() == "0")
                                     rdoSoMale.Checked = true;
@@ -1834,7 +1941,7 @@ namespace MuslimAID.SALAM
                             }
                             #endregion
                             #region Business Details
-                            DataSet dsBD = cls_Connection.getDataSet("SELECT * FROM micro_business_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
+                            DataSet dsBD = cls_Connection.getDataSet("SELECT * FROM salam_business_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
                             if (dsBD.Tables[0].Rows.Count > 0)
                             {
                                 txtBusiness.Text = dsBD.Tables[0].Rows[0]["business_name"].ToString();
@@ -1849,7 +1956,7 @@ namespace MuslimAID.SALAM
                             #endregion
                             #region Facility Requirment
 
-                            DataSet dsFR = cls_Connection.getDataSet("SELECT * FROM micro_loan_details WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                            DataSet dsFR = cls_Connection.getDataSet("SELECT * FROM salam_loan_details WHERE contra_code = '" + txtCC.Text.Trim() + "';");
                             if (dsFR.Tables[0].Rows.Count > 0)
                             {
                                 txtResonToApply.Text = dsFR.Tables[0].Rows[0]["reason_to_apply"].ToString();
@@ -1857,7 +1964,7 @@ namespace MuslimAID.SALAM
                                 cmbTmePeriod.SelectedValue = dsFR.Tables[0].Rows[0]["period"].ToString();
                                 if (dsFR.Tables[0].Rows[0]["any_unsettled_loans"].ToString() == "1")
                                 {
-                                    DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
+                                    DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM salam_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
                                     if (dsUnSLons.Tables[0].Rows.Count > 0)
                                     {
                                         for (int i = 0; i < dsUnSLons.Tables[0].Rows.Count; i++)
@@ -1985,7 +2092,7 @@ namespace MuslimAID.SALAM
                                     }
                                 }
                             }
-                            
+
                             #endregion
 
                             try
@@ -2032,6 +2139,7 @@ namespace MuslimAID.SALAM
                                 btnUpdate.Visible = false;
                             }
                         }
+                        return false;
                     }
                     else
                     {
@@ -2050,11 +2158,13 @@ namespace MuslimAID.SALAM
                             btnSubmit.Visible = true;
                             btnUpdate.Visible = false;
                         }
+                        return true;
                     }
                 }
-            }  
+            }
             catch (Exception e)
             {
+                return false;
             }
         }
 
@@ -2075,11 +2185,19 @@ namespace MuslimAID.SALAM
                             strType == "FAO" || strType == "RMG" || strType == "RFA" || strType == "BMG" ||
                             strType == "BFA")
             {
-                IsExist(); txtNicIssuDay.Focus();
+                if (IsExist())
+                {
+                    ccsetup();
+                }
+                txtNicIssuDay.Focus();
             }
             else
             {
-                ccsetup(); txtNicIssuDay.Focus();
+                if (IsExist())
+                {
+                    ccsetup();
+                }
+                txtNicIssuDay.Focus();
             }
         }
 
@@ -2100,7 +2218,7 @@ namespace MuslimAID.SALAM
 
         protected void cmbCenter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataSet dsSubCenter = cls_Connection.getDataSet("SELECT * FROM center_details WHERE city_code = '"+cmbBranch.SelectedValue.ToString()+"' AND area_code = '"+cmbArea.SelectedValue.ToString()+"' and villages = '"+cmbVillage.SelectedValue.ToString()+"' and idcenter_details = '" + cmbCenter.SelectedValue.ToString() + "';");
+            DataSet dsSubCenter = cls_Connection.getDataSet("SELECT * FROM center_details WHERE city_code = '" + cmbBranch.SelectedValue.ToString() + "' AND area_code = '" + cmbArea.SelectedValue.ToString() + "' and villages = '" + cmbVillage.SelectedValue.ToString() + "' and idcenter_details = '" + cmbCenter.SelectedValue.ToString() + "';");
 
             if (dsSubCenter.Tables[0].Rows.Count > 0)
             {
@@ -2163,7 +2281,7 @@ namespace MuslimAID.SALAM
             txtRemainInstal2.Enabled = false;
             txtRemainInstal3.Enabled = false;
             #endregion
-        }     
+        }
 
         protected void cmbOccupation_SelectedIndexChanged(object sender, EventArgs e)
         {
