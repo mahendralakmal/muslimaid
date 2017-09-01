@@ -195,7 +195,7 @@ namespace MuslimAID.MURABAHA
             {
                 if (txtInterRebate.Text!="")
                 {
-                    MySqlCommand cmdSelect = new MySqlCommand("select * from micro_loan_details l,salam_basic_detail c where c.contract_code = l.contra_code  and l.contra_code = '" + lblConCode.Text + "';");
+                    MySqlCommand cmdSelect = new MySqlCommand("select * from micro_loan_details l,micro_basic_detail c where c.contract_code = l.contra_code  and l.contra_code = '" + lblConCode.Text + "';");
                     DataSet dtLoanDet = cls_Connection.selectDataSet(cmdSelect);
                     if (dtLoanDet.Tables[0].Rows.Count > 0)
                     {

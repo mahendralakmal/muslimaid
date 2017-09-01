@@ -93,7 +93,7 @@ namespace MuslimAID.MURABAHA
 
                         lblLoanStock.Text = LoanStock(dsGetTrans.Tables[0].Rows[0]["contract_code"].ToString(), Convert.ToDecimal(dsGetTrans.Tables[0].Rows[0]["loan_amount"])).ToString();
                         lblFutureCapital.Text = FutureCapital(dsGetTrans.Tables[0].Rows[0]["contract_code"].ToString(), Convert.ToDecimal(dsGetTrans.Tables[0].Rows[0]["loan_amount"])).ToString();
-                        lblFutureInterest.Text = FutureInterest(dsGetTrans.Tables[0].Rows[0]["contract_code  "].ToString(), Convert.ToDecimal(dsGetTrans.Tables[0].Rows[0]["interest_amount"])).ToString();
+                        lblFutureInterest.Text = FutureInterest(dsGetTrans.Tables[0].Rows[0]["contract_code"].ToString(), Convert.ToDecimal(dsGetTrans.Tables[0].Rows[0]["interest_amount"])).ToString();
 
                         txtRSLoanAmount.Text = lblTotCurrentBalance.Text = dsGetTrans.Tables[0].Rows[0]["current_loan_amount"].ToString();
                         btnSubmit.Enabled = true;
@@ -109,7 +109,7 @@ namespace MuslimAID.MURABAHA
                     lblMsg.Text = "Please enter Facility Code.";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
             }
