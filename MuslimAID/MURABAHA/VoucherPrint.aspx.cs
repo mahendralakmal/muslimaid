@@ -398,27 +398,27 @@ namespace MuslimAID.MURABAHA
                 {
                     if (cmdSocietyNo.SelectedIndex == 0)
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,b.initial_name,l.chequ_no,l.loan_amount,l.interest_amount,l.period from micro_loan_details l, micro_basic_detail b, micro_voucher_print v where b.contract_code = v.contract_code and v.isPrint = 0 and l.contra_code = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is not null and l.loan_sta = 'P' and b.city_code = '" + strBranch + "' v.`status` = 1 order by l.chequ_no ;");
+                        dsLD = cls_Connection.getDataSet("select d.full_name as initial_name,l.contra_code,b.initial_name,l.chequ_no,l.loan_amount,l.interest_amount,l.period, l.chequ_no from micro_loan_details l, micro_basic_detail b, micro_voucher_print v where b.contract_code = v.contract_code and v.isPrint = 0 and l.contra_code = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is not null and l.loan_sta = 'P' and b.city_code = '" + strBranch + "' v.`status` = 1 order by l.chequ_no ;");
                     }
                     else
                     {
                         strBranch = cmbBranch.SelectedValue.ToString();
                         string strSoNo = cmdSocietyNo.SelectedItem.Value;
 
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,d.initial_name,l.chequ_no,l.loan_amount,l.interest_amount,l.period from micro_loan_details l,micro_basic_detail d, micro_voucher_print v where d.contract_code = v.contract_code and v.isPrint = 0 and l.contra_code = d.contract_code and l.loan_approved = 'Y' and l.chequ_no is not null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "' and v.`status` = 1 order by l.chequ_no ;");
+                        dsLD = cls_Connection.getDataSet("select d.full_name as initial_name,l.contra_code,d.initial_name,l.chequ_no,l.loan_amount,l.interest_amount,l.period, l.chequ_no from micro_loan_details l,micro_basic_detail d, micro_voucher_print v where d.contract_code = v.contract_code and v.isPrint = 0 and l.contra_code = d.contract_code and l.loan_approved = 'Y' and l.chequ_no is not null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "' and v.`status` = 1 order by l.chequ_no ;");
                     }
                 }
                 else
                 {
                     strBranch = cmbBranch.SelectedValue.ToString();
-                    string strSoNo = cmdSocietyNo.SelectedItem.Value;
+                    string strSoNo = cmdSocietyNo.SelectedValue.ToString();
                     if (cmdSocietyNo.SelectedIndex == 0)
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,l.loan_amount,l.interest_amount,l.period from micro_loan_details l, micro_basic_detail b, micro_voucher_print v where b.contract_code = v.contract_code and v.isPrint = 0 and l.contra_code = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is not null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "' and v.`status` = 1 order by l.chequ_no ;");
+                        dsLD = cls_Connection.getDataSet("select d.full_name as initial_name,l.contra_code,l.loan_amount,l.interest_amount,l.period, l.chequ_no from micro_loan_details l, micro_basic_detail b, micro_voucher_print v where b.contract_code = v.contract_code and v.isPrint = 0 and l.contra_code = b.contract_code and l.loan_approved = 'Y' and l.chequ_no is not null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "' and v.`status` = 1 order by l.chequ_no ;");
                     }
                     else
                     {
-                        dsLD = cls_Connection.getDataSet("select l.contra_code,l.loan_amount,l.interest_amount,l.period from micro_loan_details l,micro_basic_detail d, micro_voucher_print v where d.contract_code = v.contract_code and v.isPrint = 0 and l.contra_code = d.contract_code and l.loan_approved = 'Y' and l.chequ_no is not null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "' and v.`status` = 1 order by l.chequ_no ;");
+                        dsLD = cls_Connection.getDataSet("select d.full_name as initial_name,l.contra_code,l.loan_amount,l.interest_amount,l.period, l.chequ_no from micro_loan_details l,micro_basic_detail d, micro_voucher_print v where d.contract_code = v.contract_code and v.isPrint = 0 and l.contra_code = d.contract_code and l.loan_approved = 'Y' and l.chequ_no is not null and l.loan_sta = 'P' and d.society_id = '" + strSoNo + "' and d.city_code = '" + strBranch + "' and v.`status` = 1 order by l.chequ_no ;");
                     }
                 }
 
@@ -432,7 +432,7 @@ namespace MuslimAID.MURABAHA
                     lblMsg.Text = "No records found for your search criteria. Please try again.";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 grvChequAppr.DataSource = null;
                 grvChequAppr.DataBind();

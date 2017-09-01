@@ -80,7 +80,7 @@ namespace MuslimAID.MURABAHA
                     if(cmbArea.SelectedIndex > 0)
                         strBQ.Append(" AND area_code ='" + cmbArea.SelectedValue.ToString() + "'");
                     if (cmbVillage.SelectedIndex > 0)
-                        strBQ.Append("' AND villages_code = '" + cmbVillage.SelectedValue.ToString() + "'");
+                        strBQ.Append(" AND villages_code = '" + cmbVillage.SelectedValue.ToString() + "'");
                     if (cmdSocietyNo.SelectedIndex > 0)
                         strBQ.Append(" AND society_id = '" + cmdSocietyNo.SelectedValue.ToString() + "'");
                     //if (strType == "BMG")
