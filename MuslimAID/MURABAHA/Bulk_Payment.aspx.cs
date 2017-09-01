@@ -81,44 +81,43 @@ namespace MuslimAID.MURABAHA
             grvPayment.DataBind();
             lblTotalPaied.Text = "";
             pnlPayment.Visible = false;
-            if (cmbCityCode.SelectedIndex != 0)
+            cmbArea.Items.Clear();
+            cmbVillage.Items.Clear();
+            cmbSocietyID.Items.Clear();
+
+            if (cmbArea.Items.Count > 0)
             {
-                if (cmbSocietyID.Items.Count > 0)
-                {
-                    cmbSocietyID.Items.Clear();
-                }
+                cmbArea.Items.Clear();
+            }
 
-                DataSet dsCenter;
-                MySqlCommand cmdCenter = new MySqlCommand("select idcenter_details,center_name,villages from center_details where city_code = '" + cmbCityCode.SelectedItem.Value + "' order by center_name");
-                dsCenter = objDBTask.selectData(cmdCenter);
-                if (dsCenter.Tables[0].Rows.Count > 0)
-                {
-                    //cmbSocietyID.Items.Add("");
-                    btnSerch.Enabled = true;
+            if (cmbVillage.Items.Count > 0)
+            {
+                cmbVillage.Items.Clear();
+            }
 
-                    for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
+            try
+            {
+                DataSet dsVillage = cls_Connection.getDataSet("select * from area where branch_code = '" + cmbCityCode.SelectedItem.Value + "' ORDER BY area");
+                if (dsVillage.Tables[0].Rows.Count > 0)
+                {
+                    cmbArea.Items.Add("Select Area");
+                    //btnSubmit.Enabled = true;
+
+                    for (int i = 0; i < dsVillage.Tables[0].Rows.Count; i++)
                     {
-                        cmbSocietyID.Items.Add(dsCenter.Tables[0].Rows[i]["center_name"].ToString()+" - ["+ dsCenter.Tables[0].Rows[i]["idcenter_details"] + "] - " + dsCenter.Tables[0].Rows[i]["villages"].ToString());
-                        cmbSocietyID.Items[i].Value = dsCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
-
-                        //cmbAds.Items.Add("[" + dsData.Tables[0].Rows[i]["advertisementid"] + "] - " + dsData.Tables[0].Rows[i]["makename"].ToString() + "-" + dsData.Tables[0].Rows[i]["model"].ToString() + " - " + dsData.Tables[0].Rows[i]["submodel"].ToString());
-                        //cmbAds.Items[i].Value = dsData.Tables[0].Rows[i]["advertisementid"].ToString();
+                        cmbArea.Items.Add(dsVillage.Tables[0].Rows[i][1].ToString());
+                        cmbArea.Items[i + 1].Value = dsVillage.Tables[0].Rows[i][2].ToString();
                     }
+                    cmbArea.Enabled = true;
                 }
                 else
                 {
-                    lblMsg.Text = "No record found...! Please chose other Branch Code.";
-                    btnSerch.Enabled = false;
+                    lblMsg.Text = "No record found...! Please chose other city code.";
+                    // btnSubmit.Enabled = false;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                if (cmbSocietyID.Items.Count > 0)
-                {
-                    cmbSocietyID.Items.Clear();
-                }
-                lblMsg.Text = "Please chose Branch Code.";
-                btnSerch.Enabled = false;
             }
         }
 
@@ -1454,7 +1453,7 @@ namespace MuslimAID.MURABAHA
                     //Edit
                     string strAmo = txtPayment.Text.Trim();
                     string strloginID = Session["NIC"].ToString();
-                    string strCCode = grvPayment.Rows[id].Cells[0].Text;
+                    string strCCode = grvPayment.Rows[id].Cells[1].Text;
                     string strNIC = grvPayment.Rows[id].Cells[2].Text;
                     string strDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     string strIp = Request.UserHostAddress;
@@ -1540,8 +1539,8 @@ namespace MuslimAID.MURABAHA
                         decimal decDebit2 = decOA - decDefult;
                         string strDebit2 = Convert.ToString(decDebit2);
                         decimal decDueAmou = decOMI + decOA;
-                        decimal decIA = Convert.ToDecimal(strIA);
-                        decimal decPe = Convert.ToDecimal(strP);
+                        decimal decIA = Convert.ToDecimal((strIA != "")? strIA: "0.00");
+                        decimal decPe = Convert.ToDecimal((strP != "")? strP: "0.00");
                         //R Balance 2016-03-24
                         decimal decFirstInter = decIA / 1176 * 48;
 
@@ -2590,6 +2589,87 @@ namespace MuslimAID.MURABAHA
             if (cmbSocietyID.Items.Count > 0)
             {
                 cmbSocietyID.Items.Clear();
+            }
+        }
+
+        protected void cmbArea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbVillage.Items.Clear();
+            cmbSocietyID.Items.Clear();
+            try
+            {
+                lblMsg.Text = "";
+                if (cmbCityCode.SelectedIndex == 0)
+                {
+                    lblMsg.Text = "Please select branch.";
+                    //btnSubmit.Enabled = false;
+                }
+                else if (cmbArea.SelectedIndex < 0)
+                {
+                    lblMsg.Text = "Please select area.";
+                    //btnSubmit.Enabled = false;
+                }
+                else
+                {
+                    if (cmbVillage.Items.Count > 0)
+                    {
+                        cmbVillage.Items.Clear();
+                    }
+
+                    DataSet dsSocietyName = cls_Connection.getDataSet("SELECT villages_code,villages_name FROM villages_name WHERE city_code = '" + cmbCityCode.SelectedItem.Value + "' AND area_code ='" + cmbArea.SelectedItem.Value + "';");
+                    if (dsSocietyName.Tables[0].Rows.Count > 0)
+                    {
+                        cmbVillage.Items.Add("Select Village");
+                        for (int i = 0; i < dsSocietyName.Tables[0].Rows.Count; i++)
+                        {
+                            cmbVillage.Items.Add(dsSocietyName.Tables[0].Rows[i]["villages_name"].ToString());
+                            cmbVillage.Items[i + 1].Value = dsSocietyName.Tables[0].Rows[i]["villages_code"].ToString();
+                        }
+                        cmbVillage.Enabled = true;
+                    }
+                    else
+                    {
+                        lblMsg.Text = "No record found...! Please chose other village name.";
+                        //btnSubmit.Enabled = false;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        protected void cmbVillage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbSocietyID.Items.Clear();
+            try
+            {
+                //txtSoNumber.Text = "";
+                lblMsg.Text = "";
+                if (cmbVillage.SelectedIndex != 0 && cmbCityCode.SelectedIndex != 0 && cmbArea.SelectedIndex != 0)
+                {
+                    DataSet dsSCenter = cls_Connection.getDataSet("SELECT idcenter_details, center_name, center_day FROM center_details WHERE city_code = '" + cmbCityCode.SelectedItem.Value + "' AND area_code = '" + cmbArea.SelectedItem.Value + "' AND villages = '" + cmbVillage.SelectedItem.Value + "';");
+                    cmbSocietyID.Items.Clear();
+                    if (dsSCenter.Tables[0].Rows.Count > 0)
+                    {
+                        cmbSocietyID.Items.Add("Select Center");
+
+                        for (int i = 0; i < dsSCenter.Tables[0].Rows.Count; i++)
+                        {
+                            cmbSocietyID.Items.Add(dsSCenter.Tables[0].Rows[i]["center_name"].ToString());
+                            cmbSocietyID.Items[i + 1].Value = dsSCenter.Tables[0].Rows[i]["idcenter_details"].ToString();
+                        }
+                        cmbSocietyID.Enabled = true;
+                    }
+                    else
+                    {
+                        lblMsg.Text = "There is no available centers...";
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
             }
         }
     }

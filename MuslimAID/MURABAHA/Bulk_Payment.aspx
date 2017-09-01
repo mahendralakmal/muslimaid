@@ -23,7 +23,9 @@
                 <div class="col-md-5">
                     Area</div>
                 <div class="col-md-7">
-                    <asp:DropDownList CssClass="form-control" ID="cmbArea" runat="server" Width="200">
+                    <asp:DropDownList CssClass="form-control" ID="cmbArea" runat="server" 
+                        Width="200" AutoPostBack="True" 
+                        onselectedindexchanged="cmbArea_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
             </div>
@@ -31,7 +33,9 @@
                 <div class="col-md-5">
                     Village</div>
                 <div class="col-md-7">
-                    <asp:DropDownList CssClass="form-control" ID="cmbVillage" runat="server" Width="200">
+                    <asp:DropDownList CssClass="form-control" ID="cmbVillage" runat="server" 
+                        Width="200" AutoPostBack="True" 
+                        onselectedindexchanged="cmbVillage_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
             </div>
