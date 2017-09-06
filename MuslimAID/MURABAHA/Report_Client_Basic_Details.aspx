@@ -45,8 +45,8 @@
     }
     
     $(function(){
-        $('#datepicker1').datetimepicker({ format: 'DD/MM/YYYY' });
-        $('#datepicker2').datetimepicker({ format: 'DD/MM/YYYY' });
+        $('#datepicker1').datetimepicker({ format: 'DD-MM-YYYY' });
+        $('#datepicker2').datetimepicker({ format: 'DD-MM-YYYY' });
     });
     </script>
     
