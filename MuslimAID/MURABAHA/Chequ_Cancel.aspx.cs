@@ -49,7 +49,7 @@ namespace MuslimAID.MURABAHA
             lblContractCode.Text = "";
             lblName.Text = "";
             lblNIC.Text = "";
-            txtComment.Text = "";
+            txtComment.SelectedIndex = 0;
             lblChequeDate.Text = "";
             lblAccountNo.Text = "";
         }
@@ -69,7 +69,7 @@ namespace MuslimAID.MURABAHA
                     {
                         if (dsChequeNo.Tables[0].Rows[0]["chq_status"].ToString() == "A")
                         {
-                            DataSet dsCD = cls_Connection.getDataSet("select c.contract_code,c.nic,c.initial_name,h.amount AS paied_amount,concat('20',year1,year2,'-',month1,month2,'-',day1,day2) as ChequeDate from chq_date h inner join micro_basic_detail c on c.contract_code = h.contract_code inner join micro_loan_details l on l.contra_code = c.contract_code where l.chequ_no = '" + strRNo + "' and chq_status = 'A' and loan_sta != 'C';");
+                            DataSet dsCD = cls_Connection.getDataSet("select c.contract_code,c.nic,c.full_name AS initial_name,h.amount AS paied_amount,concat('20',year1,year2,'-',month1,month2,'-',day1,day2) as ChequeDate from chq_date h inner join micro_basic_detail c on c.contract_code = h.contract_code inner join micro_loan_details l on l.contra_code = c.contract_code where l.chequ_no = '" + strRNo + "' and chq_status = 'A' and loan_sta != 'C';");
                             if (dsCD.Tables[0].Rows.Count > 0)
                             {
                                 lblAmount.Text = dsCD.Tables[0].Rows[0]["paied_amount"].ToString();
@@ -102,7 +102,7 @@ namespace MuslimAID.MURABAHA
                     btnPeied.Enabled = false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 lblMsg.Text = "No Record Found.";
             }

@@ -18,6 +18,13 @@
             prtwin.focus();
             prtwin.print();
             prtwin.close();
+            $.ajax({
+                type:"POST",
+                url:"callLoadVoucher",
+                success:function(response){
+                    alert(response);
+                },
+            });
         }
     </script>
 

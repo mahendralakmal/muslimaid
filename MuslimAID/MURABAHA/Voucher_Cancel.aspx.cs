@@ -66,7 +66,7 @@ namespace MuslimAID.MURABAHA
             if (txtRNo.Text.Trim() != "")
             {
                 string strRNo = txtRNo.Text.Trim();
-                DataSet dsCD = cls_Connection.getDataSet("select c.contract_code,c.nic,c.initial_name,l.loan_amount AS paied_amount from micro_voucher_print h inner join micro_basic_detail c on c.contract_code = h.contract_code inner join micro_loan_details l on c.contract_code = l.contra_code where h.status = 1 and h.voucher_no = '" + strRNo + "';");
+                DataSet dsCD = cls_Connection.getDataSet("select c.contract_code,c.nic,c.full_name AS initial_name,l.loan_amount AS paied_amount from micro_voucher_print h inner join micro_basic_detail c on c.contract_code = h.contract_code inner join micro_loan_details l on c.contract_code = l.contra_code where h.status = 1 and h.voucher_no = '" + strRNo + "';");
                 if (dsCD.Tables[0].Rows.Count > 0)
                 {
                     lblAmount.Text = dsCD.Tables[0].Rows[0]["paied_amount"].ToString();

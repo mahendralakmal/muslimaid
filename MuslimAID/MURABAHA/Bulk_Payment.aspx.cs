@@ -2590,6 +2590,14 @@ namespace MuslimAID.MURABAHA
             {
                 cmbSocietyID.Items.Clear();
             }
+            if (cmbArea.Items.Count > 0)
+            {
+                cmbArea.Items.Clear();
+            }
+            if (cmbVillage.Items.Count > 0)
+            {
+                cmbVillage.Items.Clear();
+            }
         }
 
         protected void cmbArea_SelectedIndexChanged(object sender, EventArgs e)

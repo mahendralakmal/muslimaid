@@ -51,11 +51,11 @@ namespace MuslimAID.MURABAHA
                         Response.Redirect("murabha.aspx");
                     }
                 }
-            }
-            else
-            {
-                Response.Redirect("../Login.aspx");
-            }
+                else
+                {
+                    Response.Redirect("../Login.aspx");
+                }
+            }            
         }
 
         protected void Clear()

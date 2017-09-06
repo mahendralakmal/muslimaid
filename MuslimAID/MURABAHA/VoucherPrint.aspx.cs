@@ -12,6 +12,7 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 //using CrystalDecisions.CrystalReports.Engine;
 using MySql.Data.MySqlClient;
+using System.Web.Services;
 
 namespace MuslimAID.MURABAHA
 {
@@ -196,6 +197,7 @@ namespace MuslimAID.MURABAHA
             lblNIC.Text = "";
             lblDate.Text = "";
             lblUserID.Text = "";
+            txtContraCode.Text = "";
         }
 
         private void LoadVoucher(string contractcode)
@@ -224,6 +226,12 @@ namespace MuslimAID.MURABAHA
             catch (Exception)
             {
             }
+        }
+
+        [WebMethod]
+        public string callLoadVoucher() {
+            LoadVoucher(txtContraCode.Text);
+            return "true";
         }
 
         protected void Page_Load(object sender, EventArgs e)
