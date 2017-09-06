@@ -5,57 +5,27 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $("#<%=txtDateFrom.ClientID %>").dynDateTime({
-                showsTime: false,
-                ifFormat: "%Y-%m-%d",
-                daFormat: "%l;%M %p, %e %m,  %Y",
-                align: "BR",
-                electric: false,
-                singleClick: false,
-                displayArea: ".siblings('.dtcDisplayArea')",
-                button: ".next()"
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#<%=txtDateTo.ClientID %>").dynDateTime({
-                showsTime: false,
-                ifFormat: "%Y-%m-%d",
-                daFormat: "%l;%M %p, %e %m,  %Y",
-                align: "BR",
-                electric: false,
-                singleClick: false,
-                displayArea: ".siblings('.dtcDisplayArea')",
-                button: ".next()"
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        function PrintGridData() {
-            var prtGrid = document.getElementById('<%=grvCliDeta.ClientID %>');
-            prtGrid.border = 1;
-            prtGrid.style.fontSize = "10pt";
-            prtGrid.style.fontFamily = "Calibri";
-            var prtwin = window.open('', 'PrintGridViewData', 'left=100,top=100,width=1000,height=1000,tollbar=0,scrollbars=1,status=0,resizable=1');
-            prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>CS Client Basic Details Report - Ventura Crystal Investments Ltd</div>");
-            prtwin.document.write(prtGrid.outerHTML);
-            prtwin.document.close();&lt;asp:TextBox ID="txtDateFrom" runat="server" Width="65px" MaxLength="10"&gt;&lt;/asp:TextBox&gt;&lt;img
-                                    src="../Images/calender.png" /&gt;
-                                &nbsp;&nbsp; To &nbsp;&nbsp;
-                                &lt;asp:TextBox ID="txtDateTo" runat="server" Width="65px" MaxLength="10"&gt;&lt;/asp:TextBox&gt;&lt;img
-                                    src="../Images/calender.png" /&gt;
-            prtwin.focus();
-            prtwin.print();
-            prtwin.close();
-        }
+//        function PrintGridData() {
+//            var prtGrid = document.getElementById('<%=grvCliDeta.ClientID %>');
+//            prtGrid.border = 1;
+//            prtGrid.style.fontSize = "10pt";
+//            prtGrid.style.fontFamily = "Calibri";
+//            var prtwin = window.open('', 'PrintGridViewData', 'left=100,top=100,width=1000,height=1000,tollbar=0,scrollbars=1,status=0,resizable=1');
+//            prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>CS Client Basic Details Report - Ventura Crystal Investments Ltd</div>");
+//            prtwin.document.write(prtGrid.outerHTML);
+//            prtwin.document.close();&lt;asp:TextBox ID="txtDateFrom" runat="server" Width="65px" MaxLength="10"&gt;&lt;/asp:TextBox&gt;&lt;img
+//                                    src="../Images/calender.png" /&gt;
+//                                &nbsp;&nbsp; To &nbsp;&nbsp;
+//                                &lt;asp:TextBox ID="txtDateTo" runat="server" Width="65px" MaxLength="10"&gt;&lt;/asp:TextBox&gt;&lt;img
+//                                    src="../Images/calender.png" /&gt;
+//            prtwin.focus();
+//            prtwin.print();
+//            prtwin.close();
+//        }
         
         $(function(){
-            $('#datepicker1').datetimepicker({ format: 'DD/MM/YYYY' });
-            $('#datepicker2').datetimepicker({ format: 'DD/MM/YYYY' });
+            $('#datepicker1').datetimepicker({ format: 'DD-MM-YYYY' });
+            $('#datepicker2').datetimepicker({ format: 'DD-MM-YYYY' });
         });
     </script>
 

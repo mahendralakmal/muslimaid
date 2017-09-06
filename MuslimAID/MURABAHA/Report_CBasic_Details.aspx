@@ -1,7 +1,7 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="Report_Client_Basic_Details.aspx.cs" Inherits="MuslimAID.MURABHA.Report_Client_Basic_Details" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true" CodeBehind="Report_CBasic_Details.aspx.cs" Inherits="MuslimAID.MURABHA.Report_CBasic_Details" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <%--<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#<%=txtDateFrom.ClientID %>").dynDateTime({
                 showsTime: false,
@@ -28,7 +28,7 @@
                 button: ".next()"
             });
         });
-    </script>--%>
+    </script>
     <script type="text/javascript">
     function PrintGridData() {
     var prtGrid = document.getElementById('<%=grvCliDeta.ClientID %>');

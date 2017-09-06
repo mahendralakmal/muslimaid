@@ -11,7 +11,7 @@
 namespace MuslimAID.MURABHA {
     
     
-    public partial class Report_Client_Basic_Details {
+    public partial class Report_CBasic_Details {
         
         /// <summary>
         /// cmbCityCode control.
