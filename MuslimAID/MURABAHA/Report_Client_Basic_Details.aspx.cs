@@ -83,12 +83,12 @@ namespace MuslimAID.MURABHA
                         }
                         if (cmbCenter.SelectedIndex != 0 && cmbCenter.SelectedIndex > 0)
                         {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and auto_id = '" + cmbCenter.SelectedValue.ToString() + "' ";
+                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and society_id = '" + cmbCenter.SelectedValue.ToString() + "' ";
                         }
                     }
                     if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
                     {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and (DATE_FORMAT((date_time),'%Y-%m-%d')) between '" + txtDateFrom.Text.Trim() + "' and '" + txtDateTo.Text.Trim() + "'";
+                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and basic_date_time BETWEEN '" + txtDateFrom.Text.Trim() + "' and '" + txtDateTo.Text.Trim() + "'";
                     }
                     if (cmbCenterDay.SelectedIndex != 0 && cmbCenterDay.SelectedIndex > 0)
                     {
