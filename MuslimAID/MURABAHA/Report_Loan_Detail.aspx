@@ -60,54 +60,48 @@
 <div class="container">
     <div class="PageTitle"><h4>Loan Detail Report</h4></div>
     <div class="col-md-12 form-container row">
-        <div class="col-md-3 form-group">
-            <div class="col-md-5">Branch Code</div>
-            <div class="col-md-7"><asp:DropDownList ID="cmbCityCode" CssClass="form-control report_branch" TabIndex="1" runat="server"
+        <div class="col-md-4 form-group">
+            <div class="col-md-4">Branch Code</div>
+            <div class="col-md-8"><asp:DropDownList ID="cmbCityCode" CssClass="form-control report_branch" TabIndex="1" runat="server"
                                     AutoPostBack="true" OnSelectedIndexChanged="cmbCityCode_SelectedIndexChanged">
                                 </asp:DropDownList></div>
         </div>
-        <div class="col-md-3 form-group">
-            <div class="col-md-5">Center</div>
-            <div class="col-md-7"><asp:DropDownList CssClass="form-control" ID="cmbVillagr" runat="server" Enabled="false">
-                                </asp:DropDownList></div>
-        </div>
-        <div class="col-md-3 form-group">
-            <div class="col-md-5">MFO</div>
-            <div class="col-md-7"><asp:DropDownList ID="cmbRoot" runat="server" Enabled="false" CssClass="form-control">
-                                </asp:DropDownList></div>
-        </div>
-        <div class="col-md-3 form-group">
-            <div class="col-md-5">Facility Code</div>
-            <div class="col-md-7"><asp:TextBox ID="txtContraCode" CssClass="report_cc form-control" TabIndex="2" runat="server"
-                                                MaxLength="15"></asp:TextBox></div>
-        </div>
-        <div class="col-md-3 form-group">
-            <div class="col-md-4">Date</div>
-            <div class="col-md-8">
-                <div class='input-group date' id='datepicker1' name='datepicker1'>
-                    <asp:TextBox ID="txtDateFrom" CssClass="form-control" runat="server"
-                        TabIndex="9"></asp:TextBox>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+        <div class="col-md-4 form-group">
+                <div class="col-md-4">Area</div>
+                <div class="col-md-8">
+                    <asp:DropDownList ID="cmbArea" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="True" 
+                        onselectedindexchanged="cmbArea_SelectedIndexChanged" >
+                                </asp:DropDownList>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3 form-group">
-            <div class="col-md-2">to</div>
-            <div class="col-md-8">
-                <div class='input-group date' id='datepicker2' name='datepicker2'>
-                    <asp:TextBox ID="txtDateTo" CssClass="form-control" runat="server"
-                        TabIndex="9"></asp:TextBox>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+            <div class="col-md-4 form-group">
+                <div class="col-md-4">Village</div>
+                <div class="col-md-8"><asp:DropDownList ID="cmbVillage" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="True" 
+                        onselectedindexchanged="cmbVillage_SelectedIndexChanged" >
+                                </asp:DropDownList></div>
             </div>
+        <div class="col-md-4 form-group">
+            <div class="col-md-4">Center</div>
+            <div class="col-md-8"><asp:DropDownList CssClass="form-control" ID="cmbVillagr" runat="server" Enabled="false">
+                                </asp:DropDownList></div>
         </div>
-        <div class="col-md-3 form-group">
-            <div class="col-md-5">
+        <div class="col-md-4 form-group">
+            <div class="col-md-4">MFO</div>
+            <div class="col-md-8"><asp:DropDownList ID="cmbRoot" runat="server" Enabled="false" CssClass="form-control">
+                                </asp:DropDownList></div>
+        </div>
+        <div class="col-md-4 form-group">
+            <div class="col-md-4">Facility Code</div>
+            <div class="col-md-8"><asp:TextBox ID="txtContraCode" CssClass="report_cc form-control" TabIndex="2" runat="server"
+                                                MaxLength="30"></asp:TextBox></div>
+        </div>
+        <div class="col-md-4 form-group">
+            <div class="col-md-4">
                 Status :
             </div>
-            <div class="col-md-7">
+            <div class="col-md-8">
                 <asp:DropDownList ID="cmbStatus" runat="server" CssClass="form-control">
                     <asp:ListItem Value="A">All</asp:ListItem>
                     <asp:ListItem Value="N">Pending</asp:ListItem>
@@ -118,13 +112,33 @@
                 </asp:DropDownList>
             </div>
         </div>
-        <div class="col-md-3 form-group">
+        <div class="col-md-4 form-group">
+            <div class="col-md-4">Date</div>
+            <div class="col-md-8">
+                <div class='input-group date' id='datepicker1' name='datepicker1'>
+                    <asp:TextBox ID="txtDateFrom" CssClass="form-control" runat="server"
+                        TabIndex="9"></asp:TextBox>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 form-group">
+            <div class="col-md-2">to</div>
+            <div class="col-md-8">
+                <div class='input-group date' id='datepicker2' name='datepicker2'>
+                    <asp:TextBox ID="txtDateTo" CssClass="form-control" runat="server"
+                        TabIndex="9"></asp:TextBox>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 pull-left form-group">
             <asp:Button ID="btnSerch" runat="server" CssClass="btn btn-primary report_btn" Text="Search" TabIndex="5"
                                                 OnClick="btnSerch_Click" />
             <input type="button" id="btnPrint" class="report_btn2 btn btn-default" tabindex="6" value="Print"
                                                 onclick="PrintGridData()" />
-        </div>
-        <div class="col-md-12 form-group pull-right">
             <asp:LinkButton ID="View" runat="server" CommandName="View" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" Text="Export Excel" Height="25px" OnClick="View_Click" />
         </div>
         <div class="col-md-12 form-group">
