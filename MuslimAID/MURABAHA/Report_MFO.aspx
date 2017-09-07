@@ -1,7 +1,22 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true"
+﻿    <%@ Page Language="C#" MasterPageFile="~/MURABAHA/Murabha.Master" AutoEventWireup="true"
     CodeBehind="Report_MFO.aspx.cs" Inherits="MuslimAID.MURABHA.Report_MFO" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        function PrintGridData() {
+            var prtGrid = document.getElementById('<%=grvCenDeta.ClientID %>');
+            prtGrid.border = 1;
+            prtGrid.style.fontSize = "10pt";
+            prtGrid.style.fontFamily = "Calibri";
+            var prtwin = window.open('', 'PrintGridViewData', 'left=100,top=100,width=1000,height=1000,tollbar=0,scrollbars=1,status=0,resizable=1');
+            prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>CRO Details Report -  MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED </div>");
+            prtwin.document.write(prtGrid.outerHTML);
+            prtwin.document.close();
+            prtwin.focus();
+            prtwin.print();
+            prtwin.close();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -24,7 +39,8 @@
             </div>
             <div class="col-md-12 form-group">                
                 <asp:Panel ID="pnlCenterDetail" runat="server">
-                        <asp:GridView ID="grvCenDeta" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top">
+                        <asp:GridView ID="grvCenDeta" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top"
+                                    Font-Size="8pt">
                             <Columns>
                                 <asp:TemplateField HeaderText="S.No." ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top"
                                     HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">

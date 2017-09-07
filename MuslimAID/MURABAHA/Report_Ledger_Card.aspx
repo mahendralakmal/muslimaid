@@ -5,12 +5,12 @@
 
     <script type="text/javascript">
         function PrintGridData() {
-            var prtGrid = document.getElementById('cusSumme');
+            var prtGrid = document.getElementById('<%=grvSumm.ClientID %>');
             prtGrid.border = 1;
             prtGrid.style.fontSize = "10pt";
             prtGrid.style.fontFamily = "Calibri";
             var prtwin = window.open('', 'PrintGridViewData', 'left=100,top=100,width=1000,height=1000,tollbar=0,scrollbars=1,status=0,resizable=1');
-            prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>Ventura - CS Customer Ledger Card</div>");
+            prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'> MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED  - CS Customer Ledger Card</div>");
             prtwin.document.write(prtGrid.outerHTML);
             prtwin.document.close();
             prtwin.focus();

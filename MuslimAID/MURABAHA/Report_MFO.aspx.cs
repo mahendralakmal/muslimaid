@@ -11,6 +11,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using MySql.Data.MySqlClient;
+using System.IO;
+using System.Drawing;
 
 namespace MuslimAID.MURABHA
 {
@@ -132,7 +134,59 @@ namespace MuslimAID.MURABHA
 
         protected void View_Click(object sender, EventArgs e)
         {
+            exportExcel();
+        }
 
+        protected void exportExcel()
+        {
+            try
+            {
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment;filename=Cheque_Printing_Report.xls");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                using (StringWriter sw = new StringWriter())
+                {
+                    HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+                    //To Export all pages
+
+                    grvCenDeta.HeaderRow.BackColor = Color.White;
+                    foreach (TableCell cell in grvCenDeta.HeaderRow.Cells)
+                    {
+                        cell.BackColor = grvCenDeta.HeaderStyle.BackColor;
+                    }
+                    foreach (GridViewRow row in grvCenDeta.Rows)
+                    {
+                        row.BackColor = Color.White;
+                        foreach (TableCell cell in row.Cells)
+                        {
+                            if (row.RowIndex % 2 == 0)
+                            {
+                                cell.BackColor = grvCenDeta.AlternatingRowStyle.BackColor;
+                            }
+                            else
+                            {
+                                cell.BackColor = grvCenDeta.RowStyle.BackColor;
+                            }
+                            cell.CssClass = "textmode";
+                        }
+                    }
+
+                    grvCenDeta.RenderControl(hw);
+
+                    //style to format numbers to string
+                    string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+                    Response.Write(style);
+                    Response.Output.Write(sw.ToString());
+                    Response.Flush();
+                    Response.End();
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

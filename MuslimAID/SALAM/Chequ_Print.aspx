@@ -12,7 +12,7 @@
             //prtGrid.style.fontSize="12pt";
             prtGrid.style.fontFamily = "Calibri";
             var prtwin = window.open('', 'PrintGridViewData', 'left=0px,top=0px,right=0px,bottom=0px,width=672.755906px,height=340.15748px,tollbar=0,scrollbars=1,status=0,resizable=1');
-            //prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>Ventura Crystal Investments Ltd</div>");
+            //prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'> MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED </div>");
             prtwin.document.write(prtGrid.outerHTML);
             prtwin.document.close();
             prtwin.focus();

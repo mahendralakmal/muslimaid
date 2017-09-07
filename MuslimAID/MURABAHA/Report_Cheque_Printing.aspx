@@ -40,7 +40,7 @@
             prtGrid.style.fontSize = "10pt";
             prtGrid.style.fontFamily = "Calibri";
             var prtwin = window.open('', 'PrintGridViewData', 'left=100,top=100,width=1000,height=1000,tollbar=0,scrollbars=1,status=0,resizable=1');
-            prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>CS Cheque Printing Details Report - Ventura Crystal Investments Ltd</div>");
+            prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>CS Cheque Printing Details Report -  MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED </div>");
             prtwin.document.write(prtGrid.outerHTML);
             prtwin.document.close();
             prtwin.focus();
@@ -59,22 +59,34 @@
     <div class="container">
         <div class="PageTitle"><h4>Cheque Printing Details Report</h4></div>
         <div class="col-md-12 form-container row">
-            <div class="col-md-3 form-group">
+            <div class="col-md-4 form-group">
                 <div class="col-md-4">Branch</div>
                 <div class="col-md-8"><asp:DropDownList ID="cmbCityCode" CssClass="form-control" TabIndex="0" runat="server" OnSelectedIndexChanged="cmbCityCode_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                 </div>
             </div>
-            <div class="col-md-5 form-group">
-                <div class="col-md-3">Facility Code</div>
-                <div class="col-md-9"><asp:TextBox ID="txtContraCode" CssClass="form-control" runat="server" MaxLength="30"></asp:TextBox></div>
+        <div class="col-md-4 form-group">
+                <div class="col-md-4">Area</div>
+                <div class="col-md-8">
+                    <asp:DropDownList ID="cmbArea" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="True" 
+                        onselectedindexchanged="cmbArea_SelectedIndexChanged" >
+                                </asp:DropDownList>
+                </div>
             </div>
             <div class="col-md-4 form-group">
-                <div class="col-md-3">Center</div>
-                <div class="col-md-9">
+                <div class="col-md-4">Village</div>
+                <div class="col-md-8"><asp:DropDownList ID="cmbVillage" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="True" 
+                        onselectedindexchanged="cmbVillage_SelectedIndexChanged" >
+                                </asp:DropDownList></div>
+            </div>
+            <div class="col-md-4 form-group">
+                <div class="col-md-4">Center</div>
+                <div class="col-md-8">
                     <asp:DropDownList ID="cmbVillagr" CssClass="form-control" runat="server"></asp:DropDownList>
                 </div>
             </div>
-            <div class="col-md-3 form-group">
+            <div class="col-md-4 form-group">
                 <div class="col-md-4">Date</div>
                 <div class="col-md-8">
                     <div class='input-group date' id='datepicker1' name='datepicker1'>
@@ -85,7 +97,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 form-group">
+            <div class="col-md-4 form-group">
                 <div class="col-md-4">To</div>
                 <div class="col-md-8">
                     <div class=input-group date' id='datepicker2' name='datepicker2'>
@@ -96,25 +108,30 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 form-group">
-                <div class="col-md-5">Cheque No</div>
-                <div class="col-md-7">
+            <div class="col-md-12"></div>
+            <div class="col-md-4 form-group">
+                <div class="col-md-4">Cheque No</div>
+                <div class="col-md-8">
                     <asp:TextBox ID="txtChequeNo" CssClass="form-control" runat="server" MaxLength="15"></asp:TextBox>
                 </div>
             </div>
-            <div class="col-md-3 form-group">
-                <div class="col-md-2">To</div>
-                <div class="col-md-10">
+            <div class="col-md-4 form-group">
+                <div class="col-md-4">To</div>
+                <div class="col-md-8">
                     <asp:TextBox ID="txtToChequeNo" CssClass="form-control" runat="server" MaxLength="15"></asp:TextBox>
                 </div>
             </div>
-            <div class="col-md-12"></div>
-            <div class="col-md-3 form-group">
+            <div class="col-md-4 form-group">
                 <div class="col-md-4">MFO</div>
                 <div class="col-md-8">
                     <asp:DropDownList ID="cmbCRO" CssClass="form-control" runat="server"></asp:DropDownList>
                 </div>
             </div>
+            <div class="col-md-5 form-group">
+                <div class="col-md-3">Facility Code</div>
+                <div class="col-md-9"><asp:TextBox ID="txtContraCode" CssClass="form-control" runat="server" MaxLength="30"></asp:TextBox></div>
+            </div>
+            <div class="col-md-12"></div>
             <div class="col-md-5 form-group">
                 <asp:Button ID="btnSerch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSerch_Click" />
                 <input type="button" id="btnPrint" value="Print" class="btn btn-primary" onclick="PrintGridData()" />

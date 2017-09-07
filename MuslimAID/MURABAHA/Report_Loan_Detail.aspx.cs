@@ -65,14 +65,14 @@ namespace MuslimAID.MURABHA
                     if (cmbCityCode.SelectedIndex != 0)
                     {
                         hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.city_code = '" + cmbCityCode.SelectedValue.ToString() + "'";
+                        if (cmbArea.SelectedIndex != 0)
+                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.area_code = '" + cmbArea.SelectedItem.Value + "'";
+                        if (cmbVillage.SelectedIndex != 0)
+                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.village = '" + cmbVillage.SelectedItem.Value + "'";
                         if (cmbRoot.SelectedIndex != 0)
-                        {
                             hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.root_id = '" + cmbRoot.SelectedItem.Value + "'";
-                        }
                         if (cmbVillagr.SelectedIndex != 0)
-                        {
                             hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.society_id = '" + cmbVillagr.SelectedValue.ToString() + "' ";
-                        }
                     }
                     if (cmbStatus.SelectedIndex != 0)
                     {

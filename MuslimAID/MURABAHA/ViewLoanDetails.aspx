@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Ventura Crystal Investments Ltd ::: Loan Approval</title>
+    <title> MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED  ::: Loan Approval</title>
     <link rel="stylesheet" type="text/css" media="all" href="../CSS/Main.css" />
 </head>
 <body>

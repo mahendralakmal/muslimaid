@@ -40,7 +40,7 @@
             prtGrid.style.fontSize = "10pt";
             prtGrid.style.fontFamily = "Calibri";
             var prtwin = window.open('', 'PrintGridViewData', 'left=100,top=100,width=1000,height=1000,tollbar=0,scrollbars=1,status=0,resizable=1');
-            prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>CS Client Basic Details Report - Ventura Crystal Investments Ltd</div>");
+            prtwin.document.write("<div style='font-size:12pt;font-family:Calibri;'>CS Client Basic Details Report -  MUSLIM AID MICRO CREDIT (GUARANTEE) LIMITED </div>");
             prtwin.document.write(prtGrid.outerHTML);
             prtwin.document.close();
             prtwin.focus();
