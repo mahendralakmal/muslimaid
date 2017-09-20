@@ -64,7 +64,51 @@ namespace MuslimAID.MURABHA
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            Update();
+            if (txtCC.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please Enter Facility Code";
+            }
+            //else if (cmbPeriod.Text.Trim() == "")
+            //{
+            //    lblMsg.Text = "Please Choose Period";
+            //}
+            //else if (cmbBPopulation.Text.Trim() == "")
+            //{
+            //    lblMsg.Text = "Please Choose Business Population";
+            //}
+            else if (txtBIncome.Text.Trim() == "" || txtBIncome.Text.Trim() == "0.00")
+            {
+                lblMsg.Text = "Please Enter Sales (Cash)";
+            }
+            //else if (txtOIncome.Text.Trim() == "")
+            //{
+            //    lblMsg.Text = "Please Enter Other Income";
+            //}
+            else if (txtTotalIncome.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please Enter Total Income";
+            }
+            else if (txtDCost.Text.Trim() == "" || txtDCost.Text.Trim() == "0.00")
+            {
+                lblMsg.Text = "Please Enter Purchases (Cash)";
+            }
+            /*else if (txtICost.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please Enter InDirect Cost";
+            }*/
+            //else if (txtTExpenses.Text.Trim() == "")
+            //{
+            //    lblMsg.Text = "Please Enter Other Expenses";
+            //}
+            else if (txtPAndL.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please Enter Business P & L";
+            }
+
+            else
+            {
+                Update();
+            }
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -82,9 +126,9 @@ namespace MuslimAID.MURABHA
             //{
             //    lblMsg.Text = "Please Choose Business Population";
             //}
-            else if (txtBIncome.Text.Trim() == "")
+            else if (txtBIncome.Text.Trim() == "" || txtBIncome.Text.Trim() == "0.00")
             {
-                lblMsg.Text = "Please Enter Business Income";
+                lblMsg.Text = "Please Enter Sales (Cash)";
             }
             //else if (txtOIncome.Text.Trim() == "")
             //{
@@ -94,14 +138,14 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "Please Enter Total Income";
             }
-            else if (txtDCost.Text.Trim() == "")
+            else if (txtDCost.Text.Trim() == "" || txtDCost.Text.Trim() == "0.00")
             {
-                lblMsg.Text = "Please Enter Direct Cost";
+                lblMsg.Text = "Please Enter Purchases (Cash)";
             }
-            else if (txtICost.Text.Trim() == "")
+            /*else if (txtICost.Text.Trim() == "")
             {
                 lblMsg.Text = "Please Enter InDirect Cost";
-            }
+            }*/
             //else if (txtTExpenses.Text.Trim() == "")
             //{
             //    lblMsg.Text = "Please Enter Other Expenses";

@@ -43,6 +43,8 @@
             <% if (Request.Url.AbsolutePath.Substring(1) != "muslimaid.aspx")
                { %><li><a href="../muslimaid.aspx">Home</a></li><%} %>
             <li class="dropdown">
+            <% if (Session["UserType"].ToString() == "ADM" || Session["UserType"].ToString() == "BOD" || Session["UserType"].ToString() == "CMG" || Session["UserType"].ToString() == "OMG")
+               { %>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon-gear"></i> Settings <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="BranchAdd.aspx">Add Branch</a></li>
@@ -53,6 +55,7 @@
                     <li><a href="AddNatureOfBusiness.aspx">Add Nature of Business</a></li>
                     <li><a href="AddOccupation.aspx">Add Occupation</a></li>
                 </ul>
+                <% } %>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

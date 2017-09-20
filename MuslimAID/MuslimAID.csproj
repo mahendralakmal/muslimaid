@@ -421,13 +421,6 @@
     <Compile Include="MURABAHA\WayOffAmount.aspx.designer.cs">
       <DependentUpon>WayOffAmount.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MURABAHA\FacilityApplicationForm.aspx.cs">
-      <DependentUpon>FacilityApplicationForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MURABAHA\FacilityApplicationForm.aspx.designer.cs">
-      <DependentUpon>FacilityApplicationForm.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MURABAHA\create_sub_center.aspx.cs">
       <DependentUpon>create_sub_center.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1295,7 +1288,6 @@
     <Content Include="MURABAHA\VoucherPrint.aspx" />
     <Content Include="MURABAHA\Voucher_Cancel.aspx" />
     <Content Include="MURABAHA\WayOffAmount.aspx" />
-    <Content Include="MURABAHA\FacilityApplicationForm.aspx" />
     <Content Include="MURABAHA\create_sub_center.aspx" />
     <Content Include="AddNatureOfBusiness.aspx" />
     <Content Include="add_village.aspx" />

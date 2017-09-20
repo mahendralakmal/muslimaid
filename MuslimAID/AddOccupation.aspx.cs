@@ -57,7 +57,10 @@ namespace MuslimAID
                     if(obj.insertEditData(cmdOcc) == 1062)
                         lblMsg.Text = "This occupation is alredy exists";
                     else if (obj.insertEditData(cmdOcc) > 0)
+                    {
                         lblMsg.Text = "Successfully Upadted";
+                        txtOccupation.Text = "";
+                    }
                     else
                         lblMsg.Text = "Error occured";
                 }

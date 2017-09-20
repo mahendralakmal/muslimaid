@@ -147,7 +147,7 @@
                 <div class="col-md-12"></div>
                 <div class="col-md-6">
                 <div class="form-group">                
-                    <div class="col-md-5">Date of Birth</div>
+                    <div class="col-md-5">Date of Birth<span style="color:Red;"> *</span></div>
                     <div class="col-md-7">
                         <div class='input-group date' id='DobCDB' name='DobCDB'>
                             <asp:TextBox ID="txtDOB" CssClass="form-control" runat="server"
@@ -327,7 +327,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <div class="col-md-5">Key Person involved in the business<span style="color:Red;">*</span></div>
+                        <div class="col-md-5">Key Person involved in the business<span style="color:Red;"></span></div>
                         <div class="col-md-7">                    
                             <asp:DropDownList CssClass="form-control" TabIndex="31" ID="cmbKeyPerson" runat="server">
                                 <asp:ListItem></asp:ListItem>
@@ -342,20 +342,20 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <div class="col-md-5">No of People involved/ employed in the business<span style="color:Red;">*</span></div>
+                        <div class="col-md-5">No of People involved/ employed in the business<span style="color:Red;"></span></div>
                         <div class="col-md-7"><asp:TextBox ID="txtNoOfPpl" 
                                 CssClass="numbersOnly form-control" runat="server" TabIndex="32"></asp:TextBox></div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <div class="col-md-5">Business Address<span style="color:Red;">*</span></div>
+                        <div class="col-md-5">Business Address<span style="color:Red;"></span></div>
                         <div class="col-md-7"><asp:TextBox ID="txtBisAddress" CssClass="form-control" Height="70px" TextMode="MultiLine" MaxLength="150" runat="server" TabIndex="33"></asp:TextBox></div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <div class="col-md-5">Years of Business<span style="color:Red;">*</span></div>
+                        <div class="col-md-5">Years of Business<span style="color:Red;"></span></div>
                         <div class="col-md-7">
                             <asp:DropDownList CssClass="form-control" ID="cmbPeriod" runat="server" TabIndex="34">
                                 <asp:ListItem></asp:ListItem>
@@ -407,7 +407,7 @@
                 <div class="col-md-12"></div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <div class="col-md-5">Time Period<span style="color:Red;"></span></div>
+                        <div class="col-md-5">Time Period<span style="color:Red;">*</span></div>
                         <div class="col-md-7">
                             <asp:DropDownList ID="cmbTmePeriod" CssClass="form-control period" runat="server" TabIndex="38">
                             </asp:DropDownList>

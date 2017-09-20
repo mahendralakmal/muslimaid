@@ -17,9 +17,7 @@
                 button: ".next()"
             });
         });
-    </script>
-
-    <script type="text/javascript">
+        
         $(document).ready(function() {
             $("#<%=txtDateTo.ClientID %>").dynDateTime({
                 showsTime: false,
@@ -32,9 +30,7 @@
                 button: ".next()"
             });
         });
-    </script>
-
-    <script type="text/javascript">
+        
         function PrintGridData() {
             var prtGrid = document.getElementById('mir');
             prtGrid.border = 1;
@@ -50,49 +46,49 @@
         }
         
         $(function(){
-            $('#datepicker1').datetimepicker({ format: 'DD/MM/YYYY' });
-            $('#datepicker2').datetimepicker({ format: 'DD/MM/YYYY' });
+            $('#datepicker1').datetimepicker({ format: 'DD-MM-YYYY' });
+            $('#datepicker2').datetimepicker({ format: 'DD-MM-YYYY' });
         });
     </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
-    <div class="PageTitle"><h4>Collection Report</h4></div>
+    <div class="PageTitle"><h4>Installment Details Report</h4></div>
     <div class="col-md-12 form-container row">
         <div class="col-md-3 form-group">
-            <div class="col-md-5">Branch Code</div>
-            <div class="col-md-7">
+            <div class="col-md-4">Branch</div>
+            <div class="col-md-8">
                 <asp:DropDownList ID="cmbCityCode" CssClass="form-control" TabIndex="0" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbCityCode_SelectedIndexChanged"></asp:DropDownList>
             </div>
         </div>
-        <div class="col-md-3 form-group row">
-            <div class="col-md-5">Area</div>
-            <div class="col-md-7">
-                <asp:DropDownList ID="cmbArea" CssClass="form-control" TabIndex="0" 
+        <div class="col-md-3 form-group">
+            <div class="col-md-4">Area</div>
+            <div class="col-md-8">
+                <asp:DropDownList ID="cmbArea" CssClass="form-control" TabIndex="0"  AutoPostBack="True"
                     runat="server" onselectedindexchanged="cmbArea_SelectedIndexChanged"></asp:DropDownList>
             </div>
         </div>
         <div class="col-md-3 form-group row">
-            <div class="col-md-5">Village</div>
-            <div class="col-md-7">
-                <asp:DropDownList ID="cmbVillage" CssClass="form-control" TabIndex="0" 
+            <div class="col-md-4">Village</div>
+            <div class="col-md-8">
+                <asp:DropDownList ID="cmbVillage" CssClass="form-control" TabIndex="0"  AutoPostBack="True"
                     runat="server" onselectedindexchanged="cmbVillage_SelectedIndexChanged"></asp:DropDownList>
             </div>
         </div>
         <div class="col-md-3 form-group row">
-            <div class="col-md-5">MFO</div>
-            <div class="col-md-7">
+            <div class="col-md-4">MFO</div>
+            <div class="col-md-8">
                 <asp:DropDownList ID="cmbRoot" CssClass="form-control" TabIndex="0" runat="server"></asp:DropDownList>
             </div>
         </div>
         <div class="col-md-3 form-group row">
-            <div class="col-md-5">Center</div>
-            <div class="col-md-7">
+            <div class="col-md-4">Center</div>
+            <div class="col-md-8">
                 <asp:DropDownList ID="cmbCenter" CssClass="form-control" TabIndex="0" runat="server"></asp:DropDownList>
             </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-3 form-group">
             <div class="col-md-4">Date</div>
             <div class="col-md-8">
                 <div class='input-group date' id='datepicker1' name='datepicker1'>
@@ -103,8 +99,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 form-group">
-            <div class="col-md-1">to</div>
+        <div class="col-md-3 form-group">
+            <div class="col-md-4">to</div>
             <div class="col-md-8">
                 <div class='input-group date' id='datepicker2' name='datepicker2'>
                     <asp:TextBox ID="txtDateTo" CssClass="form-control" runat="server"
@@ -114,10 +110,11 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12"></div>
         <div class="col-md-4 form-group row">
-            <div class="col-md-4">Facility Code</div>
-            <div class="col-md-8">
-                <asp:TextBox ID="txtContraCode" CssClass="form-control" runat="server" MaxLength="15"></asp:TextBox>
+            <div class="col-md-3">Facility Code</div>
+            <div class="col-md-9">
+                <asp:TextBox ID="txtContraCode" CssClass="form-control" runat="server" MaxLength="30"></asp:TextBox>
             </div>
         </div>
         <div class="col-md-3 form-group">
@@ -132,7 +129,7 @@
                 <table cellpadding="0" cellspacing="0" border="0" width="860px" align="left">
                     <tr>
                         <td width="860px">
-                            <asp:GridView ID="grvMIn" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top" CssClass="table">
+                            <asp:GridView ID="grvMIn" CssClass="table" runat="server" AutoGenerateColumns="false" ItemStyle-VerticalAlign="Top">
                                 <Columns>
                                     <asp:TemplateField HeaderText="S.No." ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top"
                                         HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">

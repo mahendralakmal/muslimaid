@@ -58,8 +58,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-12">
-                    <asp:Button ID="btnPeied" runat="server" Enabled="false" TabIndex="3" 
-                        Text="Cancel" onclick="btnPeied_Click" />&nbsp;
+                    <asp:Button ID="btnPeied" runat="server" Enabled="false" TabIndex="3" CssClass="btn btn-primary" Text="Cancel" onclick="btnPeied_Click" />&nbsp;
                     <asp:Label ID="lblMsg" runat="server"></asp:Label>
                 </div>
             </div>

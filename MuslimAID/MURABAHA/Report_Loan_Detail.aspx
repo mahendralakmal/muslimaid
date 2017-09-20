@@ -17,9 +17,6 @@
                 button: ".next()"
             });
         });
-    </script>
-
-    <script type="text/javascript">
         $(document).ready(function() {
             $("#<%=txtDateTo.ClientID %>").dynDateTime({
                 showsTime: false,
@@ -32,9 +29,7 @@
                 button: ".next()"
             });
         });
-    </script>
-
-    <script type="text/javascript">
+        
         function PrintGridData() {
             var prtGrid = document.getElementById('<%=grvLoanDeta.ClientID %>');
             prtGrid.border = 1;
@@ -50,8 +45,8 @@
         }
         
         $(function(){
-            $('#datepicker1').datetimepicker({ format: 'DD/MM/YYYY' });
-            $('#datepicker2').datetimepicker({ format: 'DD/MM/YYYY' });
+            $('#datepicker1').datetimepicker({ format: 'DD-MM-YYYY' });
+            $('#datepicker2').datetimepicker({ format: 'DD-MM-YYYY' });
         });
     </script>
 
@@ -103,7 +98,7 @@
             </div>
             <div class="col-md-8">
                 <asp:DropDownList ID="cmbStatus" runat="server" CssClass="form-control">
-                    <asp:ListItem Value="A">All</asp:ListItem>
+                    <asp:ListItem Value="">All</asp:ListItem>
                     <asp:ListItem Value="N">Pending</asp:ListItem>
                     <asp:ListItem Value="P">Active</asp:ListItem>
                     <asp:ListItem Value="S">Settle</asp:ListItem>

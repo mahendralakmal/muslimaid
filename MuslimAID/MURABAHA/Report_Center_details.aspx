@@ -63,12 +63,39 @@
         </div>
         <div class="col-md-12 form-container row">
             <div class="col-md-3 form-group">
-                <div class="col-md-5">Center ID</div>
-                <div class="col-md-7"><asp:TextBox ID="txtCenterID" runat="server" MaxLength="4" CssClass="form-control"></asp:TextBox></div>
+                <div class="col-md-4">City</div>
+                <div class="col-md-8">
+                    <asp:DropDownList ID="cmbBranch" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbBranch_SelectedIndexChanged"></asp:DropDownList>
+                </div>
             </div>
             <div class="col-md-3 form-group">
-                <div class="col-md-5">Center Day</div>
-                <div class="col-md-7"><asp:DropDownList ID="cmbCenterDay" CssClass="form-control" runat="server" TabIndex="7" >
+                <div class="col-md-4">Area</div>
+                <div class="col-md-8">
+                    <asp:DropDownList ID="cmbArea" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="True" 
+                        onselectedindexchanged="cmbArea_SelectedIndexChanged" >
+                                </asp:DropDownList></div>
+            </div>
+            <div class="col-md-3 form-group">
+                <div class="col-md-4">Village</div>
+                <div class="col-md-8"><asp:DropDownList ID="cmbVillage" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="True" 
+                        onselectedindexchanged="cmbVillage_SelectedIndexChanged">
+                                </asp:DropDownList></div>
+            </div>
+            <div class="col-md-3 form-group">
+                <div class="col-md-4">Center Name</div>
+                <div class="col-md-8">
+                    <asp:DropDownList ID="cmbCenterName" runat="server" AutoPostBack="true" OnSelectedIndexChanged="cmbSocietyName_SelectedIndexChanged" CssClass="form-control" TabIndex="3"></asp:DropDownList>
+                </div>
+            </div>
+            <div class="col-md-3 form-group">
+                <div class="col-md-4">Center ID</div>
+                <div class="col-md-8"><asp:TextBox ID="txtCenterID" runat="server" MaxLength="4" ReadOnly="true" CssClass="form-control"></asp:TextBox></div>
+            </div>
+            <div class="col-md-3 form-group">
+                <div class="col-md-4">Center Day</div>
+                <div class="col-md-8"><asp:DropDownList ID="cmbCenterDay" CssClass="form-control" runat="server" TabIndex="7" >
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem Value="MO">Monday</asp:ListItem>
                         <asp:ListItem Value="TU">Tuesday</asp:ListItem>
@@ -80,23 +107,12 @@
                     </asp:DropDownList></div>
             </div>
             <div class="col-md-3 form-group">
-                <div class="col-md-3">City</div>
-                <div class="col-md-9">
-                    <asp:DropDownList ID="cmbBranch" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cmbBranch_SelectedIndexChanged"></asp:DropDownList>
-                </div>
-            </div>
-            <div class="col-md-3 form-group">
-                <div class="col-md-3">MFO</div>
-                <div class="col-md-9">
+                <div class="col-md-4">MFO</div>
+                <div class="col-md-8">
                     <asp:DropDownList ID="cmbRoot" runat="server" TabIndex="5" CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
-            <div class="col-md-3 form-group">
-                <div class="col-md-5">Center Name</div>
-                <div class="col-md-7">
-                    <asp:DropDownList ID="cmbCenterName" runat="server" AutoPostBack="true" OnSelectedIndexChanged="cmbSocietyName_SelectedIndexChanged" CssClass="form-control" TabIndex="3"></asp:DropDownList>
-                </div>
-            </div>
+            <div class="col-md-6 form-group"></div>
             <div class="col-md-3 form-group">
                 <div class="col-md-4">Date</div>
                 <div class="col-md-8">
@@ -109,7 +125,7 @@
                 </div>
             </div>
             <div class="col-md-3 form-group">
-                <div class="col-md-3">to</div>
+                <div class="col-md-4">to</div>
                 <div class="col-md-8">
                     <div class='input-group date' id='datepicker2' name='datepicker2'>
                         <asp:TextBox ID="txtDateTo" CssClass="form-control" runat="server"

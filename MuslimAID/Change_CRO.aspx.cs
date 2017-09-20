@@ -80,11 +80,11 @@ namespace MuslimAID
                 }
                 else if (cmbArea.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select branch.";
+                    lblMsg.Text = "Please select Area.";
                 }
                 else if (cmbVillage.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select branch.";
+                    lblMsg.Text = "Please select Village.";
                 }
                 else if (cmbSocietyName.SelectedIndex == 0)
                 {
@@ -98,6 +98,8 @@ namespace MuslimAID
                 {
                     lblMsg.Text = "Please select Change MFO.";
                 }
+                else if (cmbRoot.SelectedValue.ToString() == cmbChangeMfo.Text.ToString())
+                    lblMsg.Text = "Nothing to change.";
                 else
                 {
                     string root = cmbChangeMfo.SelectedItem.Value;
@@ -124,6 +126,7 @@ namespace MuslimAID
                                 if (k == 1)
                                 {
                                     lblMsg.Text = "Updated Successfully";
+                                    Clear();
                                 }
                             }
                             catch (Exception)
@@ -132,11 +135,8 @@ namespace MuslimAID
                             //-----
                         }
                     }
-
-                    lblMsg.Text = "Updated Successfully";
-                    cmbRoot.SelectedIndex = 0;
-                    cmbSocietyName.SelectedIndex = 0;
                 }
+                
             }
             catch (Exception)
             {
@@ -375,6 +375,16 @@ namespace MuslimAID
             }
             catch (Exception ex)
             { }
+        }
+
+        public void Clear()
+        {
+            cmbCityCode.SelectedIndex = 0;
+            cmbArea.Items.Clear();
+            cmbVillage.Items.Clear();
+            cmbSocietyName.Items.Clear();
+            cmbRoot.Items.Clear();
+            cmbChangeMfo.Items.Clear();
         }
     }
 }

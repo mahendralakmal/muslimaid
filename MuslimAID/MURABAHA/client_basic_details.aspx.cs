@@ -566,23 +566,19 @@ namespace MuslimAID.MURABHA
                 }
                 else if (cmbBranch.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select city code."; return;
+                    lblMsg.Text = "Please select Branch."; return;
                 }
                 else if (cmbArea.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select village name."; return;
+                    lblMsg.Text = "Please select Area."; return;
                 }
                 else if (cmbVillage.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select society Name."; return;
+                    lblMsg.Text = "Please select Village."; return;
                 }
                 else if (txtSoNumber.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter Society Number."; return;
-                }
-                else if (txtGSWard.Text.Trim() == "")
-                {
-                    lblMsg.Text = "Please enter GS Ward."; return;
+                    lblMsg.Text = "Please enter Center Code."; return;
                 }
                 else if (txtFullName.Text.Trim() == "")
                 {
@@ -590,15 +586,39 @@ namespace MuslimAID.MURABHA
                 }
                 else if (txtAddress.Text.Trim() == "")
                 {
-                    lblMsg.Text = "Please enter Address."; return;
+                    lblMsg.Text = "Please enter Address per NIC."; return;
+                }
+                else if (txtGSWard.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please enter Name of the Grama Niladhari division."; return;
+                }
+                else if (txtDOB.Text.Trim() == "")
+                {
+                    lblMsg.Text = "Please Date of birth."; return;
+                }
+                else if (cmbMS.SelectedIndex == 0)
+                {
+                    lblMsg.Text = "Please select Marital Status."; return;
+                }
+                else if (cmbOccupation.SelectedIndex == 0)
+                {
+                    lblMsg.Text = "Please enter Occupation / Income Source."; return;
                 }
                 else if (txtInsDate.Text.Trim() == "")
                 {
                     lblMsg.Text = "Please enter inspection date."; return;
                 }
-                else if (cmbOccupation.SelectedIndex == 0)
+                else if (txtResonToApply.Text == "")
                 {
-                    lblMsg.Text = "Please enter Occupation / Income Source."; return;
+                    lblMsg.Text = "Please enter reson to apply for this facility."; return;
+                }
+                else if (txtLDLAmount.Text == "")
+                {
+                    lblMsg.Text = "Please enter facility ammount."; return;
+                }
+                else if (cmbTmePeriod.SelectedIndex == 0)
+                {
+                    lblMsg.Text = "Please select the time period."; return;
                 }
                 else
                 {
@@ -610,8 +630,9 @@ namespace MuslimAID.MURABHA
                     bool bolFRequirment = saveFacilityRequirment();
                     //bool bolCOFacility = checkOtherFacility();
                     bool bolOtherFamily = otherFamilyDetails();
-                    if (bolBasic && bolFamily && bolBusiness && bolFRequirment && bolOtherFamily) {
-                    //if (bolOtherFamily) {
+                    if (bolBasic && bolFamily && bolBusiness && bolFRequirment && bolOtherFamily)
+                    {
+                        //if (bolOtherFamily) {
                         lblMsg.Text = "Successfully Added";
                         Response.Redirect("business_details.aspx?CC=" + txtCC.Text.Trim() + "&CA=" + strCACodeNew);
                     }
@@ -710,7 +731,7 @@ namespace MuslimAID.MURABHA
                         strCACodeNew = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strTeamNo + "/3";
                         hidCACode.Value = strCACodeNew;
                         strPromiserID = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strTeamNo + "/2";
-                        strPromiserID2 = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strTeamNo + "/1s";
+                        strPromiserID2 = strCityCode + "/" + strArea + "/" + strVillage + "/" + strSoNumber + "/" + strTeamNo + "/1";
                     }
                     else if (intLastCID == 3)
                     {
@@ -1121,7 +1142,7 @@ namespace MuslimAID.MURABHA
                 }
                 else if (cmbBranch.SelectedIndex == 0)
                 {
-                    lblMsg.Text = "Please select city code."; return;
+                    lblMsg.Text = "Please select branch."; return;
                 }
                 else if (cmbArea.SelectedIndex == 0)
                 {
@@ -1538,8 +1559,6 @@ namespace MuslimAID.MURABHA
 
                             txtGSWard.Text = dsGetExsiNIC.Tables[0].Rows[0]["gs_ward"].ToString();
                             txtFullName.Text = dsGetExsiNIC.Tables[0].Rows[0]["full_name"].ToString();
-                            rdoMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
-                            rdoFeMale.Checked = dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0" ? true : false;
 
                             txtTele.Text = dsGetExsiNIC.Tables[0].Rows[0]["land_no"].ToString();
                             txtAddress.Text = dsGetExsiNIC.Tables[0].Rows[0]["p_address"].ToString();
@@ -1548,18 +1567,17 @@ namespace MuslimAID.MURABHA
                             txtDOB.Text = dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString();
 
                             //DateTime now = new DateTime();
-                            DateTime dt = DateTime.Parse(dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString(), new CultureInfo("en-CA"));
-                            lblAge.Text = (DateTime.Now.Year - dt.Year).ToString();
+                            if (dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString() != "")
+                            {
+                                DateTime dt = DateTime.Parse(dsGetExsiNIC.Tables[0].Rows[0]["dob"].ToString(), new CultureInfo("en-CA"));
+                                lblAge.Text = (DateTime.Now.Year - dt.Year).ToString();
+                            }
 
                             cmbMS.SelectedValue = dsGetExsiNIC.Tables[0].Rows[0]["marital_status"].ToString();
-                            if (dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() == "0")
-                            {
+                            if (dsGetExsiNIC.Tables[0].Rows[0]["gender"].ToString() != "0")
                                 rdoMale.Checked = true;
-                            }
                             else
-                            {
                                 rdoFeMale.Checked = true;
-                            }
                             #endregion
                             #region Family Details
                             DataSet dsFD = cls_Connection.getDataSet("SELECT * FROM micro_family_details WHERE contract_code = '" + txtCC.Text.Trim() + "';");
@@ -1568,11 +1586,13 @@ namespace MuslimAID.MURABHA
                                 txtSoNIC.Text = dsFD.Tables[0].Rows[0]["spouse_nic"].ToString();
                                 txtSoNicIssuedDate.Text = dsFD.Tables[0].Rows[0]["spouse_nic_issued_date"].ToString();
                                 txtSoDOB.Text = dsFD.Tables[0].Rows[0]["spouse_dob"].ToString();
-                                DateTime dtSo = DateTime.Parse(dsFD.Tables[0].Rows[0]["spouse_dob"].ToString(), new CultureInfo("en-CA"));
-                                lblSoAge.Text = (DateTime.Now.Year - dtSo.Year).ToString();
-
+                                if (dsFD.Tables[0].Rows[0]["spouse_dob"].ToString() != "")
+                                {
+                                    DateTime dtSo = DateTime.Parse(dsFD.Tables[0].Rows[0]["spouse_dob"].ToString(), new CultureInfo("en-CA"));
+                                    lblSoAge.Text = (DateTime.Now.Year - dtSo.Year).ToString();
+                                }
                                 string strSGender;
-                                if (dsFD.Tables[0].Rows[0]["spouse_dob"].ToString() == "0")
+                                if (dsFD.Tables[0].Rows[0]["spouse_dob"].ToString() != "0")
                                     rdoSoMale.Checked = true;
                                 else
                                     rdoSoFeMale.Checked = true;
@@ -1605,6 +1625,13 @@ namespace MuslimAID.MURABHA
                                 txtResonToApply.Text = dsFR.Tables[0].Rows[0]["reason_to_apply"].ToString();
                                 txtLDLAmount.Text = dsFR.Tables[0].Rows[0]["loan_amount"].ToString();
                                 cmbTmePeriod.SelectedValue = dsFR.Tables[0].Rows[0]["period"].ToString();
+                                if (dsFR.Tables[0].Rows[0]["loan_approved"].ToString() == "Y")
+                                {
+                                    txtInsuranceCode.Enabled = true;
+                                    btnInsurance.Enabled = true;
+                                    btnSubmit.Enabled = false;
+                                    btnUpdate.Enabled = false;
+                                }
                                 if (dsFR.Tables[0].Rows[0]["any_unsettled_loans"].ToString() == "1")
                                 {
                                     DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
@@ -1660,7 +1687,7 @@ namespace MuslimAID.MURABHA
                                         txtName1.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation1.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC1.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB1.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB1.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc1.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome1.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1669,7 +1696,7 @@ namespace MuslimAID.MURABHA
                                         txtName2.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation2.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC2.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB2.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB2.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc2.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome2.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1678,7 +1705,7 @@ namespace MuslimAID.MURABHA
                                         txtName3.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation3.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC3.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB3.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB3.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc3.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome3.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1687,7 +1714,7 @@ namespace MuslimAID.MURABHA
                                         txtName4.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation4.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC4.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB4.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB4.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc4.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome4.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1696,7 +1723,7 @@ namespace MuslimAID.MURABHA
                                         txtName5.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation5.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC5.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB5.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB5.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc5.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome5.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1705,7 +1732,7 @@ namespace MuslimAID.MURABHA
                                         txtName6.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation6.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC6.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB6.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB6.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc6.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome6.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1714,7 +1741,7 @@ namespace MuslimAID.MURABHA
                                         txtName7.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation7.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC7.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB7.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB7.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc7.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome7.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1723,7 +1750,7 @@ namespace MuslimAID.MURABHA
                                         txtName8.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation8.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC8.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB8.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB8.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc8.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome8.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1732,7 +1759,7 @@ namespace MuslimAID.MURABHA
                                         txtName9.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation9.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC9.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB9.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB9.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc9.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome9.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1803,7 +1830,7 @@ namespace MuslimAID.MURABHA
                             lblMsg.Text = "";
                             btnSubmit.Enabled = false;
                             btnSubmit.Visible = true;
-                            btnUpdate.Visible = true;
+                            btnUpdate.Visible = false;
                             string strloginID = Session["NIC"].ToString();
                             DataSet dsUserTy = cls_Connection.getDataSet("select user_type,module_name,company_code from users where nic = '" + strloginID + "';");
                             if (dsUserTy.Tables[0].Rows.Count > 0)
@@ -1818,12 +1845,16 @@ namespace MuslimAID.MURABHA
                                         {
                                             txtInsuranceCode.Enabled = true;
                                             btnInsurance.Enabled = true;
+                                            btnSubmit.Enabled = false;
+                                            btnUpdate.Enabled = false;
                                             txtInsuranceCode.Focus();
                                         }
                                     }
                                     else {
                                         txtInsuranceCode.Enabled = true;
                                         btnInsurance.Enabled = true;
+                                        btnSubmit.Enabled = false;
+                                        btnUpdate.Enabled = false;
                                         txtInsuranceCode.Focus();
                                     }
                                 }
@@ -1931,6 +1962,13 @@ namespace MuslimAID.MURABHA
                                 txtResonToApply.Text = dsFR.Tables[0].Rows[0]["reason_to_apply"].ToString();
                                 txtLDLAmount.Text = dsFR.Tables[0].Rows[0]["loan_amount"].ToString();
                                 cmbTmePeriod.SelectedValue = dsFR.Tables[0].Rows[0]["period"].ToString();
+                                if (dsFR.Tables[0].Rows[0]["loan_approved"].ToString() == "Y")
+                                {
+                                    txtInsuranceCode.Enabled = true;
+                                    btnInsurance.Enabled = true;
+                                    btnSubmit.Enabled = false;
+                                    btnUpdate.Enabled = false;
+                                }
                                 if (dsFR.Tables[0].Rows[0]["any_unsettled_loans"].ToString() == "1")
                                 {
                                     DataSet dsUnSLons = cls_Connection.getDataSet("SELECT * FROM micro_other_unsetteled_loans WHERE contra_code = '" + txtCC.Text.Trim() + "';");
@@ -1972,7 +2010,10 @@ namespace MuslimAID.MURABHA
                             }
                             #endregion
                             #region Other Family Details
-                            txtInsuranceCode.Text = dsGetExsiNIC.Tables[0].Rows[0]["insurance_code"].ToString();
+                            DataSet dsIns = cls_Connection.getDataSet("SELECT * FROM insurance_details WHERE contact_code = '" + txtCC.Text.Trim() + "'");
+                            if (dsIns.Tables[0].Rows.Count > 0)
+                                txtInsuranceCode.Text = dsIns.Tables[0].Rows[0]["insurance_code"].ToString();
+
                             DataSet dsOFD = cls_Connection.getDataSet("SELECT * FROM family_relationship_details WHERE contract_code = '" + txtCC.Text.Trim() + "'");
                             if (dsOFD.Tables[0].Rows.Count > 0)
                             {
@@ -1983,7 +2024,7 @@ namespace MuslimAID.MURABHA
                                         txtName1.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation1.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC1.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB1.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB1.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc1.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome1.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -1992,7 +2033,7 @@ namespace MuslimAID.MURABHA
                                         txtName2.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation2.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC2.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB2.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB2.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc2.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome2.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -2001,7 +2042,7 @@ namespace MuslimAID.MURABHA
                                         txtName3.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation3.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC3.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB3.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB3.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc3.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome3.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -2010,7 +2051,7 @@ namespace MuslimAID.MURABHA
                                         txtName4.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation4.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC4.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB4.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB4.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc4.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome4.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -2019,7 +2060,7 @@ namespace MuslimAID.MURABHA
                                         txtName5.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation5.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC5.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB5.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB5.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc5.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome5.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -2028,7 +2069,7 @@ namespace MuslimAID.MURABHA
                                         txtName6.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation6.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC6.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB6.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB6.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc6.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome6.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -2037,7 +2078,7 @@ namespace MuslimAID.MURABHA
                                         txtName7.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation7.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC7.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB7.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB7.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc7.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome7.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -2046,7 +2087,7 @@ namespace MuslimAID.MURABHA
                                         txtName8.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation8.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC8.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB8.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB8.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc8.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome8.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -2055,7 +2096,7 @@ namespace MuslimAID.MURABHA
                                         txtName9.Text = dsOFD.Tables[0].Rows[i]["name"].ToString();
                                         cmbRelation9.SelectedValue = dsOFD.Tables[0].Rows[i]["relationship"].ToString();
                                         txtNIC9.Text = dsOFD.Tables[0].Rows[i]["nic"].ToString();
-                                        txtDOB9.Text = DateTime.Parse(dsOFD.Tables[0].Rows[i]["dob"].ToString()).ToString("dd-MM-yyyy");
+                                        txtDOB9.Text = DateTime.ParseExact(dsOFD.Tables[0].Rows[i]["dob"].ToString(), "d/M/yyyy", CultureInfo.InvariantCulture).ToString();
                                         txtOcc9.Text = dsOFD.Tables[0].Rows[i]["occupation"].ToString();
                                         txtInCome9.Text = dsOFD.Tables[0].Rows[i]["income"].ToString();
                                     }
@@ -2280,12 +2321,15 @@ namespace MuslimAID.MURABHA
             {
                 try
                 {
-                    MySqlCommand cmdInsurance = new MySqlCommand("INSERT INTO insurance_details (contact_code,insurance_code,insured,module) VALUES (@contact_code,@insurance_code,@insured,@module)");
+                    MySqlCommand cmdInsurance = new MySqlCommand("INSERT INTO insurance_details (contact_code,insurance_code,insured,module,created_date,created_user,created_ip) VALUES (@contact_code,@insurance_code,@insured,@module,@created_date,@created_user,@created_ip)");
 
                     cmdInsurance.Parameters.AddWithValue("@contact_code", txtCC.Text.Trim());
                     cmdInsurance.Parameters.AddWithValue("@insurance_code", txtInsuranceCode.Text.Trim());
                     cmdInsurance.Parameters.AddWithValue("@insured", 1);
                     cmdInsurance.Parameters.AddWithValue("@module", "MBR");
+                    cmdInsurance.Parameters.AddWithValue("@created_date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmdInsurance.Parameters.AddWithValue("@created_user", Session["NIC"].ToString());
+                    cmdInsurance.Parameters.AddWithValue("@created_ip", Request.UserHostAddress);
 
                     if (objDBCon.insertEditData(cmdInsurance) == 1)
                     {

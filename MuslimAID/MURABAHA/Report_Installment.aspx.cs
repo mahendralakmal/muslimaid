@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Drawing;
+using System.Globalization;
 
 namespace MuslimAID.MURABHA
 {
@@ -54,40 +55,31 @@ namespace MuslimAID.MURABHA
         protected void GetSearch()
         {
             try
-            {
+            {               
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
                 hstrSelectQuery.Value = @"select p.idpais_history,e.exe_name,b.team_id,cs.center_name society_id,1 NoCustomer,p.contra_code,b.ca_code nic,b.initial_name,l.loan_amount,FORMAT(p.paied_amount,2) paied_amount,(DATE_FORMAT((p.date_time),'%Y-%m-%d')) date_time,remark from micro_basic_detail b inner join micro_pais_history p on p.contra_code = b.contract_code inner join micro_exective_root e on b.root_id = e.exe_id and b.city_code = e.branch_code inner join micro_loan_details l on l.contra_code = b.contract_code inner join center_details cs on b.society_id = cs.idcenter_details and b.city_code = cs.city_code where p.tra_description = 'WI' and p.pay_status = 'D' ";
-                if (txtContraCode.Text.Trim() != "" || txtDateFrom.Text.Trim() != "" || txtDateTo.Text.Trim() != "" || cmbRoot.SelectedIndex != 0 || cmbCityCode.SelectedIndex != 0)
+                if (cmbCityCode.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and b.city_code = '" + cmbCityCode.SelectedValue.ToString() + "' ";
+                if (cmbArea.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and b.area_code = '" + cmbArea.SelectedValue.ToString() + "' ";
+                if (cmbVillage.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and b.village = '" + cmbVillage.SelectedValue.ToString() + "' ";
+                if (cmbCenter.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and b.society_id = '" + cmbCenter.SelectedValue.ToString() + "' ";
+                if (cmbRoot.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and e.exe_id = '" + cmbRoot.SelectedValue.ToString() + "' ";
+                if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
                 {
-                    if (cmbCityCode.SelectedIndex != 0)
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and b.city_code = '" + cmbCityCode.SelectedValue.ToString() + "'";
-                        if (cmbRoot.SelectedIndex != 0)
-                        {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and e.exe_id = '" + cmbRoot.SelectedValue.ToString() + "'";
-                        }
-                        if (cmbCenter.SelectedIndex != 0)
-                        {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and society_id = '" + cmbCenter.SelectedValue.ToString() + "'";
-                        }
-                    }
-                    if (txtContraCode.Text.Trim() != "")
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and p.contra_code = '" + txtContraCode.Text.Trim() + "'";
-                    }
-                    if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and (DATE_FORMAT((p.date_time),'%Y-%m-%d')) between '" + txtDateFrom.Text.Trim() + "' and '" + txtDateTo.Text.Trim() + "'";
-                    }
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by p.idpais_history asc;";
-                    loadDataToRepeater(hstrSelectQuery.Value);
+                    DateTime strTo = DateTime.ParseExact(txtDateTo.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                    DateTime strStart = DateTime.ParseExact(txtDateFrom.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                    hstrSelectQuery.Value += " and c.date_time BETWEEN '" + strStart.ToString() + "' and '" + strTo.ToString() + "'";
                 }
-                else
-                {
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by p.idpais_history asc;";
-                    loadDataToRepeater(hstrSelectQuery.Value);
-                }
+                if(txtContraCode.Text.ToString() != "")
+                    hstrSelectQuery.Value += " and b.contract_code = '" + txtContraCode.Text.ToString() + "' ";
+                hstrSelectQuery.Value = hstrSelectQuery.Value + " order by p.idpais_history asc;";
+                loadDataToRepeater(hstrSelectQuery.Value);
+
             }
             catch (Exception)
             {
@@ -318,40 +310,6 @@ namespace MuslimAID.MURABHA
                 lblMsg.Text = "Please select branch";
                 btnSerch.Enabled = false;
             }
-            //try
-            //{
-            //    if (cmbRoot.Items.Count > 0)
-            //    {
-            //        cmbRoot.Items.Clear();
-            //    }
-            //    if (cmbCenter.Items.Count > 0)
-            //    {
-            //        cmbCenter.Items.Clear();
-            //    }
-
-            //    DataSet dsCro;
-            //    MySqlCommand cmdCro = new MySqlCommand("SELECT exe_id, exe_name FROM micro_exective_root WHERE branch_code = '" + cmbCityCode.SelectedValue.ToString() + "';");
-            //    dsCro = objDBTask.selectData(cmdCro);
-            //    cmbRoot.Items.Add("Select CRO");
-            //    for (int i = 0; i < dsCro.Tables[0].Rows.Count; i++)
-            //    {
-            //        cmbRoot.Items.Add(dsCro.Tables[0].Rows[i][1].ToString());
-            //        cmbRoot.Items[i + 1].Value = dsCro.Tables[0].Rows[i][0].ToString();
-            //    }
-
-            //    DataSet dsCenter;
-            //    MySqlCommand cmdCenter = new MySqlCommand("SELECT idcenter_details,concat(center_name, '-',villages) FROM center_details WHERE city_code = '" + cmbCityCode.SelectedValue.ToString() + "'");
-            //    dsCenter = objDBTask.selectData(cmdCenter);
-            //    cmbCenter.Items.Add("Select Center");
-            //    for (int i = 0; i < dsCenter.Tables[0].Rows.Count; i++)
-            //    {
-            //        cmbCenter.Items.Add(dsCenter.Tables[0].Rows[i][1].ToString());
-            //        cmbCenter.Items[i + 1].Value = dsCenter.Tables[0].Rows[i][0].ToString();
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //}
         }
 
         protected void cmbArea_SelectedIndexChanged(object sender, EventArgs e)

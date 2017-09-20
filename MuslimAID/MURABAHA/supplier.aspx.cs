@@ -65,6 +65,10 @@ namespace MuslimAID.MURABAHA
 
             strCC = Request.QueryString["CC"];
             strCAC = Request.QueryString["CA"];
+
+            if (strCC == "" || txtCC.Text.Trim() != "")
+                strCC = txtCC.Text.Trim();
+
             try {
                 if (txtSupplierName.Text == "")
                     lblMsg.Text = "Plese enter the supplier name";
@@ -78,12 +82,15 @@ namespace MuslimAID.MURABAHA
                 //   lblMsg.Text = "Plese enter name you prefer to print on cheque.";
                 //else if (rdoIndividual.Checked && txtNameOnChecque.Text.Length < 5)
                 //    lblMsg.Text = "Name you prefer to print on cheque must be more than 5 charaters.";
-                else {
+                else if (txtInvoiceValue.Text == "")
+                    lblMsg.Text = "Please enter invoice value.";
+                else
+                {
                     //MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_supplier_details(contract_code,name,address,tele,mobile,br,nic,contact_person,invoice_value,suplier_type,name_on_cheque)VALUES (@contract_code,@name,@address,@tele,@mobile,@br,@nic,@contact_person,@invoice_value,@suplier_type,@name_on_cheque)");
                     MySqlCommand cmdInsert = new MySqlCommand("INSERT INTO micro_supplier_details(contract_code,name,address,tele,mobile,br,nic,contact_person,invoice_value,suplier_type)VALUES (@contract_code,@name,@address,@tele,@mobile,@br,@nic,@contact_person,@invoice_value,@suplier_type)");
 
                     #region Parameter Declarations
-                    cmdInsert.Parameters.AddWithValue("@contract_code", strCC);
+                    cmdInsert.Parameters.AddWithValue("@contract_code", strCC );
                     cmdInsert.Parameters.AddWithValue("@name", txtSupplierName.Text.Trim().ToString());
                     cmdInsert.Parameters.AddWithValue("@address", txtBisAddress.Text.Trim());
                     cmdInsert.Parameters.AddWithValue("@tele", txtTelephone.Text.Trim());
@@ -91,7 +98,7 @@ namespace MuslimAID.MURABAHA
                     cmdInsert.Parameters.AddWithValue("@br", txtBrNo.Text.Trim());
                     cmdInsert.Parameters.AddWithValue("@nic", txtNIC.Text.Trim());
                     cmdInsert.Parameters.AddWithValue("@contact_person", txtContactPerson.Text.Trim());
-                    cmdInsert.Parameters.AddWithValue("@invoice_value", (txtInvoiceValue.Text.Trim()!="")? Convert.ToDouble(txtInvoiceValue.Text.Trim()):0.00);
+                    cmdInsert.Parameters.AddWithValue("@invoice_value", (txtInvoiceValue.Text.Trim() != "") ? Convert.ToDouble(txtInvoiceValue.Text.Trim()) : 0.00);
                     cmdInsert.Parameters.AddWithValue("@suplier_type", (rdoIndividual.Checked) ? "I" : "B");
                     //cmdInsert.Parameters.AddWithValue("@name_on_cheque", txtNameOnChecque.Text.Trim());
                     #endregion
@@ -104,7 +111,8 @@ namespace MuslimAID.MURABAHA
                         {
                             clean();
                             lblMsg.Text = "Successfull";
-                            Response.Redirect("loan_details.aspx?CC=" + strCC + "&CA=" + strCAC + "");
+                            if(Request.QueryString["CC"]!="" && Request.QueryString["CA"] !="")
+                                Response.Redirect("loan_details.aspx?CC=" + strCC + "&CA=" + strCAC + "");
                         }
                         else
                         {

@@ -42,13 +42,13 @@ namespace MuslimAID.MURABHA
                             txtCC.Text = strCC;
                             txtLDIntRate.Text = "0";
                             txtLDMInterest.Text = "0";
-                            DataSet dsLD = cls_Connection.getDataSet("SELECT loan_amount, fr_period FROM micro_full_details WHERE contract_code = '" + strCC + "';");
+                            DataSet dsLD = cls_Connection.getDataSet("SELECT loan_amount, period FROM micro_loan_details WHERE contra_code = '" + strCC + "';");
                             if (dsLD.Tables[0].Rows.Count > 0)
                             {
                                 txtLDLAmount.Text = dsLD.Tables[0].Rows[0]["loan_amount"].ToString();
-                                cmbPeriod.SelectedValue = dsLD.Tables[0].Rows[0]["fr_period"].ToString();
+                                cmbPeriod.SelectedValue = dsLD.Tables[0].Rows[0]["period"].ToString();
 
-                                TextBox1.Text = (Math.Round(Convert.ToDouble(dsLD.Tables[0].Rows[0]["loan_amount"].ToString()) / Convert.ToDouble(dsLD.Tables[0].Rows[0]["fr_period"].ToString()),2)).ToString();
+                                TextBox1.Text = (Math.Round(Convert.ToDouble(dsLD.Tables[0].Rows[0]["loan_amount"].ToString()) / Convert.ToDouble(dsLD.Tables[0].Rows[0]["period"].ToString()), 2)).ToString();
                             }
 
 
@@ -84,12 +84,21 @@ namespace MuslimAID.MURABHA
             }
         }
 
-        protected void validate()
+        protected bool validate()
         {
-            if (txtLDIntRate.Text.Trim() == "") {
-                lblMsg.Text = "Please enter Markup Rate";
-                return;
+            if (txtCC.Text.Trim() == "")
+            {
+                lblMsg.Text = "Facility Code cannot be empty"; return false;
             }
+            else if (txtLDIntRate.Text.Trim() == "")
+            {
+                lblMsg.Text = "Please enter Facility Amount/ Value"; return false;
+            }
+            else if (txtLDIntRate.Text == "" || Convert.ToDouble(txtLDIntRate.Text.ToString()) <= 0)
+            {
+                lblMsg.Text = "Please enter Markup Rate"; return false;
+            }
+            else return true;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -102,37 +111,40 @@ namespace MuslimAID.MURABHA
                     lblMsg.Text = "Facility Code cannot be empty";
                 else if (txtLDIntRate.Text.Trim() == "")
                     lblMsg.Text = "Please enter Facility Amount/ Value";
-                
-                
-                MySqlCommand cmdInsert = new MySqlCommand(q);
-                #region Parameter Declarations
-                cmdInsert.Parameters.AddWithValue("@contra_code", txtCC.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("@loan_amount", Convert.ToDecimal((txtLDLAmount.Text.Trim()!="")?txtLDLAmount.Text.Trim():"0.00"));
-                cmdInsert.Parameters.AddWithValue("@selling_price", txtSellPrice.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("@down_payment", txtDownPay.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("@service_charges", Convert.ToDecimal((txtLDSerCharges.Text.Trim() != "") ? txtLDSerCharges.Text.Trim() : "0.00"));
-                cmdInsert.Parameters.AddWithValue("@registration_fee", Convert.ToDecimal((txtRegistrationFee.Text.Trim() != "") ? txtRegistrationFee.Text.Trim() : "0.00"));
-                cmdInsert.Parameters.AddWithValue("@walfare_fee", Convert.ToDecimal((txtWalfareFee.Text.Trim() != "") ? txtWalfareFee.Text.Trim() : "0.00"));
-                cmdInsert.Parameters.AddWithValue("@other_charges", Convert.ToDecimal((txtLDOtherCharg.Text.Trim() != "") ? txtLDOtherCharg.Text.Trim() : "0.00"));
-                cmdInsert.Parameters.AddWithValue("@interest_rate", txtLDIntRate.Text.Trim());
-                cmdInsert.Parameters.AddWithValue("@period", cmbPeriod.SelectedValue.ToString());
-                cmdInsert.Parameters.AddWithValue("@monthly_instollment", Convert.ToDecimal((txtLDMInstoll.Text.Trim() != "") ? txtLDMInstoll.Text.Trim() : "0.00"));
-                cmdInsert.Parameters.AddWithValue("@interest_amount", Convert.ToDecimal((txtLDMInterest.Text.Trim() != "") ? txtLDMInterest.Text.Trim() : "0.00"));
-                
-                cmdInsert.Parameters.AddWithValue("@reg_approval", "Y");
-                cmdInsert.Parameters.AddWithValue("@loan_approved", "P");
-                #endregion
-                try
+                else if (txtLDIntRate.Text == "" || Convert.ToDouble(txtLDIntRate.Text.ToString())<= 0)
+                    lblMsg.Text = "Please enter Markup rate";
+                else
                 {
-                    int i = objDBCon.insertEditData(cmdInsert);
-                    if (i > 0)
+                    MySqlCommand cmdInsert = new MySqlCommand(q);
+                    #region Parameter Declarations
+                    cmdInsert.Parameters.AddWithValue("@contra_code", txtCC.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@loan_amount", Convert.ToDecimal((txtLDLAmount.Text.Trim() != "") ? txtLDLAmount.Text.Trim() : "0.00"));
+                    cmdInsert.Parameters.AddWithValue("@selling_price", txtSellPrice.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@down_payment", txtDownPay.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@service_charges", Convert.ToDecimal((txtLDSerCharges.Text.Trim() != "") ? txtLDSerCharges.Text.Trim() : "0.00"));
+                    cmdInsert.Parameters.AddWithValue("@registration_fee", Convert.ToDecimal((txtRegistrationFee.Text.Trim() != "") ? txtRegistrationFee.Text.Trim() : "0.00"));
+                    cmdInsert.Parameters.AddWithValue("@walfare_fee", Convert.ToDecimal((txtWalfareFee.Text.Trim() != "") ? txtWalfareFee.Text.Trim() : "0.00"));
+                    cmdInsert.Parameters.AddWithValue("@other_charges", Convert.ToDecimal((txtLDOtherCharg.Text.Trim() != "") ? txtLDOtherCharg.Text.Trim() : "0.00"));
+                    cmdInsert.Parameters.AddWithValue("@interest_rate", txtLDIntRate.Text.Trim());
+                    cmdInsert.Parameters.AddWithValue("@period", cmbPeriod.SelectedValue.ToString());
+                    cmdInsert.Parameters.AddWithValue("@monthly_instollment", Convert.ToDecimal((txtLDMInstoll.Text.Trim() != "") ? txtLDMInstoll.Text.Trim() : "0.00"));
+                    cmdInsert.Parameters.AddWithValue("@interest_amount", Convert.ToDecimal((txtLDMInterest.Text.Trim() != "") ? txtLDMInterest.Text.Trim() : "0.00"));
+
+                    cmdInsert.Parameters.AddWithValue("@reg_approval", "Y");
+                    cmdInsert.Parameters.AddWithValue("@loan_approved", "P");
+                    #endregion
+                    try
                     {
-                        Response.Redirect("client_basic_details.aspx");
+                        int i = objDBCon.insertEditData(cmdInsert);
+                        if (i > 0)
+                        {
+                            Response.Redirect("client_basic_details.aspx");
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
+                    catch (Exception ex)
+                    {
+                        cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
+                    }
                 }
             }
             catch (Exception ml)
@@ -160,36 +172,37 @@ namespace MuslimAID.MURABHA
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            validate();
-
-            decimal decLA = (txtLDLAmount.Text.Trim() != "") ? Convert.ToDecimal(txtLDLAmount.Text.Trim()) : 00;
-            string strSP = txtSellPrice.Text.Trim();
-            string strDP = txtDownPay.Text.Trim();
-            decimal decSC = (txtLDSerCharges.Text.Trim() != "") ? Convert.ToDecimal(txtLDSerCharges.Text.Trim()) : 00;
-            string strRF = txtRegistrationFee.Text.Trim();
-            string strWF = txtWalfareFee.Text.Trim();
-            decimal decOC = (txtLDOtherCharg.Text.Trim() != "") ? Convert.ToDecimal(txtLDOtherCharg.Text.Trim()) : 00;
-            string strIR = txtLDIntRate.Text.Trim();
-            decimal decMI = (txtLDMInstoll.Text.Trim() != "") ? Convert.ToDecimal(txtLDMInstoll.Text.Trim()) : 00;
-            string strPe = cmbPeriod.SelectedValue.ToString();
-
-            string upq = "UPDATE micro_loan_details SET loan_amount ='" + decLA + "', selling_price ='" + strSP + "', down_payment='" + strDP + "', service_charges='" + decSC + "', registration_fee ='" + strRF + "', walfare_fee ='" + strWF + "', other_charges = '" + decOC + "', interest_rate='" + strIR + "', monthly_instollment='" + decMI + "', period ='" + strPe + "',reg_approval ='Y',loan_approved='P' WHERE contra_code ='" + txtCC.Text.Trim() + "';";
-
-            try
+            if (validate())
             {
-                int i = objDBCon.insertEditData(upq);
-                if (i > 0)
+
+                decimal decLA = (txtLDLAmount.Text.Trim() != "") ? Convert.ToDecimal(txtLDLAmount.Text.Trim()) : 00;
+                string strSP = txtSellPrice.Text.Trim();
+                string strDP = txtDownPay.Text.Trim();
+                decimal decSC = (txtLDSerCharges.Text.Trim() != "") ? Convert.ToDecimal(txtLDSerCharges.Text.Trim()) : 00;
+                string strRF = txtRegistrationFee.Text.Trim();
+                string strWF = txtWalfareFee.Text.Trim();
+                decimal decOC = (txtLDOtherCharg.Text.Trim() != "") ? Convert.ToDecimal(txtLDOtherCharg.Text.Trim()) : 00;
+                string strIR = txtLDIntRate.Text.Trim();
+                decimal decMI = (txtLDMInstoll.Text.Trim() != "") ? Convert.ToDecimal(txtLDMInstoll.Text.Trim()) : 00;
+                string strPe = cmbPeriod.SelectedValue.ToString();
+
+                string upq = "UPDATE micro_loan_details SET loan_amount ='" + decLA + "', selling_price ='" + strSP + "', down_payment='" + strDP + "', service_charges='" + decSC + "', registration_fee ='" + strRF + "', walfare_fee ='" + strWF + "', other_charges = '" + decOC + "', interest_rate='" + strIR + "', monthly_instollment='" + decMI + "', period ='" + strPe + "',reg_approval ='Y',loan_approved='P' WHERE contra_code ='" + txtCC.Text.Trim() + "';";
+
+                try
                 {
-                    clean();
-                    lblMsg.Text = "Successfull";
-                    Response.Redirect("client_basic_details.aspx");
+                    int i = objDBCon.insertEditData(upq);
+                    if (i > 0)
+                    {
+                        clean();
+                        lblMsg.Text = "Successfull";
+                        Response.Redirect("client_basic_details.aspx");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
                 }
             }
-            catch (Exception ex)
-            {
-                cls_ErrorLog.createSErrorLog(ex.Message, ex.Source, "Data Sending error");
-            }
-
         }
 
         protected void txtCC_TextChanged(object sender, EventArgs e)
@@ -223,7 +236,6 @@ namespace MuslimAID.MURABHA
                     txtLDMInterest.Text = dsGetDetail.Tables[0].Rows[0]["interest_amount"].ToString();
                     txtLDMInstoll.Text = dsGetDetail.Tables[0].Rows[0]["monthly_instollment"].ToString();
                 }
-
                 
                 double SC = (txtLDSerCharges.Text.Trim()!="")?Convert.ToDouble(txtLDSerCharges.Text.Trim()):0.00;
                 double RF = (txtRegistrationFee.Text.Trim()!="")?Convert.ToDouble(txtRegistrationFee.Text.Trim()):0.00;

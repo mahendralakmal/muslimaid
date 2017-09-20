@@ -14,6 +14,42 @@ namespace MuslimAID.MURABHA {
     public partial class Report_Center_details {
         
         /// <summary>
+        /// cmbBranch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbBranch;
+        
+        /// <summary>
+        /// cmbArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbArea;
+        
+        /// <summary>
+        /// cmbVillage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbVillage;
+        
+        /// <summary>
+        /// cmbCenterName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbCenterName;
+        
+        /// <summary>
         /// txtCenterID control.
         /// </summary>
         /// <remarks>
@@ -32,15 +68,6 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.DropDownList cmbCenterDay;
         
         /// <summary>
-        /// cmbBranch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbBranch;
-        
-        /// <summary>
         /// cmbRoot control.
         /// </summary>
         /// <remarks>
@@ -48,15 +75,6 @@ namespace MuslimAID.MURABHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbRoot;
-        
-        /// <summary>
-        /// cmbCenterName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbCenterName;
         
         /// <summary>
         /// txtDateFrom control.

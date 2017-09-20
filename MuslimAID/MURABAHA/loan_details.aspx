@@ -73,7 +73,7 @@
         <div class="col-md-12"></div>
         <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-5">Markup Rate<span style="color:Red;"></span></div>
+                <div class="col-md-5">Markup Rate<span style="color:Red;">*</span></div>
                 <div class="col-md-7">
                     <asp:TextBox ID="txtLDIntRate" CssClass="numbersOnly form-control interest" MaxLength="5" runat="server" TabIndex="13"></asp:TextBox>
             </div>

@@ -81,6 +81,7 @@ namespace MuslimAID
                             cmbUserType.SelectedValue = dsUser.Tables[0].Rows[0]["user_type"].ToString();
                             img_path.Text = dsUser.Tables[0].Rows[0]["photo_path"].ToString();
                             hid_img_path.Value = dsUser.Tables[0].Rows[0]["photo_path"].ToString();
+                            cmbBranch.SelectedValue = dsUser.Tables[0].Rows[0]["branch_code"].ToString();
 
                             txtUserName.Enabled = false;
 
@@ -102,7 +103,7 @@ namespace MuslimAID
                             txtEPF_No.Enabled = false;
                             txtMobile.Enabled = false;
                             txtTele.Enabled = false;
-                            //cmbBranch.Enabled = false;
+                            cmbBranch.Enabled = false;
                         }
                         else
                         {
@@ -186,6 +187,9 @@ namespace MuslimAID
             txtLastName.Text = "";
             txtDateOfBirth.Text = "";
             txtAddress.Text = "";
+            txtEPF_No.Text = "";
+            txtMobile.Text = "";
+            txtTele.Text = "";
             img_path.Text = "";
             cmbTitle.SelectedIndex = 0;
             cmbUserType.SelectedIndex = 0;
@@ -298,6 +302,8 @@ namespace MuslimAID
                             create_mfo(strBranch);
 
                         Reset();
+
+                        Page.Response.Redirect(Page.Request.Url.ToString(), true);
                         lblMsg.Text = "User created Success";
                     }
                     else
@@ -401,6 +407,10 @@ namespace MuslimAID
                     MySqlCommand cmdQ = new MySqlCommand(q.ToString());
                     if (objDBTask.insertEditData(cmdQ) == 1)
                     {
+                        DataSet ds = cls_Connection.getDataSet("SELECT * FROM micro_exective_root where EPFNo = '"+ txtEPF_No.Text.Trim()+"'");
+                        if (cmbUserType.SelectedValue.ToString() == "MFO" && ds.Tables[0].Rows.Count == 0)
+                            create_mfo(strBranch);
+
                         update_mfo(strBranch);
                         lblMsg.Text = "User updated success";
                     }

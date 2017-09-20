@@ -238,41 +238,36 @@ namespace MuslimAID.MURABAHA
         {
             if (Session["LoggedIn"].ToString() == "True")
             {
-                if (Session["UserType"] != "Cash Collector" || Session["UserType"] != "Cash Recovery Officer" || Session["UserType"] != "Special Recovery Officer")
+
+                if (!this.IsPostBack)
                 {
-                    if (!this.IsPostBack)
+                    string strBranch = Session["Branch"].ToString();
+                    string strUserType = Session["UserType"].ToString();
+
+                    DataSet dsBranch;
+                    MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
+                    dsBranch = cls_Connection.selectDataSet(cmdBranch);
+                    cmbBranch.Items.Add("");
+                    for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
                     {
-                        string strBranch = Session["Branch"].ToString();
-                        string strUserType = Session["UserType"].ToString();
-
-                        DataSet dsBranch;
-                        MySqlCommand cmdBranch = new MySqlCommand("SELECT * FROM branch ORDER BY 2");
-                        dsBranch = cls_Connection.selectDataSet(cmdBranch);
-                        cmbBranch.Items.Add("");
-                        for (int i = 0; i < dsBranch.Tables[0].Rows.Count; i++)
-                        {
-                            cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
-                            cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
-                        }
-
-                        DataSet dsCenter = new DataSet();
-                        if (strUserType == "Top Management")
-                        {
-                            dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details ORDER BY idcenter_details asc");
-                        }
-                        else
-                        {
-                            dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details where city_code = '" + strBranch + "' ORDER BY idcenter_details asc");
-                        }
-
-                        Clear();
-                        btnPrint.Visible = false;
+                        cmbBranch.Items.Add(dsBranch.Tables[0].Rows[i][2].ToString());
+                        cmbBranch.Items[i + 1].Value = dsBranch.Tables[0].Rows[i][1].ToString();
                     }
+
+                    DataSet dsCenter = new DataSet();
+                    if (strUserType == "Top Management")
+                    {
+                        dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details ORDER BY idcenter_details asc");
+                    }
+                    else
+                    {
+                        dsCenter = cls_Connection.getDataSet("select idcenter_details,center_name,villages from center_details where city_code = '" + strBranch + "' ORDER BY idcenter_details asc");
+                    }
+
+                    Clear();
+                    btnPrint.Visible = false;
                 }
-                else
-                {
-                    Response.Redirect("murabha.aspx");
-                }
+
             }
             else
             {

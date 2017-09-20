@@ -16,9 +16,7 @@
                 button: ".next()"
             });
         });
-    </script>
-
-    <script type="text/javascript">
+        
         $(document).ready(function() {
             $("#<%=txtDateTo.ClientID %>").dynDateTime({
                 showsTime: false,
@@ -31,9 +29,7 @@
                 button: ".next()"
             });
         });
-    </script>
-
-    <script type="text/javascript">
+        
         function PrintGridData() {
             var prtGrid = document.getElementById('<%=grvCliDeta.ClientID %>');
             prtGrid.border = 1;
@@ -47,6 +43,11 @@
             prtwin.print();
             prtwin.close();
         }
+        
+        $(function(){
+            $('#datepicker1').datetimepicker({ format: 'DD-MM-YYYY' });
+            $('#datepicker2').datetimepicker({ format: 'DD-MM-YYYY' });
+        });
     </script>
 
 </asp:Content>

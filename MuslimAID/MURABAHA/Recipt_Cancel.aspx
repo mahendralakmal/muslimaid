@@ -7,7 +7,7 @@
     <div class="col-md-6 form-container">
         <div class="form-group">
             <div class="col-md-5">Receipt No</div>
-            <div class="col-md-7"><asp:TextBox ID="txtRNo" MaxLength="6" AutoPostBack="true" runat="server" Width="110px" 
+            <div class="col-md-7"><asp:TextBox ID="txtRNo" MaxLength="6" AutoPostBack="true" runat="server" Width="110px" CssClass="form-control"
                         TabIndex="0" ontextchanged="txtRNo_TextChanged" ></asp:TextBox></div>
         </div>
         <div class="form-group">
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-5">Comment</div>
-            <div class="col-md-7"><asp:TextBox ID="txtComment" runat="server" Width="300px" TextMode="MultiLine" Height="75px"></asp:TextBox></div>
+            <div class="col-md-7"><asp:TextBox ID="txtComment" CssClass="form-control" runat="server" Width="300px" TextMode="MultiLine" Height="75px"></asp:TextBox></div>
         </div>
         <div class="form-group">
             <div class="col-md-5"></div>
@@ -44,4 +44,5 @@
             <div class="col-md-7"><asp:Label ID="lblMsg" runat="server"></asp:Label></div>
         </div>
     </div>
+</div>
 </asp:Content>

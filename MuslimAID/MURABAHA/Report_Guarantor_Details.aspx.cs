@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Drawing;
+using System.Globalization;
 
 namespace MuslimAID.MURABHA
 {
@@ -65,46 +66,27 @@ namespace MuslimAID.MURABHA
             {
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
-                hstrSelectQuery.Value = "SELECT c.center_name AS Center,b.team_id,b.ca_code nic, l.contra_code ,b.full_name,b.land_no, b.promisers_id, '' promisers1_contra_code,'' promisers1_full_name, '' land_no1, b.promiser_id_2, '' promisers2_contra_code,'' promisers2_full_name, '' land_no2 FROM center_details c, micro_loan_details l, micro_basic_detail b, micro_exective_root e WHERE b.contract_code= l.contra_code AND b.city_code = c.city_code AND b.root_id = e.exe_id AND b.society_id = c.idcenter_details AND e.branch_code = b.city_code and b.team_id != '' ";
-                if (cmbCityCode.SelectedIndex != 0 || cmbRoot.SelectedIndex != 0 || cmbCenter.SelectedIndex != 0 || txtDateFrom.Text.Trim() != "" || cmbCenterDay.SelectedIndex != 0)
+                hstrSelectQuery.Value = "SELECT c.center_name AS Center,b.team_id,b.ca_code nic, l.contra_code ,b.full_name,b.land_no, b.promisers_id, '' promisers1_contra_code,'' promisers1_full_name, '' land_no1, b.promiser_id_2, '' promisers2_contra_code,'' promisers2_full_name, '' land_no2 FROM center_details c, micro_loan_details l, micro_basic_detail b, micro_exective_root e WHERE b.contract_code= l.contra_code AND b.city_code = c.city_code AND b.root_id = e.exe_id AND b.society_id = c.idcenter_details AND e.branch_code = b.city_code and b.team_id != ''";
+                if (cmbCityCode.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and b.city_code = '" + cmbCityCode.SelectedValue.ToString() + "' ";
+                if (cmbArea.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and b.area_code = '" + cmbArea.SelectedValue.ToString() + "' ";
+                if (cmbVillage.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and b.village = '" + cmbVillage.SelectedValue.ToString() + "' ";
+                if (cmbCenter.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and b.society_id = '" + cmbCenter.SelectedValue.ToString() + "' ";
+                if (cmbRoot.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and e.exe_id = '" + cmbRoot.SelectedValue.ToString() + "' ";
+                if (cmbCenterDay.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.center_day = '" + cmbCenterDay.SelectedValue.ToString() + "' ";
+                if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
                 {
-                    if (cmbCityCode.SelectedIndex != 0 && cmbCityCode.SelectedIndex > 0)
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and city_code = '" + cmbCityCode.SelectedValue.ToString() + "' ";
-
-                        if (cmbArea.SelectedIndex != 0 && cmbArea.SelectedIndex > 0)
-                        {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and area_code = '" + cmbArea.SelectedValue.ToString() + "' ";
-                        }
-                        if (cmbVillage.SelectedIndex != 0 && cmbVillage.SelectedIndex > 0)
-                        {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and villages_code = '" + cmbVillage.SelectedValue.ToString() + "' ";
-                        }
-                        if (cmbRoot.SelectedIndex != 0 && cmbRoot.SelectedIndex > 0)
-                        {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and exe_id = '" + cmbRoot.SelectedValue.ToString() + "' ";
-                        }
-                        if (cmbCenter.SelectedIndex != 0 && cmbCenter.SelectedIndex > 0)
-                        {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and auto_id = '" + cmbCenter.SelectedValue.ToString() + "' ";
-                        }
-                    }
-                    if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and (DATE_FORMAT((date_time),'%Y-%m-%d')) between '" + txtDateFrom.Text.Trim() + "' and '" + txtDateTo.Text.Trim() + "'";
-                    }
-                    if (cmbCenterDay.SelectedIndex != 0 && cmbCenterDay.SelectedIndex > 0)
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and center_day = '" + cmbCenterDay.SelectedValue.ToString() + "' ";
-                    }
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by idmicro_basic_detail asc;";
-                    loadDataToRepeater(hstrSelectQuery.Value);
+                    DateTime strTo = DateTime.ParseExact(txtDateTo.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                    DateTime strStart = DateTime.ParseExact(txtDateFrom.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                    hstrSelectQuery.Value += " and c.date_time BETWEEN '" + strStart.ToString() + "' and '" + strTo.ToString() + "'";
                 }
-                else
-                {
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by idmicro_basic_detail asc;";
-                    loadDataToRepeater(hstrSelectQuery.Value);
-                }
+                hstrSelectQuery.Value = hstrSelectQuery.Value + " order by idmicro_basic_detail asc;";
+                loadDataToRepeater(hstrSelectQuery.Value);
             }
             catch (Exception e)
             {
@@ -189,6 +171,10 @@ namespace MuslimAID.MURABHA
         {
             try
             {
+                Promisers1ContractCode = "";
+                Promisers1Name = "";
+                mobile_no = "";
+
                 string strQRY = "select contract_code, full_name,land_no from micro_basic_detail where ca_code = '" + ca_code + "'";
                 MySqlCommand cmd = new MySqlCommand(strQRY, cls_Connection.DBConnect());
                 cmd.CommandType = CommandType.Text;

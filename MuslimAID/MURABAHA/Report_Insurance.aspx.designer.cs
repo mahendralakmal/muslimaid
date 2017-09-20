@@ -23,13 +23,31 @@ namespace MuslimAID.MURABHA {
         protected global::System.Web.UI.WebControls.DropDownList cmbCityCode;
         
         /// <summary>
-        /// txtContraCode control.
+        /// cmbArea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContraCode;
+        protected global::System.Web.UI.WebControls.DropDownList cmbArea;
+        
+        /// <summary>
+        /// cmbVillage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbVillage;
+        
+        /// <summary>
+        /// cmbVillagr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbVillagr;
         
         /// <summary>
         /// txtDateFrom control.
@@ -48,6 +66,15 @@ namespace MuslimAID.MURABHA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDateTo;
+        
+        /// <summary>
+        /// txtContraCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtContraCode;
         
         /// <summary>
         /// btnSerch control.

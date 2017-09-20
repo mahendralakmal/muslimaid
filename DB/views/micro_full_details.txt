@@ -1,0 +1,92 @@
+MURABAHA FULL DETAILS REPORT
+------------------------------------------------------------------------------------
+drop view micro_full_details;
+create view micro_full_details as select `c`.`idmicro_basic_detail` AS `idmicro_basic_detail`,`c`.`contract_code` AS `contract_code`,
+`c`.`ca_code` AS `ca_code`,`c`.`team_id` AS `team_id`,`c`.`client_id` AS `client_id`,`c`.`nic` AS `nic`,
+`c`.`city_code` AS `city_code`,`c`.`society_id` AS `society_id`,`c`.`province` AS `province`,`c`.`gs_ward` AS `gs_ward`,
+`c`.`full_name` AS `full_name`,`c`.`initial_name` AS `initial_name`,`c`.`other_name` AS `other_name`,
+`c`.`marital_status` AS `marital_status`,`c`.`education` AS `basic_education`,`c`.`land_no` AS `land_no`,
+`c`.`mobile_no` AS `mobile_no`,`c`.`p_address` AS `p_address`,`c`.`inspection_date` AS `inspection_date`,
+`c`.`create_user_id` AS `create_user_id`,`c`.`user_ip` AS `basic_user_ip`,`c`.`date_time` AS `basic_date_time`,
+`c`.`promisers_id` AS `promisers_id`,`c`.`village` AS `village`,`c`.`company_code` AS `company_code`,
+`c`.`root_id` AS `root_id`,`c`.`cli_photo` AS `cli_photo`,`c`.`bb_photo` AS `bb_photo`,
+`c`.`promiser_id_2` AS `promiser_id_2`,`c`.`nic_issue_date` AS `nic_issue_date`,`c`.`dob` AS `dob`,
+`c`.`gender` AS `gender`,`c`.`r_address` AS `r_address`,`c`.`income_source` AS `income_source`,
+`f`.`spouse_nic` AS `spouse_nic`,`f`.`spouse_name` AS `spouse_name`,`f`.`occupation` AS `occupation`,
+`f`.`no_of_fami_memb` AS `no_of_fami_memb`,`f`.`education` AS `family_education`,`f`.`dependers` AS `dependers`,
+`f`.`spouse_income` AS `spouse_income`,`f`.`other_fami_mem_income` AS `other_fami_mem_income`,
+`f`.`moveable_property` AS `moveable_property`,`f`.`immoveable_property` AS `immoveable_property`,
+`f`.`saving` AS `saving`,`f`.`user_ip` AS `family_user_ip`,`f`.`date_time` AS `family_date_time`,
+`f`.`spouse_nic_issued_date` AS `spouse_nic_issued_date`,`f`.`spouse_dob` AS `spouse_dob`,
+`f`.`spouse_gender` AS `spouse_gender`,`f`.`spouse_contact_no` AS `spouse_contact_no`,
+`f`.`spouse_relationship_with_applicant` AS `spouse_relationship_with_applicant`,`fa`.`amount_fex` AS `amount_fex`,
+`fa`.`amount_opex` AS `amount_opex`,`fa`.`clothes_ex` AS `clothes_ex`,`fa`.`education_ex` AS `education_ex`,
+`fa`.`food_ex` AS `food_ex`,`fa`.`fr_period` AS `fr_period`,`fa`.`health_n_sanitation` AS `health_n_sanitation`,
+`fa`.`mad` AS `mad`,`fa`.`mdaaip` AS `mdaaip`,`fa`.`net_annual_family_in` AS `net_annual_family_in`,
+`fa`.`net_Income_business` AS `net_Income_business`,`fa`.`other_ex` AS `other_ex`,`fa`.`other_income` AS `fa_other_income`,
+`fa`.`rapsa` AS `rapsa`,`fa`.`rentIncome` AS `rentIncome`,`fa`.`rent_ex` AS `rent_ex`,
+`fa`.`rent_income_other` AS `rent_income_other`,`fa`.`salary_n_wages` AS `salary_n_wages`,
+`fa`.`total_annual_family_ex` AS `total_annual_family_ex`,`fa`.`total_annual_family_in` AS `total_annual_family_in`,
+`fa`.`travel_n_transport` AS `travel_n_transport`,`fa`.`wet_ex` AS `wet_ex`,`b`.`business_name` AS `business_name`,
+`b`.`busi_duration` AS `busi_duration`,`b`.`busi_address` AS `busi_address`,`b`.`busi_income` AS `busi_income`,
+`b`.`other_income` AS `other_income`,`b`.`total_income` AS `total_income`,`b`.`direct_cost` AS `direct_cost`,
+`b`.`indirect_cost` AS `indirect_cost`,`b`.`other_expenses` AS `other_expenses`,`b`.`total_expenses` AS `total_expenses`,
+`b`.`profit_lost` AS `profit_lost`,`b`.`family_expenses` AS `family_expenses`,`b`.`net_income` AS `net_income`,
+`b`.`user_ip` AS `business_user_ip`,`b`.`date_time` AS `business_date_time`,`b`.`busi_population` AS `busi_population`,
+`b`.`busi_nature` AS `busi_nature`,`b`.`key_person` AS `key_person`,`b`.`no_of_ppl` AS `no_of_ppl`,`b`.`br_no` AS `br_no`,
+`b`.`contact_no_ofc` AS `contact_no_ofc`,`b`.`sales_credit` AS `sales_credit`,`b`.`purchase_cash` AS `purchase_cash`,
+`b`.`purchase_credit` AS `purchase_credit`,`b`.`rent` AS `rent`,`b`.`water_elec_tele` AS `water_elec_tele`,
+`b`.`wages` AS `wages`,`b`.`fla_rent` AS `fla_rent`,`b`.`travel` AS `travel`,`b`.`maintenance` AS `maintenance`,
+`l`.`loan_amount` AS `loan_amount`,`l`.`current_loan_amount` AS `current_loan_amount`,
+`l`.`service_charges` AS `service_charges`,`l`.`other_charges` AS `other_charges`,`l`.`interest_rate` AS `interest_rate`,
+((((`l`.`loan_amount` * `l`.`interest_rate`) / 100) / 12) * `l`.`period`) AS `interest_amount`,`l`.`period` AS `period`,
+`l`.`monthly_instollment` AS `monthly_instollment`,`l`.`created_on` AS `created_on`,
+`l`.`created_user_nic` AS `created_user_nic`,`l`.`created_user_ip` AS `created_user_ip`,`l`.`chequ_no` AS `chequ_no`,
+`l`.`chequ_amount` AS `chequ_amount`,`l`.`chequ_deta_on` AS `chequ_deta_on`,`l`.`loan_approved` AS `loan_approved`,
+`l`.`loan_approved_user_nic` AS `loan_approved_user_nic`,`l`.`loan_approved_on` AS `loan_approved_on`,
+`l`.`OtherDescription` AS `OtherDescription`,`l`.`cheq_detai_app_nic` AS `cheq_detai_app_nic`,
+`l`.`due_date` AS `due_date`,`l`.`arres_amou` AS `arres_amou`,`l`.`acc_name` AS `acc_name`,
+`l`.`acc_branch` AS `acc_branch`,`l`.`acc_number` AS `acc_number`,`l`.`bank_name` AS `bank_name`,`l`.`def` AS `def`,
+`l`.`over_payment` AS `over_payment`,`l`.`arres_count` AS `arres_count`,`l`.`loan_sta` AS `loan_sta`,
+`l`.`ser_char_sta` AS `ser_char_sta`,`l`.`closing_date` AS `closing_date`,`l`.`maturity_date` AS `maturity_date`,
+`l`.`due_installment` AS `due_installment`,`l`.`reg_approval_nic` AS `reg_approval_nic`,
+`l`.`reg_approval_on` AS `reg_approval_on`,`l`.`reg_approval_des` AS `reg_approval_des`,
+`l`.`reg_approval` AS `reg_approval`,`l`.`bank_code` AS `bank_code`,`l`.`branch_code` AS `branch_code`,
+`l`.`registration_fee` AS `registration_fee`,`l`.`walfare_fee` AS `walfare_fee`,
+`l`.`product_category` AS `product_category`,`l`.`brand` AS `brand`,`l`.`model_no` AS `model_no`,
+`l`.`selling_price` AS `selling_price`,`l`.`down_payment` AS `down_payment`,
+`l`.`micro_loan_detailscol` AS `micro_loan_detailscol`,`l`.`reason_to_apply` AS `reason_to_apply`,
+`l`.`any_unsettled_loans` AS `any_unsettled_loans`,`l`.`micro_loan_detailscol1` AS `micro_loan_detailscol1`,
+`l`.`other_unsettled_facilities` AS `other_unsettled_facilities`,`l`.`next_center_day` AS `next_center_day`,
+`l`.`micro_loan_detailscol2` AS `micro_loan_detailscol2`,`i`.`insurance_code` AS `insurance_code`,
+`i`.`insured` AS `insured`,`i`.`module` AS `module`,`branch`.`b_code` AS `b_code`,`branch`.`b_name` AS `b_name`,
+`area`.`id` AS `id`,`area`.`area_code` AS `area_code`,`area`.`area` AS `area`,
+`villages_name`.`idvillages_name` AS `idvillages_name`,`villages_name`.`villages_code` AS `villages_code`,
+`villages_name`.`villages_name` AS `villages_name`,
+
+`center_details`.`auto_id` AS `auto_id`,
+`center_details`.`villages` AS `villages`,`center_details`.`center_name` AS `center_name`,
+`center_details`.`center_day` AS `center_day`,`center_details`.`conta_no` AS `conta_no`,
+`center_details`.`exective` AS `exective`,`center_details`.`leader_name` AS `leader_name`,
+
+`micro_exective_root`.`idrbf_exective_root` AS `idrbf_exective_root`,`micro_exective_root`.`exe_id` AS `exe_id`,
+`micro_exective_root`.`exe_name` AS `exe_name` 
+
+from ((((((((((`micro_basic_detail` `c` 
+left join `micro_family_details` `f` on((`c`.`contract_code` = `f`.`contract_code`))) 
+left join `micro_business_details` `b` on((`f`.`contract_code` = `b`.`contract_code`))) 
+left join `micro_loan_details` `l` on((`b`.`contract_code` = `l`.`contra_code`))) 
+left join `micro_family_appraisal` `fa` on((`l`.`contra_code` = `fa`.`contract_code`))) 
+left join `branch` on((`c`.`city_code` = `branch`.`b_code`))) 
+left join `area` on((`c`.`area_code` = `area`.`area_code`))) 
+left join `villages_name` on((`c`.`village` = `villages_name`.`villages_code`))) 
+
+left join `center_details` on(((`c`.`city_code` = `center_details`.`city_code`) 
+and (`c`.`society_id` = `center_details`.`idcenter_details`)
+and (c.village = center_details.villages)and (c.area_code = center_details.area_code)
+))) 
+
+left join `micro_exective_root` on(((convert(`c`.`root_id` using utf8) = `micro_exective_root`.`exe_id`) 
+and (`micro_exective_root`.`branch_code` = convert(`c`.`city_code` using utf8))))) 
+left join `insurance_details` `i` on((`c`.`contract_code` = `i`.`contact_code`))) 
+order by `c`.`idmicro_basic_detail` desc 

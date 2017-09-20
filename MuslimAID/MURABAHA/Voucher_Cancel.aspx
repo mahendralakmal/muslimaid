@@ -76,9 +76,9 @@
         <div class="col-md-7">
             <div class="form-group">
                 <div class="col-md-12">
-                    <asp:Button ID="btnPeied" runat="server" Enabled="false" TabIndex="3" 
+                    <asp:Button ID="btnPeied" runat="server" Enabled="false" TabIndex="3" CssClass="btn btn-primary"
                         Text="Cancel" onclick="btnPeied_Click" />&nbsp;
-                        <input id="btnPrint0" onclick="PrintGridData()" type="button" value="Print" />
+                        <input id="btnPrint0" onclick="PrintGridData()" class="btn btn-default" type="button" value="Print" />
                     <asp:Label ID="lblMsg" runat="server"></asp:Label>
                 </div>
             </div>
@@ -325,4 +325,5 @@
             </asp:Panel>
         </div>
     </div>
+</div>
 </asp:Content>

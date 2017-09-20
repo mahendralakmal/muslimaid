@@ -158,23 +158,23 @@ namespace MuslimAID.MURABAHA
             {
                 if (cmbBankName.SelectedIndex == 0)
                 {
-                    lblLDMsg.Text = "Please enter Bank Name.";
+                    lblLDMsg.Text = "Please select Bank Name.";
                 }
                 else if (cmbBranch.SelectedIndex == 0)
                 {
-                    lblLDMsg.Text = "Please enter Account branch.";
-                }
-                else if (txtStartChqNo.Text.Trim() == "")
-                {
-                    lblLDMsg.Text = "Please Enter Start Cheque Number.";
+                    lblLDMsg.Text = "Please select branch.";
                 }
                 else if (txtAccountNo.Text.Trim() == "")
                 {
                     lblLDMsg.Text = "Please Enter Account Number.";
                 }
+                else if (txtStartChqNo.Text.Trim() == "")
+                {
+                    lblLDMsg.Text = "Please Enter Start Cheque Number.";
+                }
                 else if (txtNoChq.Text.Trim() == "")
                 {
-                    lblLDMsg.Text = "Please Enter Number of Cheque .";
+                    lblLDMsg.Text = "Please Enter Number of Cheques.";
                 }
                 else
                 {

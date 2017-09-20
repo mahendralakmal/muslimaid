@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Drawing;
+using System.Globalization;
 
 namespace MuslimAID.MURABHA
 {
@@ -60,42 +61,39 @@ namespace MuslimAID.MURABHA
                 lblMsg.Text = "";
                 hstrSelectQuery.Value = "";
                 hstrSelectQuery.Value = "select d.contract_code,format(d.amount,2) amount,l.chequ_no,d.chq_name,replace(replace(concat(d.day1,'',d.day2,'-',d.month1,'',d.month2,'-','20','',d.year1,'',d.year2), ',,', ','), ',,', ',') chq_date,d.date_time,d.user_nic,root_id,society_id,city_code from chq_date d, micro_basic_detail c, micro_loan_details l where c.contract_code = l.contra_code and l.contra_code = d.contract_code and l.loan_sta != 'C' and d.chq_status = 'A'";
-                if (txtContraCode.Text.Trim() != "" || txtDateFrom.Text.Trim() != "" || txtDateTo.Text.Trim() != "" || cmbCityCode.SelectedIndex != 0 || cmbCRO.SelectedIndex != -1 || cmbVillagr.SelectedIndex != -1 || txtChequeNo.Text.Trim() != "" || txtToChequeNo.Text.Trim() != "")
-                {
-                    if (cmbCityCode.SelectedIndex != 0)
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.city_code = '" + cmbCityCode.SelectedValue.ToString() + "'";
 
-                        if (cmbArea.SelectedIndex != 0)
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.area_code = '" + cmbArea.SelectedItem.Value + "'";
-                        if (cmbVillage.SelectedIndex != 0)
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.village = '" + cmbVillage.SelectedItem.Value + "'";
-                        if (cmbCRO.SelectedIndex != 0)
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.root_id = '" + cmbCRO.SelectedItem.Value + "'";
-                        if (cmbVillagr.SelectedIndex != 0)
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.society_id = '" + cmbVillagr.SelectedValue.ToString() + "' ";
-                    }
-                    if (txtContraCode.Text.Trim() != "")
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and d.contract_code = '" + txtContraCode.Text.Trim() + "'";
-                    }
-                    if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and (DATE_FORMAT((d.date_time),'%Y-%m-%d')) between '" + txtDateFrom.Text.Trim() + "' and '" + txtDateTo.Text.Trim() + "'";
-                    }
-                    if (txtChequeNo.Text.Trim() != "" && txtToChequeNo.Text.Trim() != "")
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and l.chequ_no >= '" + txtChequeNo.Text.Trim() + "' and l.chequ_no <= '" + txtToChequeNo.Text.Trim() + "' ";
-                    }
+                if (cmbCityCode.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.city_code = '" + cmbCityCode.SelectedValue.ToString() + "'";
+                if (cmbArea.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.area_code = '" + cmbArea.SelectedItem.Value.ToString() + "'";
+                if (cmbVillage.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.village = '" + cmbVillage.SelectedItem.Value.ToString() + "'";
+                if (cmbCRO.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.root_id = '" + cmbCRO.SelectedItem.Value.ToString() + "'";
+                if (cmbVillagr.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.society_id = '" + cmbVillagr.SelectedValue.ToString() + "' ";
 
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by l.chequ_no asc;";
-                    loadDataToRepeater(hstrSelectQuery.Value);
-                }
-                else
+                if (txtContraCode.Text.Trim() != "")
+                    hstrSelectQuery.Value += " and l.contra_code = '" + txtContraCode.Text.Trim() + "'";
+                if (txtContraCode.Text.Trim() != "")
+                    hstrSelectQuery.Value += " and d.contract_code = '" + txtContraCode.Text.Trim() + "'";
+                if (txtChequeNo.Text.Trim() != "" && txtToChequeNo.Text.Trim() != "")
                 {
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by l.chequ_no asc;";
-                    loadDataToRepeater(hstrSelectQuery.Value);
+                    DateTime strTo = DateTime.ParseExact(txtDateTo.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                    DateTime strStart = DateTime.ParseExact(txtDateFrom.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                    hstrSelectQuery.Value += " and l.chequ_no BETWEEN '" + strStart.ToString() + "' and '" + strTo.ToString() + "' ";
                 }
+                if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
+                {
+                    DateTime strTo = DateTime.ParseExact(txtDateTo.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                    DateTime strStart = DateTime.ParseExact(txtDateFrom.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                    hstrSelectQuery.Value += " and c.date_time BETWEEN '" + strStart.ToString("yyyy-MM-dd") + "' and '" + strTo.ToString("yyyy-MM-dd") + "'";
+                }
+
+
+
+                hstrSelectQuery.Value = hstrSelectQuery.Value + " order by l.chequ_no asc;";
+                loadDataToRepeater(hstrSelectQuery.Value);
             }
             catch (Exception)
             {

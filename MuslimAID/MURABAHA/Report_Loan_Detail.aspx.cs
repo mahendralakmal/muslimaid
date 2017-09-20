@@ -14,6 +14,7 @@ using MySql.Data.MySqlClient;
 using System.IO;
 using System.Drawing;
 using Microsoft.VisualBasic;
+using System.Globalization;
 
 namespace MuslimAID.MURABHA
 {
@@ -60,51 +61,33 @@ namespace MuslimAID.MURABHA
                 hstrSelectQuery.Value = "";
                 hstrSelectQuery.Value = "select l.contra_code,FORMAT(l.loan_amount,2) loan_amount,FORMAT(l.service_charges,2) service_charges,FORMAT(l.other_charges,2) other_charges,l.interest_rate,FORMAT(l.interest_amount,2) interest_amount,l.period,FORMAT(l.monthly_instollment,2) monthly_instollment,FORMAT(l.walfare_fee,2) walfare_fee,FORMAT(l.registration_fee,2) registration_fee,center_name,c.full_name AS initial_name,exe_name,team_id,chequ_deta_on from micro_loan_details l, micro_basic_detail c , center_details f, micro_exective_root e where c.contract_code = l.contra_code and c.society_id = f.idcenter_details AND f.city_code = c.city_code and c.root_id = e.exe_id AND c.city_code = e.branch_code ";
 
-                if (txtContraCode.Text.Trim() != "" || txtDateFrom.Text.Trim() != "" || txtDateTo.Text.Trim() != "" || cmbCityCode.SelectedIndex != 0 || cmbVillagr.SelectedIndex != 0 || cmbRoot.SelectedIndex != 0 || cmbStatus.SelectedIndex != 0)
+                if (cmbCityCode.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.city_code = '" + cmbCityCode.SelectedValue.ToString() + "'";
+                if (cmbArea.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.area_code = '" + cmbArea.SelectedItem.Value.ToString() + "'";
+                if (cmbVillage.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.village = '" + cmbVillage.SelectedItem.Value.ToString() + "'";
+                if (cmbRoot.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.root_id = '" + cmbRoot.SelectedItem.Value.ToString() + "'";
+                if (cmbVillagr.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and c.society_id = '" + cmbVillagr.SelectedValue.ToString() + "' ";
+                if (cmbStatus.SelectedIndex > 0 && cmbStatus.SelectedIndex == 1)
+                    hstrSelectQuery.Value += " and l.loan_sta = '" + cmbStatus.SelectedValue.ToString() + "' and loan_approved = 'P'";
+                else if (cmbStatus.SelectedIndex > 0 && cmbStatus.SelectedIndex == 2)
+                    hstrSelectQuery.Value += " and l.loan_sta = '" + cmbStatus.SelectedValue.ToString() + "' and loan_approved = 'Y'";
+                else if (cmbStatus.SelectedIndex > 0)
+                    hstrSelectQuery.Value += " and l.loan_sta = '" + cmbStatus.SelectedItem.Value.ToString() + "'";
+
+                if (txtContraCode.Text.Trim() != "")
+                    hstrSelectQuery.Value += " and l.contra_code = '" + txtContraCode.Text.Trim() + "'";
+                if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
                 {
-                    if (cmbCityCode.SelectedIndex != 0)
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.city_code = '" + cmbCityCode.SelectedValue.ToString() + "'";
-                        if (cmbArea.SelectedIndex != 0)
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.area_code = '" + cmbArea.SelectedItem.Value + "'";
-                        if (cmbVillage.SelectedIndex != 0)
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.village = '" + cmbVillage.SelectedItem.Value + "'";
-                        if (cmbRoot.SelectedIndex != 0)
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.root_id = '" + cmbRoot.SelectedItem.Value + "'";
-                        if (cmbVillagr.SelectedIndex != 0)
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and c.society_id = '" + cmbVillagr.SelectedValue.ToString() + "' ";
-                    }
-                    if (cmbStatus.SelectedIndex != 0)
-                    {
-                        if (cmbStatus.SelectedIndex == 1)
-                        {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and l.loan_sta = 'P' and loan_approved = 'P'";
-                        }
-                        else if (cmbStatus.SelectedIndex == 2)
-                        {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and l.loan_sta = 'P' and loan_approved = 'Y'";
-                        }
-                        else
-                        {
-                            hstrSelectQuery.Value = hstrSelectQuery.Value + " and l.loan_sta = '" + cmbStatus.SelectedItem.Value + "'";
-                        }
-                    }
-                    if (txtContraCode.Text.Trim() != "")
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and l.contra_code = '" + txtContraCode.Text.Trim() + "'";
-                    }
-                    if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
-                    {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and (DATE_FORMAT((l.created_on),'%Y-%m-%d')) between '" + txtDateFrom.Text.Trim() + "' and '" + txtDateTo.Text.Trim() + "' ";
-                    }
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by c.idmicro_basic_detail asc;";
-                    loadDataToRepeater(hstrSelectQuery.Value);
+                    DateTime strTo = DateTime.ParseExact(txtDateTo.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                    DateTime strStart = DateTime.ParseExact(txtDateFrom.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                    hstrSelectQuery.Value += " and c.date_time BETWEEN '" + strStart.ToString("yyyy-MM-dd") + "' and '" + strTo.ToString("yyyy-MM-dd") + "'";
                 }
-                else
-                {
-                    hstrSelectQuery.Value = hstrSelectQuery.Value + " order by c.idmicro_basic_detail asc;";
-                    loadDataToRepeater(hstrSelectQuery.Value);
-                }
+                hstrSelectQuery.Value = hstrSelectQuery.Value + " order by c.idmicro_basic_detail asc;";
+                loadDataToRepeater(hstrSelectQuery.Value);
             }
             catch (Exception ex)
             {

@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Drawing;
+using System.Globalization;
 
 namespace MuslimAID.MURABHA
 {
@@ -88,7 +89,9 @@ namespace MuslimAID.MURABHA
                     }
                     if (txtDateFrom.Text.Trim() != "" && txtDateTo.Text.Trim() != "")
                     {
-                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and basic_date_time BETWEEN '" + txtDateFrom.Text.Trim() + "' and '" + txtDateTo.Text.Trim() + "'";
+                        DateTime strTo = DateTime.ParseExact(txtDateTo.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                        DateTime strStart = DateTime.ParseExact(txtDateFrom.Text.Trim(), "d-M-yyyy", CultureInfo.InvariantCulture);
+                        hstrSelectQuery.Value = hstrSelectQuery.Value + " and basic_date_time BETWEEN '" + strStart.ToString() + "' and '" + strTo.ToString() + "'";
                     }
                     if (cmbCenterDay.SelectedIndex != 0 && cmbCenterDay.SelectedIndex > 0)
                     {

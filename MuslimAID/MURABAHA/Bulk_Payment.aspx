@@ -4,55 +4,50 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
     <div class="container">
         <div class="PageTitle">
             <h4>Weekly Payment - MF</h4>
         </div>
-        <div class="col-md-12 form-container">
-            <div class="form-group">
-                <div class="col-md-5">
-                    Branch Code</div>
-                <div class="col-md-7">
-                    <asp:DropDownList CssClass="form-control" ID="cmbCityCode" runat="server" AutoPostBack="true" OnSelectedIndexChanged="cmbCityCode_SelectedIndexChanged"
-                        Width="200">
+        <div class="col-md-12 form-container row">
+            <div class="col-md-3 form-group row">
+                <div class="col-md-4">
+                    Branch</div>
+                <div class="col-md-8">
+                    <asp:DropDownList CssClass="form-control" ID="cmbCityCode" runat="server" AutoPostBack="true" OnSelectedIndexChanged="cmbCityCode_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-5">
+            <div class="col-md-3 form-group row">
+                <div class="col-md-4">
                     Area</div>
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <asp:DropDownList CssClass="form-control" ID="cmbArea" runat="server" 
-                        Width="200" AutoPostBack="True" 
-                        onselectedindexchanged="cmbArea_SelectedIndexChanged">
+                        AutoPostBack="True" onselectedindexchanged="cmbArea_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-5">
+            <div class="col-md-3 form-group">
+                <div class="col-md-4">
                     Village</div>
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <asp:DropDownList CssClass="form-control" ID="cmbVillage" runat="server" 
-                        Width="200" AutoPostBack="True" 
-                        onselectedindexchanged="cmbVillage_SelectedIndexChanged">
+                        AutoPostBack="True" onselectedindexchanged="cmbVillage_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-5">
+            <div class="col-md-3 form-group">
+                <div class="col-md-4">
                     Cneter</div>
-                <div class="col-md-7">
-                    <asp:DropDownList CssClass="form-control" ID="cmbSocietyID" runat="server" Width="200">
+                <div class="col-md-8">
+                    <asp:DropDownList CssClass="form-control" ID="cmbSocietyID" runat="server" >
                     </asp:DropDownList>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-5">
-                    </div>
-                <div class="col-md-7">
-                    <asp:Button ID="btnSerch" runat="server" Text="Search" OnClick="btnSerch_Click" />
-                </div>
+            <div class="col-md-12 form-group">
+                
+                    <asp:Button ID="btnSerch" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="btnSerch_Click" />
+                    <asp:Label ID="lblMsg2" runat="server"></asp:Label>
+                
             </div>
             <div class="col-md-12 form-group"></div>
             <div class="form-group">
@@ -121,4 +116,5 @@
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
         </div>
+    </div>
 </asp:Content>

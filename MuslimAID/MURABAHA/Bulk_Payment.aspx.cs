@@ -56,19 +56,45 @@ namespace MuslimAID.MURABAHA
         {
             grvPayment.DataSource = null;
             grvPayment.DataBind();
-            GetSearch();
+            if (cmbCityCode.SelectedIndex == 0)
+                lblMsg2.Text = "Please select Branch";
+            else
+                GetSearch();
         }
 
         protected void GetSearch()
         {
             lblMsg.Text = "";
-            if (cmbCityCode.SelectedIndex != 0 && cmbSocietyID.SelectedIndex >= 0)
+            if (cmbCityCode.SelectedIndex != 0)
             {
                 string strCityCode = cmbCityCode.SelectedValue;
+                string strArea = cmbArea.SelectedValue;
+                string strVillage = cmbVillage.SelectedValue;
                 string strSocietyID = cmbSocietyID.SelectedValue;
 
+                lblMsg.Text = "";
+                
+
                 hstrSelectQuery.Value = "";
-                hstrSelectQuery.Value = "select b.contract_code,b.ca_code,b.nic,b.initial_name,l.monthly_instollment,l.current_loan_amount from micro_basic_detail b,micro_loan_details l where b.city_code = '" + strCityCode + "' and b.society_id = '" + strSocietyID + "' and b.contract_code = l.contra_code and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'P' or b.city_code = '" + strCityCode + "' and b.society_id = '" + strSocietyID + "' and b.contract_code = l.contra_code and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'E' order by b.idmicro_basic_detail asc;";
+
+                hstrSelectQuery.Value = "select b.contract_code,b.ca_code,b.nic,b.initial_name,l.monthly_instollment,l.current_loan_amount from micro_basic_detail b,micro_loan_details l where b.city_code = '" + strCityCode;
+                if(cmbArea.SelectedIndex > 0)
+                    hstrSelectQuery.Value += "' and b.area_code = '" + strArea;
+                else if(cmbVillage.SelectedIndex > 0)
+                    hstrSelectQuery.Value += "' and b.village = '" + strVillage;
+                else if (cmbSocietyID.SelectedIndex > 0)
+                    hstrSelectQuery.Value += "' and b.society_id = '" + strSocietyID;
+                else { }
+                hstrSelectQuery.Value += "' and b.contract_code = l.contra_code and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'P'";
+                hstrSelectQuery.Value += "or b.city_code = '" + strCityCode;
+                if (cmbArea.SelectedIndex > 0)
+                    hstrSelectQuery.Value += "' and b.area_code = '" + strArea;
+                else if (cmbVillage.SelectedIndex > 0)
+                    hstrSelectQuery.Value += "' and b.village = '" + strVillage;
+                else if (cmbSocietyID.SelectedIndex > 0)
+                    hstrSelectQuery.Value += "' and b.society_id = '" + strSocietyID;
+                else { }
+                hstrSelectQuery.Value += "' and b.contract_code = l.contra_code and l.loan_approved = 'Y' and l.chequ_no != '' and l.loan_sta = 'E' order by b.idmicro_basic_detail asc;";
                 loadDataToRepeater(hstrSelectQuery.Value);
 
             }
@@ -1447,6 +1473,7 @@ namespace MuslimAID.MURABAHA
             foreach (GridViewRow grows in grvPayment.Rows)
             {
                 TextBox txtPayment = grows.FindControl("txtPaidAmount") as TextBox;
+                TextBox txtRemark = grows.FindControl("txtRemark") as TextBox;
                 int id = grows.RowIndex;
                 if (txtPayment.Text.Trim() != "")
                 {
@@ -1457,11 +1484,12 @@ namespace MuslimAID.MURABAHA
                     string strNIC = grvPayment.Rows[id].Cells[2].Text;
                     string strDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     string strIp = Request.UserHostAddress;
+                    string strRemark = txtRemark.Text.Trim();
                     string strPayType = "Cash";
                     string strChqNo = "";
                     string strBank = "";
 
-                    MySqlCommand cmdInsertMonthPaym = new MySqlCommand("INSERT INTO micro_pais_history(contra_code,NIC,paied_amount,date_time,user_nic,user_ip,tra_description,pay_status,reson,payment_type,chq_No,chq_bank)VALUES(@contra_code,@NIC,@paied_amount,@date_time,@user_nic,@user_ip,@tra_description,@pay_status,@reson,@payment_type,@chq_No,@chq_bank);");
+                    MySqlCommand cmdInsertMonthPaym = new MySqlCommand("INSERT INTO micro_pais_history(contra_code,NIC,paied_amount,date_time,user_nic,user_ip,tra_description,pay_status,remark,payment_type,chq_No,chq_bank)VALUES(@contra_code,@NIC,@paied_amount,@date_time,@user_nic,@user_ip,@tra_description,@pay_status,@remark,@payment_type,@chq_No,@chq_bank);");
 
                     #region Assign Parameters
                     cmdInsertMonthPaym.Parameters.Add("@contra_code", MySqlDbType.VarChar, 13);
@@ -1472,7 +1500,7 @@ namespace MuslimAID.MURABAHA
                     cmdInsertMonthPaym.Parameters.Add("@user_ip", MySqlDbType.VarChar, 20);
                     cmdInsertMonthPaym.Parameters.Add("@tra_description", MySqlDbType.VarChar, 3);
                     cmdInsertMonthPaym.Parameters.Add("@pay_status", MySqlDbType.VarChar, 1);
-                    cmdInsertMonthPaym.Parameters.Add("@reson", MySqlDbType.VarChar, 45);
+                    cmdInsertMonthPaym.Parameters.Add("@remark", MySqlDbType.VarChar, 45);
                     cmdInsertMonthPaym.Parameters.Add("@payment_type", MySqlDbType.VarChar, 4);
                     cmdInsertMonthPaym.Parameters.Add("@chq_No", MySqlDbType.VarChar, 10);
                     cmdInsertMonthPaym.Parameters.Add("@chq_bank", MySqlDbType.VarChar, 45);
@@ -1487,7 +1515,7 @@ namespace MuslimAID.MURABAHA
                     cmdInsertMonthPaym.Parameters["@user_ip"].Value = strIp;
                     cmdInsertMonthPaym.Parameters["@tra_description"].Value = "WI";
                     cmdInsertMonthPaym.Parameters["@pay_status"].Value = "D";
-                    cmdInsertMonthPaym.Parameters["@reson"].Value = "";
+                    cmdInsertMonthPaym.Parameters["@remark"].Value = strRemark;
                     cmdInsertMonthPaym.Parameters["@payment_type"].Value = strPayType;
                     cmdInsertMonthPaym.Parameters["@chq_No"].Value = strChqNo;
                     cmdInsertMonthPaym.Parameters["@chq_bank"].Value = strBank;

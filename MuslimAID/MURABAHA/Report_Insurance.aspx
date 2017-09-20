@@ -56,18 +56,36 @@
         <div class="col-md-12 form-container row">
             <div class="col-md-3 form-group">
                 <div class="col-md-4">Branch</div>
-                <div class="col-md-8"><asp:DropDownList ID="cmbCityCode" CssClass="form-control" TabIndex="0" runat="server">
+                <div class="col-md-8"><asp:DropDownList ID="cmbCityCode" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="true"
+                        onselectedindexchanged="cmbCityCode_SelectedIndexChanged">
                                 </asp:DropDownList>
                 </div>
             </div>
             <div class="col-md-3 form-group">
-                <div class="col-md-4">Facility Code</div>
-                <div class="col-md-8"><asp:TextBox ID="txtContraCode" CssClass="form-control" runat="server" MaxLength="15"></asp:TextBox>
+                <div class="col-md-4">Area</div>
+                <div class="col-md-8">
+                    <asp:DropDownList ID="cmbArea" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="True" 
+                        onselectedindexchanged="cmbArea_SelectedIndexChanged" >
+                                </asp:DropDownList>
                 </div>
             </div>
             <div class="col-md-3 form-group">
-                <div class="col-md-3">Date</div>
-                <div class="col-md-9"><div class='input-group date' id='datepicker1' name='datepicker1'>
+                <div class="col-md-4">Village</div>
+                <div class="col-md-8"><asp:DropDownList ID="cmbVillage" CssClass="form-control" 
+                        TabIndex="0" runat="server" AutoPostBack="True" 
+                        onselectedindexchanged="cmbVillage_SelectedIndexChanged" >
+                                </asp:DropDownList></div>
+            </div>
+        <div class="col-md-3 form-group">
+            <div class="col-md-4">Center</div>
+            <div class="col-md-8"><asp:DropDownList CssClass="form-control" ID="cmbVillagr" runat="server" Enabled="false">
+                                </asp:DropDownList></div>
+        </div>
+            <div class="col-md-3 form-group">
+                <div class="col-md-4">Date</div>
+                <div class="col-md-8"><div class='input-group date' id='datepicker1' name='datepicker1'>
                         <asp:TextBox ID="txtDateFrom" CssClass="form-control" runat="server"
                             TabIndex="9"></asp:TextBox>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
@@ -75,13 +93,18 @@
                     </div></div>
             </div>
             <div class="col-md-3 form-group">
-                <div class="col-md-3">To</div>
-                <div class="col-md-9"><div class='input-group date' id='Div1' name='datepicker1'>
+                <div class="col-md-4">To</div>
+                <div class="col-md-8"><div class='input-group date' id='Div1' name='datepicker1'>
                         <asp:TextBox ID="txtDateTo" CssClass="form-control" runat="server"
                             TabIndex="9"></asp:TextBox>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div></div>
+            </div>
+            <div class="col-md-4 form-group">
+                <div class="col-md-3">Facility Code</div>
+                <div class="col-md-9"><asp:TextBox ID="txtContraCode" CssClass="form-control" runat="server" MaxLength="30"></asp:TextBox>
+                </div>
             </div>
             <div class="col-md-12 form-group">
                 <asp:Button ID="btnSerch" CssClass="btn btn-primary" runat="server" Text="Search" OnClick="btnSerch_Click" />
@@ -103,9 +126,9 @@
                             <asp:TemplateField HeaderText="Contract Code" HeaderStyle-Width="90px" ItemStyle-HorizontalAlign="Center"
                                 HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White">
                                 <ItemTemplate>
-                                    <a ref="#" onclick="javascript:w=window.open(&#039;Full_Details.aspx?ConCode=<%#Eval("contract_code")%>&#039;,&#039;popup&#039;,&#039;target=_blank,width=800px,height=500px,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=100&#039;);w.focus();return false;"
+                                    <a ref="#" onclick="javascript:w=window.open(&#039;Full_Details.aspx?ConCode=<%#Eval("contact_code")%>&#039;,&#039;popup&#039;,&#039;target=_blank,width=800px,height=500px,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=100&#039;);w.focus();return false;"
                                         style="text-decoration: underline;">
-                                        <%#Eval("contract_code")%>
+                                        <%#Eval("contact_code")%>
                                     </a>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -115,7 +138,7 @@
                             <asp:BoundField DataField="nic" HeaderText="NIC" ItemStyle-VerticalAlign="Top" ItemStyle-HorizontalAlign="Center"
                                 HeaderStyle-Width="80px" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White"
                                 HeaderStyle-ForeColor="White" ReadOnly="true" />
-                            <asp:BoundField DataField="initial_name" ItemStyle-VerticalAlign="Top" HeaderText="Name"
+                            <asp:BoundField DataField="full_name" ItemStyle-VerticalAlign="Top" HeaderText="Name"
                                 HeaderStyle-Width="190px" HeaderStyle-BackColor="#009905" HeaderStyle-BorderColor="White"
                                 HeaderStyle-ForeColor="White" ReadOnly="true" />
                             <asp:BoundField DataField="p_address" ItemStyle-VerticalAlign="Top" HeaderText="Address"
@@ -134,18 +157,7 @@
                             <asp:BoundField DataField="period" ItemStyle-VerticalAlign="Top" HeaderText="Period"
                                 HeaderStyle-Width="50px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
                                 HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
-                            <asp:BoundField DataField="spouse_name" ItemStyle-VerticalAlign="Top" HeaderText="Spouse Name"
-                                HeaderStyle-Width="220px" ItemStyle-HorizontalAlign="Left" HeaderStyle-BackColor="#009905"
-                                HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
-                            <asp:BoundField DataField="spouse_nic" ItemStyle-VerticalAlign="Top" HeaderText="Spouse NIC"
-                                HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
-                                HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
-                         <asp:BoundField DataField="Sdateofbirth" ItemStyle-VerticalAlign="Top" HeaderText="Date of Birth"
-                                HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
-                                HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />
-                         <asp:BoundField DataField="relationshipx" ItemStyle-VerticalAlign="Top" HeaderText="Relationship"
-                                HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center" HeaderStyle-BackColor="#009905"
-                                HeaderStyle-BorderColor="White" HeaderStyle-ForeColor="White" ReadOnly="true" />                                
+                           
                         </Columns>
                     </asp:GridView>
                 </asp:Panel>

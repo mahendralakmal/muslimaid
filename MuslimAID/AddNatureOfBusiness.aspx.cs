@@ -52,8 +52,13 @@ namespace MuslimAID
                 cmdNature.Parameters.AddWithValue("@natureOfBusiness", txtNature.Text.Trim());
                 cls_Connection objDb = new cls_Connection();
 
-                if (objDb.insertEditData(cmdNature)>0)
+                if (objDb.insertEditData(cmdNature) == 1062)
+                    lblMsg.Text = "This nature of business is alredy exists";
+                else if (objDb.insertEditData(cmdNature) > 0)
+                {
                     lblMsg.Text = "Successfully inseted";
+                    txtNature.Text = "";
+                }
                 else
                     lblMsg.Text = "Error occured";
             }
